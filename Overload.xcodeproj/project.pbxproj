@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */; };
 		071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3902251AF3F800A35799 /* OverloadApp.swift */; };
 		071E3905251AF3F800A35799 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* ContentView.swift */; };
 		071E3907251AF3F900A35799 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 071E3906251AF3F900A35799 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+FetchRequest.swift"; sourceTree = "<group>"; };
 		071E38FF251AF3F800A35799 /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3902251AF3F800A35799 /* OverloadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadApp.swift; sourceTree = "<group>"; };
 		071E3904251AF3F800A35799 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				071E3902251AF3F800A35799 /* OverloadApp.swift */,
 				071E3904251AF3F800A35799 /* ContentView.swift */,
 				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
+				0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */,
 				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
 				071E3906251AF3F900A35799 /* Assets.xcassets */,
 				071E390B251AF3F900A35799 /* Persistence.swift */,
@@ -272,6 +275,7 @@
 				07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */,
 				071E3905251AF3F800A35799 /* ContentView.swift in Sources */,
 				071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */,
+				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

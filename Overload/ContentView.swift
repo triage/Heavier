@@ -9,14 +9,16 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Exercise.name, ascending: true)],
-        animation: .default)
-    private var exercises: FetchedResults<Exercise>
-    @State var isAddVisible = false
     @State private var query: String = ""
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        entity: Exercise.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
+        ],
+        animation: .default)
+    var exercises: FetchedResults<Exercise>
+    @State var isAddVisible = false
     
     var body: some View {
         NavigationView {
