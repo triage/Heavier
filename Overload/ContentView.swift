@@ -29,9 +29,8 @@ struct ContentView: View {
                             Text(exercise.name!)
                         }
                     }
-                }
-            }
-            .listStyle(PlainListStyle())
+                }.listStyle(PlainListStyle())
+            }.hiddenNavigationBarStyle()
 //            .toolbar {
 //                Button(action: { isAddVisible.toggle() }) {
 //                    Label("Add Item", systemImage: "plus")
