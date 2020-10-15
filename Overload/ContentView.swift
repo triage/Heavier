@@ -13,20 +13,13 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State var isAddVisible = false
-    @ObservedObject var exerciseStorage: ExercisePersistenceManager
     
     var body: some View {
         NavigationView {
             VStack {
                 TextField("Search", text: $query)
                     .padding(20.0)
-                List {
-                    ForEach(exerciseStorage.exercises) { exercise in
-                        NavigationLink(destination: ExerciseView(exercise: exercise)) {
-                            Text(exercise.name!)
-                        }
-                    }
-                }.listStyle(PlainListStyle())
+                ListView(fetchRequest: Exercise.searchFetchRequest(query: query))
             }.hiddenNavigationBarStyle()
         }
         .hiddenNavigationBarStyle()
@@ -34,9 +27,30 @@ struct ContentView: View {
         .sheet(
             isPresented: $isAddVisible,
             content: {
-                DetailView(isPresented: $isAddVisible).environment(\.managedObjectContext, viewContext)
+                DetailView(isPresented: $isAddVisible)
             }
         )
+    }
+}
+
+struct ListView: View {
+    @Environment(\.managedObjectContext)
+    var context
+
+    var fetchRequest: FetchRequest<Exercise>
+    
+    var exercises: FetchedResults<Exercise> {
+        return fetchRequest.wrappedValue
+    }
+    
+    var body: some View {
+        List {
+            ForEach(exercises) { exercise in
+                NavigationLink(destination: ExerciseView(exercise: exercise)) {
+                    Text(exercise.name!)
+                }
+            }
+        }.listStyle(PlainListStyle())
     }
 }
 
@@ -64,8 +78,7 @@ private let itemFormatter: DateFormatter = {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            let exerciseStorage = ExercisePersistenceManager(managedObjectContext: PersistenceController.preview.container.viewContext)
-            ContentView(exerciseStorage: exerciseStorage).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             DetailView(isPresented: .constant(false)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
