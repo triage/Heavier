@@ -11,14 +11,9 @@ import CoreData
 struct ContentView: View {
     @State private var query: String = ""
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        entity: Exercise.entity(),
-        sortDescriptors: [
-            NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
-        ],
-        animation: .default)
-    var exercises: FetchedResults<Exercise>
+    
     @State var isAddVisible = false
+    @ObservedObject var exerciseStorage: ExercisePersistenceManager
     
     var body: some View {
         NavigationView {
@@ -26,39 +21,22 @@ struct ContentView: View {
                 TextField("Search", text: $query)
                     .padding(20.0)
                 List {
-                    ForEach(exercises) { exercise in
+                    ForEach(exerciseStorage.exercises) { exercise in
                         NavigationLink(destination: ExerciseView(exercise: exercise)) {
                             Text(exercise.name!)
                         }
                     }
                 }.listStyle(PlainListStyle())
             }.hiddenNavigationBarStyle()
-//            .toolbar {
-//                Button(action: { isAddVisible.toggle() }) {
-//                    Label("Add Item", systemImage: "plus")
-//                }
-//            }
         }
         .hiddenNavigationBarStyle()
+        .accentColor(.red)
         .sheet(
             isPresented: $isAddVisible,
             content: {
                 DetailView(isPresented: $isAddVisible).environment(\.managedObjectContext, viewContext)
             }
-        ).accentColor(.red)
-    }
-    
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { exercises[$0] }.forEach(viewContext.delete)
-            
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+        )
     }
 }
 
@@ -86,7 +64,8 @@ private let itemFormatter: DateFormatter = {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            let exerciseStorage = ExercisePersistenceManager(managedObjectContext: PersistenceController.preview.container.viewContext)
+            ContentView(exerciseStorage: exerciseStorage).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             DetailView(isPresented: .constant(false)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }

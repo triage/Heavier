@@ -6,16 +6,24 @@
 //
 
 import Foundation
-import SwiftUI
+import CoreData
 
 extension Exercise {
-    static func fetchRequest(query: String) -> FetchRequest<Exercise> {
-        return FetchRequest(
-            entity: Exercise.entity(),
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
-            ],
-            predicate: NSPredicate(format: "name CONTAINS %@", query), animation: .default
-        )
+    static var exercisesFetchRequest: NSFetchRequest<Exercise> {
+        let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+//        request.predicate = NSPredicate(format: "name CONTAINS %@", "ROMANIAN" as CVarArg)
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
+        ]
+        return request
+    }
+    
+    static func searchFetchRequest(query: String) -> NSFetchRequest<Exercise> {
+        let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+        request.predicate = NSPredicate(format: "name CONTAINS %@", query as CVarArg)
+        request.sortDescriptors = [
+            NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
+        ]
+        return request
     }
 }
