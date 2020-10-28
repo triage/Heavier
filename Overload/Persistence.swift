@@ -14,10 +14,20 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Exercise(context: viewContext)
-            newItem.name = "New Exercise"
-            newItem.id = UUID()
-            newItem.lifts = NSSet()
+            let exercise = Exercise(context: viewContext)
+            exercise.name = "New Exercise"
+            exercise.id = UUID()
+            
+            let lift = Lift(context: viewContext)
+            lift.timestamp = Date()
+            lift.reps = 10
+            lift.sets = 3
+            lift.weight = 135
+            lift.exercise = exercise
+            
+            exercise.lifts = NSOrderedSet(
+                object: lift
+            )
         }
         do {
             try viewContext.save()

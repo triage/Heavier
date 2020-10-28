@@ -12,6 +12,6 @@ struct SearchView: View {
     @Binding var text: String
     var body: some View {
         TextField("Exercise Name", text: $text)
-            .sfCompactDisplay(size: 30.0)
+            .sfCompactDisplay(.regular, size: 30.0)
     }
 }

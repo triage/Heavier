@@ -6,6 +6,7 @@
 	<array>
 		<string>SF-Compact-Display-Ultralight.otf</string>
 		<string>SF-Compact-Display-Regular.otf</string>
+		<string>SF-Compact-Display-Medium.otf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

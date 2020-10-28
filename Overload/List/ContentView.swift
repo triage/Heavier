@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import SwiftlySearch
 
 struct ContentView: View {
     @State private var query: String = ""
@@ -17,9 +18,8 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ListView(fetchRequest: Exercise.searchFetchRequest(query: query))
+                .navigationBarSearch($query)
             .navigationBarItems(
-                leading:
-                    SearchView(text: $query),
                 trailing:
                     Button(action: { }) {
                         Image(systemName: "calendar")
@@ -41,8 +41,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            DetailView(isPresented: .constant(false)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            SearchView(text: $text)
         }
     }
 }

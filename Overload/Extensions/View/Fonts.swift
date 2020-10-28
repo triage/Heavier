@@ -9,27 +9,24 @@ import Foundation
 import SwiftUI
 
 extension View {
-    func sfCompactDisplay(size: CGFloat) -> some View {
-        for family: String in UIFont.familyNames
-        {
-            print(family)
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
-        return modifier(Theme.Font.SFCompactDisplay(size: size))
+    func sfCompactDisplay(_ variation: Theme.Font.SFCompactDisplay.Variation, size: CGFloat) -> some View {
+        modifier(Theme.Font.SFCompactDisplay(variation: variation, size: size))
     }
 }
 
-private class Theme {
+class Theme {
     enum Font {
         struct SFCompactDisplay: ViewModifier {
+            enum Variation: String {
+                case regular = "SF Compact Display Regular"
+                case medium = "SF Compact Display Medium"
+            }
+            let variation: Variation
             let size: CGFloat
             
             func body(content: Content) -> some View {
                 content
-                    .font(.custom("SF Compact Display Regular", size: size))
+                    .font(.custom(variation.rawValue, size: size))
             }
         }
     }
@@ -39,10 +36,12 @@ private class Theme {
 struct Font_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
-        Group {
-            Text("A Quick Brown Fox Jumps Over the Lazy Dog")
-                .sfCompactDisplay(size: 30.0)
-        }
+        VStack {
+            Text("A Quick Brown Fox Jumps Over the Lazy Dog (Regular)\n")
+                .sfCompactDisplay(.regular, size: 30.0)
+            Text("A Quick Brown Fox Jumps Over the Lazy Dog (Medium)")
+                .sfCompactDisplay(.medium, size: 30.0)
+        }.padding(20.0)
     }
 }
 

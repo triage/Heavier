@@ -8,10 +8,48 @@
 import Foundation
 import SwiftUI
 
+struct MostRecentLift: View {
+    
+    static var lastLiftDateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter
+    }
+    
+    let lifts: NSOrderedSet
+    static let padding: CGFloat = 14.0
+    var body: some View {
+        if let last = lifts.lastObject as? Lift,
+           let timestamp = last.timestamp {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("most recent lift:")
+                        .sfCompactDisplay(.regular, size: 10.0)
+                    Text("5 x 10 @185")
+                        .sfCompactDisplay(.medium, size: 18.0)
+                    Text(MostRecentLift.lastLiftDateFormatter.string(from: timestamp))
+                        .sfCompactDisplay(.regular, size: 12.0)
+                }
+                    .padding(MostRecentLift.padding)
+                    .background(Color.highlight)
+                    .cornerRadius(MostRecentLift.padding * 2.0)
+                Spacer()
+            }
+        } else {
+            EmptyView()
+        }
+    }
+}
+
 struct ExerciseView: View {
     var exercise: Exercise
     var body: some View {
-        Text("hi").navigationTitle(exercise.name!)
+//        Text("asdf").navigationTitle(exercise.name!)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 0.0) {
+                MostRecentLift(lifts: exercise.lifts!)
+            }.padding(20.0)
+        }.navigationTitle(exercise.name!)
     }
 }
 
