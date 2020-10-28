@@ -58,6 +58,15 @@ struct ExerciseView_Previews: PreviewProvider {
         let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
+        
+        let lift = Lift()
+        lift.reps = 10
+        lift.sets = 3
+        lift.weight = 135
+        lift.id = UUID()
+        lift.timestamp = Date()
+        exercise.lifts = NSOrderedSet(object: lift)
+        
         return Group {
             NavigationView {
                 ExerciseView(

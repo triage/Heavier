@@ -11,8 +11,6 @@ import SwiftlySearch
 
 struct ContentView: View {
     @State private var query: String = ""
-    @Environment(\.managedObjectContext) private var viewContext
-    
     @State var isAddVisible = false
     
     var body: some View {

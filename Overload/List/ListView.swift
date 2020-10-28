@@ -28,14 +28,14 @@ struct ListView: View {
         List {
             ForEach(exercises) { exercise in
                 NavigationLink(destination: ExerciseView(exercise: exercise)) {
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text(exercise.name!)
                             .sfCompactDisplay(.medium, size: 22.0)
-                        if let last = exercise.lifts?.lastObject as? Date {
-                            Text(ListView.timestampFormatter.string(from: last))
+                        if let last = exercise.lifts?.lastObject as? Lift, let timestamp = last.timestamp {
+                            Text(ListView.timestampFormatter.string(from: timestamp))
                         }
                     }
-                            .padding(.vertical, 12)
+                    .padding(.vertical, 12)
                 }
             }
         }.listStyle(PlainListStyle())

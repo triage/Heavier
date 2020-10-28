@@ -19,11 +19,11 @@ struct PersistenceController {
             exercise.id = UUID()
             
             let lift = Lift(context: viewContext)
+            lift.id = UUID()
             lift.timestamp = Date()
             lift.reps = 10
             lift.sets = 3
             lift.weight = 135
-            lift.exercise = exercise
             
             exercise.lifts = NSOrderedSet(
                 object: lift
