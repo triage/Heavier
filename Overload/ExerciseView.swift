@@ -8,6 +8,19 @@
 import Foundation
 import SwiftUI
 
+fileprivate extension Lift {
+    private static var weightsFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .none
+        numberFormatter.usesSignificantDigits = false
+        return numberFormatter
+    }
+    
+    var shortDescription: String {
+        "\(sets) x \(reps) @\(Lift.weightsFormatter.string(from: weight as NSNumber)!)"
+    }
+}
+
 struct MostRecentLift: View {
     
     static var lastLiftDateFormatter: DateFormatter {
@@ -16,16 +29,16 @@ struct MostRecentLift: View {
         return dateFormatter
     }
     
-    let lifts: NSOrderedSet
+    let lifts: NSOrderedSet?
     static let padding: CGFloat = 14.0
     var body: some View {
-        if let last = lifts.lastObject as? Lift,
+        if let last = lifts?.lastObject as? Lift,
            let timestamp = last.timestamp {
             HStack {
                 VStack(alignment: .leading) {
                     Text("most recent lift:")
                         .sfCompactDisplay(.regular, size: 10.0)
-                    Text("5 x 10 @185")
+                    Text(last.shortDescription)
                         .sfCompactDisplay(.medium, size: 18.0)
                     Text(MostRecentLift.lastLiftDateFormatter.string(from: timestamp))
                         .sfCompactDisplay(.regular, size: 12.0)
@@ -42,14 +55,31 @@ struct MostRecentLift: View {
 }
 
 struct ExerciseView: View {
-    var exercise: Exercise
+    let exercise: Exercise?
+    let name: String?
+    @State var modalVisible = false
+    
+    init(exercise: Exercise) {
+        self.exercise = exercise
+        self.name = nil
+    }
+    
+    init(name: String) {
+        self.name = name
+        self.exercise = nil
+    }
+    
     var body: some View {
-//        Text("asdf").navigationTitle(exercise.name!)
         ScrollView {
             VStack(alignment: .leading, spacing: 0.0) {
-                MostRecentLift(lifts: exercise.lifts!)
+                MostRecentLift(lifts: exercise?.lifts)
             }.padding(20.0)
-        }.navigationTitle(exercise.name!)
+        }
+        .navigationTitle(name ?? exercise!.name!)
+        .navigationBarItems(trailing: Button(action: {}, label: {
+            Image(systemName: "plus")
+                .font(.system(size: 24))
+        }))
     }
 }
 
@@ -59,7 +89,7 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         
-        let lift = Lift()
+        let lift = Lift(context: PersistenceController.shared.container.viewContext)
         lift.reps = 10
         lift.sets = 3
         lift.weight = 135
@@ -71,6 +101,11 @@ struct ExerciseView_Previews: PreviewProvider {
             NavigationView {
                 ExerciseView(
                     exercise: exercise
+                )
+            }
+            NavigationView {
+                ExerciseView(
+                    name: "New Exercise"
                 )
             }
         }

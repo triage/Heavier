@@ -15,22 +15,24 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            ListView(fetchRequest: Exercise.searchFetchRequest(query: query))
+            ListView(
+                query: query,
+                fetchRequest: Exercise.searchFetchRequest(query: query))
                 .navigationBarSearch($query)
             .navigationBarItems(
+                leading:
+                    Text("Exercises").font(.title),
                 trailing:
                     Button(action: { }) {
                         Image(systemName: "calendar")
-                            .accentColor(.black)
                     })
-            .accentColor(.black)
             .sheet(
                 isPresented: $isAddVisible,
                 content: {
                     DetailView(isPresented: $isAddVisible)
                 }
             )
-        }
+        }.edgesIgnoringSafeArea([.top, .bottom])
     }
 }
 
