@@ -10,4 +10,5 @@ import SwiftUI
 
 extension Color {
     static let highlight = Color("highlight")
+    static let underline = Color("underline")
 }
