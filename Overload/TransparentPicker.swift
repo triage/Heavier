@@ -34,6 +34,10 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
             rowCount
         }
         
+        func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+            60.0
+        }
+        
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             self.selection = row
         }
