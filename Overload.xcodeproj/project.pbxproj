@@ -79,6 +79,7 @@
 		07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRecentLift.swift; sourceTree = "<group>"; };
 		07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+WeightsFormatter.swift"; sourceTree = "<group>"; };
 		07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+ShortDescription.swift"; sourceTree = "<group>"; };
+		07BE0181254E28B4007E2BB7 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		07CD00AC251C5027002FF127 /* Overload.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Overload.xcdatamodel; sourceTree = "<group>"; };
 		07D435142547CD5900F16668 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		07D4351A2547D4D500F16668 /* SF-Compact-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Regular.otf"; path = "../../../../../../Library/Fonts/SF-Compact-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -150,6 +151,7 @@
 				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
 				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
 				07A7B543254A7396006468C1 /* LiftView.swift */,
+				07BE0181254E28B4007E2BB7 /* MyPlayground.playground */,
 				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
 				07D4354B2547D6FF00F16668 /* DetailView.swift */,
 				07D4352F2547D63A00F16668 /* CoreData */,

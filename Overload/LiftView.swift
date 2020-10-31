@@ -17,14 +17,21 @@ struct LiftPicker: View {
     let interval: Int
     
     @Binding var value: Int
-    @State private var rowSelected: Int = 0
+    @State private var rowSelected: Int
     
     init(label: String, range: ClosedRange<Int>, interval: Int, value: Binding<Int>) {
         self.label = label
         self.range = range
         self.interval = interval
         self._value = value
-        rowSelected = (((value.wrappedValue - range.lowerBound) / (range.upperBound - range.lowerBound)) * interval)
+        let rowCount = Int(ceil(Double((range.upperBound - range.lowerBound) / interval)))
+        
+        let first = value.wrappedValue - range.lowerBound
+        let second = range.upperBound - range.lowerBound
+        let percent = Double(first) / Double(second)
+        let index = Int(ceil(percent * Double(rowCount)))
+        
+        self._rowSelected = State<Int>(initialValue: index)
     }
     
     private var rowCount: Int {
@@ -50,7 +57,6 @@ struct LiftPicker: View {
                 }
                 .frame(width: pickerWidth, height: 45)
                 .clipped()
-                
                 // underline
                 Path { path in
                     path.move(to: CGPoint.zero)
@@ -74,22 +80,23 @@ struct LiftPicker: View {
 
 struct LiftView: View {
     let lift: Lift?
-    @State var selected: String = ""
+    
     @State var reps: Int
     @State var sets: Int
     @State var weight: Int
     
     init(lift: Lift?) {
         self.lift = lift
-//        self.reps = lift?.reps ?? 0
-//        self.sets = lift?.sets ?? 0
-//        self.weight = lift?.weight ?? 0
-        self._reps = Int(lift!.reps)
-        self.sets = 0
-        self.weight = 0
+        if let lift = lift {
+            self._reps = State<Int>(initialValue: Int(lift.reps))
+            self._sets = State<Int>(initialValue: Int(lift.sets))
+            self._weight = State<Int>(initialValue: Int(lift.weight))
+        } else {
+            self._reps = State<Int>(initialValue: Int(5))
+            self._sets = State<Int>(initialValue: Int(5))
+            self._weight = State<Int>(initialValue: Int(45))
+        }
     }
-    
-    var pickerWidth: CGFloat = 40.0
     
     var volume: Int {
         Int(reps * sets * weight)
@@ -99,13 +106,13 @@ struct LiftView: View {
         VStack(alignment: .leading, spacing: 12.0) {
             LiftPicker(
                 label: "reps",
-                range: 1...5,
+                range: 1...20,
                 interval: 1,
                 value: $reps
             )
             LiftPicker(
                 label: "sets",
-                range: 1...10,
+                range: 1...20,
                 interval: 1,
                 value: $sets
             )
@@ -138,6 +145,7 @@ struct LiftView_ContentPreviews: PreviewProvider {
         
         return Group {
             LiftView(lift: lift)
+            LiftView(lift: nil)
         }
     }
 }
