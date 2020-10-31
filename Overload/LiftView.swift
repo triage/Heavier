@@ -104,17 +104,20 @@ struct LiftView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12.0) {
-            LiftPicker(
-                label: "reps",
-                range: 1...20,
-                interval: 1,
-                value: $reps
-            )
+            if let lift = lift {
+                MostRecentLift(lift: lift)
+            }
             LiftPicker(
                 label: "sets",
                 range: 1...20,
                 interval: 1,
                 value: $sets
+            )
+            LiftPicker(
+                label: "reps",
+                range: 1...20,
+                interval: 1,
+                value: $reps
             )
             LiftPicker(
                 label: "lbs",
