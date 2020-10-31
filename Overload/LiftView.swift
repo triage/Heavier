@@ -9,15 +9,26 @@ import Foundation
 import SwiftUI
 
 struct LiftPicker: View {
-    let label: String
-    let range: ClosedRange<Int>
-    let interval: Int
-    let value: Binding<Int>
     
     private let pickerWidth: CGFloat = 90.0
     
+    let label: String
+    let range: ClosedRange<Int>
+    let interval: Int
+    
+    @Binding var value: Int
+    @State private var rowSelected: Int = 0
+    
+    init(label: String, range: ClosedRange<Int>, interval: Int, value: Binding<Int>) {
+        self.label = label
+        self.range = range
+        self.interval = interval
+        self._value = value
+        rowSelected = (((value.wrappedValue - range.lowerBound) / (range.upperBound - range.lowerBound)) * interval)
+    }
+    
     private var rowCount: Int {
-        Int(((range.upperBound + 1) - range.lowerBound) / interval)
+        Int((range.upperBound - range.lowerBound) / interval) + 1
     }
     
     private func label(row: Int) -> String {
@@ -30,9 +41,12 @@ struct LiftPicker: View {
             VStack(alignment: .leading, spacing: 1.0) {
                 
                 // picker
-                TransparentPicker(selection: value, rowCount: rowCount) { (row) in
+                TransparentPicker(selection: $rowSelected, rowCount: rowCount) { (row) in
                     Text(label(row: row))
                         .sfCompactDisplay(.regular, size: 54.0)
+                }
+                .onReceive([self.rowSelected].publisher.first()) { (row) in
+                    self.value = range.lowerBound + (interval * row)
                 }
                 .frame(width: pickerWidth, height: 45)
                 .clipped()
@@ -42,17 +56,18 @@ struct LiftPicker: View {
                     path.move(to: CGPoint.zero)
                     path.addRect(CGRect(origin: CGPoint.zero, size: CGSize(width: 100.0, height: 4.0)))
                 }
-                .fill(Color.underline)
+                .fill(Color.black)
                 .alignmentGuide(.leading, computeValue: { dimension in
                     dimension[.leading]
                 }).alignmentGuide(.trailing, computeValue: { dimension in
                     dimension[.trailing]
-                }).frame(width: pickerWidth, height: 3.0, alignment: .bottomLeading)
+                }).frame(width: pickerWidth, height: 2.0, alignment: .bottomLeading)
                 .clipped()
             }.offset(x: 0.0, y: 2.0)
             Text(label)
                 .sfCompactDisplay(.regular, size: 54.0)
                 .foregroundColor(Color.underline)
+            Spacer()
         }
     }
 }
@@ -60,9 +75,19 @@ struct LiftPicker: View {
 struct LiftView: View {
     let lift: Lift?
     @State var selected: String = ""
-    @State var reps: Int = 10
-    @State var sets: Int = 5
-    @State var weight: Int = 135
+    @State var reps: Int
+    @State var sets: Int
+    @State var weight: Int
+    
+    init(lift: Lift?) {
+        self.lift = lift
+//        self.reps = lift?.reps ?? 0
+//        self.sets = lift?.sets ?? 0
+//        self.weight = lift?.weight ?? 0
+        self._reps = Int(lift!.reps)
+        self.sets = 0
+        self.weight = 0
+    }
     
     var pickerWidth: CGFloat = 40.0
     
@@ -71,10 +96,10 @@ struct LiftView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20.0) {
+        VStack(alignment: .leading, spacing: 12.0) {
             LiftPicker(
                 label: "reps",
-                range: 1...30,
+                range: 1...5,
                 interval: 1,
                 value: $reps
             )
@@ -98,8 +123,21 @@ struct LiftView: View {
 
 struct LiftView_ContentPreviews: PreviewProvider {
     static var previews: some View {
-        Group {
-            LiftView(lift: nil)
+        
+        let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+        exercise.name = "Romanian Deadlift"
+        exercise.id = UUID()
+        
+        let lift = Lift(context: PersistenceController.shared.container.viewContext)
+        lift.reps = 10
+        lift.sets = 3
+        lift.weight = 135
+        lift.id = UUID()
+        lift.timestamp = Date()
+        exercise.lifts = NSOrderedSet(object: lift)
+        
+        return Group {
+            LiftView(lift: lift)
         }
     }
 }

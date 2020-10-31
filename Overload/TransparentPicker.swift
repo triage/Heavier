@@ -35,7 +35,7 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
         }
         
         func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-            60.0
+            return 50.0
         }
         
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -84,7 +84,7 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
     }
 }
 
-struct FastPicker_Previews: PreviewProvider {
+struct TransparentPicker_Previews: PreviewProvider {
     @State static var selection = 0
     static var previews: some View {
         TransparentPicker(selection: $selection, rowCount: 20) { (row) in

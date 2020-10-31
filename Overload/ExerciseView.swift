@@ -8,52 +8,6 @@
 import Foundation
 import SwiftUI
 
-fileprivate extension Lift {
-    private static var weightsFormatter: NumberFormatter {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .none
-        numberFormatter.usesSignificantDigits = false
-        return numberFormatter
-    }
-    
-    var shortDescription: String {
-        "\(sets) x \(reps) @\(Lift.weightsFormatter.string(from: weight as NSNumber)!)"
-    }
-}
-
-struct MostRecentLift: View {
-    
-    static var lastLiftDateFormatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        return dateFormatter
-    }
-    
-    let lifts: NSOrderedSet?
-    static let padding: CGFloat = 14.0
-    var body: some View {
-        if let last = lifts?.lastObject as? Lift,
-           let timestamp = last.timestamp {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("most recent lift:")
-                        .sfCompactDisplay(.regular, size: 10.0)
-                    Text(last.shortDescription)
-                        .sfCompactDisplay(.medium, size: 18.0)
-                    Text(MostRecentLift.lastLiftDateFormatter.string(from: timestamp))
-                        .sfCompactDisplay(.regular, size: 12.0)
-                }
-                    .padding(MostRecentLift.padding)
-                    .background(Color.highlight)
-                    .cornerRadius(MostRecentLift.padding * 2.0)
-                Spacer()
-            }
-        } else {
-            EmptyView()
-        }
-    }
-}
-
 struct ExerciseView: View {
     let exercise: Exercise?
     let name: String?
@@ -72,7 +26,7 @@ struct ExerciseView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0.0) {
-                MostRecentLift(lifts: exercise?.lifts)
+                MostRecentLift(lift: exercise?.lifts?.lastObject as? Lift)
             }.padding(20.0)
         }
         .navigationTitle(name ?? exercise!.name!)

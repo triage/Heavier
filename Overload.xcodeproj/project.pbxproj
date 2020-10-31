@@ -20,6 +20,9 @@
 		07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+Overload.swift */; };
 		07A7B544254A7396006468C1 /* LiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B543254A7396006468C1 /* LiftView.swift */; };
 		07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
+		07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */; };
+		07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */; };
+		07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */; };
 		07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */; };
 		07D435152547CD5900F16668 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435142547CD5900F16668 /* Fonts.swift */; };
 		07D435232547D4D500F16668 /* SF-Compact-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07D4351A2547D4D500F16668 /* SF-Compact-Display-Regular.otf */; };
@@ -73,6 +76,9 @@
 		07A7B53B25491EA3006468C1 /* Color+Overload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Overload.swift"; sourceTree = "<group>"; };
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
 		07A7B548254BB7E3006468C1 /* TransparentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPicker.swift; sourceTree = "<group>"; };
+		07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRecentLift.swift; sourceTree = "<group>"; };
+		07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+WeightsFormatter.swift"; sourceTree = "<group>"; };
+		07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+ShortDescription.swift"; sourceTree = "<group>"; };
 		07CD00AC251C5027002FF127 /* Overload.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Overload.xcdatamodel; sourceTree = "<group>"; };
 		07D435142547CD5900F16668 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		07D4351A2547D4D500F16668 /* SF-Compact-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Regular.otf"; path = "../../../../../../Library/Fonts/SF-Compact-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 				071E3902251AF3F800A35799 /* OverloadApp.swift */,
 				07D435502547D85F00F16668 /* List */,
 				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
+				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
 				07A7B543254A7396006468C1 /* LiftView.swift */,
 				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
 				07D4354B2547D6FF00F16668 /* DetailView.swift */,
@@ -237,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */,
+				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
+				07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -408,7 +417,10 @@
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */,
+				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,
+				07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */,
 				07D4353A2547D68B00F16668 /* ListView.swift in Sources */,
+				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
