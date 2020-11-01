@@ -15,14 +15,16 @@ struct LiftPicker: View {
     let label: String
     let range: ClosedRange<Int>
     let interval: Int
+    let initialValue: Int?
     
     @Binding var value: Int
     @State private var rowSelected: Int
     
-    init(label: String, range: ClosedRange<Int>, interval: Int, value: Binding<Int>) {
+    init(label: String, range: ClosedRange<Int>, interval: Int, value: Binding<Int>, initialValue: Int?) {
         self.label = label
         self.range = range
         self.interval = interval
+        self.initialValue = initialValue
         self._value = value
         let rowCount = Int(ceil(Double((range.upperBound - range.lowerBound) / interval)))
         
@@ -42,7 +44,7 @@ struct LiftPicker: View {
     }
     
     var body: some View {
-        HStack {
+        HStack(alignment: .bottom, spacing: 10.0) {
             VStack(alignment: .leading, spacing: 1.0) {
                 // picker
                 TransparentPicker(selection: $rowSelected, rowCount: rowCount) { (row) in
@@ -70,7 +72,9 @@ struct LiftPicker: View {
             }.offset(x: 0.0, y: 2.0)
             Text(label)
                 .sfCompactDisplay(.regular, size: 54.0)
-                .foregroundColor(Color.underline)
+                .foregroundColor(Color.label)
+                .frame(width: .none, height: 45)
+                .offset(x: 0.0, y: -3.0)
             Spacer()
         }
     }
@@ -83,7 +87,22 @@ struct LiftPicker_Previews: PreviewProvider {
             label: "lbs",
             range: 5...300,
             interval: 5,
-            value: $value
+            value: $value,
+            initialValue: 135
+        )
+        LiftPicker(
+            label: "lbs",
+            range: 5...300,
+            interval: 5,
+            value: $value,
+            initialValue: 130
+        )
+        LiftPicker(
+            label: "lbs",
+            range: 5...300,
+            interval: 5,
+            value: $value,
+            initialValue: 140
         )
     }
 }
