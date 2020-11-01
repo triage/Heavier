@@ -15,6 +15,7 @@
 		071E390C251AF3F900A35799 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E390B251AF3F900A35799 /* Persistence.swift */; };
 		071E391A251AF3F900A35799 /* OverloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3919251AF3F900A35799 /* OverloadTests.swift */; };
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
+		0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781F29C254E415000B9AE63 /* LiftPicker.swift */; };
 		07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07899CEA252191EF006C85B1 /* ExerciseView.swift */; };
 		07A7B53325490E00006468C1 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 07A7B53225490E00006468C1 /* SwiftlySearch */; };
 		07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+Overload.swift */; };
@@ -72,6 +73,7 @@
 		071E3920251AF3F900A35799 /* OverloadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OverloadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3924251AF3F900A35799 /* OverloadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadUITests.swift; sourceTree = "<group>"; };
 		071E3926251AF3F900A35799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0781F29C254E415000B9AE63 /* LiftPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftPicker.swift; sourceTree = "<group>"; };
 		07899CEA252191EF006C85B1 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		07A7B53B25491EA3006468C1 /* Color+Overload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Overload.swift"; sourceTree = "<group>"; };
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
@@ -150,7 +152,7 @@
 				07D435502547D85F00F16668 /* List */,
 				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
 				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
-				07A7B543254A7396006468C1 /* LiftView.swift */,
+				0781F2A1254E416100B9AE63 /* LiftView */,
 				07BE0181254E28B4007E2BB7 /* MyPlayground.playground */,
 				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
 				07D4354B2547D6FF00F16668 /* DetailView.swift */,
@@ -189,6 +191,15 @@
 				071E3926251AF3F900A35799 /* Info.plist */,
 			);
 			path = OverloadUITests;
+			sourceTree = "<group>";
+		};
+		0781F2A1254E416100B9AE63 /* LiftView */ = {
+			isa = PBXGroup;
+			children = (
+				07A7B543254A7396006468C1 /* LiftView.swift */,
+				0781F29C254E415000B9AE63 /* LiftPicker.swift */,
+			);
+			path = LiftView;
 			sourceTree = "<group>";
 		};
 		07A7B53A25491E8F006468C1 /* Color */ = {
@@ -410,6 +421,7 @@
 				07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */,
 				07D4354C2547D6FF00F16668 /* DetailView.swift in Sources */,
 				07D435422547D6A100F16668 /* SearchView.swift in Sources */,
+				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
 				071E390C251AF3F900A35799 /* Persistence.swift in Sources */,
 				07A7B544254A7396006468C1 /* LiftView.swift in Sources */,

@@ -40,3 +40,16 @@ struct MostRecentLift: View {
         }
     }
 }
+
+struct MostRecentLift_Previews: PreviewProvider {
+    static var previews: some View {
+        let lift = Lift(context: PersistenceController.shared.container.viewContext)
+        lift.reps = 10
+        lift.sets = 3
+        lift.weight = 135
+        lift.id = UUID()
+        lift.timestamp = Date()
+        
+        return MostRecentLift(lift: lift)
+    }
+}

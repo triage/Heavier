@@ -48,7 +48,6 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
         }
         
         init(selection: Binding<Int>, viewForRow: @escaping (Int) -> Content, rowCount: Int) {
-//            self.initialSelection = selection.wrappedValue
             self.viewForRow = viewForRow
             self._selection = selection
             self.rowCount = rowCount
@@ -75,13 +74,7 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
         
         context.coordinator.viewForRow = self.viewForRow
         context.coordinator.rowCount = rowCount
-
-        // This is the key part. If the updated value is the same as the one
-        // we started with, we just ignore it.
-//        if context.coordinator.initialSelection != selection {
-            uiView.selectRow(selection, inComponent: 0, animated: true)
-//            context.coordinator.initialSelection = selection
-//        }
+        uiView.selectRow(selection, inComponent: 0, animated: true)
     }
 }
 
