@@ -11,7 +11,7 @@ import SwiftUI
 struct ExerciseView: View {
     let exercise: Exercise?
     let name: String?
-    @State var modalVisible = false
+    @State var liftViewPresented = false
     
     init(exercise: Exercise) {
         self.exercise = exercise
@@ -30,10 +30,14 @@ struct ExerciseView: View {
             }.padding(20.0)
         }
         .navigationTitle(name ?? exercise!.name!)
-        .navigationBarItems(trailing: Button(action: {}, label: {
+        .navigationBarItems(trailing: Button(action: {
+            liftViewPresented = true
+        }, label: {
             Image(systemName: "plus")
                 .font(.system(size: 24))
-        }))
+        })).sheet(isPresented: $liftViewPresented) {
+            LiftView(lift: exercise?.lifts?.lastObject as? Lift, presented: $liftViewPresented)
+        }
     }
 }
 
