@@ -24,11 +24,9 @@ struct ExerciseView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0.0) {
-                MostRecentLift(lift: exercise?.lifts?.lastObject as? Lift)
-            }.padding(20.0)
-        }
+        List {
+            MostRecentLift(lift: exercise?.lifts?.lastObject as? Lift)
+        }.listStyle(PlainListStyle())
         .navigationTitle(name ?? exercise!.name!)
         .navigationBarItems(trailing: Button(action: {
             liftViewPresented = true

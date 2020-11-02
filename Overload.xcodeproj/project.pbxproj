@@ -153,13 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				071E3902251AF3F800A35799 /* OverloadApp.swift */,
-				07D435502547D85F00F16668 /* List */,
-				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
-				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
-				0781F2A1254E416100B9AE63 /* LiftView */,
+				071E6B7F254E671D0078ADD3 /* View */,
 				07BE0181254E28B4007E2BB7 /* MyPlayground.playground */,
-				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
-				07D4354B2547D6FF00F16668 /* DetailView.swift */,
 				07D4352F2547D63A00F16668 /* CoreData */,
 				07D435302547D64500F16668 /* Extensions */,
 				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
@@ -197,14 +192,35 @@
 			path = OverloadUITests;
 			sourceTree = "<group>";
 		};
-		0781F2A1254E416100B9AE63 /* LiftView */ = {
+		071E6B78254E670D0078ADD3 /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
+				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
+			);
+			path = Exercise;
+			sourceTree = "<group>";
+		};
+		071E6B7F254E671D0078ADD3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07D435502547D85F00F16668 /* List */,
+				071E6B78254E670D0078ADD3 /* Exercise */,
+				0781F2A1254E416100B9AE63 /* Lift */,
+				07D4354B2547D6FF00F16668 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0781F2A1254E416100B9AE63 /* Lift */ = {
+			isa = PBXGroup;
+			children = (
+				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
 				07A7B543254A7396006468C1 /* LiftView.swift */,
 				0781F29C254E415000B9AE63 /* LiftPicker.swift */,
+				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
 				0781F2A5254E521F00B9AE63 /* DifferenceView.swift */,
 			);
-			path = LiftView;
+			path = Lift;
 			sourceTree = "<group>";
 		};
 		07A7B53A25491E8F006468C1 /* Color */ = {
