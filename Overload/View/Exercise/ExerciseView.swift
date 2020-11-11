@@ -8,6 +8,75 @@
 import Foundation
 import SwiftUI
 
+struct OlderLifts: View {
+    let lifts: ArraySlice<Lift>?
+    var body: some View {
+        if let lifts = lifts {
+            ForEach(lifts) { lift in
+                VStack {
+                    HStack(alignment: .firstTextBaseline, spacing: 5.0) {
+                        Text("\(lift.sets)")
+                            .sfCompactDisplay(.medium, size: 24.0)
+                        Text("sets")
+                            .sfCompactDisplay(.medium, size: 14.0)
+                            .foregroundColor(.label)
+                        Text("\(lift.reps)")
+                            .sfCompactDisplay(.medium, size: 24.0)
+                        Text("reps")
+                            .sfCompactDisplay(.medium, size: 14.0)
+                            .foregroundColor(.label)
+                        Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!) lbs")
+                            .sfCompactDisplay(.medium, size: 24.0)
+                        Spacer()
+                        Text("=")
+                            .sfCompactDisplay(.medium, size: 14.0)
+                            .foregroundColor(.label)
+                        Text("\(Lift.weightsFormatter.string(from: lift.volume as NSNumber)!) lbs")
+                            .sfCompactDisplay(.medium, size: 24.0)
+                    }
+                    HStack {
+                        Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
+                            .sfCompactDisplay(.medium, size: 16.0)
+                        Spacer()
+                    }
+                }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
+            }
+        } else {
+            EmptyView()
+        }
+    }
+}
+
+struct RecentLift: View {
+    let lift: Lift?
+    var body: some View {
+        if let lift = lift {
+            HStack(alignment: .firstTextBaseline, spacing: 10.0) {
+                Text("\(lift.sets)")
+                    .sfCompactDisplay(.medium, size: 44.0)
+                Text("sets")
+                    .sfCompactDisplay(.medium, size: 14.0)
+                    .foregroundColor(.label)
+                Text("\(lift.reps)")
+                    .sfCompactDisplay(.medium, size: 44.0)
+                Text("reps")
+                    .sfCompactDisplay(.medium, size: 14.0)
+                    .foregroundColor(.label)
+                Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!) lbs")
+                    .sfCompactDisplay(.medium, size: 44.0)
+                Spacer()
+                Text("=")
+                    .sfCompactDisplay(.medium, size: 14.0)
+                    .foregroundColor(.label)
+                Text("\(Lift.weightsFormatter.string(from: lift.volume as NSNumber)!) lbs")
+                    .sfCompactDisplay(.medium, size: 24.0)
+            }
+        } else {
+            EmptyView()
+        }
+    }
+}
+
 struct ExerciseView: View {
     let exercise: Exercise?
     let name: String?
@@ -23,10 +92,19 @@ struct ExerciseView: View {
         self.exercise = nil
     }
     
+    var olderLifts: ArraySlice<Lift>? {
+        if let lifts = exercise?.lifts?.array as? [Lift] {
+            return lifts.dropFirst()
+        }
+        return nil
+    }
+    
     var body: some View {
         List {
-            MostRecentLift(lift: exercise?.lifts?.lastObject as? Lift)
-        }.listStyle(PlainListStyle())
+            RecentLift(lift: exercise?.lifts?.firstObject as? Lift)
+            OlderLifts(lifts: olderLifts)
+        }
+        .listStyle(PlainListStyle())
         .navigationTitle(name ?? exercise!.name!)
         .navigationBarItems(trailing: Button(action: {
             liftViewPresented = true
@@ -45,13 +123,18 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         
-        let lift = Lift(context: PersistenceController.shared.container.viewContext)
-        lift.reps = 10
-        lift.sets = 3
-        lift.weight = 135
-        lift.id = UUID()
-        lift.timestamp = Date()
-        exercise.lifts = NSOrderedSet(object: lift)
+        var lifts = [Lift]()
+        for i in 0...20 {
+            let lift = Lift(context: PersistenceController.shared.container.viewContext)
+            lift.reps = 10
+            lift.sets = Int16(i + 1)
+            lift.weight = 135
+            lift.id = UUID()
+            lift.timestamp = Date()
+            lifts.append(lift)
+        }
+        
+        exercise.lifts = NSOrderedSet(array: lifts)
         
         return Group {
             NavigationView {
