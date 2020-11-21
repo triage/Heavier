@@ -14,4 +14,12 @@ extension Lift {
         numberFormatter.usesSignificantDigits = false
         return numberFormatter
     }
+    
+    static var volumeFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .none
+        numberFormatter.groupingSize = 3
+        numberFormatter.usesGroupingSeparator = true
+        return numberFormatter
+    }
 }
