@@ -9,13 +9,9 @@ import Foundation
 import SwiftUI
 
 struct LiftViewCloseButton: View {
-    @Binding var presented: Bool
+    let action: () -> Void
     var body: some View {
-        Button(action: {
-            withAnimation {
-                presented.toggle()
-            }
-        }) {
+        Button(action: action) {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 24.0, weight: .bold, design: .default))
                 .accentColor(.highlight)
@@ -24,6 +20,7 @@ struct LiftViewCloseButton: View {
 }
 
 struct LiftView: View {
+    let exercise: Exercise
     let lift: Lift?
     
     @State var reps: Int
@@ -31,7 +28,8 @@ struct LiftView: View {
     @State var weight: Int
     var presented: Binding<Bool>
     
-    init(lift: Lift?, presented: Binding<Bool>) {
+    init(exercise: Exercise, lift: Lift?, presented: Binding<Bool>) {
+        self.exercise = exercise
         self.lift = lift
         self.presented = presented
         _sets = .init(initialValue: Int(lift?.sets ?? 5))
@@ -41,6 +39,10 @@ struct LiftView: View {
     
     var volume: Int {
         Int(reps * sets * weight)
+    }
+    
+    func saveLift() throws {
+        
     }
     
     var body: some View {
@@ -79,12 +81,25 @@ struct LiftView: View {
                 Spacer()
             }.padding(
                 EdgeInsets(
-                    top: 0.0,
+                    top: 30.0,
                     leading: 30.0,
                     bottom: 0.0,
                     trailing: 30.0
                 )
-            ).navigationBarItems(trailing: LiftViewCloseButton(presented: presented))
+            ).navigationBarItems(trailing: LiftViewCloseButton(action: {
+                let lift = Lift(context: PersistenceController.shared.container.viewContext)
+                lift.reps = Int16(reps)
+                lift.sets = Int16(sets)
+                lift.weight = Float(weight)
+                lift.id = UUID()
+                lift.timestamp = Date()
+                exercise.addToLifts(lift)
+                do {
+                    try? PersistenceController.shared.container.viewContext.save()
+                    self.presented.wrappedValue.toggle()
+                }
+            }))
+            .navigationTitle(exercise.name!)
         }
     }
 }
@@ -108,8 +123,8 @@ struct LiftView_ContentPreviews: PreviewProvider {
         exercise.lifts = NSOrderedSet(object: lift)
         
         return Group {
-            LiftView(lift: lift, presented: $presented)
-            LiftView(lift: lift, presented: $presented)
+            LiftView(exercise: exercise, lift: lift, presented: $presented)
+            LiftView(exercise: exercise, lift: lift, presented: $presented)
         }
     }
 }

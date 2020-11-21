@@ -68,6 +68,15 @@ struct RecentLift: View {
     var body: some View {
         if let lift = lift {
             VStack(alignment: .leading) {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("most recent lift:")
+                            .sfCompactDisplay(.regular, size: 12.0)
+                        Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
+                            .sfCompactDisplay(.regular, size: 14.0)
+                    }
+                    Spacer()
+                }
                 HStack(spacing: 25.0) {
                     RecentLiftMetric(value: lift.sets, label: "sets")
                     RecentLiftMetric(value: lift.reps, label: "reps")
@@ -84,8 +93,6 @@ struct RecentLift: View {
                             .sfCompactDisplay(.medium, size: 14.0)
                     }
                 }
-                Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
-                    .padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
             }
             .frame(maxWidth: .infinity)
             .padding(EdgeInsets(top: 20.0, leading: 0.0, bottom: 20.0, trailing: 0.0))
@@ -129,8 +136,16 @@ struct ExerciseView: View {
         }, label: {
             Image(systemName: "plus")
                 .font(.system(size: 24))
-        })).sheet(isPresented: $liftViewPresented) {
-            LiftView(lift: exercise?.lifts?.lastObject as? Lift, presented: $liftViewPresented)
+        })).sheet(isPresented: $liftViewPresented) { () -> LiftView in
+            if let exercise = exercise {
+                return LiftView(exercise: exercise, lift: exercise.lifts?.lastObject as? Lift, presented: $liftViewPresented)
+            } else {
+                let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+                exercise.name = name
+                exercise.id = UUID()
+                try! PersistenceController.shared.container.viewContext.save()
+                return LiftView(exercise: exercise, lift: nil, presented: $liftViewPresented)
+            }
         }
     }
 }
