@@ -25,4 +25,11 @@ extension Exercise {
             predicate: predicate, animation: .default
         )
     }
+//
+//    convenience init(name: String, context: NSManagedObjectContext) {
+//        self.init(context: PersistenceController.shared.container.viewContext)
+//        self.name = name
+//        self.id = UUID()
+//        try! PersistenceController.shared.container.viewContext.save()
+//    }
 }

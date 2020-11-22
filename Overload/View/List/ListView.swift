@@ -9,8 +9,7 @@ import Foundation
 import SwiftUI
 
 struct ListView: View {
-    @Environment(\.managedObjectContext)
-    var context
+    @Environment(\.managedObjectContext) var context
 
     let query: String
     let fetchRequest: FetchRequest<Exercise>
@@ -38,16 +37,18 @@ struct ListView: View {
     
     private func cell(name: String) -> some View {
         NavigationLink(
-            destination: ExerciseView(name: name)) {
-                HStack {
-                    Text(name)
-                        .sfCompactDisplay(.medium, size: 22.0)
-                    Spacer()
-                    Image(systemName: "plus.circle")
-                        .font(.system(size: 24))
-                }
-                .padding(.vertical, 12)
+            destination:
+                ExerciseView(exercise: Exercise(name: name))
+        ) {
+            HStack {
+                Text(name)
+                    .sfCompactDisplay(.medium, size: 22.0)
+                Spacer()
+                Image(systemName: "plus.circle")
+                    .font(.system(size: 24))
             }
+            .padding(.vertical, 12)
+        }
     }
     
     var body: some View {

@@ -103,49 +103,33 @@ struct RecentLift: View {
 }
 
 struct ExerciseView: View {
-    let exercise: Exercise?
-    let name: String?
+    let exercise: Exercise
     @State var liftViewPresented = false
+    @ObservedObject var lifts: LiftsObservable
     
     init(exercise: Exercise) {
         self.exercise = exercise
-        self.name = nil
-    }
-    
-    init(name: String) {
-        self.name = name
-        self.exercise = nil
+        lifts = LiftsObservable(exercise: exercise)
     }
     
     var olderLifts: ArraySlice<Lift>? {
-        if let lifts = exercise?.lifts?.array as? [Lift] {
-            return lifts.dropFirst()
-        }
-        return nil
+        return lifts.lifts.dropFirst()
     }
     
     var body: some View {
         List {
-            RecentLift(lift: exercise?.lifts?.firstObject as? Lift)
+            RecentLift(lift: lifts.lifts.first)
             OlderLifts(lifts: olderLifts)
         }
         .listStyle(PlainListStyle())
-        .navigationTitle(name ?? exercise!.name!)
+        .navigationTitle(exercise.name!)
         .navigationBarItems(trailing: Button(action: {
             liftViewPresented = true
         }, label: {
             Image(systemName: "plus")
                 .font(.system(size: 24))
         })).sheet(isPresented: $liftViewPresented) { () -> LiftView in
-            if let exercise = exercise {
-                return LiftView(exercise: exercise, lift: exercise.lifts?.lastObject as? Lift, presented: $liftViewPresented)
-            } else {
-                let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
-                exercise.name = name
-                exercise.id = UUID()
-                try! PersistenceController.shared.container.viewContext.save()
-                return LiftView(exercise: exercise, lift: nil, presented: $liftViewPresented)
-            }
+            return LiftView(exercise: exercise, lift: exercise.lifts?.lastObject as? Lift, presented: $liftViewPresented)
         }
     }
 }
@@ -173,11 +157,6 @@ struct ExerciseView_Previews: PreviewProvider {
             NavigationView {
                 ExerciseView(
                     exercise: exercise
-                )
-            }
-            NavigationView {
-                ExerciseView(
-                    name: "New Exercise"
                 )
             }
         }
