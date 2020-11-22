@@ -38,7 +38,9 @@ struct ListView: View {
     private func cell(name: String) -> some View {
         NavigationLink(
             destination:
-                ExerciseView(exercise: Exercise(name: name))
+                NavigationLazyView(
+                    ExerciseView(exercise: Exercise(name: name))
+                )
         ) {
             HStack {
                 Text(name)
