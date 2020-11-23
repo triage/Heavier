@@ -22,21 +22,25 @@ struct OlderLifts: View {
                             .foregroundColor(.label)
                         Text("\(lift.reps)")
                             .sfCompactDisplay(.medium, size: 24.0)
-                        Text("x")
-                            .sfCompactDisplay(.medium, size: 14.0)
-                            .foregroundColor(.label)
-                        Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!)")
-                            .sfCompactDisplay(.medium, size: 24.0)
-                        Text("lbs")
-                            .sfCompactDisplay(.medium, size: 14.0)
-                            .foregroundColor(.label)
+                        if !lift.isBodyweight {
+                            Text("x")
+                                .sfCompactDisplay(.medium, size: 14.0)
+                                .foregroundColor(.label)
+                            Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!)")
+                                .sfCompactDisplay(.medium, size: 24.0)
+                            Text("lbs")
+                                .sfCompactDisplay(.medium, size: 14.0)
+                                .foregroundColor(.label)
+                        }
                         Spacer()
-                        Text("=")
-                            .sfCompactDisplay(.medium, size: 14.0)
-                            .foregroundColor(.label)
-                        Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!) lbs")
-                            .lineLimit(0)
-                            .sfCompactDisplay(.medium, size: 24.0)
+                        if !lift.isBodyweight {
+                            Text("=")
+                                .sfCompactDisplay(.medium, size: 14.0)
+                                .foregroundColor(.label)
+                            Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!) lbs")
+                                .lineLimit(0)
+                                .sfCompactDisplay(.medium, size: 24.0)
+                        }
                     }
                 }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
             }
@@ -80,17 +84,21 @@ struct RecentLift: View {
                 HStack(spacing: 25.0) {
                     RecentLiftMetric(value: lift.sets, label: "sets")
                     RecentLiftMetric(value: lift.reps, label: "reps")
-                    RecentLiftMetric(value: lift.weight, label: "lbs")
+                    if !lift.isBodyweight {
+                        RecentLiftMetric(value: lift.weight, label: "lbs")
+                    }
                     Spacer()
                 }
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!)")
-                            .sfCompactDisplay(.medium, size: 54.0)
-                            .minimumScaleFactor(1.0)
-                            .lineLimit(1)
-                        Text("total volume (lbs)")
-                            .sfCompactDisplay(.medium, size: 14.0)
+                if !lift.isBodyweight {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!)")
+                                .sfCompactDisplay(.medium, size: 54.0)
+                                .minimumScaleFactor(1.0)
+                                .lineLimit(1)
+                            Text("total volume (lbs)")
+                                .sfCompactDisplay(.medium, size: 14.0)
+                        }
                     }
                 }
             }
@@ -145,7 +153,7 @@ struct ExerciseView_Previews: PreviewProvider {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10
             lift.sets = Int16(i + 10)
-            lift.weight = 135
+            lift.weight = 100
             lift.id = UUID()
             lift.timestamp = Date()
             lifts.append(lift)

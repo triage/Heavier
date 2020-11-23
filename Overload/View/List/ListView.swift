@@ -24,6 +24,17 @@ struct ListView: View {
         return formatter
     }()
     
+    private static func liftShortDescription(lift: Lift) -> some View {
+        VStack(alignment: .leading) {
+            Text(lift.shortDescription)
+            if let timestamp = lift.timestamp {
+                Text(ListView.timestampFormatter.string(from: timestamp))
+                    .sfCompactDisplay(.regular, size: 12.0)
+                    .padding(EdgeInsets(top: 2.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+            }
+        }
+    }
+    
     private func cell(exercise: Exercise) -> some View {
         NavigationLink(
             destination:
@@ -34,8 +45,8 @@ struct ListView: View {
             VStack(alignment: .leading) {
                 Text(exercise.name!)
                     .sfCompactDisplay(.medium, size: 22.0)
-                if let last = exercise.lastLiftDate {
-                    Text(ListView.timestampFormatter.string(from: last))
+                if let lastLift = exercise.lastLift {
+                    ListView.liftShortDescription(lift: lastLift)
                 }
             }
             .padding(.vertical, 12)
