@@ -25,14 +25,21 @@ struct ListView: View {
     }()
     
     private func cell(exercise: Exercise) -> some View {
-        VStack(alignment: .leading) {
-            Text(exercise.name!)
-                .sfCompactDisplay(.medium, size: 22.0)
-            if let last = exercise.lifts?.lastObject as? Lift, let timestamp = last.timestamp {
-                Text(ListView.timestampFormatter.string(from: timestamp))
+        NavigationLink(
+            destination:
+                NavigationLazyView(
+                    ExerciseView(exercise: exercise)
+                )
+        ) {
+            VStack(alignment: .leading) {
+                Text(exercise.name!)
+                    .sfCompactDisplay(.medium, size: 22.0)
+                if let last = exercise.lastLiftDate {
+                    Text(ListView.timestampFormatter.string(from: last))
+                }
             }
+            .padding(.vertical, 12)
         }
-        .padding(.vertical, 12)
     }
     
     private func cell(name: String) -> some View {
@@ -53,16 +60,40 @@ struct ListView: View {
         }
     }
     
+    var rows: [AnyHashable] {
+        /*
+         If there's a direct match, show that one first, followed by the others
+         If there's not a direct match and the query length is > 0, show the "add new" cell, followed by the others
+         Else, show all the exercises
+         */
+        var rows: [AnyHashable] = Array(self.exercises).sorted {
+            guard let first = $0.lastLiftDate, let second = $1.lastLiftDate else {
+                return false
+            }
+            return first > second
+        }
+        if let directMatch = exercises.first(where: { (exercise) -> Bool in
+            exercise.name?.lowercased() == query.lowercased()
+        }) {
+            rows = exercises.sorted { (first, second) -> Bool in
+                first == directMatch
+            }
+        } else if query.count > 0 {
+            rows.insert(query, at: 0)
+        }
+        return rows
+    }
+    
     var body: some View {
         List {
-            if !exercises.isEmpty {
-                ForEach(exercises) { exercise in
-                    NavigationLink(destination: ExerciseView(exercise: exercise)) {
-                        cell(exercise: exercise)
-                    }
+            ForEach(rows, id: \.self) { row in
+                if let exercise = row as? Exercise {
+                    cell(exercise: exercise)
+                } else if let name = row as? String {
+                    cell(name: name)
+                } else {
+                    EmptyView()
                 }
-            } else {
-                cell(name: query)
             }
         }.listStyle(PlainListStyle())
     }
