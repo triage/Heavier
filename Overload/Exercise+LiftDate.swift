@@ -13,8 +13,15 @@ extension Exercise {
     }
     var lastLift: Lift? {
         return (lifts?.array as? [Lift])?.sorted {
-            guard let first = $0.timestamp, let second = $1.timestamp else {
+            
+            if $0.timestamp != nil && $1.timestamp == nil {
+                return true
+            } else if $0.timestamp == nil && $1.timestamp != nil {
                 return false
+            }
+            
+            guard let first = $0.timestamp, let second = $1.timestamp else {
+                return true
             }
             return first > second
         }.first

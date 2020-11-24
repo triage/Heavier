@@ -78,17 +78,21 @@ struct ListView: View {
          Else, show all the exercises
          */
         var rows: [AnyHashable] = Array(self.exercises).sorted {
+            if $0.lastLiftDate != nil && $1.lastLift == nil {
+                return true
+            } else if $0.lastLiftDate == nil && $0.lastLiftDate != nil {
+                return false
+            }
             guard let first = $0.lastLiftDate, let second = $1.lastLiftDate else {
                 return false
             }
             return first > second
         }
-        if let directMatch = exercises.first(where: { (exercise) -> Bool in
+        if let directMatch: Exercise = exercises.first(where: { (exercise) -> Bool in
             exercise.name?.lowercased() == query.lowercased()
-        }) {
-            rows = exercises.sorted { (first, second) -> Bool in
-                first == directMatch
-            }
+        }), let index = rows.firstIndex(of: directMatch) {
+            // Found a direct match. Move it to first position.
+            rows.move(fromOffsets: IndexSet(integer: index), toOffset: 0)
         } else if query.count > 0 {
             rows.insert(query, at: 0)
         }

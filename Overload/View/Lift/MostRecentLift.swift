@@ -24,7 +24,7 @@ struct MostRecentLift: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("most recent lift:")
-                        .sfCompactDisplay(.regular, size: 10.0)
+                        .sfCompactDisplay(.regular, size: 14.0)
                     Text(lift.shortDescription)
                         .sfCompactDisplay(.medium, size: 18.0)
                     Text(MostRecentLift.lastLiftDateFormatter.string(from: timestamp))
