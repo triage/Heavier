@@ -42,6 +42,11 @@ struct OlderLifts: View {
                                 .sfCompactDisplay(.medium, size: 24.0)
                         }
                     }
+                    HStack {
+                        Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
+                            .sfCompactDisplay(.regular, size: 14.0)
+                        Spacer()
+                    }
                 }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
             }
         } else {
