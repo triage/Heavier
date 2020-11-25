@@ -3,9 +3,11 @@
     <entity name="Exercise" representedClassName="Exercise" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="lifts" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Lift" inverseName="exercise" inverseEntity="Lift"/>
     </entity>
     <entity name="Lift" representedClassName="Lift" syncable="YES" codeGenerationType="class">
+        <attribute name="day" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="reps" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sets" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -14,7 +16,7 @@
         <relationship name="exercise" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="lifts" inverseEntity="Exercise"/>
     </entity>
     <elements>
-        <element name="Exercise" positionX="-54" positionY="-9" width="128" height="74"/>
-        <element name="Lift" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="Exercise" positionX="-54" positionY="-9" width="128" height="89"/>
+        <element name="Lift" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

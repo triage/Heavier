@@ -10,13 +10,14 @@ import CoreData
 
 final class LiftsObservable: NSObject, ObservableObject {
     @Published var lifts: [Lift] = []
+    @Published var sections: [NSFetchedResultsSectionInfo] = []
     private let fetchedResultsController: NSFetchedResultsController<Lift>
     
     init(exercise: Exercise) {
         fetchedResultsController = NSFetchedResultsController(
             fetchRequest: Lift.fetchRequest(exercise: exercise),
             managedObjectContext: PersistenceController.shared.container.viewContext,
-            sectionNameKeyPath: nil,
+            sectionNameKeyPath: "day",
             cacheName: nil
         )
         
@@ -27,6 +28,7 @@ final class LiftsObservable: NSObject, ObservableObject {
         do {
             try fetchedResultsController.performFetch()
             lifts = fetchedResultsController.fetchedObjects ?? []
+            sections = fetchedResultsController.sections ?? []
         } catch {
             print("failed to fetch items!")
         }
@@ -35,11 +37,10 @@ final class LiftsObservable: NSObject, ObservableObject {
 
 extension LiftsObservable: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard let lifts = controller.fetchedObjects as? [Lift]
-        else {
+        guard let lifts = controller.fetchedObjects as? [Lift], let sections = controller.sections else {
             return
-            
         }
         self.lifts = lifts
+        self.sections = sections
     }
 }
