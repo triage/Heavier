@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "HorizonCalendar",
+        "repositoryURL": "https://github.com/airbnb/HorizonCalendar.git",
+        "state": {
+          "branch": null,
+          "revision": "bd0d338912e66d2f71d2cbe2d41e707dec9bd5ad",
+          "version": "1.6.1"
+        }
+      },
+      {
         "package": "SwiftlySearch",
         "repositoryURL": "https://github.com/thislooksfun/SwiftlySearch.git",
         "state": {
