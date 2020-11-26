@@ -9,28 +9,22 @@ import SwiftUI
 import CoreData
 import SwiftlySearch
 
-struct RootView: View {
+struct ContentView: View {
     @State private var query: String = ""
     @State var isAddVisible = false
-    @State var viewType: ContentView.ViewType = .list
     
     var body: some View {
         NavigationView {
-            ContentView(
-                viewType: viewType,
+            ListView(
                 query: query,
-                fetchRequest: Exercise.searchFetchRequest(query: query),
-                liftFetchRequest: Lift.searchFetchRequest(query: query)
-            )
-            .navigationBarSearch($query)
+                fetchRequest: Exercise.searchFetchRequest(query: query))
+                .navigationBarSearch($query)
             .navigationBarItems(
                 leading:
                     Text("Exercises").font(.title),
                 trailing:
-                    Button(action: {
-                        viewType.toggle()
-                    }) {
-                        viewType.toggled().icon
+                    Button(action: { }) {
+                        Image(systemName: "calendar")
                     })
             .sheet(
                 isPresented: $isAddVisible,
@@ -42,12 +36,11 @@ struct RootView: View {
     }
 }
 
-struct RootView_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
         Group {
-            RootView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            RootView(viewType: .calendar).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

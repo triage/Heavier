@@ -13,7 +13,7 @@ struct OverloadApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
