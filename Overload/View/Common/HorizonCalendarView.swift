@@ -57,7 +57,7 @@ struct HorizonCalendarView: UIViewRepresentable {
     let lifts: [Lift]
     
     func makeUIView(context: Context) -> CalendarView {
-        return CalendarView(initialContent: makeContent())
+        CalendarView(initialContent: makeContent())
     }
     
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<HorizonCalendarView>) {
@@ -66,12 +66,12 @@ struct HorizonCalendarView: UIViewRepresentable {
     
     private static var groupingDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD"
+        dateFormatter.dateFormat = "YYYY-MM-dd"
         return dateFormatter
     }
     
     var days: [String: [Lift]] {
-        return Dictionary(grouping: lifts) { (lift) -> String in
+        Dictionary(grouping: lifts) { (lift) -> String in
             HorizonCalendarView.groupingDateFormatter.string(from: lift.timestamp!)
         }
     }
