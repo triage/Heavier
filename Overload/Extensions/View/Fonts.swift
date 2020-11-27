@@ -14,6 +14,13 @@ extension View {
     }
 }
 
+extension UIFont {
+    static func sfDisplay(variation: Theme.Font.SFCompactDisplay.Variation, fontSize: CGFloat) -> UIFont {
+        UIFont(name: variation.rawValue, size: fontSize)!
+    }
+    
+}
+
 class Theme {
     enum Font {
         struct SFCompactDisplay: ViewModifier {

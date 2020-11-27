@@ -8,44 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct ContentView: View {
+struct ListView: View {
     @Environment(\.managedObjectContext) var context
 
-    enum ViewType {
-        case list
-        case calendar
-        
-        var icon: Image {
-            if self == .calendar {
-                return Image(systemName: "calendar")
-            } else {
-                return Image(systemName: "list.dash")
-            }
-        }
-        
-        func toggled() -> ViewType {
-            return self == .calendar ? .list : .calendar
-        }
-        
-        mutating func toggle() {
-            if self == .calendar {
-                self = .list
-            } else {
-                self = .calendar
-            }
-        }
-    }
-    
-    let viewType: ViewType
     let query: String
     let fetchRequest: FetchRequest<Exercise>
-    let liftFetchRequest: FetchRequest<Lift>
     
     var exercises: FetchedResults<Exercise> {
         return fetchRequest.wrappedValue
-    }
-    var lifts: FetchedResults<Lift> {
-        return liftFetchRequest.wrappedValue
     }
     
     private static let timestampFormatter: DateFormatter = {
@@ -58,7 +28,7 @@ struct ContentView: View {
         VStack(alignment: .leading) {
             Text(lift.shortDescription)
             if let timestamp = lift.timestamp {
-                Text(ContentView.timestampFormatter.string(from: timestamp))
+                Text(ListView.timestampFormatter.string(from: timestamp))
                     .sfCompactDisplay(.regular, size: 12.0)
                     .padding(EdgeInsets(top: 2.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
             }
@@ -76,7 +46,7 @@ struct ContentView: View {
                 Text(exercise.name!)
                     .sfCompactDisplay(.medium, size: 22.0)
                 if let lastLift = exercise.lastLift {
-                    ContentView.liftShortDescription(lift: lastLift)
+                    ListView.liftShortDescription(lift: lastLift)
                 }
             }
             .padding(.vertical, 12)
@@ -130,21 +100,17 @@ struct ContentView: View {
     }
     
     var body: some View {
-        if viewType == .list {
-            List {
-                ForEach(rows, id: \.self) { row in
-                    if let exercise = row as? Exercise {
-                        cell(exercise: exercise)
-                    } else if let name = row as? String {
-                        cell(name: name)
-                    } else {
-                        EmptyView()
-                    }
+        List {
+            ForEach(rows, id: \.self) { row in
+                if let exercise = row as? Exercise {
+                    cell(exercise: exercise)
+                } else if let name = row as? String {
+                    cell(name: name)
+                } else {
+                    EmptyView()
                 }
-            }.listStyle(PlainListStyle())
-        } else {
-            HorizonCalendarView(lifts: Array(lifts))
-        }
+            }
+        }.listStyle(PlainListStyle())
     }
 }
 
@@ -153,19 +119,13 @@ struct ContentView_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
         Group {
-            ContentView(
-                viewType: .list,
+            ListView(
                 query: "Romanian",
-                fetchRequest: Exercise.searchFetchRequest(query: "Exercise"),
-                liftFetchRequest: Lift.searchFetchRequest(query: "Exercise")
-            )
-                
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            ContentView(
-                viewType: .calendar,
+                fetchRequest: Exercise.searchFetchRequest(query: "Exercise")
+            ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ListView(
                 query: "Romanian",
-                fetchRequest: Exercise.searchFetchRequest(query: "Romanian"),
-                liftFetchRequest: Lift.searchFetchRequest(query: "Exercise")
+                fetchRequest: Exercise.searchFetchRequest(query: "Romanian")
             ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }

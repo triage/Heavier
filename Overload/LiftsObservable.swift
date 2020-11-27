@@ -13,7 +13,7 @@ final class LiftsObservable: NSObject, ObservableObject {
     @Published var sections: [NSFetchedResultsSectionInfo] = []
     private let fetchedResultsController: NSFetchedResultsController<Lift>
     
-    init(exercise: Exercise) {
+    init(exercise: Exercise?) {
         fetchedResultsController = NSFetchedResultsController(
             fetchRequest: Lift.fetchRequest(exercise: exercise),
             managedObjectContext: PersistenceController.shared.container.viewContext,

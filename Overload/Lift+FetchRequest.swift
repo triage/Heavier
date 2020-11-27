@@ -10,10 +10,11 @@ import CoreData
 import SwiftUI
 
 extension Lift {
-    static func fetchRequest(exercise: Exercise) -> NSFetchRequest<Lift> {
-        let predicate = NSPredicate(format: "exercise = %@", exercise as CVarArg)
+    static func fetchRequest(exercise: Exercise?) -> NSFetchRequest<Lift> {
         let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
-        fetchRequest.predicate = predicate
+        if let exercise = exercise {
+            fetchRequest.predicate = NSPredicate(format: "exercise = %@", exercise as CVarArg)
+        }
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Lift.timestamp, ascending: false)
         ]
