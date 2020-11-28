@@ -21,10 +21,8 @@ extension Lift {
         return fetchRequest
     }
     
-    static func fetchRequest(day dayComponents: DateComponents?) -> NSFetchRequest<Lift>? {
-        guard var day = dayComponents else {
-            return nil
-        }
+    static func fetchRequest(day dayComponents: DateComponents) -> NSFetchRequest<Lift>? {
+        var day = dayComponents
         day.calendar = Calendar.current
         guard
             let date = day.date,
@@ -33,7 +31,7 @@ extension Lift {
         }
         let range = Calendar.current.startOfDay(for: date)...endOfDay
         let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
-//        fetchRequest.predicate = NSPredicate(format: "(timestamp >= %@) AND (timestamp <= %@)", range.lowerBound as CVarArg, range.upperBound as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "(timestamp >= %@) AND (timestamp <= %@)", range.lowerBound as CVarArg, range.upperBound as CVarArg)
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Lift.timestamp, ascending: true)
         ]

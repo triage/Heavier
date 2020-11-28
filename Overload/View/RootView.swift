@@ -10,37 +10,19 @@ import CoreData
 import SwiftlySearch
 
 struct LiftsOnDate: View {
-    let fetchRequest: FetchRequest<Lift>?
-    
-    init(day: DateComponents?) {
-        guard let day = day, let fetchRequest = Lift.fetchRequest(day: day) else {
-            self.fetchRequest = nil
-            return
-        }
-        self.fetchRequest = FetchRequest(fetchRequest: fetchRequest)
-    }
-    
-    var lifts: FetchedResults<Lift>? {
-        return fetchRequest?.wrappedValue
+    let fetchRequest: FetchRequest<Lift>
+    var lifts: FetchedResults<Lift> {
+        return fetchRequest.wrappedValue
     }
     
     var exercises: [String: [Lift]]? {
-        guard let lifts = lifts else {
-            return nil
-        }
         return Dictionary(grouping: lifts) { (lift: Lift) -> String in
             return lift.exercise!.name!
         }
     }
     
     var body: some View {
-        if let lifts = lifts {
-            List {
-                OlderLifts(lifts: Array(lifts))
-            }
-        } else {
-            EmptyView()
-        }
+        OlderLifts(lifts: Array(lifts))
     }
 }
 
@@ -52,10 +34,14 @@ struct ContentView: View {
     @State var daySelected: DateComponents?
     var body: some View {
         if viewType == .calendar {
-            LiftsCalendarView(lifts: lifts) { day in
-                daySelected = day.components
-            }.frame(minHeight: LiftsCalendarView.minHeight)
-            LiftsOnDate(day: daySelected)
+            List {
+                LiftsCalendarView(lifts: lifts) { day in
+                    daySelected = day.components
+                }.frame(minHeight: LiftsCalendarView.minHeight)
+                if let daySelected = daySelected, let fetchRequest = Lift.fetchRequest(day: daySelected) {
+                    LiftsOnDate(fetchRequest: FetchRequest(fetchRequest: fetchRequest))
+                }
+            }.listStyle(PlainListStyle())
         } else {
             ListView(
                 query: query,
