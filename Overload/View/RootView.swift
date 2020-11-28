@@ -27,8 +27,8 @@ struct RootCalendarView: View {
 struct ContentView: View {
     let viewType: RootView.ViewType
 
-    @Binding var query: String
     @State var daySelected: DateComponents?
+    @State private var query: String = ""
     
     var body: some View {
         if viewType == .calendar {
@@ -38,7 +38,7 @@ struct ContentView: View {
                 query: query,
                 fetchRequest: Exercise.searchFetchRequest(query: query)
             )
-//            .navigationBarSearch($query)
+            .navigationBarSearch($query)
         }
     }
 }
@@ -70,13 +70,12 @@ struct RootView: View {
         }
     }
     
-    @State private var query: String = ""
     @State var isAddVisible = false
     @State var viewType: ViewType = .list
     
     var body: some View {
         NavigationView {
-            ContentView(viewType: viewType, query: $query)
+            ContentView(viewType: viewType)
             .navigationBarItems(
                 leading:
                     Text("Exercises").font(.title),
