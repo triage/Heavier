@@ -9,45 +9,36 @@ import SwiftUI
 import CoreData
 import SwiftlySearch
 
-struct LiftsOnDate: View {
-    let fetchRequest: FetchRequest<Lift>
-    var lifts: FetchedResults<Lift> {
-        return fetchRequest.wrappedValue
-    }
-    
-    var exercises: [String: [Lift]]? {
-        return Dictionary(grouping: lifts) { (lift: Lift) -> String in
-            return lift.exercise!.name!
-        }
-    }
+struct RootCalendarView: View {
+    @ObservedObject var lifts = LiftsObservable(exercise: nil)
+    @State var daySelected: DateComponents?
     
     var body: some View {
-        OlderLifts(lifts: Array(lifts))
+        List {
+            LiftsCalendarView(lifts: lifts.lifts) { day in
+                daySelected = day.components
+            }.frame(minHeight: LiftsCalendarView.minHeight)
+            
+            LiftsOnDate(daySelected: daySelected)
+        }.listStyle(PlainListStyle())
     }
 }
 
 struct ContentView: View {
     let viewType: RootView.ViewType
-    let lifts: [Lift]
-    
+
     @Binding var query: String
     @State var daySelected: DateComponents?
+    
     var body: some View {
         if viewType == .calendar {
-            List {
-                LiftsCalendarView(lifts: lifts) { day in
-                    daySelected = day.components
-                }.frame(minHeight: LiftsCalendarView.minHeight)
-                if let daySelected = daySelected, let fetchRequest = Lift.fetchRequest(day: daySelected) {
-                    LiftsOnDate(fetchRequest: FetchRequest(fetchRequest: fetchRequest))
-                }
-            }.listStyle(PlainListStyle())
+            RootCalendarView()
         } else {
             ListView(
                 query: query,
                 fetchRequest: Exercise.searchFetchRequest(query: query)
             )
-            .navigationBarSearch($query)
+//            .navigationBarSearch($query)
         }
     }
 }
@@ -82,11 +73,10 @@ struct RootView: View {
     @State private var query: String = ""
     @State var isAddVisible = false
     @State var viewType: ViewType = .list
-    @ObservedObject var lifts = LiftsObservable(exercise: nil)
     
     var body: some View {
         NavigationView {
-            ContentView(viewType: viewType, lifts: lifts.lifts, query: $query)
+            ContentView(viewType: viewType, query: $query)
             .navigationBarItems(
                 leading:
                     Text("Exercises").font(.title),

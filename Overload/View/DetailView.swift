@@ -12,6 +12,7 @@ struct DetailView: View {
     @State var name: String = ""
     @Environment(\.managedObjectContext) private var viewContext
     @Binding var isPresented: Bool
+    
     private static var nameMinLength = 2
     private func buttonClicked() {
         let exercise = Exercise(context: viewContext)

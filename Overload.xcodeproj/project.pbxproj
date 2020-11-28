@@ -11,6 +11,8 @@
 		07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07022162256DFA4600456C4C /* LiftsCalendarView.swift */; };
 		0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702218325715A4300456C4C /* Exercise+PreviewContent.swift */; };
 		070221892571D2DF00456C4C /* Lift+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221882571D2DF00456C4C /* Lift+Range.swift */; };
+		070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221902572BA8800456C4C /* DateComponents+Range.swift */; };
+		070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDate.swift */; };
 		0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */; };
 		071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3902251AF3F800A35799 /* OverloadApp.swift */; };
 		071E3905251AF3F800A35799 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* RootView.swift */; };
@@ -76,6 +78,8 @@
 		07022162256DFA4600456C4C /* LiftsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsCalendarView.swift; sourceTree = "<group>"; };
 		0702218325715A4300456C4C /* Exercise+PreviewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+PreviewContent.swift"; sourceTree = "<group>"; };
 		070221882571D2DF00456C4C /* Lift+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Range.swift"; sourceTree = "<group>"; };
+		070221902572BA8800456C4C /* DateComponents+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Range.swift"; sourceTree = "<group>"; };
+		070221982572C6DE00456C4C /* LiftsOnDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDate.swift; sourceTree = "<group>"; };
 		0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+FetchRequest.swift"; sourceTree = "<group>"; };
 		071E38FF251AF3F800A35799 /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3902251AF3F800A35799 /* OverloadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadApp.swift; sourceTree = "<group>"; };
@@ -161,6 +165,23 @@
 			path = LiftsCalendarView;
 			sourceTree = "<group>";
 		};
+		0702218E2572BA6B00456C4C /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				070221902572BA8800456C4C /* DateComponents+Range.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		0702218F2572BA7500456C4C /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				07A7B53A25491E8F006468C1 /* Color */,
+				07D435342547D65100F16668 /* View */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		071E38F6251AF3F800A35799 = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				071E3904251AF3F800A35799 /* RootView.swift */,
+				070221982572C6DE00456C4C /* LiftsOnDate.swift */,
 				07D435392547D68B00F16668 /* ListView.swift */,
 				079E746D256A0A7B00D87F98 /* Common */,
 				07D435502547D85F00F16668 /* List */,
@@ -304,8 +326,8 @@
 		07D435302547D64500F16668 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				07A7B53A25491E8F006468C1 /* Color */,
-				07D435342547D65100F16668 /* View */,
+				0702218F2572BA7500456C4C /* SwiftUI */,
+				0702218E2572BA6B00456C4C /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -508,6 +530,7 @@
 				07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */,
 				071E3905251AF3F800A35799 /* RootView.swift in Sources */,
 				071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */,
+				070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */,
 				079E7481256D450F00D87F98 /* Exercise+WillSave.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
@@ -523,6 +546,7 @@
 				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
+				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

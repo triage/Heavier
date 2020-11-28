@@ -10,6 +10,17 @@ import CoreData
 import SwiftUI
 
 extension Lift {
+    
+    static func predicate(daySelected: DateComponents) -> NSPredicate? {
+        guard let range = daySelected.dayRange else {
+            return nil
+        }
+        return NSPredicate(format: "(timestamp >= %@) AND (timestamp <= %@)",
+                    range.lowerBound as CVarArg,
+                    range.upperBound as CVarArg
+        )
+    }
+    
     static func fetchRequest(exercise: Exercise?) -> NSFetchRequest<Lift> {
         let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
         if let exercise = exercise {
