@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 struct OlderLifts: View {
-    let lifts: ArraySlice<Lift>?
+    let lifts: [Lift]?
     var body: some View {
-        if let lifts = lifts {
+        if let lifts = lifts, lifts.count > 0 {
             ForEach(lifts) { lift in
                 VStack {
                     HStack(alignment: .firstTextBaseline, spacing: 5.0) {
@@ -50,7 +50,7 @@ struct OlderLifts: View {
                 }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
             }
         } else {
-            EmptyView()
+            Text("Empty:\(Int.random(in: 0...1000))")
         }
     }
 }
@@ -125,8 +125,8 @@ struct ExerciseView: View {
         lifts = LiftsObservable(exercise: exercise)
     }
     
-    var olderLifts: ArraySlice<Lift>? {
-        return lifts.lifts.dropFirst()
+    var olderLifts: [Lift]? {
+        return Array(lifts.lifts.dropFirst())
     }
     
     var body: some View {

@@ -110,7 +110,10 @@ struct DayLabel: CalendarItemViewRepresentable {
 
 struct LiftsCalendarView: UIViewRepresentable {
     
+    typealias DaySelectionhandler = ((Day) -> Void)
+    
     let lifts: [Lift]
+    let onDateSelect: DaySelectionhandler
     
     private static let groupingDateFormat = "YYYY-MM-dd"
     
@@ -118,8 +121,21 @@ struct LiftsCalendarView: UIViewRepresentable {
         CalendarView(initialContent: makeContent())
     }
     
+    class Coordinator : NSObject {
+        let daySelectionHandler: DaySelectionhandler
+        init(daySelectionHandler: @escaping DaySelectionhandler) {
+            self.daySelectionHandler = daySelectionHandler
+        }
+    }
+    
+    func makeCoordinator() ->LiftsCalendarView.Coordinator {
+        Coordinator(
+            daySelectionHandler: onDateSelect
+        )
+    }
+    
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<LiftsCalendarView>) {
-        
+        uiView.daySelectionHandler = context.coordinator.daySelectionHandler
     }
     
     private static var groupingDateFormatter: DateFormatter {
@@ -170,7 +186,9 @@ struct LiftsCalendarView: UIViewRepresentable {
 struct LiftsCalendar_ContentPreviews: PreviewProvider {
     static var previews: some View {
         Group {
-            LiftsCalendarView(lifts: Exercise.Preview.preview.lifts!.array as! [Lift])
+            LiftsCalendarView(lifts: Exercise.Preview.preview.lifts!.array as! [Lift], onDateSelect: { day in
+                print("day selected:\(day.description)")
+            })
         }
     }
 }

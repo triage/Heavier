@@ -9,14 +9,53 @@ import SwiftUI
 import CoreData
 import SwiftlySearch
 
+struct LiftsOnDate: View {
+    let fetchRequest: FetchRequest<Lift>?
+    
+    init(day: DateComponents?) {
+        guard let day = day, let fetchRequest = Lift.fetchRequest(day: day) else {
+            self.fetchRequest = nil
+            return
+        }
+        self.fetchRequest = FetchRequest(fetchRequest: fetchRequest)
+    }
+    
+    var lifts: FetchedResults<Lift>? {
+        return fetchRequest?.wrappedValue
+    }
+    
+    var exercises: [String: [Lift]]? {
+        guard let lifts = lifts else {
+            return nil
+        }
+        return Dictionary(grouping: lifts) { (lift: Lift) -> String in
+            return lift.exercise!.name!
+        }
+    }
+    
+    var body: some View {
+        if let lifts = lifts {
+            List {
+                OlderLifts(lifts: Array(lifts))
+            }
+        } else {
+            EmptyView()
+        }
+    }
+}
+
 struct ContentView: View {
     let viewType: RootView.ViewType
     let lifts: [Lift]
     
     @Binding var query: String
+    @State var daySelected: DateComponents?
     var body: some View {
         if viewType == .calendar {
-            LiftsCalendarView(lifts: lifts)
+            LiftsCalendarView(lifts: lifts) { day in
+                daySelected = day.components
+            }.frame(height: 450)
+            LiftsOnDate(day: daySelected)
         } else {
             ListView(
                 query: query,
@@ -87,6 +126,9 @@ struct RootView_Previews: PreviewProvider {
         Group {
             RootView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             RootView(viewType: .calendar).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            RootView(viewType: .calendar)
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                .environment(\.colorScheme, ColorScheme.dark)
         }
     }
 }
