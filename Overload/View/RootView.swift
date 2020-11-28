@@ -16,7 +16,7 @@ struct ContentView: View {
     @Binding var query: String
     var body: some View {
         if viewType == .calendar {
-            HorizonCalendarView(lifts: lifts)
+            LiftsCalendarView(lifts: lifts)
         } else {
             ListView(
                 query: query,

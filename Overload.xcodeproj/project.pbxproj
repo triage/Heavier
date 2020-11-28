@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0702215D256DFA2C00456C4C /* HorizonCalendar */; };
-		07022163256DFA4600456C4C /* HorizonCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07022162256DFA4600456C4C /* HorizonCalendarView.swift */; };
+		07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07022162256DFA4600456C4C /* LiftsCalendarView.swift */; };
+		0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702218325715A4300456C4C /* Exercise+PreviewContent.swift */; };
+		070221892571D2DF00456C4C /* Lift+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221882571D2DF00456C4C /* Lift+Range.swift */; };
 		0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */; };
 		071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3902251AF3F800A35799 /* OverloadApp.swift */; };
 		071E3905251AF3F800A35799 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* RootView.swift */; };
@@ -71,7 +73,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07022162256DFA4600456C4C /* HorizonCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizonCalendarView.swift; sourceTree = "<group>"; };
+		07022162256DFA4600456C4C /* LiftsCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsCalendarView.swift; sourceTree = "<group>"; };
+		0702218325715A4300456C4C /* Exercise+PreviewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+PreviewContent.swift"; sourceTree = "<group>"; };
+		070221882571D2DF00456C4C /* Lift+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Range.swift"; sourceTree = "<group>"; };
 		0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+FetchRequest.swift"; sourceTree = "<group>"; };
 		071E38FF251AF3F800A35799 /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3902251AF3F800A35799 /* OverloadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadApp.swift; sourceTree = "<group>"; };
@@ -149,6 +153,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0702217F2571566300456C4C /* LiftsCalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				07022162256DFA4600456C4C /* LiftsCalendarView.swift */,
+			);
+			path = LiftsCalendarView;
+			sourceTree = "<group>";
+		};
 		071E38F6251AF3F800A35799 = {
 			isa = PBXGroup;
 			children = (
@@ -250,7 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */,
-				07022162256DFA4600456C4C /* HorizonCalendarView.swift */,
+				0702217F2571566300456C4C /* LiftsCalendarView */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -314,12 +326,14 @@
 				077F8F45256987680075B307 /* Exercise+Init.swift */,
 				079E7473256B363200D87F98 /* Exercise+LiftDate.swift */,
 				079E7480256D450F00D87F98 /* Exercise+WillSave.swift */,
+				0702218325715A4300456C4C /* Exercise+PreviewContent.swift */,
 				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
 				07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */,
 				0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */,
 				077F8F4025697E060075B307 /* Lift+FetchRequest.swift */,
 				079E747B256B600100D87F98 /* Lift+Bodyweight.swift */,
 				079E7485256D4F8500D87F98 /* Lift+WillSave.swift */,
+				070221882571D2DF00456C4C /* Lift+Range.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -480,10 +494,11 @@
 			files = (
 				07D435472547D6E600F16668 /* NavigationBarHidden.swift in Sources */,
 				07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */,
-				07022163256DFA4600456C4C /* HorizonCalendarView.swift in Sources */,
+				07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */,
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
 				079E7486256D4F8500D87F98 /* Lift+WillSave.swift in Sources */,
 				07D4354C2547D6FF00F16668 /* DetailView.swift in Sources */,
+				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
 				07D435422547D6A100F16668 /* SearchView.swift in Sources */,
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
@@ -498,6 +513,7 @@
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */,
 				07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */,
+				0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */,
 				0781F2A6254E521F00B9AE63 /* DifferenceView.swift in Sources */,
 				077F8F46256987680075B307 /* Exercise+Init.swift in Sources */,
 				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,
