@@ -115,6 +115,7 @@ struct LiftsCalendarView: UIViewRepresentable {
     let lifts: [Lift]
     let onDateSelect: DaySelectionhandler
     
+    static let minHeight: CGFloat = 450
     private static let groupingDateFormat = "YYYY-MM-dd"
     
     func makeUIView(context: Context) -> CalendarView {

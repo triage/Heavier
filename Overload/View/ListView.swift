@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct ListView: View {
-    @Environment(\.managedObjectContext) var context
 
     let query: String
     let fetchRequest: FetchRequest<Exercise>

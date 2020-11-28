@@ -54,7 +54,7 @@ struct ContentView: View {
         if viewType == .calendar {
             LiftsCalendarView(lifts: lifts) { day in
                 daySelected = day.components
-            }.frame(height: 450)
+            }.frame(minHeight: LiftsCalendarView.minHeight)
             LiftsOnDate(day: daySelected)
         } else {
             ListView(
@@ -124,8 +124,10 @@ struct RootView_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
         Group {
-            RootView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            RootView(viewType: .calendar).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            RootView()
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            RootView(viewType: .calendar)
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             RootView(viewType: .calendar)
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 .environment(\.colorScheme, ColorScheme.dark)
