@@ -9,48 +9,52 @@ import Foundation
 import SwiftUI
 
 struct OlderLifts: View {
-    let lifts: [Lift]?
+    private let lifts: [Lift]
+    
+    init?(lifts: [Lift]?) {
+        guard let lifts = lifts else {
+            return  nil
+        }
+        self.lifts = lifts
+    }
+    
     var body: some View {
-        if let lifts = lifts, lifts.count > 0 {
-            ForEach(lifts) { lift in
-                VStack {
-                    HStack(alignment: .firstTextBaseline, spacing: 5.0) {
-                        Text("\(lift.sets)")
-                            .sfCompactDisplay(.medium, size: 24.0)
+        ForEach(lifts) { lift in
+            VStack {
+                HStack(alignment: .firstTextBaseline, spacing: 5.0) {
+                    Text("\(lift.sets)")
+                        .sfCompactDisplay(.medium, size: 24.0)
+                    Text("x")
+                        .sfCompactDisplay(.medium, size: 14.0)
+                        .foregroundColor(.label)
+                    Text("\(lift.reps)")
+                        .sfCompactDisplay(.medium, size: 24.0)
+                    if !lift.isBodyweight {
                         Text("x")
                             .sfCompactDisplay(.medium, size: 14.0)
                             .foregroundColor(.label)
-                        Text("\(lift.reps)")
+                        Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!)")
                             .sfCompactDisplay(.medium, size: 24.0)
-                        if !lift.isBodyweight {
-                            Text("x")
-                                .sfCompactDisplay(.medium, size: 14.0)
-                                .foregroundColor(.label)
-                            Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!)")
-                                .sfCompactDisplay(.medium, size: 24.0)
-                            Text("lbs")
-                                .sfCompactDisplay(.medium, size: 14.0)
-                                .foregroundColor(.label)
-                        }
-                        Spacer()
-                        if !lift.isBodyweight {
-                            Text("=")
-                                .sfCompactDisplay(.medium, size: 14.0)
-                                .foregroundColor(.label)
-                            Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!) lbs")
-                                .lineLimit(0)
-                                .sfCompactDisplay(.medium, size: 24.0)
-                        }
+                        Text("lbs")
+                            .sfCompactDisplay(.medium, size: 14.0)
+                            .foregroundColor(.label)
                     }
-                    HStack {
-                        Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
-                            .sfCompactDisplay(.regular, size: 14.0)
-                        Spacer()
+                    Spacer()
+                    if !lift.isBodyweight {
+                        Text("=")
+                            .sfCompactDisplay(.medium, size: 14.0)
+                            .foregroundColor(.label)
+                        Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!) lbs")
+                            .lineLimit(0)
+                            .sfCompactDisplay(.medium, size: 24.0)
                     }
-                }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
-            }
-        } else {
-            Text("Empty:\(Int.random(in: 0...1000))")
+                }
+                HStack {
+                    Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
+                        .sfCompactDisplay(.regular, size: 14.0)
+                    Spacer()
+                }
+            }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
         }
     }
 }

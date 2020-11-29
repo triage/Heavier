@@ -12,6 +12,7 @@ import SwiftlySearch
 struct RootCalendarView: View {
     @ObservedObject var lifts = LiftsObservable(exercise: nil)
     @State var daySelected: DateComponents?
+    private static let title = "Calendar"
     
     var body: some View {
         List {
@@ -20,13 +21,16 @@ struct RootCalendarView: View {
             }.frame(minHeight: LiftsCalendarView.minHeight)
             
             LiftsOnDate(daySelected: daySelected)
-        }.listStyle(PlainListStyle())
+        }
+        .listStyle(PlainListStyle())
+        .navigationTitle(RootCalendarView.title)
     }
 }
 
 struct ContentView: View {
     let viewType: RootView.ViewType
 
+    private static let title = "Exercises"
     @State var daySelected: DateComponents?
     @State private var query: String = ""
     
@@ -38,6 +42,7 @@ struct ContentView: View {
                 query: query,
                 fetchRequest: Exercise.searchFetchRequest(query: query)
             )
+            .navigationTitle(ContentView.title)
             .navigationBarSearch($query)
         }
     }
@@ -77,8 +82,6 @@ struct RootView: View {
         NavigationView {
             ContentView(viewType: viewType)
             .navigationBarItems(
-                leading:
-                    Text("Exercises").font(.title),
                 trailing:
                     Button(action: {
                         viewType.toggle()
@@ -91,7 +94,8 @@ struct RootView: View {
                     DetailView(isPresented: $isAddVisible)
                 }
             )
-        }.edgesIgnoringSafeArea([.top, .bottom])
+        }
+        .edgesIgnoringSafeArea([.top, .bottom])
     }
 }
 
