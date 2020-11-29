@@ -13,14 +13,14 @@ struct LiftPicker: View {
     private let pickerWidth: CGFloat = 90.0
     
     let label: String
-    let range: ClosedRange<Int>
-    let interval: Int
-    let initialValue: Int?
+    let range: ClosedRange<Float>
+    let interval: Float
+    let initialValue: Float?
     
-    @Binding var value: Int
+    @Binding var value: Float
     @State private var rowSelected: Int
     
-    init(label: String, range: ClosedRange<Int>, interval: Int, value: Binding<Int>, initialValue: Int?) {
+    init(label: String, range: ClosedRange<Float>, interval: Float, value: Binding<Float>, initialValue: Float?) {
         self.label = label
         self.range = range
         self.interval = interval
@@ -39,7 +39,7 @@ struct LiftPicker: View {
     }
     
     private func label(row: Int) -> String {
-        let value = range.lowerBound + (row * interval)
+        let value = range.lowerBound + (Float(row) * interval)
         return "\(value)"
     }
     
@@ -52,7 +52,7 @@ struct LiftPicker: View {
                         .sfCompactDisplay(.regular, size: 54.0)
                 }
                 .onReceive([self.rowSelected].publisher.first()) { (row) in
-                    self.value = range.lowerBound + (interval * row)
+                    self.value = range.lowerBound + (interval * Float(row))
                 }
                 .frame(width: pickerWidth, height: 45)
                 .clipped()
@@ -81,7 +81,7 @@ struct LiftPicker: View {
 }
 
 struct LiftPicker_Previews: PreviewProvider {
-    @State static var value: Int = 135
+    @State static var value: Float = 135
     static var previews: some View {
         LiftPicker(
             label: "lbs",

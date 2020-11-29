@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 struct DifferenceView: View {
-    let initialValue: Int?
-    let value: Int
+    let initialValue: Float?
+    let value: Float
     
     static let padding = EdgeInsets(top: 5.0, leading: 10.0, bottom: 5.0, trailing: 10.0)
     

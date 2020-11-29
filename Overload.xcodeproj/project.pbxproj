@@ -218,7 +218,7 @@
 				071E3902251AF3F800A35799 /* OverloadApp.swift */,
 				071E6B7F254E671D0078ADD3 /* View */,
 				07BE0181254E28B4007E2BB7 /* MyPlayground.playground */,
-				07D4352F2547D63A00F16668 /* CoreData */,
+				07B3064B25745590005CB631 /* Data Model */,
 				07D435302547D64500F16668 /* Extensions */,
 				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
 				071E3906251AF3F900A35799 /* Assets.xcassets */,
@@ -307,6 +307,14 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		07B3064B25745590005CB631 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				07D4352F2547D63A00F16668 /* CoreData */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
 		07D435192547D4C900F16668 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +339,7 @@
 				07D435382547D66A00F16668 /* Extensions */,
 			);
 			name = CoreData;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		07D435302547D64500F16668 /* Extensions */ = {

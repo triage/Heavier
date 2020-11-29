@@ -8,16 +8,6 @@
 import Foundation
 import SwiftUI
 
-extension Array where Element == Lift {
-    var volume: Int {
-        var volume: Int = 0
-        for lift in self {
-            volume += lift.volume
-        }
-        return volume
-    }
-}
-
 struct LiftsOnDate: View {
     private var fetchRequest: FetchRequest<Lift>
     

@@ -23,22 +23,22 @@ struct LiftView: View {
     let exercise: Exercise
     let lift: Lift?
     
-    @State var reps: Int
-    @State var sets: Int
-    @State var weight: Int
+    @State var reps: Float
+    @State var sets: Float
+    @State var weight: Float
     var presented: Binding<Bool>
     
     init(exercise: Exercise, lift: Lift?, presented: Binding<Bool>) {
         self.exercise = exercise
         self.lift = lift
         self.presented = presented
-        _sets = .init(initialValue: Int(lift?.sets ?? 5))
-        _reps = .init(initialValue: Int(lift?.reps ?? 5))
-        _weight = .init(initialValue: Int(lift?.weight ?? 45))
+        _sets = .init(initialValue: Float(lift?.sets ?? 5))
+        _reps = .init(initialValue: Float(lift?.reps ?? 5))
+        _weight = .init(initialValue: Float(lift?.weight ?? 45))
     }
     
-    var volume: Int {
-        Int(reps * sets * weight)
+    var volume: Float {
+        Float(Float(reps) * Float(sets) * weight)
     }
     
     func saveLift() throws {
@@ -54,21 +54,21 @@ struct LiftView: View {
                     range: 1...20,
                     interval: 1,
                     value: $sets,
-                    initialValue: Int(lift?.sets ?? 5)
+                    initialValue: Float(lift?.sets ?? 5)
                 )
                 LiftPicker(
                     label: "reps",
                     range: 1...20,
                     interval: 1,
                     value: $reps,
-                    initialValue: Int(lift?.reps ?? 5)
+                    initialValue: Float(lift?.reps ?? 5)
                 )
                 LiftPicker(
                     label: "lbs",
                     range: 0...300,
                     interval: 5,
                     value: $weight,
-                    initialValue: Int(lift?.weight ?? 45)
+                    initialValue: Float(lift?.weight ?? 45)
                 )
                 HStack(alignment: .lastTextBaseline, spacing: 15.0) {
                     Text("= \(volume) lbs")

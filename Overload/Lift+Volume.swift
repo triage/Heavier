@@ -8,13 +8,23 @@
 import Foundation
 
 extension Lift {
-    var volume: Int {
-        return Int(sets) * Int(reps) * Int(weight)
+    var volume: Float {
+        return Float(sets) * Float(reps) * Float(weight)
     }
     
     struct DefaultValues {
         static let sets = 5
         static let reps = 5
         static let weight = 45
+    }
+}
+
+extension Array where Element == Lift {
+    var volume: Float {
+        var volume: Float = 0
+        for lift in self {
+            volume += lift.volume
+        }
+        return volume
     }
 }
