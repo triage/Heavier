@@ -13,6 +13,7 @@
 		070221892571D2DF00456C4C /* Lift+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221882571D2DF00456C4C /* Lift+Range.swift */; };
 		070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221902572BA8800456C4C /* DateComponents+Range.swift */; };
 		070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDate.swift */; };
+		070221EE2573258600456C4C /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 070221ED2573258600456C4C /* SwiftlySearch */; };
 		0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */; };
 		071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3902251AF3F800A35799 /* OverloadApp.swift */; };
 		071E3905251AF3F800A35799 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* RootView.swift */; };
@@ -33,7 +34,6 @@
 		079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E747B256B600100D87F98 /* Lift+Bodyweight.swift */; };
 		079E7481256D450F00D87F98 /* Exercise+WillSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7480256D450F00D87F98 /* Exercise+WillSave.swift */; };
 		079E7486256D4F8500D87F98 /* Lift+WillSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7485256D4F8500D87F98 /* Lift+WillSave.swift */; };
-		07A7B53325490E00006468C1 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 07A7B53225490E00006468C1 /* SwiftlySearch */; };
 		07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+Overload.swift */; };
 		07A7B544254A7396006468C1 /* LiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B543254A7396006468C1 /* LiftView.swift */; };
 		07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
@@ -80,6 +80,7 @@
 		070221882571D2DF00456C4C /* Lift+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Range.swift"; sourceTree = "<group>"; };
 		070221902572BA8800456C4C /* DateComponents+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Range.swift"; sourceTree = "<group>"; };
 		070221982572C6DE00456C4C /* LiftsOnDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDate.swift; sourceTree = "<group>"; };
+		070221F3257325AE00456C4C /* SwiftlySearch */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftlySearch; path = ../../SwiftlySearch; sourceTree = "<group>"; };
 		0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+FetchRequest.swift"; sourceTree = "<group>"; };
 		071E38FF251AF3F800A35799 /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3902251AF3F800A35799 /* OverloadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadApp.swift; sourceTree = "<group>"; };
@@ -136,7 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
-				07A7B53325490E00006468C1 /* SwiftlySearch in Frameworks */,
+				070221EE2573258600456C4C /* SwiftlySearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,9 +183,18 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
+		070221F2257325A400456C4C /* Local Packages */ = {
+			isa = PBXGroup;
+			children = (
+				070221F3257325AE00456C4C /* SwiftlySearch */,
+			);
+			path = "Local Packages";
+			sourceTree = "<group>";
+		};
 		071E38F6251AF3F800A35799 = {
 			isa = PBXGroup;
 			children = (
+				070221F2257325A400456C4C /* Local Packages */,
 				071E3901251AF3F800A35799 /* Overload */,
 				071E3918251AF3F900A35799 /* OverloadTests */,
 				071E3923251AF3F900A35799 /* OverloadUITests */,
@@ -385,8 +395,8 @@
 			);
 			name = Overload;
 			packageProductDependencies = (
-				07A7B53225490E00006468C1 /* SwiftlySearch */,
 				0702215D256DFA2C00456C4C /* HorizonCalendar */,
+				070221ED2573258600456C4C /* SwiftlySearch */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Overload.app */;
@@ -460,8 +470,8 @@
 			);
 			mainGroup = 071E38F6251AF3F800A35799;
 			packageReferences = (
-				07A7B53125490E00006468C1 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
 				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				070221EC2573258600456C4C /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -870,12 +880,12 @@
 				minimumVersion = 1.6.1;
 			};
 		};
-		07A7B53125490E00006468C1 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
+		070221EC2573258600456C4C /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/thislooksfun/SwiftlySearch.git";
+			repositoryURL = "git@github.com:thislooksfun/SwiftlySearch.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.1;
+				minimumVersion = 1.2.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -886,9 +896,9 @@
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
 		};
-		07A7B53225490E00006468C1 /* SwiftlySearch */ = {
+		070221ED2573258600456C4C /* SwiftlySearch */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 07A7B53125490E00006468C1 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
+			package = 070221EC2573258600456C4C /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
 		};
 /* End XCSwiftPackageProductDependency section */

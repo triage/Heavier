@@ -115,7 +115,7 @@ struct LiftsCalendarView: UIViewRepresentable {
     let lifts: [Lift]
     let onDateSelect: DaySelectionhandler
     
-    static let minHeight: CGFloat = 450
+    static let minHeight: CGFloat = 420
     private static let groupingDateFormat = "YYYY-MM-dd"
     
     func makeUIView(context: Context) -> CalendarView {
@@ -180,7 +180,7 @@ struct LiftsCalendarView: UIViewRepresentable {
                     month: month
                 )
             )
-        }.withInterMonthSpacing(30.0)
+        }.withInterMonthSpacing(50.0)
     }
 }
 

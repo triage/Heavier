@@ -18,9 +18,13 @@ struct RootCalendarView: View {
         List {
             LiftsCalendarView(lifts: lifts.lifts) { day in
                 daySelected = day.components
-            }.frame(minHeight: LiftsCalendarView.minHeight)
+            }
+            .background(Color.blue)
+            .frame(minHeight: LiftsCalendarView.minHeight)
+            .listRowInsets(EdgeInsets(top: 0.0, leading: -10.0, bottom :0.0, trailing: 0.0))
             
             LiftsOnDate(daySelected: daySelected)
+                .listRowInsets(EdgeInsets(top: 0.0, leading: 10.0, bottom :0.0, trailing: 0.0))
         }
         .listStyle(PlainListStyle())
         .navigationTitle(RootCalendarView.title)
@@ -33,17 +37,24 @@ struct ContentView: View {
     private static let title = "Exercises"
     @State var daySelected: DateComponents?
     @State private var query: String = ""
+    private var searchHidden: Bool = true
+    
+    init(viewType: RootView.ViewType) {
+        self.viewType = viewType
+        searchHidden = viewType == .calendar
+    }
     
     var body: some View {
         if viewType == .calendar {
             RootCalendarView()
+                .navigationBarSearch($query, isHidden: true)
         } else {
             ListView(
                 query: query,
                 fetchRequest: Exercise.searchFetchRequest(query: query)
             )
             .navigationTitle(ContentView.title)
-            .navigationBarSearch($query)
+            .navigationBarSearch($query, isHidden: searchHidden)
         }
     }
 }
