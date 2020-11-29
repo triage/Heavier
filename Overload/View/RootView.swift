@@ -15,18 +15,19 @@ struct RootCalendarView: View {
     private static let title = "Calendar"
     
     var body: some View {
-        List {
-            LiftsCalendarView(lifts: lifts.lifts) { day in
-                daySelected = day.components
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                LiftsCalendarView(lifts: lifts.lifts) { day in
+                    daySelected = day.components
+                }
+                .background(Color.blue)
+                .frame(minHeight: LiftsCalendarView.minHeight)
+                .listRowInsets(EdgeInsets(top: 0.0, leading: -10.0, bottom :0.0, trailing: 0.0))
+                
+                LiftsOnDate(daySelected: daySelected)
+                    .listRowInsets(EdgeInsets(top: 0.0, leading: 0.0, bottom :0.0, trailing: 0.0))
             }
-            .background(Color.blue)
-            .frame(minHeight: LiftsCalendarView.minHeight)
-            .listRowInsets(EdgeInsets(top: 0.0, leading: -10.0, bottom :0.0, trailing: 0.0))
-            
-            LiftsOnDate(daySelected: daySelected)
-                .listRowInsets(EdgeInsets(top: 0.0, leading: 10.0, bottom :0.0, trailing: 0.0))
         }
-        .listStyle(PlainListStyle())
         .navigationTitle(RootCalendarView.title)
     }
 }
