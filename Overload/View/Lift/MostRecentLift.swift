@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MostRecentLift: View {
     
+    static let padding: CGFloat = 14.0
     static var lastLiftDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -17,18 +18,18 @@ struct MostRecentLift: View {
     }
     
     let lift: Lift?
-    static let padding: CGFloat = 14.0
+    
     var body: some View {
         if let lift = lift,
            let timestamp = lift.timestamp {
             HStack {
                 VStack(alignment: .leading) {
                     Text("most recent lift:")
-                        .sfCompactDisplay(.regular, size: 14.0)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     Text(lift.shortDescription)
-                        .sfCompactDisplay(.medium, size: 18.0)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
                     Text(MostRecentLift.lastLiftDateFormatter.string(from: timestamp))
-                        .sfCompactDisplay(.regular, size: 12.0)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                 }
                     .padding(MostRecentLift.padding)
                     .background(Color.highlight)

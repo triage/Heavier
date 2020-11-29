@@ -13,7 +13,7 @@ struct LiftViewCloseButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 24.0, weight: .bold, design: .default))
+                .font(.system(size: Theme.Font.Size.large, weight: .bold, design: .default))
                 .accentColor(.highlight)
         }
     }

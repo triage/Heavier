@@ -23,35 +23,35 @@ struct OlderLifts: View {
             VStack {
                 HStack(alignment: .firstTextBaseline, spacing: 5.0) {
                     Text("\(lift.sets)")
-                        .sfCompactDisplay(.medium, size: 24.0)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                     Text("x")
-                        .sfCompactDisplay(.medium, size: 14.0)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                         .foregroundColor(.label)
                     Text("\(lift.reps)")
-                        .sfCompactDisplay(.medium, size: 24.0)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                     if !lift.isBodyweight {
                         Text("x")
-                            .sfCompactDisplay(.medium, size: 14.0)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                             .foregroundColor(.label)
                         Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!)")
-                            .sfCompactDisplay(.medium, size: 24.0)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                         Text("lbs")
-                            .sfCompactDisplay(.medium, size: 14.0)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                             .foregroundColor(.label)
                     }
                     Spacer()
                     if !lift.isBodyweight {
                         Text("=")
-                            .sfCompactDisplay(.medium, size: 14.0)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                             .foregroundColor(.label)
                         Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!) lbs")
                             .lineLimit(0)
-                            .sfCompactDisplay(.medium, size: 24.0)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                     }
                 }
                 HStack {
                     Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
-                        .sfCompactDisplay(.regular, size: 14.0)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     Spacer()
                 }
             }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
@@ -69,7 +69,7 @@ struct RecentLiftMetric: View {
                 .minimumScaleFactor(0.2)
                 .lineLimit(0)
             Text(label)
-                .sfCompactDisplay(.medium, size: 14.0)
+                .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                 .lineLimit(0)
                 .padding(EdgeInsets(top: -14.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
         }
@@ -84,9 +84,9 @@ struct RecentLift: View {
                 HStack {
                     VStack(alignment: .leading) {
                         Text("most recent lift:")
-                            .sfCompactDisplay(.regular, size: 12.0)
+                            .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                         Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
-                            .sfCompactDisplay(.regular, size: 14.0)
+                            .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     }
                     Spacer()
                 }
@@ -106,7 +106,7 @@ struct RecentLift: View {
                                 .minimumScaleFactor(1.0)
                                 .lineLimit(1)
                             Text("total volume (lbs)")
-                                .sfCompactDisplay(.medium, size: 14.0)
+                                .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                         }
                     }
                 }
@@ -144,9 +144,9 @@ struct ExerciseView: View {
             liftViewPresented = true
         }, label: {
             Image(systemName: "plus")
-                .font(.system(size: 24))
-        })).sheet(isPresented: $liftViewPresented) { () -> LiftView in
-            return LiftView(exercise: exercise, lift: exercise.lifts?.lastObject as? Lift, presented: $liftViewPresented)
+                .font(.system(size: Theme.Font.Size.large))
+        })).sheet(isPresented: $liftViewPresented) {
+            LiftView(exercise: exercise, lift: exercise.lifts?.lastObject as? Lift, presented: $liftViewPresented)
         }
     }
 }

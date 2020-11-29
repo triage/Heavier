@@ -28,7 +28,7 @@ struct ListView: View {
             Text(lift.shortDescription)
             if let timestamp = lift.timestamp {
                 Text(ListView.timestampFormatter.string(from: timestamp))
-                    .sfCompactDisplay(.regular, size: 12.0)
+                    .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     .padding(EdgeInsets(top: 2.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
             }
         }
@@ -43,7 +43,7 @@ struct ListView: View {
         ) {
             VStack(alignment: .leading) {
                 Text(exercise.name!)
-                    .sfCompactDisplay(.medium, size: 22.0)
+                    .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                 if let lastLift = exercise.lastLift {
                     ListView.liftShortDescription(lift: lastLift)
                 }
@@ -64,7 +64,7 @@ struct ListView: View {
                     .sfCompactDisplay(.medium, size: 22.0)
                 Spacer()
                 Image(systemName: "plus.circle")
-                    .font(.system(size: 24))
+                    .font(.system(size: Theme.Font.Size.large))
             }
             .padding(.vertical, 12)
         }

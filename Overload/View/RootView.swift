@@ -12,6 +12,7 @@ import SwiftlySearch
 struct RootCalendarView: View {
     @ObservedObject var lifts = LiftsObservable(exercise: nil)
     @State var daySelected: DateComponents?
+    @State var isPresented = false
     private static let title = "Calendar"
     
     var body: some View {
@@ -19,16 +20,17 @@ struct RootCalendarView: View {
             LazyVStack(alignment: .leading) {
                 LiftsCalendarView(lifts: lifts.lifts) { day in
                     daySelected = day.components
+                    isPresented.toggle()
                 }
                 .background(Color.blue)
                 .frame(minHeight: LiftsCalendarView.minHeight)
-                .listRowInsets(EdgeInsets(top: 0.0, leading: -10.0, bottom :0.0, trailing: 0.0))
-                
-                LiftsOnDate(daySelected: daySelected)
-                    .listRowInsets(EdgeInsets(top: 0.0, leading: 0.0, bottom :0.0, trailing: 0.0))
+                .listRowInsets(EdgeInsets(top: 0.0, leading: -SwiftUI.List.separatorInset, bottom :0.0, trailing: 0.0))
             }
         }
         .navigationTitle(RootCalendarView.title)
+        .sheet(isPresented: $isPresented) {
+            LiftsOnDate(daySelected: daySelected)
+        }
     }
 }
 
@@ -87,7 +89,6 @@ struct RootView: View {
         }
     }
     
-    @State var isAddVisible = false
     @State var viewType: ViewType = .list
     
     var body: some View {
@@ -100,12 +101,6 @@ struct RootView: View {
                     }) {
                         viewType.toggled().icon
                     })
-            .sheet(
-                isPresented: $isAddVisible,
-                content: {
-                    DetailView(isPresented: $isAddVisible)
-                }
-            )
         }
         .edgesIgnoringSafeArea([.top, .bottom])
     }

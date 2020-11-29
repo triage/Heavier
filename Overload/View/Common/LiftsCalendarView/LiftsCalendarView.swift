@@ -11,7 +11,7 @@ import HorizonCalendar
 import CoreText
 
 extension UILabel {
-    func setMargins(margin: CGFloat = 10) {
+    func setMargins(margin: CGFloat) {
         if let textString = self.text {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.firstLineHeadIndent = margin
@@ -27,7 +27,7 @@ extension UILabel {
 struct MonthLabel: CalendarItemViewRepresentable {
     struct InvariantViewProperties: Hashable {}
     
-    private static let font = UIFont.sfDisplay(variation: .regular, fontSize: 22.0)
+    private static let font = UIFont.sfDisplay(variation: .regular, fontSize: Theme.Font.Size.large)
     
     struct ViewModel: Equatable {
         let month: Month
@@ -45,7 +45,7 @@ struct MonthLabel: CalendarItemViewRepresentable {
     
     static func setViewModel(_ viewModel: ViewModel, on view: UILabel) {
         view.text = viewModel.text
-        view.setMargins(margin: 20.0)
+        view.setMargins(margin: SwiftUI.List.separatorInset * 2)
     }
 }
 
@@ -55,8 +55,8 @@ struct DayLabel: CalendarItemViewRepresentable {
     struct InvariantViewProperties: Hashable {
     }
     
-    private static let fontDefault = UIFont.sfDisplay(variation: .regular, fontSize: 18.0)
-    private static let fontHasLifts = UIFont.sfDisplay(variation: .medium, fontSize: 18.0)
+    private static let fontDefault = UIFont.sfDisplay(variation: .regular, fontSize: Theme.Font.Size.mediumPlus)
+    private static let fontHasLifts = UIFont.sfDisplay(variation: .medium, fontSize: Theme.Font.Size.mediumPlus)
     
     /// Properties that will vary depending on the particular date being displayed.
     struct ViewModel: Equatable {

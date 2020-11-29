@@ -37,33 +37,35 @@ struct LiftsOnDate: View {
     }
     
     var body: some View {
-        ForEach(Array(exercises.keys), id: \.self) { key in
-            let lifts = exercises[key]!
-            
-            VStack(alignment: .leading) {
-                Text(key)
-                    .sfCompactDisplay(.medium, size: 24.0)
-                    .padding(12.0)
+        List {
+            ForEach(Array(exercises.keys), id: \.self) { key in
+                let lifts = exercises[key]!
                 
-                ForEach(lifts, id: \.self) { lift in
-                    Text(lift.shortDescription)
-                        .sfCompactDisplay(.regular, size: 16.0)
-                        .padding(EdgeInsets(top: 0.0, leading: 12.0, bottom: 0.0, trailing: 12.0))
-                }
+                VStack(alignment: .leading) {
+                    Text(key)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
+                        .padding(Theme.Spacing.medium)
+                    
+                    ForEach(lifts, id: \.self) { lift in
+                        Text(lift.shortDescription)
+                            .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                            .padding(EdgeInsets(top: 0.0, leading: Theme.Spacing.medium, bottom: 0.0, trailing: Theme.Spacing.medium))
+                    }
+                    
+                    Text(volume(lifts: lifts))
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                        .padding(Theme.Spacing.medium)
+                    
+                    Path { path in
+                        path.move(to: CGPoint(x: SwiftUI.List.separatorInset, y: 0.0))
+                        path.addLine(to: CGPoint(x: UIScreen.main.bounds.width, y: 0.0))
+                    }
+                    .stroke(Color.calendarDay_default, lineWidth: 1)
+                    .frame(height: 4.0)
+                }.padding(EdgeInsets(top: 0.0, leading: SwiftUI.List.separatorInset, bottom: 0.0, trailing: SwiftUI.List.separatorInset))
                 
-                Text(volume(lifts: lifts))
-                    .sfCompactDisplay(.medium, size: 18.0)
-                    .padding(12.0)
-                
-                Path { path in
-                    path.move(to: CGPoint(x: 10.0, y: 0.0))
-                    path.addLine(to: CGPoint(x: UIScreen.main.bounds.width, y: 0.0))
-                }
-                .stroke(Color.calendarDay_default, lineWidth: 1)
-                .frame(height: 4.0)
-            }.padding(EdgeInsets(top: 0.0, leading: 10.0, bottom: 0.0, trailing: 10.0))
-            
-        }
+            }
+        } .listRowInsets(EdgeInsets())
     }
 }
 
