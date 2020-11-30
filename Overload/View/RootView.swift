@@ -11,7 +11,7 @@ import SwiftlySearch
 
 struct RootCalendarView: View {
     @ObservedObject var lifts = LiftsObservable(exercise: nil)
-    @State var daySelected: DateComponents?
+    static var daySelected: DateComponents?
     @State var isPresented = false
     private static let title = "Calendar"
     
@@ -19,7 +19,7 @@ struct RootCalendarView: View {
         ScrollView {
             LazyVStack(alignment: .leading) {
                 LiftsCalendarView(lifts: lifts.lifts) { day in
-                    daySelected = day.components
+                    RootCalendarView.daySelected = day.components
                     isPresented.toggle()
                 }
                 .background(Color.blue)
@@ -29,18 +29,20 @@ struct RootCalendarView: View {
         }
         .navigationTitle(RootCalendarView.title)
         .sheet(isPresented: $isPresented) {
-            LiftsOnDate(daySelected: daySelected)
+            LiftsOnDate(daySelected: RootCalendarView.daySelected)
         }
     }
 }
 
 struct ContentView: View {
+    private static let title = "Exercises"
+    
     let viewType: RootView.ViewType
 
-    private static let title = "Exercises"
+    private var searchHidden: Bool = true
+    
     @State var daySelected: DateComponents?
     @State private var query: String = ""
-    private var searchHidden: Bool = true
     
     init(viewType: RootView.ViewType) {
         self.viewType = viewType

@@ -10,11 +10,14 @@ import SwiftUI
 
 struct LiftsOnDate: View {
     private var fetchRequest: FetchRequest<Lift>
+    private var daySelected: DateComponents?
     
     init?(daySelected: DateComponents?) {
         guard let daySelected = daySelected else {
             return  nil
         }
+        self.daySelected = daySelected
+        self.daySelected?.calendar = Calendar.current
         fetchRequest = FetchRequest<Lift>(
             entity: Lift.entity(),
             sortDescriptors: [],
@@ -36,49 +39,48 @@ struct LiftsOnDate: View {
         "= \(Lift.volumeFormatter.string(from: lifts.volume as NSNumber)!) lbs"
     }
     
+    private static var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        return dateFormatter
+    }
+    
     var body: some View {
-        List {
-            ForEach(Array(exercises.keys), id: \.self) { key in
-                let lifts = exercises[key]!
-                
-                VStack(alignment: .leading) {
-                    Text(key)
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                        .padding(Theme.Spacing.medium)
+        NavigationView {
+            List {
+                ForEach(Array(exercises.keys), id: \.self) { key in
+                    let lifts = exercises[key]!
                     
-                    ForEach(lifts, id: \.self) { lift in
-                        Text(lift.shortDescription)
-                            .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
-                            .padding(EdgeInsets(top: 0.0, leading: Theme.Spacing.medium, bottom: 0.0, trailing: Theme.Spacing.medium))
+                    VStack(alignment: .leading) {
+                        Text(key)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
+                            .padding(EdgeInsets(top: 0.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
+                        
+                        ForEach(lifts, id: \.self) { lift in
+                            Text(lift.shortDescription)
+                                .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                        }
+                        
+                        Text(volume(lifts: lifts))
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                            .padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
                     }
                     
-                    Text(volume(lifts: lifts))
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                        .padding(Theme.Spacing.medium)
-                    
-                    Path { path in
-                        path.move(to: CGPoint(x: SwiftUI.List.separatorInset, y: 0.0))
-                        path.addLine(to: CGPoint(x: UIScreen.main.bounds.width, y: 0.0))
-                    }
-                    .stroke(Color.calendarDay_default, lineWidth: 1)
-                    .frame(height: 4.0)
-                }.padding(EdgeInsets(top: 0.0, leading: SwiftUI.List.separatorInset, bottom: 0.0, trailing: SwiftUI.List.separatorInset))
-                
-            }
-        } .listRowInsets(EdgeInsets())
+                }
+            } .listRowInsets(EdgeInsets())
+            .navigationTitle(LiftsOnDate.dateFormatter.string(from: daySelected!.date!))
+        }
     }
 }
 
 struct LiftsOnDate_Previews: PreviewProvider {
     
-    static let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+    static var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
     
     static var previews: some View {
         Group {
-            LazyVStack(alignment: .leading) {
                 LiftsOnDate(daySelected: LiftsOnDate_Previews.components)
                     .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-            }.listStyle(PlainListStyle())
         }
     }
 }

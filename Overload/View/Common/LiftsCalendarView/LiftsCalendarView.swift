@@ -45,7 +45,7 @@ struct MonthLabel: CalendarItemViewRepresentable {
     
     static func setViewModel(_ viewModel: ViewModel, on view: UILabel) {
         view.text = viewModel.text
-        view.setMargins(margin: SwiftUI.List.separatorInset * 2)
+        view.setMargins(margin: SwiftUI.List.separatorInset)
     }
 }
 
