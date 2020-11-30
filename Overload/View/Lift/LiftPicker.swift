@@ -10,7 +10,8 @@ import SwiftUI
 
 struct LiftPicker: View {
     
-    private let pickerWidth: CGFloat = 135.0
+    private let dimensions = CGSize(width: 135.0, height: 45.0)
+    private let lineHeight: CGFloat = 1.0
     
     let label: String
     let range: ClosedRange<Float>
@@ -44,36 +45,36 @@ struct LiftPicker: View {
     }
     
     var body: some View {
-        HStack(alignment: .bottom, spacing: 10.0) {
+        HStack(alignment: .bottom, spacing: Theme.Spacing.medium) {
             VStack(alignment: .leading, spacing: 1.0) {
                 // picker
                 TransparentPicker(selection: $rowSelected, rowCount: rowCount) { (row) in
                     Text(label(row: row))
-                        .sfCompactDisplay(.regular, size: 54.0)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.giga)
                 }
                 .onReceive([self.rowSelected].publisher.first()) { (row) in
                     self.value = range.lowerBound + (interval * Float(row))
                 }
-                .frame(width: pickerWidth, height: 45)
+                .frame(width: dimensions.width, height: dimensions.height)
                 .clipped()
                 
                 // underline
                 Path { path in
                     path.move(to: CGPoint.zero)
-                    path.addRect(CGRect(origin: CGPoint.zero, size: CGSize(width: 135.0, height: 1.0)))
+                    path.addRect(CGRect(origin: CGPoint.zero, size: CGSize(width: dimensions.width, height: lineHeight)))
                 }
-                .fill(Color.black)
+                .fill(Color.underline)
                 .alignmentGuide(.leading, computeValue: { dimension in
                     dimension[.leading]
                 }).alignmentGuide(.trailing, computeValue: { dimension in
                     dimension[.trailing]
-                }).frame(width: pickerWidth, height: 1.0, alignment: .bottomLeading)
+                }).frame(width: dimensions.width, height: lineHeight, alignment: .bottomLeading)
                 .clipped()
             }.offset(x: 0.0, y: 2.0)
             Text(label)
-                .sfCompactDisplay(.regular, size: 54.0)
+                .sfCompactDisplay(.regular, size: Theme.Font.Size.giga)
                 .foregroundColor(Color.label)
-                .frame(width: .none, height: 45)
+                .frame(width: .none, height: dimensions.height)
                 .offset(x: 0.0, y: -3.0)
             Spacer()
         }

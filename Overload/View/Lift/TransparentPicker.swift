@@ -25,6 +25,7 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
         var initialSelection: Int?
         var viewForRow: (Int) -> Content
         var rowCount: Int
+        private let rowHeight: CGFloat = 50.0
 
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             1
@@ -35,7 +36,7 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
         }
         
         func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-            return 50.0
+            return rowHeight
         }
         
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

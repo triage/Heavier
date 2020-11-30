@@ -33,6 +33,7 @@ class Theme {
             static let medium: CGFloat = 12.0
             static let mediumPlus: CGFloat = 18.0
             static let large: CGFloat = 24.0
+            static let giga: CGFloat = 54.0
         }
         
         struct SFCompactDisplay: ViewModifier {

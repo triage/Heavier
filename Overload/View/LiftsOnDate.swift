@@ -14,14 +14,16 @@ struct LiftsOnDate: View {
     
     init?(daySelected: DateComponents?) {
         guard let daySelected = daySelected else {
-            return  nil
+            return nil
         }
         self.daySelected = daySelected
         self.daySelected?.calendar = Calendar.current
         fetchRequest = FetchRequest<Lift>(
             entity: Lift.entity(),
-            sortDescriptors: [],
-            predicate: Lift.predicate(daySelected: daySelected)
+            sortDescriptors: [
+                Lift.SortDescriptor.timestamp(ascending: true)
+            ],
+            predicate: Lift.Predicate.daySelected(daySelected)
         )
     }
     

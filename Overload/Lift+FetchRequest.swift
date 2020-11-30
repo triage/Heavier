@@ -11,14 +11,22 @@ import SwiftUI
 
 extension Lift {
     
-    static func predicate(daySelected: DateComponents) -> NSPredicate? {
-        guard let range = daySelected.dayRange else {
-            return nil
+    enum SortDescriptor {
+        static func timestamp(ascending: Bool) -> NSSortDescriptor {
+            NSSortDescriptor(key: "timestamp", ascending: ascending)
         }
-        return NSPredicate(format: "(timestamp >= %@) AND (timestamp <= %@)",
-                    range.lowerBound as CVarArg,
-                    range.upperBound as CVarArg
-        )
+    }
+    
+    enum Predicate {
+        static func daySelected(_ daySelected: DateComponents) -> NSPredicate? {
+            guard let range = daySelected.dayRange else {
+                return nil
+            }
+            return NSPredicate(format: "(timestamp >= %@) AND (timestamp <= %@)",
+                        range.lowerBound as CVarArg,
+                        range.upperBound as CVarArg
+            )
+        }
     }
     
     static func fetchRequest(exercise: Exercise?) -> NSFetchRequest<Lift> {

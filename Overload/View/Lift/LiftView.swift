@@ -65,7 +65,7 @@ struct LiftView: View {
                 )
                 LiftPicker(
                     label: "lbs",
-                    range: 0...300,
+                    range: 0...700,
                     interval: 5,
                     value: $weight,
                     initialValue: Float(lift?.weight ?? 45)
