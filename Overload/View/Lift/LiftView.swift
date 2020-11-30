@@ -71,7 +71,7 @@ struct LiftView: View {
                     initialValue: Float(lift?.weight ?? 45)
                 )
                 HStack(alignment: .lastTextBaseline, spacing: 15.0) {
-                    Text("= \(volume) lbs")
+                    Text("= \(Lift.volumeFormatter.string(from: NSNumber(value: volume))!) lbs")
                         .sfCompactDisplay(.medium, size: 54.0)
                         .minimumScaleFactor(0.4)
                         .lineLimit(1)

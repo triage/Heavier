@@ -10,7 +10,7 @@ import SwiftUI
 
 struct LiftPicker: View {
     
-    private let pickerWidth: CGFloat = 90.0
+    private let pickerWidth: CGFloat = 135.0
     
     let label: String
     let range: ClosedRange<Float>
@@ -60,7 +60,7 @@ struct LiftPicker: View {
                 // underline
                 Path { path in
                     path.move(to: CGPoint.zero)
-                    path.addRect(CGRect(origin: CGPoint.zero, size: CGSize(width: 100.0, height: 1.0)))
+                    path.addRect(CGRect(origin: CGPoint.zero, size: CGSize(width: 135.0, height: 1.0)))
                 }
                 .fill(Color.black)
                 .alignmentGuide(.leading, computeValue: { dimension in
