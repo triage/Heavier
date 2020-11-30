@@ -24,7 +24,7 @@ struct RootCalendarView: View {
                 }
                 .background(Color.blue)
                 .frame(minHeight: LiftsCalendarView.minHeight)
-                .listRowInsets(EdgeInsets(top: 0.0, leading: -SwiftUI.List.separatorInset, bottom :0.0, trailing: 0.0))
+                .listRowInsets(EdgeInsets(top: 0.0, leading: -SwiftUI.List.separatorInset, bottom: 0.0, trailing: 0.0))
             }
         }
         .navigationTitle(RootCalendarView.title)

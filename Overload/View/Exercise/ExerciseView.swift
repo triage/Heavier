@@ -123,16 +123,16 @@ struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
     @ObservedObject var lifts: LiftsObservable
-    
-    init(exercise: Exercise) {
+    init?(exercise: Exercise?) {
+        guard let exercise = exercise else {
+            return  nil
+        }
         self.exercise = exercise
         lifts = LiftsObservable(exercise: exercise)
     }
-    
     var olderLifts: [Lift]? {
         return Array(lifts.lifts.dropFirst())
     }
-    
     var body: some View {
         List {
             RecentLift(lifts: lifts.sections.first?.objects as? [Lift])
@@ -156,20 +156,17 @@ struct ExerciseView_Previews: PreviewProvider {
         let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
-        
         var lifts = [Lift]()
-        for i in 0...20 {
+        for iterator in 0...20 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10
-            lift.sets = Int16(i + 10)
+            lift.sets = Int16(iterator + 10)
             lift.weight = 100
             lift.id = UUID()
             lift.timestamp = Date()
             lifts.append(lift)
         }
-        
         exercise.lifts = NSOrderedSet(array: lifts)
-        
         return Group {
             NavigationView {
                 ExerciseView(

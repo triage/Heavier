@@ -105,7 +105,6 @@ struct LiftView: View {
 }
 
 struct LiftView_ContentPreviews: PreviewProvider {
-    
     @State static var presented = true
     
     static var previews: some View {

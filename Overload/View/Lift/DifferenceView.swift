@@ -22,7 +22,9 @@ struct DifferenceView: View {
     
     private var difference: String? {
         guard let initialValue = initialValue,
-              let differenceValue = DifferenceView.numberFormatter.string(from: NSNumber(value: value - initialValue)) else {
+              let differenceValue = DifferenceView.numberFormatter.string(
+                from: NSNumber(value: value - initialValue)
+              ) else {
             return nil
         }
         return "\(differenceValue) lbs"

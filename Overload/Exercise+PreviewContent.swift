@@ -17,10 +17,10 @@ extension Exercise {
             let range = 60 * 60 * 24 * 30
             
             var lifts = [Lift]()
-            for i in 0...20 {
+            for iterator in 0...20 {
                 let lift = Lift(context: PersistenceController.shared.container.viewContext)
                 lift.reps = 10
-                lift.sets = Int16(i + 10)
+                lift.sets = Int16(iterator + 10)
                 lift.weight = 100
                 lift.id = UUID()
                 lift.timestamp = Date().addingTimeInterval(Double(Int.random(in: -range...range)))

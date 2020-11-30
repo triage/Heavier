@@ -52,7 +52,6 @@ class Theme {
     }
 }
 
-
 struct Font_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
@@ -64,4 +63,3 @@ struct Font_Previews: PreviewProvider {
         }.padding(20.0)
     }
 }
-

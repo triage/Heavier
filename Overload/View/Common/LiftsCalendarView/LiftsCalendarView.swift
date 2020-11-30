@@ -18,7 +18,11 @@ extension UILabel {
             paragraphStyle.headIndent = margin
             paragraphStyle.tailIndent = -margin
             let attributedString = NSMutableAttributedString(string: textString)
-            attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttribute(
+                .paragraphStyle,
+                value: paragraphStyle,
+                range: NSRange(location: 0, length: attributedString.length)
+            )
             attributedText = attributedString
         }
     }
@@ -75,7 +79,7 @@ struct DayLabel: CalendarItemViewRepresentable {
         }
         
         var textColor: UIColor {
-            hasLifts ? Color.calendarDay_lifts.uiColor : Color.calendarDay_default.uiColor
+            hasLifts ? Color.calendarDayLifts.uiColor : Color.calendarDayDefault.uiColor
         }
         
         var text: String {
@@ -83,7 +87,7 @@ struct DayLabel: CalendarItemViewRepresentable {
         }
         
         var borderColor: UIColor {
-            hasLifts ? Color.calendarDay_lifts.uiColor : UIColor.clear
+            hasLifts ? Color.calendarDayLifts.uiColor : UIColor.clear
         }
         
         var borderWidth: CGFloat = 2.0
@@ -122,7 +126,7 @@ struct LiftsCalendarView: UIViewRepresentable {
         CalendarView(initialContent: makeContent())
     }
     
-    class Coordinator : NSObject {
+    class Coordinator: NSObject {
         let daySelectionHandler: DaySelectionhandler
         init(daySelectionHandler: @escaping DaySelectionhandler) {
             self.daySelectionHandler = daySelectionHandler

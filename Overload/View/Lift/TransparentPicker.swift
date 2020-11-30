@@ -19,7 +19,7 @@ final class TransparentPickerView: UIPickerView {
  iOS Picker class with the update bug which can cause the SwiftUI picker to reset.
  */
 struct TransparentPicker<Content: View>: UIViewRepresentable {
-    class Coordinator : NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
+    class Coordinator: NSObject, UIPickerViewDataSource, UIPickerViewDelegate {
         @Binding var selection: Int
         
         var initialSelection: Int?
@@ -43,7 +43,11 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
             self.selection = row
         }
         
-        func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        func pickerView(
+            _ pickerView: UIPickerView,
+            viewForRow row: Int,
+            forComponent component: Int, reusing view: UIView?) -> UIView {
+            
             let hostingController = UIHostingController(rootView: viewForRow(row))
             return hostingController.view
         }

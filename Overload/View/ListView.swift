@@ -113,7 +113,6 @@ struct ListView: View {
     }
 }
 
-
 struct ContentView_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {

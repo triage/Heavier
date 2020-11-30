@@ -50,7 +50,10 @@ extension Lift {
         }
         let range = Calendar.current.startOfDay(for: date)...endOfDay
         let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "(timestamp >= %@) AND (timestamp <= %@)", range.lowerBound as CVarArg, range.upperBound as CVarArg)
+        fetchRequest.predicate = NSPredicate(
+            format: "(timestamp >= %@) AND (timestamp <= %@)",
+            range.lowerBound as CVarArg, range.upperBound as CVarArg
+        )
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Lift.timestamp, ascending: true)
         ]

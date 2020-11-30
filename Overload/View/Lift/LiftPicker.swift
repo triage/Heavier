@@ -61,7 +61,12 @@ struct LiftPicker: View {
                 // underline
                 Path { path in
                     path.move(to: CGPoint.zero)
-                    path.addRect(CGRect(origin: CGPoint.zero, size: CGSize(width: dimensions.width, height: lineHeight)))
+                    path.addRect(
+                        CGRect(
+                            origin: CGPoint.zero,
+                            size: CGSize(width: dimensions.width, height: lineHeight)
+                        )
+                    )
                 }
                 .fill(Color.underline)
                 .alignmentGuide(.leading, computeValue: { dimension in

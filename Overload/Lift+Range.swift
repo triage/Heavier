@@ -30,10 +30,12 @@ extension Lift {
         
         request.propertiesToFetch = [expressionDescription]
 
-        var timestamp: Date? = nil
+        var timestamp: Date?
 
         do {
-            if let result = try PersistenceController.shared.container.viewContext.fetch(request) as? [[String: Date]], let dict = result.first {
+            if let result = try PersistenceController.shared.container.viewContext.fetch(request)
+                as? [[String: Date]], let dict = result.first {
+                
                 timestamp = dict[expression.rawValue]
                 return timestamp
             }
