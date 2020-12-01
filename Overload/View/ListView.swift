@@ -48,7 +48,7 @@ struct ListView: View {
                     ListView.liftShortDescription(lift: lastLift)
                 }
             }
-            .padding(.vertical, 12)
+            .padding(.vertical, Theme.Spacing.medium)
         }
     }
     

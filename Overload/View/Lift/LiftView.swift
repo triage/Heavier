@@ -32,17 +32,13 @@ struct LiftView: View {
         self.exercise = exercise
         self.lift = lift
         self.presented = presented
-        _sets = .init(initialValue: Float(lift?.sets ?? 5))
-        _reps = .init(initialValue: Float(lift?.reps ?? 5))
+        _sets = .init(initialValue: Float(lift?.sets ?? 3))
+        _reps = .init(initialValue: Float(lift?.reps ?? 10))
         _weight = .init(initialValue: Float(lift?.weight ?? 45))
     }
     
     var volume: Float {
         Float(Float(reps) * Float(sets) * weight)
-    }
-    
-    func saveLift() throws {
-        
     }
     
     func save() {
@@ -68,25 +64,25 @@ struct LiftView: View {
                     range: 1...20,
                     interval: 1,
                     value: $sets,
-                    initialValue: Float(lift?.sets ?? 5)
+                    initialValue: Float(lift?.sets ?? 1)
                 )
                 LiftPicker(
                     label: "reps",
                     range: 1...20,
                     interval: 1,
                     value: $reps,
-                    initialValue: Float(lift?.reps ?? 5)
+                    initialValue: Float(lift?.reps ?? 1)
                 )
                 LiftPicker(
                     label: "lbs",
                     range: 0...700,
                     interval: 5,
                     value: $weight,
-                    initialValue: Float(lift?.weight ?? 45)
+                    initialValue: Float(lift?.weight ?? 1)
                 )
-                HStack(alignment: .lastTextBaseline, spacing: 15.0) {
+                HStack(alignment: .lastTextBaseline, spacing: Theme.Spacing.medium) {
                     Text("= \(Lift.volumeFormatter.string(from: NSNumber(value: volume))!) lbs")
-                        .sfCompactDisplay(.medium, size: 54.0)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.giga)
                         .minimumScaleFactor(0.4)
                         .lineLimit(1)
                     DifferenceView(initialValue: lift?.volume, value: volume)

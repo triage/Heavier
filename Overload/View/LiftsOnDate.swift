@@ -56,7 +56,7 @@ struct LiftsOnDate: View {
                     VStack(alignment: .leading) {
                         Text(key)
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                            .padding([.bottom], 10.0)
+                            .padding([.bottom], Theme.Spacing.medium)
                         
                         ForEach(lifts, id: \.self) { lift in
                             Text(lift.shortDescription)
@@ -65,7 +65,7 @@ struct LiftsOnDate: View {
                         
                         Text(volume(lifts: lifts))
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                            .padding([.top, .bottom], 10.0)
+                            .padding([.top, .bottom], Theme.Spacing.medium)
                     }
                     
                 }

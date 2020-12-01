@@ -54,7 +54,7 @@ struct OlderLifts: View {
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     Spacer()
                 }
-            }.padding([.top, .bottom], 10.0)
+            }.padding([.top, .bottom], Theme.Spacing.medium)
         }
     }
 }
@@ -71,7 +71,7 @@ struct RecentLiftMetric: View {
             Text(label)
                 .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                 .lineLimit(0)
-                .padding([.top], -14.0)
+                .padding([.top], -Theme.Spacing.medium)
         }
     }
 }
@@ -90,7 +90,7 @@ struct RecentLift: View {
                     }
                     Spacer()
                 }
-                HStack(spacing: 25.0) {
+                HStack(spacing: Theme.Spacing.giga) {
                     RecentLiftMetric(value: lift.sets, label: "sets")
                     RecentLiftMetric(value: lift.reps, label: "reps")
                     if !lift.isBodyweight {
@@ -102,7 +102,7 @@ struct RecentLift: View {
                     HStack {
                         VStack(alignment: .leading) {
                             Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!)")
-                                .sfCompactDisplay(.medium, size: 54.0)
+                                .sfCompactDisplay(.medium, size: Theme.Font.Size.giga)
                                 .minimumScaleFactor(1.0)
                                 .lineLimit(1)
                             Text("total volume (lbs)")
