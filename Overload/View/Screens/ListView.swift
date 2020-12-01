@@ -61,12 +61,12 @@ struct ListView: View {
         ) {
             HStack {
                 Text(name)
-                    .sfCompactDisplay(.medium, size: 22.0)
+                    .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                 Spacer()
                 Image(systemName: "plus.circle")
                     .font(.system(size: Theme.Font.Size.large))
             }
-            .padding(.vertical, 12)
+            .padding(.vertical, Theme.Spacing.medium)
         }
     }
     

@@ -31,7 +31,7 @@ extension UILabel {
 struct MonthLabel: CalendarItemViewRepresentable {
     struct InvariantViewProperties: Hashable {}
     
-    private static let font = UIFont.sfDisplay(variation: .regular, fontSize: Theme.Font.Size.large)
+    private static let font = UIFont.sfDisplay(variation: .regular, size: Theme.Font.Size.large)
     
     struct ViewModel: Equatable {
         let month: Month
@@ -59,8 +59,8 @@ struct DayLabel: CalendarItemViewRepresentable {
     struct InvariantViewProperties: Hashable {
     }
     
-    private static let fontDefault = UIFont.sfDisplay(variation: .regular, fontSize: Theme.Font.Size.mediumPlus)
-    private static let fontHasLifts = UIFont.sfDisplay(variation: .medium, fontSize: Theme.Font.Size.mediumPlus)
+    private static let fontDefault = UIFont.sfDisplay(variation: .regular, size: Theme.Font.Size.mediumPlus)
+    private static let fontHasLifts = UIFont.sfDisplay(variation: .medium, size: Theme.Font.Size.mediumPlus)
     
     /// Properties that will vary depending on the particular date being displayed.
     struct ViewModel: Equatable {

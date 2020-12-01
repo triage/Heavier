@@ -10,13 +10,13 @@ import SwiftUI
 
 extension View {
     func sfCompactDisplay(_ variation: Theme.Font.SFCompactDisplay.Variation, size: CGFloat) -> some View {
-        modifier(Theme.Font.SFCompactDisplay(variation: variation, size: size))
+        modifier(Theme.Font.SFCompactDisplay(variation: variation, size: UIFontMetrics.default.scaledValue(for: size)))
     }
 }
 
 extension UIFont {
-    static func sfDisplay(variation: Theme.Font.SFCompactDisplay.Variation, fontSize: CGFloat) -> UIFont {
-        UIFont(name: variation.rawValue, size: fontSize)!
+    static func sfDisplay(variation: Theme.Font.SFCompactDisplay.Variation, size: CGFloat) -> UIFont {
+        UIFont(name: variation.rawValue, size: UIFontMetrics.default.scaledValue(for: size))!
     }
     
 }
