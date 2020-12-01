@@ -45,6 +45,20 @@ struct LiftView: View {
         
     }
     
+    func save() {
+        let lift = Lift(context: PersistenceController.shared.container.viewContext)
+        lift.reps = Int16(reps)
+        lift.sets = Int16(sets)
+        lift.weight = Float(weight)
+        lift.id = UUID()
+        lift.timestamp = Date()
+        exercise.addToLifts(lift)
+        do {
+            try? PersistenceController.shared.container.viewContext.save()
+            presented.wrappedValue.toggle()
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 18.0) {
@@ -77,8 +91,20 @@ struct LiftView: View {
                         .lineLimit(1)
                     DifferenceView(initialValue: lift?.volume, value: volume)
                         .offset(x: 0.0, y: -DifferenceView.padding.bottom)
-                }.frame(width: .infinity, height: 70.0, alignment: .center)
+                }
+                
+                Button(action: save, label: {
+                    Text("Save")
+                        .padding(Theme.Spacing.medium)
+                        .frame(maxWidth: .infinity)
+                        .foregroundColor(Color.white)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
+                }).background(Color.blue)
+                .cornerRadius(Theme.Spacing.medium * 2.0)
+                .padding([.top], Theme.Spacing.large)
+                
                 Spacer()
+                
             }.padding(
                 EdgeInsets(
                     top: 30.0,
@@ -86,19 +112,7 @@ struct LiftView: View {
                     bottom: 0.0,
                     trailing: 30.0
                 )
-            ).navigationBarItems(trailing: LiftViewCloseButton(action: {
-                let lift = Lift(context: PersistenceController.shared.container.viewContext)
-                lift.reps = Int16(reps)
-                lift.sets = Int16(sets)
-                lift.weight = Float(weight)
-                lift.id = UUID()
-                lift.timestamp = Date()
-                exercise.addToLifts(lift)
-                do {
-                    try? PersistenceController.shared.container.viewContext.save()
-                    self.presented.wrappedValue.toggle()
-                }
-            }))
+            )
             .navigationTitle(exercise.name!)
         }
     }

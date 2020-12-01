@@ -17,6 +17,8 @@ struct DifferenceView: View {
     private static var numberFormatter: NumberFormatter {
         let numberFormatter = NumberFormatter()
         numberFormatter.positivePrefix = "+"
+        numberFormatter.groupingSize = 3
+        numberFormatter.usesGroupingSeparator = true
         return numberFormatter
     }
     
