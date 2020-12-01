@@ -35,9 +35,9 @@ struct DifferenceView: View {
     var body: some View {
         if let initialValue = initialValue, initialValue != value, let difference = difference {
             Text(difference)
-                .foregroundColor(.white)
+                .foregroundColor(.differenceForeground)
                 .padding(DifferenceView.padding)
-                .background(Color.label)
+                .background(Color.differenceBackground)
                 .cornerRadius(MostRecentLift.padding * 2.0)
         } else {
             EmptyView()

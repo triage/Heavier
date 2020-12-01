@@ -105,14 +105,7 @@ struct LiftView: View {
                 
                 Spacer()
                 
-            }.padding(
-                EdgeInsets(
-                    top: 30.0,
-                    leading: 30.0,
-                    bottom: 0.0,
-                    trailing: 30.0
-                )
-            )
+            }.padding([.top, .leading, .trailing], Theme.Spacing.large)
             .navigationTitle(exercise.name!)
         }
     }
@@ -138,6 +131,8 @@ struct LiftView_ContentPreviews: PreviewProvider {
         return Group {
             LiftView(exercise: exercise, lift: lift, presented: $presented)
             LiftView(exercise: exercise, lift: lift, presented: $presented)
+            LiftView(exercise: exercise, lift: lift, presented: $presented)
+                .environment(\.colorScheme, ColorScheme.dark)
         }
     }
 }

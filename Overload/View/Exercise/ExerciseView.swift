@@ -54,7 +54,7 @@ struct OlderLifts: View {
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     Spacer()
                 }
-            }.padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 10.0, trailing: 0.0))
+            }.padding([.top, .bottom], 10.0)
         }
     }
 }
@@ -71,7 +71,7 @@ struct RecentLiftMetric: View {
             Text(label)
                 .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                 .lineLimit(0)
-                .padding(EdgeInsets(top: -14.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                .padding([.top], -14.0)
         }
     }
 }
@@ -112,7 +112,7 @@ struct RecentLift: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            .padding(EdgeInsets(top: 20.0, leading: 0.0, bottom: 20.0, trailing: 0.0))
+            .padding([.top, .bottom], Theme.Spacing.large)
         } else {
             EmptyView()
         }

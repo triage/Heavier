@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MostRecentLift: View {
     
-    static let padding: CGFloat = 14.0
+    static let padding: CGFloat = Theme.Spacing.medium
     static var lastLiftDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -34,6 +34,7 @@ struct MostRecentLift: View {
                     .padding(MostRecentLift.padding)
                     .background(Color.highlight)
                     .cornerRadius(MostRecentLift.padding * 2.0)
+                .foregroundColor(Color.black)
                 Spacer()
             }
         } else {
@@ -51,6 +52,10 @@ struct MostRecentLift_Previews: PreviewProvider {
         lift.id = UUID()
         lift.timestamp = Date()
         
-        return MostRecentLift(lift: lift)
+        return Group {
+            MostRecentLift(lift: lift)
+            MostRecentLift(lift: lift)
+                .environment(\.colorScheme, ColorScheme.dark)
+        }
     }
 }

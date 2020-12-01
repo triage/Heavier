@@ -104,6 +104,7 @@ struct RootView: View {
                         viewType.toggled().icon
                     })
         }
+        .accentColor(.accent)
         .edgesIgnoringSafeArea([.top, .bottom])
     }
 }

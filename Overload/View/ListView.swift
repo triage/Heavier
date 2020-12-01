@@ -29,7 +29,7 @@ struct ListView: View {
             if let timestamp = lift.timestamp {
                 Text(ListView.timestampFormatter.string(from: timestamp))
                     .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
-                    .padding(EdgeInsets(top: 2.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+                    .padding([.top], 2.0)
             }
         }
     }
