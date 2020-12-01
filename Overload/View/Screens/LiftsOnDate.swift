@@ -31,12 +31,6 @@ struct LiftsOnDate: View {
         return fetchRequest.wrappedValue
     }
     
-    var exercises: [String: [Lift]] {
-        return Dictionary(grouping: lifts) { (lift: Lift) -> String in
-            return lift.exercise!.name!
-        }
-    }
-    
     func volume(lifts: [Lift]) -> String {
         "= \(Lift.volumeFormatter.string(from: lifts.volume as NSNumber)!) lbs"
     }
@@ -50,8 +44,8 @@ struct LiftsOnDate: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(exercises.keys), id: \.self) { key in
-                    let lifts = exercises[key]!
+                ForEach(Array(lifts.exercises.keys), id: \.self) { key in
+                    let lifts = self.lifts.exercises[key]!
                     
                     VStack(alignment: .leading) {
                         Text(key)

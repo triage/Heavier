@@ -10,7 +10,7 @@ import Foundation
 extension Lift {
     var shortDescription: String {
         var description = "\(sets) x \(reps)"
-        if weight > 0.0 {
+        if !isBodyweight {
             description += " @ \(Lift.weightsFormatter.string(from: weight as NSNumber)!)"
         }
         return description

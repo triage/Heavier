@@ -8,7 +8,7 @@
 import Foundation
 
 extension Lift {
-    private static var dayFormatter: DateFormatter {
+    static var dayFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateFormatter.timeStyle = .none

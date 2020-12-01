@@ -18,43 +18,29 @@ struct OlderLifts: View {
         self.lifts = lifts
     }
     
+    func volume(lifts: [Lift]) -> String {
+        "= \(Lift.volumeFormatter.string(from: lifts.volume as NSNumber)!) lbs"
+    }
+    
     var body: some View {
-        ForEach(lifts) { lift in
-            VStack {
-                HStack(alignment: .firstTextBaseline, spacing: 5.0) {
-                    Text("\(lift.sets)")
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                    Text("x")
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                        .foregroundColor(.label)
-                    Text("\(lift.reps)")
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                    if !lift.isBodyweight {
-                        Text("x")
-                            .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                            .foregroundColor(.label)
-                        Text("\(Lift.weightsFormatter.string(from: lift.weight as NSNumber)!)")
-                            .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                        Text("lbs")
-                            .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                            .foregroundColor(.label)
-                    }
-                    Spacer()
-                    if !lift.isBodyweight {
-                        Text("=")
-                            .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                            .foregroundColor(.label)
-                        Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!) lbs")
-                            .lineLimit(0)
-                            .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                    }
+        ForEach(Array(lifts.exercisesGroupedByDay.keys), id: \.self) { key in
+            let day = key
+            let lifts = self.lifts.exercisesGroupedByDay[key]!
+            
+            VStack(alignment: .leading) {
+                
+                Text(MostRecentLift.lastLiftDateFormatter.string(from: day))
+                    .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
+                
+                ForEach(lifts, id: \.self) { lift in
+                    Text(lift.shortDescription)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
                 }
-                HStack {
-                    Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
-                        .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
-                    Spacer()
-                }
-            }.padding([.top, .bottom], Theme.Spacing.medium)
+                
+                Text(volume(lifts: lifts))
+                    .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                    .padding([.top, .bottom], Theme.Spacing.medium)
+            }   
         }
     }
 }
@@ -123,6 +109,7 @@ struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
     @ObservedObject var lifts: LiftsObservable
+    
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
             return  nil
@@ -130,9 +117,11 @@ struct ExerciseView: View {
         self.exercise = exercise
         lifts = LiftsObservable(exercise: exercise)
     }
+    
     var olderLifts: [Lift]? {
         return Array(lifts.lifts.dropFirst())
     }
+    
     var body: some View {
         List {
             RecentLift(lifts: lifts.sections.first?.objects as? [Lift])
@@ -146,7 +135,7 @@ struct ExerciseView: View {
             Image(systemName: "plus")
                 .font(.system(size: Theme.Font.Size.large))
         })).sheet(isPresented: $liftViewPresented) {
-            LiftView(exercise: exercise, lift: exercise.lifts?.lastObject as? Lift, presented: $liftViewPresented)
+            LiftView(exercise: exercise, lift: lifts.lifts.last, presented: $liftViewPresented)
         }
     }
 }

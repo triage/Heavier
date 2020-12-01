@@ -26,12 +26,12 @@ struct LiftView: View {
     @State var reps: Float
     @State var sets: Float
     @State var weight: Float
-    var presented: Binding<Bool>
+    @Binding var presented: Bool
     
     init(exercise: Exercise, lift: Lift?, presented: Binding<Bool>) {
         self.exercise = exercise
         self.lift = lift
-        self.presented = presented
+        self._presented = presented
         _sets = .init(initialValue: Float(lift?.sets ?? 3))
         _reps = .init(initialValue: Float(lift?.reps ?? 10))
         _weight = .init(initialValue: Float(lift?.weight ?? 45))
@@ -48,11 +48,11 @@ struct LiftView: View {
         lift.weight = Float(weight)
         lift.id = UUID()
         lift.timestamp = Date()
-        exercise.addToLifts(lift)
+        lift.exercise = exercise
         do {
             try? PersistenceController.shared.container.viewContext.save()
-            presented.wrappedValue.toggle()
         }
+        presented.toggle()
     }
     
     var body: some View {
@@ -89,7 +89,9 @@ struct LiftView: View {
                         .offset(x: 0.0, y: -DifferenceView.padding.bottom)
                 }
                 
-                Button(action: save, label: {
+                Button(action: {
+                    save()
+                }, label: {
                     Text("Save")
                         .padding(Theme.Spacing.medium)
                         .frame(maxWidth: .infinity)
