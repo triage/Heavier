@@ -80,7 +80,9 @@ struct RecentLift: View {
                     RecentLiftMetric(value: lift.sets, label: "sets")
                     RecentLiftMetric(value: lift.reps, label: "reps")
                     if !lift.isBodyweight {
-                        RecentLiftMetric(value: lift.weight, label: "lbs")
+                        RecentLiftMetric(value: lift.weightLocalized.weight, label:
+                                            
+                                            Settings.shared.units.label)
                     }
                     Spacer()
                 }

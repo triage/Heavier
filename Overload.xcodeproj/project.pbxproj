@@ -14,6 +14,8 @@
 		070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221902572BA8800456C4C /* DateComponents+Range.swift */; };
 		070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDate.swift */; };
 		070221EE2573258600456C4C /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 070221ED2573258600456C4C /* SwiftlySearch */; };
+		070494C42577414700AF00E6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070494C32577414700AF00E6 /* Settings.swift */; };
+		070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070494CB257747C500AF00E6 /* Lift+Weight.swift */; };
 		0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */; };
 		071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3902251AF3F800A35799 /* OverloadApp.swift */; };
 		071E3905251AF3F800A35799 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* RootView.swift */; };
@@ -83,6 +85,8 @@
 		070221902572BA8800456C4C /* DateComponents+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Range.swift"; sourceTree = "<group>"; };
 		070221982572C6DE00456C4C /* LiftsOnDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDate.swift; sourceTree = "<group>"; };
 		070221F3257325AE00456C4C /* SwiftlySearch */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftlySearch; path = ../../SwiftlySearch; sourceTree = "<group>"; };
+		070494C32577414700AF00E6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		070494CB257747C500AF00E6 /* Lift+Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Weight.swift"; sourceTree = "<group>"; };
 		0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+FetchRequest.swift"; sourceTree = "<group>"; };
 		071E38FF251AF3F800A35799 /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3902251AF3F800A35799 /* OverloadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadApp.swift; sourceTree = "<group>"; };
@@ -194,6 +198,14 @@
 				070221F3257325AE00456C4C /* SwiftlySearch */,
 			);
 			path = "Local Packages";
+			sourceTree = "<group>";
+		};
+		070494C22577413B00AF00E6 /* UserPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				070494C32577414700AF00E6 /* Settings.swift */,
+			);
+			path = UserPreferences;
 			sourceTree = "<group>";
 		};
 		071E38F6251AF3F800A35799 = {
@@ -323,6 +335,7 @@
 		07B3064B25745590005CB631 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				070494C22577413B00AF00E6 /* UserPreferences */,
 				07D4352F2547D63A00F16668 /* CoreData */,
 			);
 			path = "Data Model";
@@ -397,6 +410,7 @@
 				079E7485256D4F8500D87F98 /* Lift+WillSave.swift */,
 				070221882571D2DF00456C4C /* Lift+Range.swift */,
 				07BD42872576748100E5CA05 /* Lift+Grouping.swift */,
+				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -575,6 +589,7 @@
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
 				0798EAF225771CB000008A28 /* SettingsView.swift in Sources */,
 				079E7486256D4F8500D87F98 /* Lift+WillSave.swift in Sources */,
+				070494C42577414700AF00E6 /* Settings.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
 				07D435422547D6A100F16668 /* SearchView.swift in Sources */,
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
@@ -599,6 +614,7 @@
 				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,
 				079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */,
 				07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */,
+				070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */,
 				07D4353A2547D68B00F16668 /* ListView.swift in Sources */,
 				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,

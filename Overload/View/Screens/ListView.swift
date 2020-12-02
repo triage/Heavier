@@ -13,6 +13,8 @@ struct ListView: View {
     let query: String
     let fetchRequest: FetchRequest<Exercise>
     
+    @ObservedObject var settings = Settings.shared
+    
     var exercises: FetchedResults<Exercise> {
         return fetchRequest.wrappedValue
     }
@@ -23,9 +25,9 @@ struct ListView: View {
         return formatter
     }()
     
-    private static func liftShortDescription(lift: Lift) -> some View {
+    private func liftShortDescription(lift: Lift) -> some View {
         VStack(alignment: .leading) {
-            Text(lift.shortDescription)
+            Text(lift.shortDescription(units: settings.units))
             if let timestamp = lift.timestamp {
                 Text(ListView.timestampFormatter.string(from: timestamp))
                     .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
@@ -45,7 +47,7 @@ struct ListView: View {
                 Text(exercise.name!)
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                 if let lastLift = exercise.lastLift {
-                    ListView.liftShortDescription(lift: lastLift)
+                    liftShortDescription(lift: lastLift)
                 }
             }
             .padding(.vertical, Theme.Spacing.medium)

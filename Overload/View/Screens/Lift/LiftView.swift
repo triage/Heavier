@@ -34,7 +34,7 @@ struct LiftView: View {
         self._presented = presented
         _sets = .init(initialValue: Float(lift?.sets ?? 3))
         _reps = .init(initialValue: Float(lift?.reps ?? 10))
-        _weight = .init(initialValue: Float(lift?.weight ?? 45))
+        _weight = .init(initialValue: Float(lift?.weightLocalized.weight ?? 45))
     }
     
     var volume: Float {
@@ -78,7 +78,7 @@ struct LiftView: View {
                     range: 0...700,
                     interval: 5,
                     value: $weight,
-                    initialValue: Float(lift?.weight ?? 1)
+                    initialValue: Float(lift?.weightLocalized.weight ?? 1)
                 )
                 HStack(alignment: .lastTextBaseline, spacing: Theme.Spacing.medium) {
                     Text("= \(Lift.volumeFormatter.string(from: NSNumber(value: volume))!) lbs")
