@@ -13,11 +13,17 @@ final class SettingsManager: ObservableObject {
     private enum Keys {
         static let units = "units"
     }
-    @Published var units: Int = UserDefaults.standard.integer(
-        forKey: SettingsManager.Keys.units
-    ) {
+    @Published var units: Int = 0 {
         didSet {
-            UserDefaults.standard.set(units, forKey: SettingsManager.Keys.units)
+            UserDefaults.standard.set(units as NSNumber, forKey: SettingsManager.Keys.units)
+        }
+    }
+    
+    init() {
+        if let number = UserDefaults.standard.object(forKey: SettingsManager.Keys.units) as? NSNumber {
+            units = number.intValue
+        } else {
+            units = (Locale.current.usesMetricSystem as NSNumber).intValue
         }
     }
 }
@@ -25,7 +31,7 @@ final class SettingsManager: ObservableObject {
 struct SettingsView: View {
     @ObservedObject var settings = SettingsManager()
     
-    static let options = ["Imperial", "Metric"]
+    static let options = ["Imperial (lb)", "Metric (kg)"]
     
     var body: some View {
         NavigationView {
@@ -36,7 +42,7 @@ struct SettingsView: View {
                     }
                 }
             }.navigationTitle("Settings")
-        }
+        }.accentColor(.accent)
     }
 }
 
