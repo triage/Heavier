@@ -30,7 +30,8 @@ struct OlderLifts: View {
             VStack(alignment: .leading) {
                 
                 Text(MostRecentLift.lastLiftDateFormatter.string(from: day))
-                    .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
+                    .sfCompactDisplay(.bold, size: Theme.Font.Size.medium)
+                    .padding([.bottom], Theme.Spacing.small)
                 
                 ForEach(lifts, id: \.self) { lift in
                     Text(lift.shortDescription)
@@ -121,14 +122,10 @@ struct ExerciseView: View {
         lifts = LiftsObservable(exercise: exercise)
     }
     
-    var olderLifts: [Lift]? {
-        return Array(lifts.lifts.dropLast())
-    }
-    
     var body: some View {
         List {
             RecentLift(lift: lifts.lifts.last)
-            OlderLifts(lifts: olderLifts)
+            OlderLifts(lifts: lifts.lifts)
         }
         .listStyle(PlainListStyle())
         .navigationTitle(exercise.name!)

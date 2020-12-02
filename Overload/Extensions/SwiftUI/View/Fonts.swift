@@ -23,6 +23,7 @@ extension UIFont {
 
 class Theme {
     enum Spacing {
+        static let small: CGFloat = 4.0
         static let medium: CGFloat = 12.0
         static let large: CGFloat = 20.0
         static let giga: CGFloat = 24.0
@@ -42,6 +43,8 @@ class Theme {
             enum Variation: String {
                 case regular = "SF Compact Display Regular"
                 case medium = "SF Compact Display Medium"
+                case bold = "SF Compact Display Bold"
+                case black = "SF Compact Display Black"
             }
             let variation: Variation
             let size: CGFloat
@@ -57,11 +60,19 @@ class Theme {
 struct Font_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
-        VStack {
-            Text("A Quick Brown Fox Jumps Over the Lazy Dog (Regular)\n")
+        VStack(alignment: .leading) {
+            Text("A Quick Brown Fox Jumps Over the Lazy Dog (Regular)")
                 .sfCompactDisplay(.regular, size: 30.0)
+                .padding([.bottom], 20.0)
             Text("A Quick Brown Fox Jumps Over the Lazy Dog (Medium)")
                 .sfCompactDisplay(.medium, size: 30.0)
-        }.padding(20.0)
+                .padding([.bottom], 20.0)
+            Text("A Quick Brown Fox Jumps Over the Lazy Dog (Bold)")
+                .sfCompactDisplay(.bold, size: 30.0)
+                .padding([.bottom], 20.0)
+            Text("A Quick Brown Fox Jumps Over the Lazy Dog (Black)")
+                .sfCompactDisplay(.black, size: 30.0)
+                .padding([.bottom], 20.0)
+        }
     }
 }
