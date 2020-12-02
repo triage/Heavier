@@ -23,7 +23,7 @@ struct OlderLifts: View {
     }
     
     var body: some View {
-        ForEach(Array(lifts.exercisesGroupedByDay.keys), id: \.self) { key in
+        ForEach(Array(lifts.exercisesGroupedByDay.keys.reversed()), id: \.self) { key in
             let day = key
             let lifts = self.lifts.exercisesGroupedByDay[key]!
             
