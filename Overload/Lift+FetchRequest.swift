@@ -35,7 +35,7 @@ extension Lift {
             fetchRequest.predicate = NSPredicate(format: "exercise = %@", exercise as CVarArg)
         }
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Lift.timestamp, ascending: false)
+            NSSortDescriptor(keyPath: \Lift.timestamp, ascending: true)
         ]
         return fetchRequest
     }

@@ -63,9 +63,9 @@ struct RecentLiftMetric: View {
 }
 
 struct RecentLift: View {
-    let lifts: [Lift]?
+    let lift: Lift?
     var body: some View {
-        if let lift = lifts?.first {
+        if let lift = lift {
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
@@ -120,12 +120,12 @@ struct ExerciseView: View {
     }
     
     var olderLifts: [Lift]? {
-        return Array(lifts.lifts.dropFirst())
+        return Array(lifts.lifts.dropLast())
     }
     
     var body: some View {
         List {
-            RecentLift(lifts: lifts.sections.first?.objects as? [Lift])
+            RecentLift(lift: lifts.lifts.last)
             OlderLifts(lifts: olderLifts)
         }
         .listStyle(PlainListStyle())
