@@ -97,20 +97,28 @@ struct RootView: View {
     }
     
     @State var viewType: ViewType = .list
+    @State var settingsVisible: Bool = false
     
     var body: some View {
         NavigationView {
             ContentView(viewType: viewType)
             .navigationBarItems(
-                trailing:
+                leading:
                     Button(action: {
                         viewType.toggle()
                     }) {
                         viewType.toggled().icon
+                    }, trailing: Button(action: {
+                        settingsVisible.toggle()
+                    }) {
+                        Image(systemName: "gear")
                     })
         }
         .accentColor(.accent)
         .edgesIgnoringSafeArea([.top, .bottom])
+        .sheet(isPresented: $settingsVisible, content: {
+            SettingsView()
+        })
     }
 }
 
