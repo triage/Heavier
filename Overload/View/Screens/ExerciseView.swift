@@ -109,6 +109,7 @@ struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
     @ObservedObject var lifts: LiftsObservable
+    @Environment(\.presentationMode) var presentation
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
