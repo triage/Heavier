@@ -34,7 +34,7 @@ struct OlderLifts: View {
                     .padding([.bottom], Theme.Spacing.small)
                 
                 ForEach(lifts, id: \.self) { lift in
-                    Text(lift.shortDescription)
+                    Text(lift.shortDescription(units: Settings.shared.units))
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
                 }
                 
@@ -65,8 +65,17 @@ struct RecentLiftMetric: View {
 
 struct RecentLift: View {
     let lift: Lift?
+    
+    var volume: String? {
+        guard let lift = lift, let localized = Lift.localize(weight: lift.volume) else {
+            return nil
+        }
+        let number = NSNumber(value: localized)
+        return Lift.volumeFormatter.string(from: number)
+    }
+    
     var body: some View {
-        if let lift = lift {
+        if let lift = lift, let volume = volume {
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
@@ -90,11 +99,11 @@ struct RecentLift: View {
                 if !lift.isBodyweight {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("\(Lift.volumeFormatter.string(from: lift.volume as NSNumber)!)")
+                            Text(volume)
                                 .sfCompactDisplay(.medium, size: Theme.Font.Size.giga)
                                 .minimumScaleFactor(1.0)
                                 .lineLimit(1)
-                            Text("total volume (lbs)")
+                            Text("total volume (\(Settings.shared.units.label)")
                                 .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                         }
                     }

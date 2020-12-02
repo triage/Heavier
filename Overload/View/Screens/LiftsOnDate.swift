@@ -53,7 +53,7 @@ struct LiftsOnDate: View {
                             .padding([.bottom], Theme.Spacing.medium)
                         
                         ForEach(lifts, id: \.self) { lift in
-                            Text(lift.shortDescription)
+                            Text(lift.shortDescription(units: Settings.shared.units))
                                 .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
                         }
                         

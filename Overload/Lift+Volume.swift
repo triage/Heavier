@@ -11,7 +11,7 @@ extension Lift {
     var volume: Float {
         return Float(sets) * Float(reps) * Float(weight)
     }
-    
+
     struct DefaultValues {
         static let sets = 5
         static let reps = 5

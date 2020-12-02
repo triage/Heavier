@@ -34,6 +34,33 @@ final class Settings: ObservableObject {
             rawValue   
         }
         
+        var maxWeight: Float {
+            switch self {
+            case .imperial:
+                return 700
+            case .metric:
+                return 320
+            }
+        }
+        
+        var interval: Float {
+            switch self {
+            case .imperial:
+                return 5
+            case .metric:
+                return 2.5
+            }
+        }
+        
+        var defaultWeight: Float {
+            switch self {
+            case .imperial:
+                return 45
+            case .metric:
+                return 20
+            }
+        }
+        
         var label: String {
             switch self {
             case .imperial:

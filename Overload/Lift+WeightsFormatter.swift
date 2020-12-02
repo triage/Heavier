@@ -19,6 +19,7 @@ extension Lift {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .none
         numberFormatter.groupingSize = 3
+        numberFormatter.maximumSignificantDigits = 2
         numberFormatter.usesGroupingSeparator = true
         return numberFormatter
     }

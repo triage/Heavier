@@ -34,18 +34,22 @@ struct LiftView: View {
         self._presented = presented
         _sets = .init(initialValue: Float(lift?.sets ?? 3))
         _reps = .init(initialValue: Float(lift?.reps ?? 10))
-        _weight = .init(initialValue: Float(lift?.weightLocalized.weight ?? 45))
+        _weight = .init(initialValue: Float(lift?.weightLocalized.weight ?? Settings.shared.units.defaultWeight))
     }
     
     var volume: Float {
         Float(Float(reps) * Float(sets) * weight)
     }
     
+    var volumeText: String {
+        "= \(Lift.volumeFormatter.string(from: NSNumber(value: volume))!) \(Settings.shared.units.label)"
+    }
+    
     func save() {
         let lift = Lift(context: PersistenceController.shared.container.viewContext)
         lift.reps = Int16(reps)
         lift.sets = Int16(sets)
-        lift.weight = Float(weight)
+        lift.weight = Float(Lift.normalize(weight: weight))
         lift.id = UUID()
         lift.timestamp = Date()
         lift.exercise = exercise
@@ -74,19 +78,21 @@ struct LiftView: View {
                     initialValue: Float(lift?.reps ?? 1)
                 )
                 LiftPicker(
-                    label: "lbs",
-                    range: 0...700,
-                    interval: 5,
+                    label: Settings.shared.units.label,
+                    range: 0...Settings.shared.units.maxWeight,
+                    interval: Settings.shared.units.interval,
                     value: $weight,
                     initialValue: Float(lift?.weightLocalized.weight ?? 1)
                 )
                 HStack(alignment: .lastTextBaseline, spacing: Theme.Spacing.medium) {
-                    Text("= \(Lift.volumeFormatter.string(from: NSNumber(value: volume))!) lbs")
+                    Text(volumeText)
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.giga)
                         .minimumScaleFactor(0.4)
                         .lineLimit(1)
-                    DifferenceView(initialValue: lift?.volume, value: volume)
+                    if let lift = lift {
+                        DifferenceView(initialValue: Lift.localize(weight: lift.volume), value: volume)
                         .offset(x: 0.0, y: -DifferenceView.padding.bottom)
+                    }
                 }
                 
                 Button(action: {

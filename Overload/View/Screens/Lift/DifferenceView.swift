@@ -29,7 +29,7 @@ struct DifferenceView: View {
               ) else {
             return nil
         }
-        return "\(differenceValue) lbs"
+        return "\(differenceValue) \(Settings.shared.units.label)"
     }
     
     var body: some View {

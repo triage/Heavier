@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 extension Lift {
-    var shortDescription: String {
-        var description = "\(sets) x \(reps)"
-        if !isBodyweight {
-            description += " @ \(Lift.weightsFormatter.string(from: weight as NSNumber)!)"
-        }
-        return description
-    }
+//    var shortDescription: String {
+//        var description = "\(sets) x \(reps)"
+//        if !isBodyweight {
+//            description += " @ \(Lift.weightsFormatter.string(from: weight as NSNumber)!)"
+//        }
+//        return description
+//    }
     
     func shortDescription(units: Settings.Units) -> String {
         var description = "\(sets) x \(reps)"
