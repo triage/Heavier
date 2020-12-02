@@ -13,7 +13,9 @@ final class SettingsManager: ObservableObject {
     private enum Keys {
         static let units = "units"
     }
-    @Published var units: Int = UserDefaults.standard.integer(forKey: SettingsManager.Keys.units) {
+    @Published var units: Int = UserDefaults.standard.integer(
+        forKey: SettingsManager.Keys.units
+    ) {
         didSet {
             UserDefaults.standard.set(units, forKey: SettingsManager.Keys.units)
         }
