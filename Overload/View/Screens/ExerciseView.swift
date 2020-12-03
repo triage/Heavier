@@ -18,8 +18,13 @@ struct OlderLifts: View {
         self.lifts = lifts
     }
     
-    func volume(lifts: [Lift]) -> String {
-        "= \(Lift.volumeFormatter.string(from: lifts.volume as NSNumber)!) lbs"
+    func volume(lifts: [Lift]) -> String? {
+        guard
+            let volume = Lift.localize(weight: lifts.volume),
+            let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
+                return nil
+        }
+        return "= \(formatted) \(Settings.shared.units.label)"
     }
     
     var body: some View {
@@ -38,9 +43,11 @@ struct OlderLifts: View {
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
                 }
                 
-                Text(volume(lifts: lifts))
-                    .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                    .padding([.top, .bottom], Theme.Spacing.medium)
+                if let volume = volume(lifts: lifts) {
+                    Text(volume)
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                        .padding([.top, .bottom], Theme.Spacing.medium)
+                }
             }   
         }
     }
@@ -71,7 +78,7 @@ struct RecentLift: View {
             return nil
         }
         let number = NSNumber(value: localized)
-        return Lift.volumeFormatter.string(from: number)
+        return Lift.weightsFormatter.string(from: number)
     }
     
     var body: some View {
@@ -90,9 +97,10 @@ struct RecentLift: View {
                     RecentLiftMetric(value: lift.sets, label: "sets")
                     RecentLiftMetric(value: lift.reps, label: "reps")
                     if !lift.isBodyweight {
-                        RecentLiftMetric(value: lift.weightLocalized.weight, label:
-                                            
-                                            Settings.shared.units.label)
+                        RecentLiftMetric(
+                            value: Lift.weightsFormatter.string(from: NSNumber(value: lift.weightLocalized.weight))!,
+                            label: Settings.shared.units.label
+                        )
                     }
                     Spacer()
                 }

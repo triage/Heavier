@@ -21,21 +21,16 @@ struct RootCalendarView: View {
     private static let title = "Calendar"
     
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading) {
-                LiftsCalendarView(lifts: lifts.lifts) { day in
-                    daySelected.dateComponents = day.components
-                    isPresented.toggle()
-                }
-                .background(Color.blue)
-                .frame(minHeight: LiftsCalendarView.minHeight)
-                .listRowInsets(EdgeInsets(top: 0.0, leading: -SwiftUI.List.separatorInset, bottom: 0.0, trailing: 0.0))
-            }
-        }
+            LiftsCalendarView(lifts: lifts.lifts) { day in
+                daySelected.dateComponents = day.components
+                isPresented.toggle()
+            }.frame(maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .topLeading)
         .navigationTitle(RootCalendarView.title)
         .sheet(isPresented: $isPresented) {
             LiftsOnDate(daySelected: daySelected.dateComponents)
-        }
+        }.background(Color.blue)
     }
 }
 

@@ -123,7 +123,9 @@ struct LiftsCalendarView: UIViewRepresentable {
     private static let groupingDateFormat = "YYYY-MM-dd"
     
     func makeUIView(context: Context) -> CalendarView {
-        CalendarView(initialContent: makeContent())
+        let calendar = CalendarView(initialContent: makeContent())
+        calendar.scroll(toDayContaining: Date(), scrollPosition: .centered, animated: false)
+        return calendar
     }
     
     class Coordinator: NSObject {
@@ -172,7 +174,7 @@ struct LiftsCalendarView: UIViewRepresentable {
         return CalendarViewContent(
             calendar: calendar,
             visibleDateRange: calendarBounds,
-            monthsLayout: .horizontal(monthWidth: UIScreen.main.bounds.width)
+            monthsLayout: .vertical(options: VerticalMonthsLayoutOptions())
         ).withDayItemModelProvider { day in
             CalendarItemModel<DayLabel>(
                 invariantViewProperties: .init(),

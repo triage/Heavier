@@ -31,8 +31,13 @@ struct LiftsOnDate: View {
         return fetchRequest.wrappedValue
     }
     
-    func volume(lifts: [Lift]) -> String {
-        "= \(Lift.volumeFormatter.string(from: lifts.volume as NSNumber)!) lbs"
+    func volume(lifts: [Lift]) -> String? {
+        guard
+            let volume = Lift.localize(weight: lifts.volume),
+            let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
+                return nil
+        }
+        return "= \(formatted) \(Settings.shared.units.label)"
     }
     
     private static var dateFormatter: DateFormatter {
@@ -57,9 +62,11 @@ struct LiftsOnDate: View {
                                 .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
                         }
                         
-                        Text(volume(lifts: lifts))
-                            .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                            .padding([.top, .bottom], Theme.Spacing.medium)
+                        if let volume = volume(lifts: lifts) {
+                            Text(volume)
+                                .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                                .padding([.top, .bottom], Theme.Spacing.medium)
+                        }
                     }
                     
                 }

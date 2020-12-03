@@ -42,7 +42,7 @@ struct LiftView: View {
     }
     
     var volumeText: String {
-        "= \(Lift.volumeFormatter.string(from: NSNumber(value: volume))!) \(Settings.shared.units.label)"
+        "= \(Lift.weightsFormatter.string(from: NSNumber(value: volume))!) \(Settings.shared.units.label)"
     }
     
     func save() {

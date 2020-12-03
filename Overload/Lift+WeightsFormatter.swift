@@ -11,15 +11,8 @@ extension Lift {
     static var weightsFormatter: NumberFormatter {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .none
-        numberFormatter.usesSignificantDigits = false
-        return numberFormatter
-    }
-    
-    static var volumeFormatter: NumberFormatter {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .none
         numberFormatter.groupingSize = 3
-        numberFormatter.maximumSignificantDigits = 2
+        numberFormatter.maximumFractionDigits = 1
         numberFormatter.usesGroupingSeparator = true
         return numberFormatter
     }
