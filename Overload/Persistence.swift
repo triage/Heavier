@@ -42,12 +42,15 @@ struct PersistenceController {
     }()
 
     let container: NSPersistentCloudKitContainer
+    
+    private static var defaultsKey = "defaults_loaded"
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Overload")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        container.viewContext.automaticallyMergesChangesFromParent = true
         container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -65,6 +68,26 @@ struct PersistenceController {
                 Check the error message to determine what the actual problem was.
                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
+            } else if UserDefaults.standard.bool(forKey: PersistenceController.defaultsKey) == false {
+                DispatchQueue.global().async {
+                    PersistenceController.shared.container.performBackgroundTask { (context) in
+                        guard let exercises: [String] = JSONSerialization.load(fileName: "exercises-default") else {
+                            return
+                        }
+                        exercises.forEach { name in
+                            guard let exercise = Exercise(name: name.capitalized, context: context) else {
+                                return
+                            }
+                            exercise.id = UUID()
+                        }
+                        do {
+                            try context.save()
+                            UserDefaults.standard.set(true, forKey: PersistenceController.defaultsKey)
+                        } catch {
+                            print("unable to save default content")
+                        }
+                    }
+                }
             }
         })
     }

@@ -31,6 +31,8 @@
 		0781F2A6254E521F00B9AE63 /* DifferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781F2A5254E521F00B9AE63 /* DifferenceView.swift */; };
 		0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */; };
 		07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07899CEA252191EF006C85B1 /* ExerciseView.swift */; };
+		079376142579E17000382DB1 /* exercises-default.json in Resources */ = {isa = PBXBuildFile; fileRef = 079376132579E17000382DB1 /* exercises-default.json */; };
+		079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */; };
 		0798EAF225771CB000008A28 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798EAF125771CB000008A28 /* SettingsView.swift */; };
 		079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */; };
 		079E7474256B363200D87F98 /* Exercise+LiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7473256B363200D87F98 /* Exercise+LiftDate.swift */; };
@@ -107,6 +109,8 @@
 		0781F2A5254E521F00B9AE63 /* DifferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceView.swift; sourceTree = "<group>"; };
 		0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Volume.swift"; sourceTree = "<group>"; };
 		07899CEA252191EF006C85B1 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		079376132579E17000382DB1 /* exercises-default.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "exercises-default.json"; sourceTree = "<group>"; };
+		079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+Load.swift"; sourceTree = "<group>"; };
 		0798EAF125771CB000008A28 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		079E7473256B363200D87F98 /* Exercise+LiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+LiftDate.swift"; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 		071E38F6251AF3F800A35799 = {
 			isa = PBXGroup;
 			children = (
+				079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */,
 				070221F2257325A400456C4C /* Local Packages */,
 				071E3901251AF3F800A35799 /* Overload */,
 				071E3918251AF3F900A35799 /* OverloadTests */,
@@ -356,6 +361,7 @@
 				07D4351E2547D4D500F16668 /* SF-Compact-Display-Semibold.otf */,
 				07D435202547D4D500F16668 /* SF-Compact-Display-Thin.otf */,
 				07D435212547D4D500F16668 /* SF-Compact-Display-Ultralight.otf */,
+				079376132579E17000382DB1 /* exercises-default.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -526,6 +532,7 @@
 				071E390A251AF3F900A35799 /* Preview Assets.xcassets in Resources */,
 				071E3907251AF3F900A35799 /* Assets.xcassets in Resources */,
 				07D435272547D4D500F16668 /* SF-Compact-Display-Semibold.otf in Resources */,
+				079376142579E17000382DB1 /* exercises-default.json in Resources */,
 				07D435252547D4D500F16668 /* SF-Compact-Display-Light.otf in Resources */,
 				07D4352B2547D4D500F16668 /* SF-Compact-Display-Heavy.otf in Resources */,
 				07D4352A2547D4D500F16668 /* SF-Compact-Display-Ultralight.otf in Resources */,
@@ -597,6 +604,7 @@
 				071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */,
 				070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */,
 				079E7481256D450F00D87F98 /* Exercise+WillSave.swift in Sources */,
+				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */,
