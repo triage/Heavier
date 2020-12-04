@@ -57,7 +57,6 @@
 		07D4352A2547D4D500F16668 /* SF-Compact-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07D435212547D4D500F16668 /* SF-Compact-Display-Ultralight.otf */; };
 		07D4352B2547D4D500F16668 /* SF-Compact-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07D435222547D4D500F16668 /* SF-Compact-Display-Heavy.otf */; };
 		07D4353A2547D68B00F16668 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435392547D68B00F16668 /* ListView.swift */; };
-		07D435422547D6A100F16668 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435412547D6A100F16668 /* SearchView.swift */; };
 		07D435472547D6E600F16668 /* NavigationBarHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435462547D6E600F16668 /* NavigationBarHidden.swift */; };
 /* End PBXBuildFile section */
 
@@ -134,7 +133,6 @@
 		07D435212547D4D500F16668 /* SF-Compact-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Ultralight.otf"; path = "../../../../../../Library/Fonts/SF-Compact-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		07D435222547D4D500F16668 /* SF-Compact-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Heavy.otf"; path = "../../../../../../Library/Fonts/SF-Compact-Display-Heavy.otf"; sourceTree = "<group>"; };
 		07D435392547D68B00F16668 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		07D435412547D6A100F16668 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		07D435462547D6E600F16668 /* NavigationBarHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarHidden.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -286,7 +284,6 @@
 				0798EAF025771CA200008A28 /* Settings */,
 				070221982572C6DE00456C4C /* LiftsOnDate.swift */,
 				07D435392547D68B00F16668 /* ListView.swift */,
-				07D435412547D6A100F16668 /* SearchView.swift */,
 				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
 				0781F2A1254E416100B9AE63 /* Lift */,
 			);
@@ -589,7 +586,6 @@
 				079E7486256D4F8500D87F98 /* Lift+WillSave.swift in Sources */,
 				070494C42577414700AF00E6 /* Settings.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
-				07D435422547D6A100F16668 /* SearchView.swift in Sources */,
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
 				07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
