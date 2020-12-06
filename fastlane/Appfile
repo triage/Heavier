@@ -1,0 +1,10 @@
+app_identifier("com.strategicinformationservices.Overload") # The bundle identifier of your app
+apple_id("contact@strategicinformationservices.com") # Your Apple email address
+
+itc_team_id("58713800") # App Store Connect Team ID
+team_id("JM3283H9KB") # Developer Portal Team ID
+itc_team_id("58713800") # App Store Connect Team ID
+team_id("JM3283H9KB") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

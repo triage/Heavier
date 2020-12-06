@@ -139,12 +139,26 @@ struct ExerciseView: View {
         lifts = LiftsObservable(exercise: exercise)
     }
     
-    var body: some View {
-        List {
-            RecentLift(lift: lifts.lifts.last)
-            OlderLifts(lifts: lifts.lifts)
+    struct Content: View {
+        @ObservedObject var lifts: LiftsObservable
+        var body: some View {
+            if lifts.lifts.count > 0 {
+                VStack {
+                    List {
+                        RecentLift(lift: lifts.lifts.last)
+                        OlderLifts(lifts: lifts.lifts)
+                    }
+                    .listStyle(PlainListStyle())
+                }
+            } else {
+                Text("No lifts recorded yet.")
+                    .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+            }
         }
-        .listStyle(PlainListStyle())
+    }
+    
+    var body: some View {
+        Content(lifts: lifts)
         .navigationTitle(exercise.name!)
         .navigationBarItems(trailing: Button(action: {
             liftViewPresented = true
@@ -173,10 +187,17 @@ struct ExerciseView_Previews: PreviewProvider {
             lifts.append(lift)
         }
         exercise.lifts = NSOrderedSet(array: lifts)
+        
+        let exerciseNoLifts = Exercise(context: PersistenceController.shared.container.viewContext)
+        exerciseNoLifts.name = "Romanian Deadlift"
+        exerciseNoLifts.id = UUID()
         return Group {
             NavigationView {
                 ExerciseView(
                     exercise: exercise
+                )
+                ExerciseView(
+                    exercise: exerciseNoLifts
                 )
             }
         }

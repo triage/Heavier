@@ -40,7 +40,10 @@ struct LiftPicker: View {
     }
     
     private func label(row: Int) -> String {
-        let value = range.lowerBound + (Float(row) * interval)
+        let value: Float = range.lowerBound + (Float(row) * interval)
+        if floor(Double(interval)) == Double(interval) {
+            return "\(Int(value))"
+        }
         return "\(value)"
     }
     

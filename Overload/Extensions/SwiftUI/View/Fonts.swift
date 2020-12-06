@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 extension View {
     func sfCompactDisplay(_ variation: Theme.Font.SFCompactDisplay.Variation, size: CGFloat) -> some View {
@@ -16,7 +17,10 @@ extension View {
 
 extension UIFont {
     static func sfDisplay(variation: Theme.Font.SFCompactDisplay.Variation, size: CGFloat) -> UIFont {
-        UIFont(name: variation.rawValue, size: UIFontMetrics.default.scaledValue(for: size))!
+        if let font = UIFont(name: variation.rawValue, size: UIFontMetrics.default.scaledValue(for: size)) {
+            return font
+        }
+        return UIFont.preferredFont(forTextStyle: variation.textStyle)
     }
     
 }
@@ -45,6 +49,19 @@ class Theme {
                 case medium = "SF Compact Display Medium"
                 case bold = "SF Compact Display Bold"
                 case black = "SF Compact Display Black"
+                
+                var textStyle: UIFont.TextStyle {
+                    switch self {
+                    case .regular:
+                        return .body
+                    case .black:
+                        return .headline
+                    case .bold:
+                        return .callout
+                    case .medium:
+                        return .subheadline
+                    }
+                }
             }
             let variation: Variation
             let size: CGFloat
@@ -53,6 +70,8 @@ class Theme {
                 content
                     .font(.custom(variation.rawValue, size: size))
             }
+            
+            
         }
     }
 }

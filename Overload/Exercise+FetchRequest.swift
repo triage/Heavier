@@ -13,7 +13,11 @@ extension Exercise {
     static func searchFetchRequest(query: String?) -> FetchRequest<Exercise> {
         let predicate: NSPredicate?
         if let query = query, query.count > 0 {
-            predicate = NSPredicate(format: "name CONTAINS[c] %@", query as CVarArg)
+            let words = query.split(separator: " ")
+            let predicates: [NSPredicate] = words.map {
+                NSPredicate(format: "name CONTAINS[c] %@", $0 as CVarArg)
+            }
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         } else {
             predicate = nil
         }
