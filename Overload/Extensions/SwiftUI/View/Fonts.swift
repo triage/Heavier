@@ -69,9 +69,7 @@ class Theme {
             func body(content: Content) -> some View {
                 content
                     .font(.custom(variation.rawValue, size: size))
-            }
-            
-            
+            }            
         }
     }
 }

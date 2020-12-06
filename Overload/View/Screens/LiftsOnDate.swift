@@ -49,7 +49,7 @@ struct LiftsOnDate: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(lifts.exercises.keys), id: \.self) { key in
+                ForEach(Array(lifts.exercises.keys.sorted()), id: \.self) { key in
                     let lifts = self.lifts.exercises[key]!
                     
                     VStack(alignment: .leading) {
