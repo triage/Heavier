@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct LiftViewCloseButton: View {
     let action: () -> Void
@@ -46,17 +47,13 @@ struct LiftView: View {
     }
     
     func save() {
-        let lift = Lift(context: PersistenceController.shared.container.viewContext)
-        lift.reps = Int16(reps)
-        lift.sets = Int16(sets)
-        lift.weight = Float(Lift.normalize(weight: weight))
-        lift.id = UUID()
-        lift.timestamp = Date()
-        lift.exercise = exercise
-        do {
-            try? PersistenceController.shared.container.viewContext.save()
+        let _ = Lift.createOrJoin(exercise: exercise, sets: Int(sets), reps: Int(reps), weight: weight).sink { value in
+            print("value:\(value)")
+            presented.toggle()
+        } receiveValue: { (state) in
+            print("state:\(state)")
+            presented.toggle()
         }
-        presented.toggle()
     }
     
     var body: some View {

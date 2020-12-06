@@ -36,5 +36,181 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EFE2F83-C2D2-42C1-BB22-8B0A144DE875"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overload/Lift+Init.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "createOrJoin(exercise:sets:reps:weight:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6EFE2F83-C2D2-42C1-BB22-8B0A144DE875 - ef7e670fb62bc857"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.NSManagedObjectContext) -&gt; () in closure #1 ((Swift.Result&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;) -&gt; ()) -&gt; () in static Overload.Lift.createOrJoin(exercise: Overload.Exercise, sets: Swift.Int, reps: Swift.Int, weight: Swift.Float) -&gt; Combine.Future&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;"
+                  moduleName = "Overload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eric/Development/Overload/Overload/Lift+Init.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "2778">
+               </Location>
+               <Location
+                  uuid = "6EFE2F83-C2D2-42C1-BB22-8B0A144DE875 - 2442fb83868c93d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (__C.NSManagedObjectContext) -&gt; () in closure #1 ((Swift.Result&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;) -&gt; ()) -&gt; () in static Overload.Lift.createOrJoin(exercise: Overload.Exercise, sets: Swift.Int, reps: Swift.Int, weight: Swift.Float) -&gt; Combine.Future&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;"
+                  moduleName = "Overload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eric/Development/Overload/Overload/Lift+Init.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BFE3E5DF-29BD-4C9E-820F-EEC69A3A94CA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overload/View/Screens/Lift/LiftView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "save()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F64F86A6-E66B-40AA-A5A6-B2BE02137BEB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overload/View/Screens/Lift/LiftView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "save()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8E2D51CD-7987-4480-8384-5780B02AFDC6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overload/Lift+Init.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "save(state:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "8E2D51CD-7987-4480-8384-5780B02AFDC6 - 80b77acd0266e121"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "save #1 (state: Overload.LiftSaveState) -&gt; () in closure #1 (__C.NSManagedObjectContext) -&gt; () in closure #1 ((Swift.Result&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;) -&gt; ()) -&gt; () in static Overload.Lift.createOrJoin(exercise: Overload.Exercise, sets: Swift.Int, reps: Swift.Int, weight: Swift.Float) -&gt; Combine.Future&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;"
+                  moduleName = "Overload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eric/Development/Overload/Overload/Lift+Init.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "1531">
+               </Location>
+               <Location
+                  uuid = "8E2D51CD-7987-4480-8384-5780B02AFDC6 - 581e851668958b7f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in save #1 (state: Overload.LiftSaveState) -&gt; () in closure #1 (__C.NSManagedObjectContext) -&gt; () in closure #1 ((Swift.Result&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;) -&gt; ()) -&gt; () in static Overload.Lift.createOrJoin(exercise: Overload.Exercise, sets: Swift.Int, reps: Swift.Int, weight: Swift.Float) -&gt; Combine.Future&lt;Overload.LiftSaveState, Overload.CoreDataError&gt;"
+                  moduleName = "Overload"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eric/Development/Overload/Overload/Lift+Init.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD956C39-78DA-45EC-9B95-55A40A001FD6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overload/Lift+Init.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "createOrJoin(exercise:sets:reps:weight:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2105A319-FAAF-4B08-9781-63C277DBE3FE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overload/Lift+Init.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "createOrJoin(exercise:sets:reps:weight:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "093374EC-CA7A-4639-BEB0-612352B46288"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overload/Lift+Init.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "save(state:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

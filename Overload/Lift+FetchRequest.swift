@@ -27,12 +27,15 @@ extension Lift {
                         range.upperBound as CVarArg
             )
         }
+        static func exercise(_ exercise: Exercise) -> NSPredicate {
+            NSPredicate(format: "exercise = %@", exercise as CVarArg)
+        }
     }
     
     static func fetchRequest(exercise: Exercise?) -> NSFetchRequest<Lift> {
         let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
         if let exercise = exercise {
-            fetchRequest.predicate = NSPredicate(format: "exercise = %@", exercise as CVarArg)
+            fetchRequest.predicate = Lift.Predicate.exercise(exercise)
         }
         fetchRequest.sortDescriptors = [
             NSSortDescriptor(keyPath: \Lift.timestamp, ascending: true)
