@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import HorizonCalendar
 import CoreText
+import UIKit
 
 extension UILabel {
     func setMargins(margin: CGFloat) {
@@ -93,22 +94,26 @@ struct DayLabel: CalendarItemViewRepresentable {
         var borderWidth: CGFloat = 2.0
     }
     
-    static func makeView(withInvariantViewProperties invariantViewProperties: InvariantViewProperties) -> UILabel {
-        let label = UILabel()
-        
+    final class DayView: UILabel {
+        override func layoutSubviews() {
+            super.layoutSubviews()
+            layer.cornerRadius = bounds.size.width / 2.0
+        }
+    }
+    
+    static func makeView(withInvariantViewProperties invariantViewProperties: InvariantViewProperties) -> DayView {
+        let label = DayView(frame: CGRect(origin: .zero, size: CGSize(width: 100.0, height: 100.0)))
         label.textAlignment = .center
         label.clipsToBounds = true
-        
         return label
     }
     
-    static func setViewModel(_ viewModel: ViewModel, on view: UILabel) {
+    static func setViewModel(_ viewModel: ViewModel, on view: DayView) {
         view.text = viewModel.text
         view.font = viewModel.font
         view.textColor = viewModel.textColor
         view.layer.borderColor = viewModel.borderColor.cgColor
         view.layer.borderWidth = viewModel.borderWidth
-        view.layer.cornerRadius = 28.0
     }
 }
 
