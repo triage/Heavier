@@ -19,4 +19,10 @@ extension RandomAccessCollection where Element == Lift {
             return Lift.dayFormatter.date(from: lift.day!)!
         }
     }
+    
+    var groupedByWeightAndReps: [String: [Element]] {
+        Dictionary(grouping: self) { (lift) -> String in
+            "\(lift.weight) - \(lift.reps)"
+        }
+    }
 }

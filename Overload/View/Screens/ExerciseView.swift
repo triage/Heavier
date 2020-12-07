@@ -38,9 +38,11 @@ struct OlderLifts: View {
                     .sfCompactDisplay(.bold, size: Theme.Font.Size.medium)
                     .padding([.bottom], Theme.Spacing.small)
                 
-                ForEach(lifts, id: \.self) { lift in
-                    Text(lift.shortDescription(units: Settings.shared.units))
-                        .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                ForEach(Array(lifts.groupedByWeightAndReps.values), id: \.self) { lifts in
+                    if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
+                        Text(shortDescription)
+                            .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                    }
                 }
                 
                 if let volume = volume(lifts: lifts) {

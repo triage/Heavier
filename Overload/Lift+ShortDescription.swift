@@ -9,14 +9,6 @@ import Foundation
 import SwiftUI
 
 extension Lift {
-//    var shortDescription: String {
-//        var description = "\(sets) x \(reps)"
-//        if !isBodyweight {
-//            description += " @ \(Lift.weightsFormatter.string(from: weight as NSNumber)!)"
-//        }
-//        return description
-//    }
-    
     func shortDescription(units: Settings.Units) -> String {
         var description = "\(sets) x \(reps)"
         if !isBodyweight {
@@ -36,5 +28,18 @@ extension Lift {
             amount = weight
         }
         return Lift.weightsFormatter.string(from: amount as NSNumber)!
+    }
+}
+
+extension Array where Element == Lift {
+    func shortDescription(units: Settings.Units) -> String? {
+        guard let first = first else {
+            return nil
+        }
+        var description = "\(count) x \(first.reps)"
+        if !first.isBodyweight {
+            description += " @ \(first.weightLocalized(units: units)!)"
+        }
+        return description
     }
 }
