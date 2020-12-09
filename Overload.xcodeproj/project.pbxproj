@@ -108,6 +108,7 @@
 		0781F29C254E415000B9AE63 /* LiftPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftPicker.swift; sourceTree = "<group>"; };
 		0781F2A5254E521F00B9AE63 /* DifferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferenceView.swift; sourceTree = "<group>"; };
 		0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Volume.swift"; sourceTree = "<group>"; };
+		07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 2.xcdatamodel"; sourceTree = "<group>"; };
 		07899CEA252191EF006C85B1 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		079376132579E17000382DB1 /* exercises-default.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "exercises-default.json"; sourceTree = "<group>"; };
 		079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+Load.swift"; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				070221902572BA8800456C4C /* DateComponents+Range.swift */,
+				079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -212,7 +214,6 @@
 		071E38F6251AF3F800A35799 = {
 			isa = PBXGroup;
 			children = (
-				079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */,
 				070221F2257325A400456C4C /* Local Packages */,
 				071E3901251AF3F800A35799 /* Overload */,
 				071E3918251AF3F900A35799 /* OverloadTests */,
@@ -779,7 +780,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Overload/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -802,7 +803,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Overload/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -976,9 +977,10 @@
 		07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */,
 				07CD00AC251C5027002FF127 /* Overload.xcdatamodel */,
 			);
-			currentVersion = 07CD00AC251C5027002FF127 /* Overload.xcdatamodel */;
+			currentVersion = 07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */;
 			path = Overload.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

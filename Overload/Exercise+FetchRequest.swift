@@ -24,6 +24,7 @@ extension Exercise {
         return FetchRequest<Exercise>(
             entity: Exercise.entity(),
             sortDescriptors: [
+                NSSortDescriptor(keyPath: \Exercise.relevance, ascending: false),
                 NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
             ],
             predicate: predicate, animation: .default

@@ -18,6 +18,7 @@ struct RootCalendarView: View {
     @ObservedObject var lifts = LiftsObservable(exercise: nil)
     @StateObject private var daySelected = DateComponentsObservable()
     @State var isPresented = false
+    
     private static let title = "Calendar"
     
     var body: some View {

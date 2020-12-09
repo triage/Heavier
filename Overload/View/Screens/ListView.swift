@@ -58,7 +58,7 @@ struct ListView: View {
         NavigationLink(
             destination:
                 NavigationLazyView(
-                    ExerciseView(exercise: Exercise(name: name))
+                    ExerciseView(exercise: Exercise(name: name, relevance: 100))
                 )
         ) {
             HStack {
