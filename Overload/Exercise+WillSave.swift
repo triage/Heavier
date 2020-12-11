@@ -10,5 +10,6 @@ import Foundation
 extension Exercise {
     public override func willSave() {
         setPrimitiveValue(Date(), forKey: #keyPath(Exercise.timestamp))
+        clearLastGroupShortDescriptionCache()
     }
 }

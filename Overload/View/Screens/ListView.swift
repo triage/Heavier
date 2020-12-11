@@ -25,10 +25,12 @@ struct ListView: View {
         return formatter
     }()
     
-    private func liftShortDescription(lift: Lift) -> some View {
+    private func liftShortDescription(group: [Lift]) -> some View {
         VStack(alignment: .leading) {
-            Text(lift.shortDescription(units: settings.units))
-            if let timestamp = lift.timestamp {
+            if let shortDescription = group.shortDescription(units: settings.units) {
+                Text(shortDescription)
+            }
+            if let timestamp = group.first?.timestamp {
                 Text(ListView.timestampFormatter.string(from: timestamp))
                     .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     .padding([.top], 2.0)
@@ -46,8 +48,8 @@ struct ListView: View {
             VStack(alignment: .leading) {
                 Text(exercise.name!)
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                if let lastLift = exercise.lastLift {
-                    liftShortDescription(lift: lastLift)
+                if let lastGroup = exercise.lastGroup {
+                    liftShortDescription(group: lastGroup)
                 }
             }
             .padding(.vertical, Theme.Spacing.medium)

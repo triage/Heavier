@@ -81,7 +81,8 @@ struct PersistenceController {
                     if UserDefaults.standard.bool(forKey: PersistenceController.featureAddRelevanceKey) == false {
                         //upgrade
                         DispatchQueue.global().async {
-                            guard let exercises: [ExerciseJSONObject] = JSONSerialization.load(fileName: "exercises-default") else {
+                            guard let exercises: [ExerciseJSONObject]
+                                    = JSONSerialization.load(fileName: "exercises-default") else {
                                 return
                             }
                             PersistenceController.shared.container.performBackgroundTask { (context) in
@@ -96,7 +97,10 @@ struct PersistenceController {
                                 }
                                 do {
                                     try context.save()
-                                    UserDefaults.standard.set(true, forKey: PersistenceController.featureAddRelevanceKey)
+                                    UserDefaults.standard.set(
+                                        true,
+                                        forKey: PersistenceController.featureAddRelevanceKey
+                                    )
                                 } catch {
                                     print("unable to save changes to relevance")
                                 }
@@ -107,11 +111,16 @@ struct PersistenceController {
                     //default content
                     DispatchQueue.global().async {
                         PersistenceController.shared.container.performBackgroundTask { (context) in
-                            guard let exercises: [ExerciseJSONObject] = JSONSerialization.load(fileName: "exercises-default") else {
+                            guard let exercises: [ExerciseJSONObject]
+                                    = JSONSerialization.load(fileName: "exercises-default") else {
                                 return
                             }
                             exercises.forEach { json in
-                                guard let exercise = Exercise(name: json.name.capitalized, relevance: json.relevance, context: context) else {
+                                guard let exercise
+                                        = Exercise(
+                                            name: json.name.capitalized,
+                                            relevance: json.relevance, context: context
+                                        ) else {
                                     return
                                 }
                                 exercise.id = UUID()
