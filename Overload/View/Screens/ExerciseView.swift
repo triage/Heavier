@@ -27,6 +27,20 @@ struct OlderLifts: View {
         return "= \(formatted) \(Settings.shared.units.label)"
     }
     
+    struct GroupedLiftsOnDay: View {
+        let lifts: [Lift]
+        var body: some View {
+            ForEach(Array(lifts.groupedByWeightAndReps.values).sorted(by: { (first, second) -> Bool in
+                first.mostRecent.timestamp! < second.mostRecent.timestamp!
+            }), id: \.self) { lifts in
+                if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
+                    Text(shortDescription)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                }
+            }
+        }
+    }
+    
     var body: some View {
         ForEach(Array(lifts.exercisesGroupedByDay.keys.sorted().reversed()), id: \.self) { key in
             let day = key
@@ -38,12 +52,7 @@ struct OlderLifts: View {
                     .sfCompactDisplay(.bold, size: Theme.Font.Size.medium)
                     .padding([.bottom], Theme.Spacing.small)
                 
-                ForEach(Array(lifts.groupedByWeightAndReps.values), id: \.self) { lifts in
-                    if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
-                        Text(shortDescription)
-                            .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
-                    }
-                }
+                GroupedLiftsOnDay(lifts: lifts)
                 
                 if let volume = volume(lifts: lifts) {
                     Text(volume)

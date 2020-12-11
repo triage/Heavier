@@ -89,10 +89,6 @@ struct LiftView: View {
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.giga)
                         .minimumScaleFactor(0.4)
                         .lineLimit(1)
-                    if let lift = lift {
-                        DifferenceView(initialValue: Lift.localize(weight: lift.volume), value: volume)
-                        .offset(x: 0.0, y: -DifferenceView.padding.bottom)
-                    }
                 }
                 
                 Button(action: {

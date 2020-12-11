@@ -36,7 +36,10 @@ extension Array where Element == Lift {
         guard let first = first else {
             return nil
         }
-        var description = "\(count) x \(first.reps)"
+        
+        let sets = compactMap { $0.sets }.reduce(0, +)
+        
+        var description = "\(sets) x \(first.reps)"
         if !first.isBodyweight {
             description += " @ \(first.weightLocalized(units: units)!)"
         }

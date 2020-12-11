@@ -26,3 +26,11 @@ extension RandomAccessCollection where Element == Lift {
         }
     }
 }
+
+extension Array where Element == Lift {
+    var mostRecent: Element {
+        return sorted { (first, second) -> Bool in
+            first.timestamp! < second.timestamp!
+        }.last!
+    }
+}
