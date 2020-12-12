@@ -7,15 +7,16 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct OlderLifts: View {
-    private let lifts: [Lift]
+    private let sections: [NSFetchedResultsSectionInfo]
     
-    init?(lifts: [Lift]?) {
-        guard let lifts = lifts else {
+    init?(sections: [NSFetchedResultsSectionInfo]?) {
+        guard let sections = sections else {
             return  nil
         }
-        self.lifts = lifts
+        self.sections = sections
     }
     
     func volume(lifts: [Lift]) -> String? {
@@ -42,15 +43,15 @@ struct OlderLifts: View {
     }
     
     var body: some View {
-        ForEach(Array(lifts.exercisesGroupedByDay.keys.sorted().reversed()), id: \.self) { key in
-            let day = key
-            let lifts = self.lifts.exercisesGroupedByDay[key]!
+        ForEach(sections, id: \.name) { section in
+            let lifts = section.objects as! [Lift]
+            let day = lifts.first!.timestamp!
             
             VStack(alignment: .leading) {
                 
                 Text(MostRecentLift.lastLiftDateFormatter.string(from: day))
-                    .sfCompactDisplay(.bold, size: Theme.Font.Size.medium)
-                    .padding([.bottom], Theme.Spacing.small)
+                    .sfCompactDisplay(.bold, size: Theme.Font.Size.mediumPlus)
+                    .padding([.bottom, .top], Theme.Spacing.small)
                 
                 GroupedLiftsOnDay(lifts: lifts)
                 
@@ -144,10 +145,10 @@ struct ExerciseView: View {
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
-            return  nil
+            return nil
         }
         self.exercise = exercise
-        lifts = LiftsObservable(exercise: exercise)
+        lifts = LiftsObservable(exercise: exercise, ascending: false)
     }
     
     struct Content: View {
@@ -156,8 +157,8 @@ struct ExerciseView: View {
             if lifts.lifts.count > 0 {
                 VStack {
                     List {
-                        RecentLift(lift: lifts.lifts.last)
-                        OlderLifts(lifts: lifts.lifts)
+                        RecentLift(lift: lifts.lifts.first)
+                        OlderLifts(sections: lifts.sections)
                     }
                     .listStyle(PlainListStyle())
                 }
@@ -177,7 +178,7 @@ struct ExerciseView: View {
             Image(systemName: "plus")
                 .font(.system(size: Theme.Font.Size.large))
         })).sheet(isPresented: $liftViewPresented) {
-            LiftView(exercise: exercise, lift: lifts.lifts.last, presented: $liftViewPresented)
+            LiftView(exercise: exercise, lift: lifts.lifts.first, presented: $liftViewPresented)
         }
     }
 }

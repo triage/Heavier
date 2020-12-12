@@ -7,19 +7,23 @@
 
 import Foundation
 
-extension RandomAccessCollection where Element == Lift {
-    var exercises: [String: [Element]] {
-        return Dictionary(grouping: self) { (lift: Element) -> String in
-            return lift.exercise!.name!
-        }
+extension Lift {
+    private static var dayGroupingFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "YYYY-DD"
+        return dateFormatter
     }
     
-    var exercisesGroupedByDay: [Date: [Element]] {
-        return Dictionary(grouping: self) { (lift: Element) -> Date in
-            return Lift.dayFormatter.date(from: lift.day!)!
+    @objc var dayGroupingIdentifier: String? {
+        guard let timestamp = timestamp else {
+            return nil
         }
+        return Lift.dayGroupingFormatter.string(from: timestamp)
     }
-    
+}
+
+extension RandomAccessCollection where Element == Lift {    
     var groupedByWeightAndReps: [String: [Element]] {
         Dictionary(grouping: self) { (lift) -> String in
             "\(lift.weight) - \(lift.reps)"

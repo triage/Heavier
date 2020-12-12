@@ -40,13 +40,13 @@ extension Lift {
         }
     }
     
-    static func fetchRequest(exercise: Exercise?) -> NSFetchRequest<Lift> {
+    static func fetchRequest(exercise: Exercise?, ascending: Bool) -> NSFetchRequest<Lift> {
         let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
         if let exercise = exercise {
             fetchRequest.predicate = Lift.Predicate.exercise(exercise)
         }
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(keyPath: \Lift.timestamp, ascending: true)
+            NSSortDescriptor(keyPath: \Lift.timestamp, ascending: ascending)
         ]
         return fetchRequest
     }

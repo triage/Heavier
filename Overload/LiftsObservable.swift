@@ -32,16 +32,16 @@ final class LiftsObservable: NSObject, ObservableObject {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.fetchRequest(day: dateComponents)!,
             managedObjectContext: PersistenceController.shared.container.viewContext,
-            sectionNameKeyPath: "exercise.name",
+            sectionNameKeyPath: #keyPath(Lift.exercise.name),
             cacheName: nil
         ))
     }
     
-    convenience init(exercise: Exercise?) {
+    convenience init(exercise: Exercise?, ascending: Bool = true) {
         self.init(fetchedResultsController: NSFetchedResultsController(
-            fetchRequest: Lift.fetchRequest(exercise: exercise),
+            fetchRequest: Lift.fetchRequest(exercise: exercise, ascending: ascending),
             managedObjectContext: PersistenceController.shared.container.viewContext,
-            sectionNameKeyPath: "day",
+            sectionNameKeyPath: #keyPath(Lift.dayGroupingIdentifier),
             cacheName: nil
         ))
     }
