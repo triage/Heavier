@@ -38,7 +38,7 @@ extension Exercise {
         let components = Calendar.current.dateComponents([.day, .month, .year], from: timestamp)
         // get the group it belongs to
         
-        guard let dayPredicate = Lift.Predicate.daySelected(components) else {
+        guard let dayPredicate = Lift.CoreData.Predicate.daySelected(components) else {
             return nil
         }
         
@@ -46,9 +46,9 @@ extension Exercise {
         
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             dayPredicate,
-            Lift.Predicate.exercise(exercise),
-            Lift.Predicate.reps(lastLift.reps),
-            Lift.Predicate.weight(lastLift.weight)
+            Lift.CoreData.Predicate.exercise(exercise),
+            Lift.CoreData.Predicate.reps(lastLift.reps),
+            Lift.CoreData.Predicate.weight(lastLift.weight)
         ])
         fetchRequest.predicate = predicate
         

@@ -40,7 +40,9 @@ struct LiftsOnDate: View {
     struct Lifts: View {
         let lifts: [Lift]
         var body: some View {
-            ForEach(Array(lifts.groupedByWeightAndReps.values), id: \.self) { lifts in
+            ForEach(Array(lifts.groupedByWeightAndReps.values).sorted(by: { (first, second) -> Bool in
+                first.mostRecent.timestamp! < second.mostRecent.timestamp!
+            }), id: \.self) { lifts in
                 if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
                     Text(shortDescription)
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)

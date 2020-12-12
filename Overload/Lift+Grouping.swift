@@ -21,6 +21,10 @@ extension Lift {
         }
         return Lift.dayGroupingFormatter.string(from: timestamp)
     }
+    
+    @objc var weightsRepsGroupingIdentifier: String {
+        "\(weight) - \(reps)"
+    }
 }
 
 extension RandomAccessCollection where Element == Lift {    

@@ -137,6 +137,7 @@
 		07D435222547D4D500F16668 /* SF-Compact-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Compact-Display-Heavy.otf"; path = "../../../../../../Library/Fonts/SF-Compact-Display-Heavy.otf"; sourceTree = "<group>"; };
 		07D435392547D68B00F16668 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		07D435462547D6E600F16668 /* NavigationBarHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarHidden.swift; sourceTree = "<group>"; };
+		07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -973,10 +974,11 @@
 		07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */,
 				07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */,
 				07CD00AC251C5027002FF127 /* Overload.xcdatamodel */,
 			);
-			currentVersion = 07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */;
+			currentVersion = 07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */;
 			path = Overload.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
