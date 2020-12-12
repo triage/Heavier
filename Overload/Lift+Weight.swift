@@ -9,13 +9,10 @@ import Foundation
 import CoreGraphics
 
 extension Lift {
-    
-    private static let conversionRate: Float = 2.20462
-    
     var weightLocalized: (weight: Float, units: Settings.Units) {
         let units = Settings().units
         if units == .imperial {
-            return (weight * Lift.conversionRate, Settings.Units.imperial)
+            return (weight * Constants.Measurement.Conversion.MetricImperialConversion.factor, Settings.Units.imperial)
         }
         return (weight, Settings.Units.metric)
     }
@@ -24,7 +21,7 @@ extension Lift {
         if Settings.shared.units == .metric {
             return weight
         }
-        return weight / conversionRate
+        return weight / Constants.Measurement.Conversion.MetricImperialConversion.factor
     }
     
     static func localize(weight: Float?) -> Float? {
@@ -32,7 +29,7 @@ extension Lift {
             return nil
         }
         if Settings.shared.units == .imperial {
-            return weight * conversionRate
+            return weight * Constants.Measurement.Conversion.MetricImperialConversion.factor
         }
         return weight
     }

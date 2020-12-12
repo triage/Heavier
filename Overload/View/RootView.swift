@@ -57,7 +57,7 @@ struct ContentView: View {
         } else {
             ListView(
                 query: query,
-                fetchRequest: Exercise.searchFetchRequest(query: query)
+                fetchRequest: Exercise.CoreData.search(query)
             )
             .navigationTitle(ContentView.title)
             .navigationBarSearch($query, isHidden: searchHidden)

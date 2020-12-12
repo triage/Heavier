@@ -23,7 +23,7 @@ extension Lift {
         }
         let amount: Float
         if units == .imperial {
-            amount = weight * 2.20462
+            amount = weight *  Constants.Measurement.Conversion.MetricImperialConversion.factor
         } else {
             amount = weight
         }

@@ -59,6 +59,10 @@
 		07D4352B2547D4D500F16668 /* SF-Compact-Display-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07D435222547D4D500F16668 /* SF-Compact-Display-Heavy.otf */; };
 		07D4353A2547D68B00F16668 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435392547D68B00F16668 /* ListView.swift */; };
 		07D435472547D6E600F16668 /* NavigationBarHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435462547D6E600F16668 /* NavigationBarHidden.swift */; };
+		07DA92DE25850A2100FB95BB /* MetricImperialConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */; };
+		07DA92EA25850A4800FB95BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92E925850A4800FB95BB /* Constants.swift */; };
+		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
+		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +142,10 @@
 		07D435392547D68B00F16668 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		07D435462547D6E600F16668 /* NavigationBarHidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarHidden.swift; sourceTree = "<group>"; };
 		07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 3.xcdatamodel"; sourceTree = "<group>"; };
+		07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricImperialConversion.swift; sourceTree = "<group>"; };
+		07DA92E925850A4800FB95BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		07DA92EE25850A5A00FB95BB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		07DA92F325850A6F00FB95BB /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +343,7 @@
 		07B3064B25745590005CB631 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				07DA92DB25850A0300FB95BB /* Constants */,
 				070494C22577413B00AF00E6 /* UserPreferences */,
 				07D4352F2547D63A00F16668 /* CoreData */,
 			);
@@ -413,6 +422,33 @@
 				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		07DA92DB25850A0300FB95BB /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				07DA92E925850A4800FB95BB /* Constants.swift */,
+				07DA92DC25850A0800FB95BB /* Measurement */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		07DA92DC25850A0800FB95BB /* Measurement */ = {
+			isa = PBXGroup;
+			children = (
+				07DA92EE25850A5A00FB95BB /* Measurement.swift */,
+				07DA92E525850A2900FB95BB /* Conversion */,
+			);
+			path = Measurement;
+			sourceTree = "<group>";
+		};
+		07DA92E525850A2900FB95BB /* Conversion */ = {
+			isa = PBXGroup;
+			children = (
+				07DA92F325850A6F00FB95BB /* Conversion.swift */,
+				07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */,
+			);
+			path = Conversion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -585,12 +621,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D435472547D6E600F16668 /* NavigationBarHidden.swift in Sources */,
+				07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */,
+				07DA92EA25850A4800FB95BB /* Constants.swift in Sources */,
 				07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */,
 				07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */,
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
 				0798EAF225771CB000008A28 /* SettingsView.swift in Sources */,
 				070494C42577414700AF00E6 /* Settings.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
+				07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */,
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
 				07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
@@ -609,6 +648,7 @@
 				07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */,
 				0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */,
 				0781F2A6254E521F00B9AE63 /* DifferenceView.swift in Sources */,
+				07DA92DE25850A2100FB95BB /* MetricImperialConversion.swift in Sources */,
 				077F8F46256987680075B307 /* Exercise+Init.swift in Sources */,
 				07BD42882576748100E5CA05 /* Lift+Grouping.swift in Sources */,
 				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,

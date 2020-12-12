@@ -10,24 +10,26 @@ import CoreData
 import SwiftUI
 
 extension Exercise {
-    static func searchFetchRequest(query: String?) -> FetchRequest<Exercise> {
-        let predicate: NSPredicate?
-        if let query = query, query.count > 0 {
-            let words = query.split(separator: " ")
-            let predicates: [NSPredicate] = words.map {
-                NSPredicate(format: "name CONTAINS[c] %@", $0 as CVarArg)
+    enum CoreData {
+        static func search(_ query: String?) -> FetchRequest<Exercise> {
+            let predicate: NSPredicate?
+            if let query = query, query.count > 0 {
+                let words = query.split(separator: " ")
+                let predicates: [NSPredicate] = words.map {
+                    NSPredicate(format: "name CONTAINS[c] %@", $0 as CVarArg)
+                }
+                predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+            } else {
+                predicate = nil
             }
-            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        } else {
-            predicate = nil
+            return FetchRequest<Exercise>(
+                entity: Exercise.entity(),
+                sortDescriptors: [
+                    NSSortDescriptor(keyPath: \Exercise.relevance, ascending: false),
+                    NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
+                ],
+                predicate: predicate, animation: .default
+            )
         }
-        return FetchRequest<Exercise>(
-            entity: Exercise.entity(),
-            sortDescriptors: [
-                NSSortDescriptor(keyPath: \Exercise.relevance, ascending: false),
-                NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
-            ],
-            predicate: predicate, animation: .default
-        )
     }
 }

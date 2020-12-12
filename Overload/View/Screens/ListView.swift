@@ -127,11 +127,11 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ListView(
                 query: "Romanian",
-                fetchRequest: Exercise.searchFetchRequest(query: "Exercise")
+                fetchRequest: Exercise.CoreData.search("Exercise")
             ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             ListView(
                 query: "Romanian",
-                fetchRequest: Exercise.searchFetchRequest(query: "Romanian")
+                fetchRequest: Exercise.CoreData.search("Romanian")
             ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
