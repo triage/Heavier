@@ -13,14 +13,8 @@ final class LiftsObservable: NSObject, ObservableObject {
     @Published var sections: [NSFetchedResultsSectionInfo] = []
     private let fetchedResultsController: NSFetchedResultsController<Lift>
     
-    init(exercise: Exercise?) {
-        fetchedResultsController = NSFetchedResultsController(
-            fetchRequest: Lift.fetchRequest(exercise: exercise),
-            managedObjectContext: PersistenceController.shared.container.viewContext,
-            sectionNameKeyPath: "day",
-            cacheName: nil
-        )
-        
+    private init(fetchedResultsController: NSFetchedResultsController<Lift>) {
+        self.fetchedResultsController = fetchedResultsController
         super.init()
         
         fetchedResultsController.delegate = self
@@ -32,6 +26,24 @@ final class LiftsObservable: NSObject, ObservableObject {
         } catch {
             print("failed to fetch items!")
         }
+    }
+    
+    convenience init(dateComponents: DateComponents) {
+        self.init(fetchedResultsController: NSFetchedResultsController(
+            fetchRequest: Lift.fetchRequest(day: dateComponents)!,
+            managedObjectContext: PersistenceController.shared.container.viewContext,
+            sectionNameKeyPath: "exercise.name",
+            cacheName: nil
+        ))
+    }
+    
+    convenience init(exercise: Exercise?) {
+        self.init(fetchedResultsController: NSFetchedResultsController(
+            fetchRequest: Lift.fetchRequest(exercise: exercise),
+            managedObjectContext: PersistenceController.shared.container.viewContext,
+            sectionNameKeyPath: "day",
+            cacheName: nil
+        ))
     }
 }
 

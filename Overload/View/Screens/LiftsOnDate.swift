@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct LiftsOnDate: View {
-    private var fetchRequest: FetchRequest<Lift>
+    
+    @ObservedObject var lifts: LiftsObservable
     private var daySelected: DateComponents?
     
     init?(daySelected: DateComponents?) {
@@ -18,17 +19,7 @@ struct LiftsOnDate: View {
         }
         self.daySelected = daySelected
         self.daySelected?.calendar = Calendar.current
-        fetchRequest = FetchRequest<Lift>(
-            entity: Lift.entity(),
-            sortDescriptors: [
-                Lift.SortDescriptor.timestamp(ascending: true)
-            ],
-            predicate: Lift.Predicate.daySelected(daySelected)
-        )
-    }
-    
-    var lifts: FetchedResults<Lift> {
-        return fetchRequest.wrappedValue
+        lifts = LiftsObservable(dateComponents: daySelected)
     }
     
     func volume(lifts: [Lift]) -> String? {
@@ -46,33 +37,39 @@ struct LiftsOnDate: View {
         return dateFormatter
     }
     
+    struct Lifts: View {
+        let lifts: [Lift]
+        var body: some View {
+            ForEach(Array(lifts.groupedByWeightAndReps.values), id: \.self) { lifts in
+                if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
+                    Text(shortDescription)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                }
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(lifts.exercises.keys.sorted()), id: \.self) { key in
-                    let lifts = self.lifts.exercises[key]!
-                    
+                ForEach(lifts.sections, id: \.name) { section in
                     VStack(alignment: .leading) {
-                        Text(key)
+                        Text(section.name)
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                            .padding([.bottom], Theme.Spacing.medium)
-                        
-                        ForEach(Array(lifts.groupedByWeightAndReps.values), id: \.self) { lifts in
-                            if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
-                                Text(shortDescription)
-                                    .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                            .padding([.bottom, .top], Theme.Spacing.medium)
+                        if let lifts = section.objects as? [Lift] {
+                            Lifts(lifts: lifts)
+
+                            if let volume = volume(lifts: lifts) {
+                                Text(volume)
+                                    .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                                    .padding([.top, .bottom], Theme.Spacing.medium)
                             }
                         }
-                        
-                        if let volume = volume(lifts: lifts) {
-                            Text(volume)
-                                .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                                .padding([.top, .bottom], Theme.Spacing.medium)
-                        }
                     }
-                    
                 }
-            } .listRowInsets(EdgeInsets())
+            }
+            .listRowInsets(EdgeInsets())
             .navigationTitle(LiftsOnDate.dateFormatter.string(from: daySelected!.date!))
         }
     }
