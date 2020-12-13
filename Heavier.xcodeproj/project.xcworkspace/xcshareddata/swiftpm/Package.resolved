@@ -9,6 +9,15 @@
           "revision": "bd0d338912e66d2f71d2cbe2d41e707dec9bd5ad",
           "version": "1.6.1"
         }
+      },
+      {
+        "package": "SwiftlySearch",
+        "repositoryURL": "https://github.com/triage/SwiftlySearch",
+        "state": {
+          "branch": "ES/hideOnChange",
+          "revision": "3b7c1f11a15452cb5c1ec674b1d18f735a3d0970",
+          "version": null
+        }
       }
     ]
   },

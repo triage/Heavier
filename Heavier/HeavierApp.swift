@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct OverloadApp: App {
+struct HeavierApp: App {
     let persistenceController = PersistenceController.shared
     
     var body: some Scene {

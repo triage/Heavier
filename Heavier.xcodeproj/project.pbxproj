@@ -13,11 +13,10 @@
 		070221892571D2DF00456C4C /* Lift+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221882571D2DF00456C4C /* Lift+Range.swift */; };
 		070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221902572BA8800456C4C /* DateComponents+Range.swift */; };
 		070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDate.swift */; };
-		070221EE2573258600456C4C /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 070221ED2573258600456C4C /* SwiftlySearch */; };
 		070494C42577414700AF00E6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070494C32577414700AF00E6 /* Settings.swift */; };
 		070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070494CB257747C500AF00E6 /* Lift+Weight.swift */; };
 		0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */; };
-		071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3902251AF3F800A35799 /* OverloadApp.swift */; };
+		071E3903251AF3F800A35799 /* HeavierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3902251AF3F800A35799 /* HeavierApp.swift */; };
 		071E3905251AF3F800A35799 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* RootView.swift */; };
 		071E3907251AF3F900A35799 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 071E3906251AF3F900A35799 /* Assets.xcassets */; };
 		071E390A251AF3F900A35799 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 071E3909251AF3F900A35799 /* Preview Assets.xcassets */; };
@@ -63,6 +62,7 @@
 		07DA92EA25850A4800FB95BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92E925850A4800FB95BB /* Constants.swift */; };
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
+		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,21 +88,20 @@
 		070221882571D2DF00456C4C /* Lift+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Range.swift"; sourceTree = "<group>"; };
 		070221902572BA8800456C4C /* DateComponents+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Range.swift"; sourceTree = "<group>"; };
 		070221982572C6DE00456C4C /* LiftsOnDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDate.swift; sourceTree = "<group>"; };
-		070221F3257325AE00456C4C /* SwiftlySearch */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftlySearch; path = ../../SwiftlySearch; sourceTree = "<group>"; };
 		070494C32577414700AF00E6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		070494CB257747C500AF00E6 /* Lift+Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Weight.swift"; sourceTree = "<group>"; };
 		0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+FetchRequest.swift"; sourceTree = "<group>"; };
-		071E38FF251AF3F800A35799 /* Overload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overload.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		071E3902251AF3F800A35799 /* OverloadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadApp.swift; sourceTree = "<group>"; };
+		071E38FF251AF3F800A35799 /* Heavier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Heavier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		071E3902251AF3F800A35799 /* HeavierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierApp.swift; sourceTree = "<group>"; };
 		071E3904251AF3F800A35799 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		071E3906251AF3F900A35799 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		071E3909251AF3F900A35799 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		071E390B251AF3F900A35799 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		071E3910251AF3F900A35799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		071E3915251AF3F900A35799 /* OverloadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OverloadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		071E3915251AF3F900A35799 /* HeavierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeavierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3919251AF3F900A35799 /* OverloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadTests.swift; sourceTree = "<group>"; };
 		071E391B251AF3F900A35799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		071E3920251AF3F900A35799 /* OverloadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OverloadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		071E3920251AF3F900A35799 /* HeavierUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeavierUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		071E3924251AF3F900A35799 /* OverloadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadUITests.swift; sourceTree = "<group>"; };
 		071E3926251AF3F900A35799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		077F8F3B25697D3B0075B307 /* LiftsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsObservable.swift; sourceTree = "<group>"; };
@@ -154,7 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
-				070221EE2573258600456C4C /* SwiftlySearch in Frameworks */,
+				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,14 +201,6 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
-		070221F2257325A400456C4C /* Local Packages */ = {
-			isa = PBXGroup;
-			children = (
-				070221F3257325AE00456C4C /* SwiftlySearch */,
-			);
-			path = "Local Packages";
-			sourceTree = "<group>";
-		};
 		070494C22577413B00AF00E6 /* UserPreferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,8 +212,7 @@
 		071E38F6251AF3F800A35799 = {
 			isa = PBXGroup;
 			children = (
-				070221F2257325A400456C4C /* Local Packages */,
-				071E3901251AF3F800A35799 /* Overload */,
+				071E3901251AF3F800A35799 /* Heavier */,
 				071E3918251AF3F900A35799 /* OverloadTests */,
 				071E3923251AF3F900A35799 /* OverloadUITests */,
 				071E3900251AF3F800A35799 /* Products */,
@@ -232,17 +222,17 @@
 		071E3900251AF3F800A35799 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				071E38FF251AF3F800A35799 /* Overload.app */,
-				071E3915251AF3F900A35799 /* OverloadTests.xctest */,
-				071E3920251AF3F900A35799 /* OverloadUITests.xctest */,
+				071E38FF251AF3F800A35799 /* Heavier.app */,
+				071E3915251AF3F900A35799 /* HeavierTests.xctest */,
+				071E3920251AF3F900A35799 /* HeavierUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		071E3901251AF3F800A35799 /* Overload */ = {
+		071E3901251AF3F800A35799 /* Heavier */ = {
 			isa = PBXGroup;
 			children = (
-				071E3902251AF3F800A35799 /* OverloadApp.swift */,
+				071E3902251AF3F800A35799 /* HeavierApp.swift */,
 				071E6B7F254E671D0078ADD3 /* View */,
 				07B3064B25745590005CB631 /* Data Model */,
 				07D435302547D64500F16668 /* Extensions */,
@@ -252,7 +242,7 @@
 				07D435192547D4C900F16668 /* Resources */,
 				071E3908251AF3F900A35799 /* Preview Content */,
 			);
-			path = Overload;
+			path = Heavier;
 			sourceTree = "<group>";
 		};
 		071E3908251AF3F900A35799 /* Preview Content */ = {
@@ -454,9 +444,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		071E38FE251AF3F800A35799 /* Overload */ = {
+		071E38FE251AF3F800A35799 /* Heavier */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 071E3929251AF3F900A35799 /* Build configuration list for PBXNativeTarget "Overload" */;
+			buildConfigurationList = 071E3929251AF3F900A35799 /* Build configuration list for PBXNativeTarget "Heavier" */;
 			buildPhases = (
 				071E38FB251AF3F800A35799 /* Sources */,
 				071E38FC251AF3F800A35799 /* Frameworks */,
@@ -467,18 +457,18 @@
 			);
 			dependencies = (
 			);
-			name = Overload;
+			name = Heavier;
 			packageProductDependencies = (
 				0702215D256DFA2C00456C4C /* HorizonCalendar */,
-				070221ED2573258600456C4C /* SwiftlySearch */,
+				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
 			);
 			productName = Overload;
-			productReference = 071E38FF251AF3F800A35799 /* Overload.app */;
+			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
 			productType = "com.apple.product-type.application";
 		};
-		071E3914251AF3F900A35799 /* OverloadTests */ = {
+		071E3914251AF3F900A35799 /* HeavierTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 071E392C251AF3F900A35799 /* Build configuration list for PBXNativeTarget "OverloadTests" */;
+			buildConfigurationList = 071E392C251AF3F900A35799 /* Build configuration list for PBXNativeTarget "HeavierTests" */;
 			buildPhases = (
 				071E3911251AF3F900A35799 /* Sources */,
 				071E3912251AF3F900A35799 /* Frameworks */,
@@ -489,14 +479,14 @@
 			dependencies = (
 				071E3917251AF3F900A35799 /* PBXTargetDependency */,
 			);
-			name = OverloadTests;
+			name = HeavierTests;
 			productName = OverloadTests;
-			productReference = 071E3915251AF3F900A35799 /* OverloadTests.xctest */;
+			productReference = 071E3915251AF3F900A35799 /* HeavierTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		071E391F251AF3F900A35799 /* OverloadUITests */ = {
+		071E391F251AF3F900A35799 /* HeavierUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 071E392F251AF3F900A35799 /* Build configuration list for PBXNativeTarget "OverloadUITests" */;
+			buildConfigurationList = 071E392F251AF3F900A35799 /* Build configuration list for PBXNativeTarget "HeavierUITests" */;
 			buildPhases = (
 				071E391C251AF3F900A35799 /* Sources */,
 				071E391D251AF3F900A35799 /* Frameworks */,
@@ -507,9 +497,9 @@
 			dependencies = (
 				071E3922251AF3F900A35799 /* PBXTargetDependency */,
 			);
-			name = OverloadUITests;
+			name = HeavierUITests;
 			productName = OverloadUITests;
-			productReference = 071E3920251AF3F900A35799 /* OverloadUITests.xctest */;
+			productReference = 071E3920251AF3F900A35799 /* HeavierUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -534,7 +524,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 071E38FA251AF3F800A35799 /* Build configuration list for PBXProject "Overload" */;
+			buildConfigurationList = 071E38FA251AF3F800A35799 /* Build configuration list for PBXProject "Heavier" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -545,15 +535,15 @@
 			mainGroup = 071E38F6251AF3F800A35799;
 			packageReferences = (
 				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
-				070221EC2573258600456C4C /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
+				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				071E38FE251AF3F800A35799 /* Overload */,
-				071E3914251AF3F900A35799 /* OverloadTests */,
-				071E391F251AF3F900A35799 /* OverloadUITests */,
+				071E38FE251AF3F800A35799 /* Heavier */,
+				071E3914251AF3F900A35799 /* HeavierTests */,
+				071E391F251AF3F900A35799 /* HeavierUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -638,7 +628,7 @@
 				07A7B544254A7396006468C1 /* LiftView.swift in Sources */,
 				07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */,
 				071E3905251AF3F800A35799 /* RootView.swift in Sources */,
-				071E3903251AF3F800A35799 /* OverloadApp.swift in Sources */,
+				071E3903251AF3F800A35799 /* HeavierApp.swift in Sources */,
 				070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */,
 				079E7481256D450F00D87F98 /* Exercise+WillSave.swift in Sources */,
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
@@ -684,12 +674,12 @@
 /* Begin PBXTargetDependency section */
 		071E3917251AF3F900A35799 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 071E38FE251AF3F800A35799 /* Overload */;
+			target = 071E38FE251AF3F800A35799 /* Heavier */;
 			targetProxy = 071E3916251AF3F900A35799 /* PBXContainerItemProxy */;
 		};
 		071E3922251AF3F900A35799 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 071E38FE251AF3F800A35799 /* Overload */;
+			target = 071E38FE251AF3F800A35799 /* Heavier */;
 			targetProxy = 071E3921251AF3F900A35799 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -818,10 +808,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_ASSET_PATHS = "\"Overload/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Overload/Info.plist;
+				INFOPLIST_FILE = Heavier/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -841,10 +831,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_ASSET_PATHS = "\"Overload/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Overload/Info.plist;
+				INFOPLIST_FILE = Heavier/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -874,7 +864,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Overload.app/Overload";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heavier.app/Heavier";
 			};
 			name = Debug;
 		};
@@ -895,7 +885,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Overload.app/Overload";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Heavier.app/Heavier";
 			};
 			name = Release;
 		};
@@ -940,7 +930,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		071E38FA251AF3F800A35799 /* Build configuration list for PBXProject "Overload" */ = {
+		071E38FA251AF3F800A35799 /* Build configuration list for PBXProject "Heavier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				071E3927251AF3F900A35799 /* Debug */,
@@ -949,7 +939,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		071E3929251AF3F900A35799 /* Build configuration list for PBXNativeTarget "Overload" */ = {
+		071E3929251AF3F900A35799 /* Build configuration list for PBXNativeTarget "Heavier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				071E392A251AF3F900A35799 /* Debug */,
@@ -958,7 +948,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		071E392C251AF3F900A35799 /* Build configuration list for PBXNativeTarget "OverloadTests" */ = {
+		071E392C251AF3F900A35799 /* Build configuration list for PBXNativeTarget "HeavierTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				071E392D251AF3F900A35799 /* Debug */,
@@ -967,7 +957,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		071E392F251AF3F900A35799 /* Build configuration list for PBXNativeTarget "OverloadUITests" */ = {
+		071E392F251AF3F900A35799 /* Build configuration list for PBXNativeTarget "HeavierUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				071E3930251AF3F900A35799 /* Debug */,
@@ -987,12 +977,12 @@
 				minimumVersion = 1.6.1;
 			};
 		};
-		070221EC2573258600456C4C /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
+		796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:thislooksfun/SwiftlySearch.git";
+			repositoryURL = "https://github.com/triage/SwiftlySearch";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.3;
+				branch = ES/hideOnChange;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1003,9 +993,9 @@
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
 		};
-		070221ED2573258600456C4C /* SwiftlySearch */ = {
+		796A43F12586CDF20066A2F3 /* SwiftlySearch */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 070221EC2573258600456C4C /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
+			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
 		};
 /* End XCSwiftPackageProductDependency section */
