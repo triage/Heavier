@@ -101,17 +101,17 @@ struct RecentLift: View {
                         Text("most recent lift:")
                             .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                         Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
-                            .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
+                            .sfCompactDisplay(.bold, size: Theme.Font.Size.mediumPlus)
                     }
-                    Spacer()
-                }
+                }.padding([.bottom], Theme.Spacing.small)
+                
                 HStack(spacing: Theme.Spacing.giga) {
                     RecentLiftMetric(value: lift.sets, label: "sets")
                     RecentLiftMetric(value: lift.reps, label: "reps")
                     if !lift.isBodyweight {
                         RecentLiftMetric(
                             value: Lift.weightsFormatter.string(from: NSNumber(value: lift.weightLocalized.weight))!,
-                            label: Settings.shared.units.label
+                            label: "weight (\(Settings.shared.units.label))"
                         )
                     }
                     Spacer()
@@ -123,7 +123,7 @@ struct RecentLift: View {
                                 .sfCompactDisplay(.medium, size: Theme.Font.Size.giga)
                                 .minimumScaleFactor(1.0)
                                 .lineLimit(1)
-                            Text("total volume (\(Settings.shared.units.label)")
+                            Text("total volume (\(Settings.shared.units.label))")
                                 .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
                         }
                     }
