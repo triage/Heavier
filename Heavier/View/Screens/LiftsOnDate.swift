@@ -81,6 +81,8 @@ struct LiftsOnDate_Previews: PreviewProvider {
     
     static var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
     
+    let lifts = Exercise.Preview.preview.lifts!.array as! [Lift]
+    
     static var previews: some View {
         Group {
                 LiftsOnDate(daySelected: LiftsOnDate_Previews.components)

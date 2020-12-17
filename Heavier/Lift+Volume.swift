@@ -21,10 +21,18 @@ extension Lift {
 
 extension Array where Element == Lift {
     var volume: Float {
-        var volume: Float = 0
-        for lift in self {
-            volume += lift.volume
-        }
-        return volume
+        reduce(0.0, { sum, element in
+            sum + (Float(element.sets) * element.volume)
+        })
+    }
+    
+    var reps: Int {
+        Int(reduce(0, { sum, element in
+            sum + Int(element.sets * element.reps)
+        }))
+    }
+    
+    var isBodyweight: Bool {
+        return volume == 0
     }
 }

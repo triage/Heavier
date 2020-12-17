@@ -20,6 +20,10 @@ struct OlderLifts: View {
     }
     
     func volume(lifts: [Lift]) -> String? {
+        if lifts.isBodyweight {
+            return "\(lifts.reps) reps"
+        }
+        
         guard
             let volume = Lift.localize(weight: lifts.volume),
             let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
@@ -203,13 +207,37 @@ struct ExerciseView_Previews: PreviewProvider {
         let exerciseNoLifts = Exercise(context: PersistenceController.shared.container.viewContext)
         exerciseNoLifts.name = "Romanian Deadlift"
         exerciseNoLifts.id = UUID()
+        
+        let exerciseBodyweight = Exercise(context: PersistenceController.shared.container.viewContext)
+        exerciseBodyweight.name = "Romanian Deadlift"
+        exerciseBodyweight.id = UUID()
+        
+        lifts.removeAll()
+        for _ in 0...0 {
+            let lift = Lift(context: PersistenceController.shared.container.viewContext)
+            lift.reps = 10
+            lift.sets = 2
+            lift.weight = 0
+            lift.id = UUID()
+            lift.timestamp = Date()
+            lifts.append(lift)
+        }
+        exerciseBodyweight.lifts = NSOrderedSet(array: lifts)
+        
         return Group {
+//            NavigationView {
+//                ExerciseView(
+//                    exercise: exercise
+//                )
+//            }
+//            NavigationView {
+//                ExerciseView(
+//                    exercise: exerciseNoLifts
+//                )
+//            }
             NavigationView {
                 ExerciseView(
-                    exercise: exercise
-                )
-                ExerciseView(
-                    exercise: exerciseNoLifts
+                    exercise: exerciseBodyweight
                 )
             }
         }
