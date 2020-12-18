@@ -79,6 +79,7 @@ extension Lift {
             fetchRequest.sortDescriptors = [
                 Lift.CoreData.SortDescriptor.timestamp(ascending: true)
             ]
+            fetchRequest.relationshipKeyPathsForPrefetching = [#keyPath(Lift.exercise)]
             return fetchRequest
         }
 

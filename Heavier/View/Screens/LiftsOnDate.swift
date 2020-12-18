@@ -55,10 +55,14 @@ struct LiftsOnDate: View {
         NavigationView {
             List {
                 ForEach(lifts.sections, id: \.name) { section in
+                    let exercise = (section.objects!.first as! Lift).exercise!
                     VStack(alignment: .leading) {
-                        Text(section.name)
-                            .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                            .padding([.bottom, .top], Theme.Spacing.medium)
+                        NavigationLink(
+                            destination: ExerciseView(exercise: exercise)) {
+                                Text(exercise.name!)
+                                    .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
+                                    .padding([.bottom, .top], Theme.Spacing.medium)
+                            }
                         if let lifts = section.objects as? [Lift] {
                             Lifts(lifts: lifts)
 
