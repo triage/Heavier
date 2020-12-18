@@ -30,7 +30,7 @@ extension Lift {
 extension RandomAccessCollection where Element == Lift {    
     var groupedByWeightAndReps: [String: [Element]] {
         Dictionary(grouping: self) { (lift) -> String in
-            "\(lift.weight) - \(lift.reps)"
+            lift.weightsRepsGroupingIdentifier
         }
     }
 }

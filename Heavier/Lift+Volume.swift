@@ -22,7 +22,7 @@ extension Lift {
 extension Array where Element == Lift {
     var volume: Float {
         reduce(0.0, { sum, element in
-            sum + (Float(element.sets) * element.volume)
+            sum + element.volume
         })
     }
     

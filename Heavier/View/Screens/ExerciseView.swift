@@ -14,7 +14,7 @@ struct OlderLifts: View {
     
     init?(sections: [NSFetchedResultsSectionInfo]?) {
         guard let sections = sections else {
-            return  nil
+            return nil
         }
         self.sections = sections
     }
@@ -188,16 +188,19 @@ struct ExerciseView: View {
 }
 
 struct ExerciseView_Previews: PreviewProvider {
+    
     static var previews: some View {
+        Settings.shared.units = .metric
+        
         let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         var lifts = [Lift]()
-        for iterator in 0...20 {
+        for iterator in 0...19 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10
-            lift.sets = Int16(iterator + 10)
-            lift.weight = 100
+            lift.sets = 1
+            lift.weight = 20
             lift.id = UUID()
             lift.timestamp = Date()
             lifts.append(lift)
@@ -225,21 +228,21 @@ struct ExerciseView_Previews: PreviewProvider {
         exerciseBodyweight.lifts = NSOrderedSet(array: lifts)
         
         return Group {
-//            NavigationView {
-//                ExerciseView(
-//                    exercise: exercise
-//                )
-//            }
+            NavigationView {
+                ExerciseView(
+                    exercise: exercise
+                )
+            }
 //            NavigationView {
 //                ExerciseView(
 //                    exercise: exerciseNoLifts
 //                )
 //            }
-            NavigationView {
-                ExerciseView(
-                    exercise: exerciseBodyweight
-                )
-            }
+//            NavigationView {
+//                ExerciseView(
+//                    exercise: exerciseBodyweight
+//                )
+//            }
         }
     }
 }
