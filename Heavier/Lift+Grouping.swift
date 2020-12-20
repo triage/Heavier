@@ -8,6 +8,7 @@
 import Foundation
 
 extension Lift {
+    
     private static var dayGroupingFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none

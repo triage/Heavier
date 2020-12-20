@@ -23,6 +23,9 @@ final class LiftsObservable: NSObject, ObservableObject {
             try fetchedResultsController.performFetch()
             lifts = fetchedResultsController.fetchedObjects ?? []
             sections = fetchedResultsController.sections ?? []
+            print(sections.compactMap {
+                $0.name
+            })
         } catch {
             print("failed to fetch items!")
         }
@@ -32,7 +35,7 @@ final class LiftsObservable: NSObject, ObservableObject {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(day: dateComponents)!,
             managedObjectContext: PersistenceController.shared.container.viewContext,
-            sectionNameKeyPath: #keyPath(Lift.exercise.name),
+            sectionNameKeyPath: Lift.CoreData.KeyPath.exerciseId,
             cacheName: nil
         ))
     }

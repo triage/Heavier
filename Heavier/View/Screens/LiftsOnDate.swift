@@ -23,6 +23,9 @@ struct LiftsOnDate: View {
     }
     
     func volume(lifts: [Lift]) -> String? {
+        if lifts.isBodyweight {
+            return "\(lifts.reps) reps"
+        }
         guard
             let volume = Lift.localize(weight: lifts.volume),
             let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
@@ -58,7 +61,9 @@ struct LiftsOnDate: View {
                     let exercise = (section.objects!.first as! Lift).exercise!
                     VStack(alignment: .leading) {
                         NavigationLink(
-                            destination: ExerciseView(exercise: exercise)) {
+                            destination: NavigationLazyView(
+                                ExerciseView(exercise: exercise)
+                            )) {
                                 Text(exercise.name!)
                                     .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                                     .padding([.bottom, .top], Theme.Spacing.medium)
@@ -89,8 +94,8 @@ struct LiftsOnDate_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-                LiftsOnDate(daySelected: LiftsOnDate_Previews.components)
-                    .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            LiftsOnDate(daySelected: LiftsOnDate_Previews.components)
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

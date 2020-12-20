@@ -11,9 +11,16 @@ import SwiftUI
 
 extension Lift {
     enum CoreData {
+        enum KeyPath {
+            static let exerciseId = "exercise.id"
+        }
+        
         enum SortDescriptor {
             static func timestamp(ascending: Bool) -> NSSortDescriptor {
                 NSSortDescriptor(key: #keyPath(Lift.timestamp), ascending: ascending)
+            }
+            static func exercise(ascending: Bool) -> NSSortDescriptor {
+                NSSortDescriptor(key: Lift.CoreData.KeyPath.exerciseId, ascending: ascending)
             }
         }
         
@@ -77,6 +84,7 @@ extension Lift {
             let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
             fetchRequest.predicate = Lift.CoreData.Predicate.timestampRange(range)
             fetchRequest.sortDescriptors = [
+                Lift.CoreData.SortDescriptor.exercise(ascending: true),
                 Lift.CoreData.SortDescriptor.timestamp(ascending: true)
             ]
             fetchRequest.relationshipKeyPathsForPrefetching = [#keyPath(Lift.exercise)]

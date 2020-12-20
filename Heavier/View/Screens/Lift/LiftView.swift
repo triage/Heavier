@@ -72,7 +72,7 @@ struct LiftView: View {
                 )
                 LiftPicker(
                     label: "reps",
-                    range: 1...20,
+                    range: 1...30,
                     interval: 1,
                     value: $reps,
                     initialValue: Float(lift?.reps ?? 1)
