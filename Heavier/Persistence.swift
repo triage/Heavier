@@ -79,7 +79,7 @@ struct PersistenceController {
                 if UserDefaults.standard.bool(forKey: PersistenceController.defaultsKey) == true {
                     // already have old-style default content
                     if UserDefaults.standard.bool(forKey: PersistenceController.featureAddRelevanceKey) == false {
-                        //upgrade
+                        // upgrade
                         DispatchQueue.global().async {
                             guard let exercises: [ExerciseJSONObject]
                                     = JSONSerialization.load(fileName: "exercises-default") else {
@@ -108,7 +108,7 @@ struct PersistenceController {
                         }
                     }
                 } else if UserDefaults.standard.bool(forKey: PersistenceController.defaultsV2Key) == false {
-                    //default content
+                    // default content
                     DispatchQueue.global().async {
                         PersistenceController.shared.container.performBackgroundTask { (context) in
                             guard let exercises: [ExerciseJSONObject]

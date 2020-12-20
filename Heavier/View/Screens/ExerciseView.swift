@@ -32,20 +32,6 @@ struct OlderLifts: View {
         return "= \(formatted) \(Settings.shared.units.label)"
     }
     
-    struct GroupedLiftsOnDay: View {
-        let lifts: [Lift]
-        var body: some View {
-            ForEach(Array(lifts.groupedByWeightAndReps.values).sorted(by: { (first, second) -> Bool in
-                first.mostRecent.timestamp! < second.mostRecent.timestamp!
-            }), id: \.self) { lifts in
-                if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
-                    Text(shortDescription)
-                        .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
-                }
-            }
-        }
-    }
-    
     var body: some View {
         ForEach(sections, id: \.name) { section in
             let lifts = section.objects as! [Lift]
@@ -196,7 +182,7 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         var lifts = [Lift]()
-        for iterator in 0...19 {
+        for _ in 0...19 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10
             lift.sets = 1

@@ -63,6 +63,7 @@
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
 		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
+		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		07DA92E925850A4800FB95BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		07DA92EE25850A5A00FB95BB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		07DA92F325850A6F00FB95BB /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
+		79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedLiftsOnDay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +320,7 @@
 			children = (
 				079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */,
 				0702217F2571566300456C4C /* LiftsCalendarView */,
+				79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */,
 				07D4353A2547D68B00F16668 /* ListView.swift in Sources */,
 				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
+				79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
 				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
