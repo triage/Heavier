@@ -22,16 +22,17 @@ struct RootCalendarView: View {
     private static let title = "Calendar"
     
     var body: some View {
-            LiftsCalendarView(lifts: lifts.lifts) { day in
-                daySelected.dateComponents = day.components
-                isPresented.toggle()
-            }.frame(maxWidth: .infinity,
+        LiftsCalendarView(lifts: lifts.lifts) { day in
+            daySelected.dateComponents = day.components
+            isPresented.toggle()
+        }
+            .frame(maxWidth: .infinity,
                     maxHeight: .infinity,
                     alignment: .topLeading)
-        .navigationTitle(RootCalendarView.title)
-        .sheet(isPresented: $isPresented) {
-            LiftsOnDate(daySelected: daySelected.dateComponents)
-        }.background(Color.blue)
+            .navigationTitle(RootCalendarView.title)
+            .sheet(isPresented: $isPresented) {
+                LiftsOnDate(daySelected: daySelected.dateComponents)
+            }.background(Color.blue)
     }
 }
 

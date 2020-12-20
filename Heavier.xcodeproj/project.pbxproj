@@ -64,6 +64,7 @@
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
 		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
+		79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		07DA92EE25850A5A00FB95BB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		07DA92F325850A6F00FB95BB /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 		79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedLiftsOnDay.swift; sourceTree = "<group>"; };
+		79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Margins.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +384,7 @@
 		07D435302547D64500F16668 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				79CAC6FC258F152D00B32630 /* UIKit */,
 				0702218F2572BA7500456C4C /* SwiftUI */,
 				0702218E2572BA6B00456C4C /* Foundation */,
 			);
@@ -442,6 +445,14 @@
 				07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */,
 			);
 			path = Conversion;
+			sourceTree = "<group>";
+		};
+		79CAC6FC258F152D00B32630 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -627,6 +638,7 @@
 				07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
 				071E390C251AF3F900A35799 /* Persistence.swift in Sources */,
+				79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */,
 				079E7474256B363200D87F98 /* Exercise+LiftDate.swift in Sources */,
 				07A7B544254A7396006468C1 /* LiftView.swift in Sources */,
 				07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */,
