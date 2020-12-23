@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0702215D256DFA2C00456C4C /* HorizonCalendar */; };
+		0702215E256DFA2C00456C4C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 0702215D256DFA2C00456C4C /* SwiftPackageProductDependency */; };
 		07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07022162256DFA4600456C4C /* LiftsCalendarView.swift */; };
 		0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702218325715A4300456C4C /* Exercise+PreviewContent.swift */; };
 		070221892571D2DF00456C4C /* Lift+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221882571D2DF00456C4C /* Lift+Range.swift */; };
@@ -62,7 +62,7 @@
 		07DA92EA25850A4800FB95BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92E925850A4800FB95BB /* Constants.swift */; };
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
-		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
+		796A43F22586CDF20066A2F3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftPackageProductDependency */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
 		79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
 /* End PBXBuildFile section */
@@ -156,8 +156,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
-				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
+				0702215E256DFA2C00456C4C /* BuildFile in Frameworks */,
+				796A43F22586CDF20066A2F3 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,8 +198,8 @@
 		0702218F2572BA7500456C4C /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				07B3064F25746098005CB631 /* List */,
 				07A7B53A25491E8F006468C1 /* Color */,
+				07B3064F25746098005CB631 /* List */,
 				07D435342547D65100F16668 /* View */,
 			);
 			path = SwiftUI;
@@ -236,15 +236,15 @@
 		071E3901251AF3F800A35799 /* Heavier */ = {
 			isa = PBXGroup;
 			children = (
-				071E3902251AF3F800A35799 /* HeavierApp.swift */,
-				071E6B7F254E671D0078ADD3 /* View */,
 				07B3064B25745590005CB631 /* Data Model */,
 				07D435302547D64500F16668 /* Extensions */,
-				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
-				071E3906251AF3F900A35799 /* Assets.xcassets */,
-				071E3910251AF3F900A35799 /* Info.plist */,
-				07D435192547D4C900F16668 /* Resources */,
 				071E3908251AF3F900A35799 /* Preview Content */,
+				07D435192547D4C900F16668 /* Resources */,
+				071E6B7F254E671D0078ADD3 /* View */,
+				071E3906251AF3F900A35799 /* Assets.xcassets */,
+				071E3902251AF3F800A35799 /* HeavierApp.swift */,
+				071E3910251AF3F900A35799 /* Info.plist */,
+				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
 			);
 			path = Heavier;
 			sourceTree = "<group>";
@@ -260,8 +260,8 @@
 		071E3918251AF3F900A35799 /* OverloadTests */ = {
 			isa = PBXGroup;
 			children = (
-				071E3919251AF3F900A35799 /* OverloadTests.swift */,
 				071E391B251AF3F900A35799 /* Info.plist */,
+				071E3919251AF3F900A35799 /* OverloadTests.swift */,
 			);
 			path = OverloadTests;
 			sourceTree = "<group>";
@@ -269,8 +269,8 @@
 		071E3923251AF3F900A35799 /* OverloadUITests */ = {
 			isa = PBXGroup;
 			children = (
-				071E3924251AF3F900A35799 /* OverloadUITests.swift */,
 				071E3926251AF3F900A35799 /* Info.plist */,
+				071E3924251AF3F900A35799 /* OverloadUITests.swift */,
 			);
 			path = OverloadUITests;
 			sourceTree = "<group>";
@@ -278,9 +278,9 @@
 		071E6B7F254E671D0078ADD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				071E3904251AF3F800A35799 /* RootView.swift */,
-				076487E7257672EB00E22030 /* Screens */,
 				079E746D256A0A7B00D87F98 /* Common */,
+				076487E7257672EB00E22030 /* Screens */,
+				071E3904251AF3F800A35799 /* RootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,11 +288,11 @@
 		076487E7257672EB00E22030 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				0781F2A1254E416100B9AE63 /* Lift */,
 				0798EAF025771CA200008A28 /* Settings */,
+				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
 				070221982572C6DE00456C4C /* LiftsOnDate.swift */,
 				07D435392547D68B00F16668 /* ListView.swift */,
-				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
-				0781F2A1254E416100B9AE63 /* Lift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -300,11 +300,11 @@
 		0781F2A1254E416100B9AE63 /* Lift */ = {
 			isa = PBXGroup;
 			children = (
-				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
-				07A7B543254A7396006468C1 /* LiftView.swift */,
-				0781F29C254E415000B9AE63 /* LiftPicker.swift */,
-				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
 				0781F2A5254E521F00B9AE63 /* DifferenceView.swift */,
+				0781F29C254E415000B9AE63 /* LiftPicker.swift */,
+				07A7B543254A7396006468C1 /* LiftView.swift */,
+				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
+				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
 			);
 			path = Lift;
 			sourceTree = "<group>";
@@ -320,9 +320,9 @@
 		079E746D256A0A7B00D87F98 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */,
 				0702217F2571566300456C4C /* LiftsCalendarView */,
 				79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */,
+				079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -339,8 +339,8 @@
 			isa = PBXGroup;
 			children = (
 				07DA92DB25850A0300FB95BB /* Constants */,
-				070494C22577413B00AF00E6 /* UserPreferences */,
 				07D4352F2547D63A00F16668 /* CoreData */,
+				070494C22577413B00AF00E6 /* UserPreferences */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -373,20 +373,20 @@
 		07D4352F2547D63A00F16668 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				071E390B251AF3F900A35799 /* Persistence.swift */,
-				077F8F3B25697D3B0075B307 /* LiftsObservable.swift */,
 				07D435382547D66A00F16668 /* Extensions */,
+				077F8F3B25697D3B0075B307 /* LiftsObservable.swift */,
+				071E390B251AF3F900A35799 /* Persistence.swift */,
 			);
 			name = CoreData;
-			path = ..;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		07D435302547D64500F16668 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				79CAC6FC258F152D00B32630 /* UIKit */,
-				0702218F2572BA7500456C4C /* SwiftUI */,
 				0702218E2572BA6B00456C4C /* Foundation */,
+				0702218F2572BA7500456C4C /* SwiftUI */,
+				79CAC6FC258F152D00B32630 /* UIKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -406,25 +406,26 @@
 				0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */,
 				077F8F45256987680075B307 /* Exercise+Init.swift */,
 				079E7473256B363200D87F98 /* Exercise+LiftDate.swift */,
-				079E7480256D450F00D87F98 /* Exercise+WillSave.swift */,
 				0702218325715A4300456C4C /* Exercise+PreviewContent.swift */,
-				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
+				079E7480256D450F00D87F98 /* Exercise+WillSave.swift */,
+				079E747B256B600100D87F98 /* Lift+Bodyweight.swift */,
+				077F8F4025697E060075B307 /* Lift+FetchRequest.swift */,
+				07BD42872576748100E5CA05 /* Lift+Grouping.swift */,
+				070221882571D2DF00456C4C /* Lift+Range.swift */,
 				07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */,
 				0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */,
-				077F8F4025697E060075B307 /* Lift+FetchRequest.swift */,
-				079E747B256B600100D87F98 /* Lift+Bodyweight.swift */,
-				070221882571D2DF00456C4C /* Lift+Range.swift */,
-				07BD42872576748100E5CA05 /* Lift+Grouping.swift */,
 				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
+				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
 			);
 			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		07DA92DB25850A0300FB95BB /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				07DA92E925850A4800FB95BB /* Constants.swift */,
 				07DA92DC25850A0800FB95BB /* Measurement */,
+				07DA92E925850A4800FB95BB /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -432,8 +433,8 @@
 		07DA92DC25850A0800FB95BB /* Measurement */ = {
 			isa = PBXGroup;
 			children = (
-				07DA92EE25850A5A00FB95BB /* Measurement.swift */,
 				07DA92E525850A2900FB95BB /* Conversion */,
+				07DA92EE25850A5A00FB95BB /* Measurement.swift */,
 			);
 			path = Measurement;
 			sourceTree = "<group>";
@@ -473,8 +474,8 @@
 			);
 			name = Heavier;
 			packageProductDependencies = (
-				0702215D256DFA2C00456C4C /* HorizonCalendar */,
-				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
+				0702215D256DFA2C00456C4C /* SwiftPackageProductDependency */,
+				796A43F12586CDF20066A2F3 /* SwiftPackageProductDependency */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -548,8 +549,8 @@
 			);
 			mainGroup = 071E38F6251AF3F800A35799;
 			packageReferences = (
-				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
-				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
+				0702215C256DFA2C00456C4C /* RemoteSwiftPackageReference */,
+				796A43F02586CDF20066A2F3 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -985,7 +986,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
+		0702215C256DFA2C00456C4C /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
 			requirement = {
@@ -993,7 +994,7 @@
 				minimumVersion = 1.6.1;
 			};
 		};
-		796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
+		796A43F02586CDF20066A2F3 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/triage/SwiftlySearch";
 			requirement = {
@@ -1004,14 +1005,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0702215D256DFA2C00456C4C /* HorizonCalendar */ = {
+		0702215D256DFA2C00456C4C /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
+			package = 0702215C256DFA2C00456C4C /* RemoteSwiftPackageReference */;
 			productName = HorizonCalendar;
 		};
-		796A43F12586CDF20066A2F3 /* SwiftlySearch */ = {
+		796A43F12586CDF20066A2F3 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
+			package = 796A43F02586CDF20066A2F3 /* RemoteSwiftPackageReference */;
 			productName = SwiftlySearch;
 		};
 /* End XCSwiftPackageProductDependency section */
@@ -1020,8 +1021,8 @@
 		07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */,
 				07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */,
+				07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */,
 				07CD00AC251C5027002FF127 /* Overload.xcdatamodel */,
 			);
 			currentVersion = 07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */;
