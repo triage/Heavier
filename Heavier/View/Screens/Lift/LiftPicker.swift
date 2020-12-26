@@ -85,7 +85,7 @@ struct LiftPicker: View {
                 .frame(width: .none, height: dimensions.height)
                 .offset(x: 0.0, y: -3.0)
             Spacer()
-        }
+        }.padding([.bottom], Theme.Spacing.medium)
     }
 }
 

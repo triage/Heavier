@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import CoreData
-import Combine
 
 struct LiftViewCloseButton: View {
     let action: () -> Void
@@ -18,6 +17,32 @@ struct LiftViewCloseButton: View {
                 .font(.system(size: Theme.Font.Size.large, weight: .bold, design: .default))
                 .accentColor(.highlight)
         }
+    }
+}
+
+struct LiftButton: View {
+    
+    let text: String
+    let imageName: String
+    
+    var body: some View {
+        HStack {
+            HStack {
+                Image(systemName: imageName)
+                Text(text)
+                    .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
+                    .foregroundColor(.liftDateForeground)
+            }
+            .padding(Theme.Spacing.smallPlus)
+        }
+        .background(Color(Color.Overload.liftDateBackground.rawValue))
+        .cornerRadius(Theme.Spacing.large)
+        .padding([.bottom], Theme.Spacing.medium)
+        .padding([.leading], Theme.Spacing.small)
+        .accentColor(Color.accent)
+        .labelsHidden()
+        .foregroundColor(Color.liftDateForeground)
+        .background(Color.clear)
     }
 }
 
@@ -43,31 +68,7 @@ struct DateButton: View {
     }
     
     var body: some View {
-        HStack {
-            HStack {
-                Image(systemName: "calendar")
-                Text(ViewModel(date: date).dateText)
-                    .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                    .foregroundColor(.liftDateForeground)
-            }
-            .padding(Theme.Spacing.medium)
-        }
-        .background(Color(Color.Overload.liftDateBackground.rawValue))
-        .cornerRadius(Theme.Spacing.large)
-        .padding([.bottom], Theme.Spacing.medium)
-        .padding([.leading], -datePickerPaddingLeading)
-        .accentColor(Color.accent)
-                .labelsHidden()
-        .padding(Theme.Spacing.medium)
-                .foregroundColor(Color.liftDateForeground)
-        .background(Color.clear)
-    }
-}
-
-class ObservableValue<Type: Any>: ObservableObject {
-    @Published var value: Type
-    init(value: Type) {
-        self.value = value
+        LiftButton(text: ViewModel(date: date).dateText, imageName: "calendar")
     }
 }
 
@@ -121,11 +122,18 @@ struct LiftView: View {
             VStack(alignment: .leading, spacing: 18.0) {
                 MostRecentLift(lift: lift)
                 
-                Button(action: {
-                    showDatePicker.toggle()
-                }, label: {
-                    DateButton(date: $dateObserved.value)
-                }).zIndex(1)
+                HStack {
+                    Button(action: {
+                        showDatePicker.toggle()
+                    }, label: {
+                        DateButton(date: $dateObserved.value)
+                    })
+                    Button(action: {
+                        showDatePicker.toggle()
+                    }, label: {
+                        LiftButton(text: "Notes", imageName: "note.text")
+                    })
+                }.zIndex(1)
                 
                 LiftPicker(
                     label: "sets",

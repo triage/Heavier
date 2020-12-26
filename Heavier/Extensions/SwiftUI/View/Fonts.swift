@@ -28,6 +28,7 @@ extension UIFont {
 class Theme {
     enum Spacing {
         static let small: CGFloat = 4.0
+        static let smallPlus: CGFloat = 8.0
         static let medium: CGFloat = 12.0
         static let large: CGFloat = 20.0
         static let giga: CGFloat = 24.0
