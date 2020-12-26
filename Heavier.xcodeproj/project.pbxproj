@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0702215E256DFA2C00456C4C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 0702215D256DFA2C00456C4C /* SwiftPackageProductDependency */; };
+		0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0702215D256DFA2C00456C4C /* HorizonCalendar */; };
 		07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07022162256DFA4600456C4C /* LiftsCalendarView.swift */; };
 		0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702218325715A4300456C4C /* Exercise+PreviewContent.swift */; };
 		070221892571D2DF00456C4C /* Lift+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221882571D2DF00456C4C /* Lift+Range.swift */; };
@@ -62,7 +62,8 @@
 		07DA92EA25850A4800FB95BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92E925850A4800FB95BB /* Constants.swift */; };
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
-		796A43F22586CDF20066A2F3 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftPackageProductDependency */; };
+		7958878B2596D57B00D31205 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 7958878A2596D57B00D31205 /* PartialSheet */; };
+		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
 		79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
 /* End PBXBuildFile section */
@@ -156,8 +157,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0702215E256DFA2C00456C4C /* BuildFile in Frameworks */,
-				796A43F22586CDF20066A2F3 /* BuildFile in Frameworks */,
+				7958878B2596D57B00D31205 /* PartialSheet in Frameworks */,
+				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
+				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +379,6 @@
 				077F8F3B25697D3B0075B307 /* LiftsObservable.swift */,
 				071E390B251AF3F900A35799 /* Persistence.swift */,
 			);
-			name = CoreData;
 			path = CoreData;
 			sourceTree = "<group>";
 		};
@@ -417,7 +418,6 @@
 				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
 				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -474,8 +474,9 @@
 			);
 			name = Heavier;
 			packageProductDependencies = (
-				0702215D256DFA2C00456C4C /* SwiftPackageProductDependency */,
-				796A43F12586CDF20066A2F3 /* SwiftPackageProductDependency */,
+				0702215D256DFA2C00456C4C /* HorizonCalendar */,
+				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
+				7958878A2596D57B00D31205 /* PartialSheet */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -549,8 +550,9 @@
 			);
 			mainGroup = 071E38F6251AF3F800A35799;
 			packageReferences = (
-				0702215C256DFA2C00456C4C /* RemoteSwiftPackageReference */,
-				796A43F02586CDF20066A2F3 /* RemoteSwiftPackageReference */,
+				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
+				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
+				795887892596D57B00D31205 /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -986,7 +988,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0702215C256DFA2C00456C4C /* RemoteSwiftPackageReference */ = {
+		0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/HorizonCalendar.git";
 			requirement = {
@@ -994,7 +996,15 @@
 				minimumVersion = 1.6.1;
 			};
 		};
-		796A43F02586CDF20066A2F3 /* RemoteSwiftPackageReference */ = {
+		795887892596D57B00D31205 /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.11;
+			};
+		};
+		796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/triage/SwiftlySearch";
 			requirement = {
@@ -1005,14 +1015,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0702215D256DFA2C00456C4C /* SwiftPackageProductDependency */ = {
+		0702215D256DFA2C00456C4C /* HorizonCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0702215C256DFA2C00456C4C /* RemoteSwiftPackageReference */;
+			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
 		};
-		796A43F12586CDF20066A2F3 /* SwiftPackageProductDependency */ = {
+		7958878A2596D57B00D31205 /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 796A43F02586CDF20066A2F3 /* RemoteSwiftPackageReference */;
+			package = 795887892596D57B00D31205 /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+		796A43F12586CDF20066A2F3 /* SwiftlySearch */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
 		};
 /* End XCSwiftPackageProductDependency section */
