@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct LiftViewCloseButton: View {
     let action: () -> Void
@@ -19,6 +20,40 @@ struct LiftViewCloseButton: View {
     }
 }
 
+struct DateButton: View {
+    @Binding var date: Date
+    
+    struct ViewModel {
+        static var dateFormatter: DateFormatter {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            return dateFormatter
+        }
+        
+        let date: Date
+        var dateText: String {
+            if Calendar.current.isDateInToday(date) {
+                return "Today"
+            }
+            return ViewModel.dateFormatter.string(from: date)
+        }
+    }
+    
+    var body: some View {
+        HStack {
+            HStack {
+                Image(systemName: "calendar")
+                Text(ViewModel(date: date).dateText)
+                    .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                    .foregroundColor(.liftDateForeground)
+            }
+            .padding(Theme.Spacing.medium)
+        }.background(Color(Color.Overload.liftDateBackground.rawValue))
+        .cornerRadius(Theme.Spacing.large)
+        .padding([.bottom], Theme.Spacing.medium)
+    }
+}
+
 struct LiftView: View {
     let exercise: Exercise
     let lift: Lift?
@@ -26,7 +61,10 @@ struct LiftView: View {
     @State var reps: Float
     @State var sets: Float
     @State var weight: Float
+    @State var date = Date()
+    @State var dateControlPresented: Bool = false
     @Binding var presented: Bool
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     init(exercise: Exercise, lift: Lift?, presented: Binding<Bool>) {
         self.exercise = exercise
@@ -46,7 +84,7 @@ struct LiftView: View {
     }
     
     func save() {
-        let lift = Lift(context: PersistenceController.shared.container.viewContext)
+        let lift = Lift(context: managedObjectContext)
         lift.reps = Int16(reps)
         lift.sets = Int16(sets)
         lift.weight = Float(Lift.normalize(weight: weight))
@@ -54,15 +92,28 @@ struct LiftView: View {
         lift.timestamp = Date()
         lift.exercise = exercise
         do {
-            try? PersistenceController.shared.container.viewContext.save()
+            try? managedObjectContext.save()
         }
         presented.toggle()
     }
+    
+    private static let datePickerPaddingLeading: CGFloat = 10.0
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: 18.0) {
                 MostRecentLift(lift: lift)
+//                DatePicker(selection: $date, displayedComponents: [.date]) {
+//                    Text("")
+//                }
+                DateButton(date: $date)
+                .padding([.leading], -LiftView.datePickerPaddingLeading)
+                .accentColor(Color.accent)
+                        .labelsHidden()
+                .padding(Theme.Spacing.medium)
+                        .foregroundColor(Color.liftDateForeground)
+                .background(Color.clear)
+                
                 LiftPicker(
                     label: "sets",
                     range: 1...20,
@@ -116,11 +167,11 @@ struct LiftView_ContentPreviews: PreviewProvider {
     
     static var previews: some View {
         
-        let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+        let exercise = Exercise(context: PersistenceController.preview.container.viewContext)
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         
-        let lift = Lift(context: PersistenceController.shared.container.viewContext)
+        let lift = Lift(context: PersistenceController.preview.container.viewContext)
         lift.reps = 10
         lift.sets = 3
         lift.weight = 135

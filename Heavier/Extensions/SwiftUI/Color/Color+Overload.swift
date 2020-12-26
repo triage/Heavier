@@ -18,10 +18,13 @@ extension Color {
         case differenceBackground
         case differenceForeground
         case accent
+        case liftDateBackground
+        case liftDateForeground
     }
     private init(_ overload: Overload) {
         self.init(overload.rawValue)
     }
+    
     static let highlight = Color(.highlight)
     static let underline = Color(.underline)
     static let label = Color(.label)
@@ -30,6 +33,8 @@ extension Color {
     static let calendarDayLifts = Color(.calendarDayLifts)
     static let differenceBackground = Color(.differenceBackground)
     static let differenceForeground = Color(.differenceForeground)
+    static let liftDateBackground = Color(.liftDateBackground)
+    static let liftDateForeground = Color(.liftDateForeground)
     static let calendarMonth = Color(.calendarMonth)
     var uiColor: UIColor {
         UIColor(self)
