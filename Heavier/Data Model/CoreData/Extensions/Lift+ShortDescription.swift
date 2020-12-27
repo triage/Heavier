@@ -45,4 +45,13 @@ extension Array where Element == Lift {
         }
         return description
     }
+    
+    var notes: String {
+        return compactMap {
+            guard let notes = $0.notes, notes.count > 0 else {
+                return nil
+            }
+            return notes
+        }.joined(separator: "\n")
+    }
 }

@@ -19,12 +19,14 @@ struct NotesView: View {
     let onSave: () -> Void
     
     let placeholders = [
-        "It doesn't get easier. You just get stronger.",
-        "Go deeper.",
+        "It doesn't get easier. You just get stronger",
         "The pain you feel today will be the strength you feel tomorrow",
-        "It it doesn't challenge you, it doesn't change you",
+        "If it doesn't challenge you, it doesn't change you",
         "No excuses",
-        "Body under construction. Mind on a mission"
+        "Body under construction. Mind on a mission",
+        "If you cheat, you only cheat yourself",
+        "Don't be afraid to fail. Be afriad not to try",
+        "Biceps don't grow on trees"
     ]
     
     @State var placeholder: String
@@ -53,7 +55,8 @@ struct NotesView: View {
                         Text(placeholder)
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                             .padding(Theme.Spacing.medium)
-                            .padding([.leading, .top], Theme.Spacing.smallPlus)
+                            .padding([.top], Theme.Spacing.smallPlus)
+                            .padding([.leading], Theme.Spacing.smallPlus - 2.0)
                             .foregroundColor(.placeholder)
                     }
                 }

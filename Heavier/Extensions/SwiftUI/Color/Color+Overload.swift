@@ -21,6 +21,7 @@ extension Color {
         case liftDateBackground
         case liftDateForeground
         case placeholder
+        case liftButtonBorderSelected
     }
     private init(_ overload: Overload) {
         self.init(overload.rawValue)
@@ -38,6 +39,8 @@ extension Color {
     static let liftDateBackground = Color(.liftDateBackground)
     static let liftDateForeground = Color(.liftDateForeground)
     static let calendarMonth = Color(.calendarMonth)
+    static let liftButtonBorderSelected = Color(.liftButtonBorderSelected)
+    
     var uiColor: UIColor {
         UIColor(self)
     }

@@ -63,10 +63,10 @@ struct LiftPicker: View {
                 
                 // underline
                 Path { path in
-                    path.move(to: CGPoint.zero)
+                    path.move(to: .zero)
                     path.addRect(
                         CGRect(
-                            origin: CGPoint.zero,
+                            origin: .zero,
                             size: CGSize(width: dimensions.width, height: lineHeight)
                         )
                     )
@@ -78,7 +78,10 @@ struct LiftPicker: View {
                     dimension[.trailing]
                 }).frame(width: dimensions.width, height: lineHeight, alignment: .bottomLeading)
                 .clipped()
-            }.offset(x: 0.0, y: 2.0)
+            }
+            .offset(x: 0.0, y: 2.0)
+            .ignoresSafeArea()
+            
             Text(label)
                 .sfCompactDisplay(.regular, size: Theme.Font.Size.giga)
                 .foregroundColor(Color.label)

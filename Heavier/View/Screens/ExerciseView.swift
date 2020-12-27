@@ -48,7 +48,8 @@ struct OlderLifts: View {
                 if let volume = volume(lifts: lifts) {
                     Text(volume)
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                        .padding([.top, .bottom], Theme.Spacing.medium)
+                        .padding([.top], Theme.Spacing.small)
+                        .padding([.bottom], Theme.Spacing.medium)
                 }
             }   
         }

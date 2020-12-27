@@ -37,9 +37,6 @@ struct TextView: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         uiView.text = text
-        if context.coordinator.becomeFirstResponder {
-            uiView.becomeFirstResponder()
-        }
     }
     
     func makeUIView(context: Context) -> UIViewType {
@@ -50,7 +47,7 @@ struct TextView: UIViewRepresentable {
             size: Theme.Font.Size.large
         )
         textView.backgroundColor = backgroundColor
-        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { (_) in
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (_) in
             textView.becomeFirstResponder()
         }
         return textView

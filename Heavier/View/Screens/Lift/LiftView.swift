@@ -20,32 +20,6 @@ struct LiftViewCloseButton: View {
     }
 }
 
-struct LiftButton: View {
-    
-    let text: String
-    let imageName: String
-    
-    var body: some View {
-        HStack {
-            HStack {
-                Image(systemName: imageName)
-                Text(text)
-                    .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                    .foregroundColor(.liftDateForeground)
-            }
-            .padding(Theme.Spacing.smallPlus)
-        }
-        .background(Color(Color.Overload.liftDateBackground.rawValue))
-        .cornerRadius(Theme.Spacing.large)
-        .padding([.bottom], Theme.Spacing.medium)
-        .padding([.leading], Theme.Spacing.small)
-        .accentColor(Color.accent)
-        .labelsHidden()
-        .foregroundColor(Color.liftDateForeground)
-        .background(Color.clear)
-    }
-}
-
 struct DateButton: View {
     @Binding var date: Date
     
@@ -68,7 +42,12 @@ struct DateButton: View {
     }
     
     var body: some View {
-        LiftButton(text: ViewModel(date: date).dateText, imageName: "calendar")
+        LiftButton(
+            text: ViewModel(date: date).dateText,
+            imageName: "calendar",
+            selected: !Calendar.current.isDateInToday(date),
+            imageNameTrailing: nil
+        )
     }
 }
 
@@ -125,6 +104,10 @@ struct LiftView: View {
         do {
             try? managedObjectContext.save()
         }
+        
+        let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
+        hapticFeedback.impactOccurred()
+        
         presented.toggle()
     }
 
@@ -143,7 +126,12 @@ struct LiftView: View {
                     Button(action: {
                         sheetType = .notes
                     }, label: {
-                        LiftButton(text: "Notes", imageName: "note.text")
+                        LiftButton(
+                            text: "Notes",
+                            imageName: "note.text",
+                            selected: notes.count > 0,
+                            imageNameTrailing: notes.count > 0 ? "checkmark.circle.fill" : nil
+                        )
                     })
                 }.zIndex(1)
                 
@@ -191,8 +179,8 @@ struct LiftView: View {
                 .padding([.top], Theme.Spacing.large)
 
                 Spacer()
-                
-            }.padding([.top, .leading, .trailing], Theme.Spacing.large)
+            }
+            .padding([.top, .leading, .trailing], Theme.Spacing.large)
             .navigationTitle(exercise.name!)
             .sheet(item: $sheetType) { sheetType in
                 switch sheetType {
@@ -218,6 +206,7 @@ struct LiftView: View {
                 sheetType = nil
             }
         })
+        
     }
 }
 
@@ -240,9 +229,8 @@ struct LiftView_ContentPreviews: PreviewProvider {
         
         return Group {
             LiftView(exercise: exercise, lift: lift, presented: $presented)
-//            LiftView(exercise: exercise, lift: lift, presented: $presented)
-//            LiftView(exercise: exercise, lift: lift, presented: $presented)
-//                .environment(\.colorScheme, ColorScheme.dark)
+            LiftView(exercise: exercise, lift: lift, presented: $presented)
+                    .environment(\.colorScheme, ColorScheme.dark)
         }
     }
 }
