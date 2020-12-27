@@ -76,11 +76,17 @@ struct LiftView: View {
     let exercise: Exercise
     let lift: Lift?
     
+    enum SheetType {
+        case calendar
+        case notes
+    }
+    
     @State var reps: Float
     @State var sets: Float
     @State var weight: Float
-    @State var dateControlPresented = false
-    @State var showDatePicker = false
+    @State var notes: String = ""
+    @State var showSheet = false
+    @State var sheetType: SheetType = .calendar
     @Binding var presented: Bool
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -109,6 +115,7 @@ struct LiftView: View {
         lift.sets = Int16(sets)
         lift.weight = Float(Lift.normalize(weight: weight))
         lift.id = UUID()
+        lift.notes = notes
         lift.timestamp = dateObserved.value
         lift.exercise = exercise
         do {
@@ -124,12 +131,14 @@ struct LiftView: View {
                 
                 HStack {
                     Button(action: {
-                        showDatePicker.toggle()
+                        sheetType = .calendar
+                        showSheet.toggle()
                     }, label: {
                         DateButton(date: $dateObserved.value)
                     })
                     Button(action: {
-                        showDatePicker.toggle()
+                        sheetType = .notes
+                        showSheet.toggle()
                     }, label: {
                         LiftButton(text: "Notes", imageName: "note.text")
                     })
@@ -184,15 +193,22 @@ struct LiftView: View {
             .navigationTitle(exercise.name!)
         }
         .onReceive(dateObserved.$value, perform: { _ in
-            if showDatePicker {
-                showDatePicker.toggle()
+            if showSheet {
+                showSheet.toggle()
             }
         })
-        .sheet(isPresented: $showDatePicker) {
-            DatePicker("", selection: $dateObserved.value, displayedComponents: [.date])
-                .labelsHidden()
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .padding(Theme.Spacing.medium)
+        .sheet(isPresented: $showSheet) {
+            if sheetType == .calendar {
+                VStack {
+                    DatePicker("", selection: $dateObserved.value, displayedComponents: [.date])
+                        .labelsHidden()
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .padding(Theme.Spacing.medium)
+                    Spacer()
+                }
+            } else {
+                NotesView(notes: $notes, isPresented: $showSheet)
+            }
         }
     }
 }
@@ -216,9 +232,9 @@ struct LiftView_ContentPreviews: PreviewProvider {
         
         return Group {
             LiftView(exercise: exercise, lift: lift, presented: $presented)
-            LiftView(exercise: exercise, lift: lift, presented: $presented)
-            LiftView(exercise: exercise, lift: lift, presented: $presented)
-                .environment(\.colorScheme, ColorScheme.dark)
+//            LiftView(exercise: exercise, lift: lift, presented: $presented)
+//            LiftView(exercise: exercise, lift: lift, presented: $presented)
+//                .environment(\.colorScheme, ColorScheme.dark)
         }
     }
 }

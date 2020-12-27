@@ -63,6 +63,8 @@
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
 		7958878B2596D57B00D31205 /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 7958878A2596D57B00D31205 /* PartialSheet */; };
+		795A76B525981FA80094052B /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76B425981FA80094052B /* NotesView.swift */; };
+		795A76BD25982A800094052B /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76BC25982A800094052B /* TextView.swift */; };
 		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
 		798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BB51C2597E6AE00171407 /* ObservableValue.swift */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
@@ -149,6 +151,8 @@
 		07DA92E925850A4800FB95BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		07DA92EE25850A5A00FB95BB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		07DA92F325850A6F00FB95BB /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
+		795A76B425981FA80094052B /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		795A76BC25982A800094052B /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		798BB51A2597E62100171407 /* Overload 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 4.xcdatamodel"; sourceTree = "<group>"; };
 		798BB51C2597E6AE00171407 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
 		79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedLiftsOnDay.swift; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				0781F29C254E415000B9AE63 /* LiftPicker.swift */,
 				07A7B543254A7396006468C1 /* LiftView.swift */,
 				07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */,
+				795A76B425981FA80094052B /* NotesView.swift */,
 				07A7B548254BB7E3006468C1 /* TransparentPicker.swift */,
 			);
 			path = Lift;
@@ -328,6 +333,7 @@
 				0702217F2571566300456C4C /* LiftsCalendarView */,
 				79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */,
 				079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */,
+				795A76BC25982A800094052B /* TextView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -388,8 +394,8 @@
 		07D435302547D64500F16668 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0702218E2572BA6B00456C4C /* Foundation */,
 				798BB51B2597E6A200171407 /* Combine */,
+				0702218E2572BA6B00456C4C /* Foundation */,
 				0702218F2572BA7500456C4C /* SwiftUI */,
 				79CAC6FC258F152D00B32630 /* UIKit */,
 			);
@@ -645,6 +651,7 @@
 				07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */,
 				07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */,
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
+				795A76B525981FA80094052B /* NotesView.swift in Sources */,
 				0798EAF225771CB000008A28 /* SettingsView.swift in Sources */,
 				070494C42577414700AF00E6 /* Settings.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
@@ -661,6 +668,7 @@
 				071E3903251AF3F800A35799 /* HeavierApp.swift in Sources */,
 				070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */,
 				079E7481256D450F00D87F98 /* Exercise+WillSave.swift in Sources */,
+				795A76BD25982A800094052B /* TextView.swift in Sources */,
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
@@ -1049,9 +1057,9 @@
 		07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				798BB51A2597E62100171407 /* Overload 4.xcdatamodel */,
 				07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */,
 				07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */,
+				798BB51A2597E62100171407 /* Overload 4.xcdatamodel */,
 				07CD00AC251C5027002FF127 /* Overload.xcdatamodel */,
 			);
 			currentVersion = 798BB51A2597E62100171407 /* Overload 4.xcdatamodel */;
