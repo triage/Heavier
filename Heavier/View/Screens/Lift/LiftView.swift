@@ -126,7 +126,7 @@ struct LiftView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 18.0) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.large) {
                 MostRecentLift(lift: lift)
                 
                 HStack {
@@ -191,25 +191,25 @@ struct LiftView: View {
                 
             }.padding([.top, .leading, .trailing], Theme.Spacing.large)
             .navigationTitle(exercise.name!)
+            .sheet(isPresented: $showSheet) {
+                if sheetType == .calendar {
+                    VStack {
+                        DatePicker("", selection: $dateObserved.value, displayedComponents: [.date])
+                            .labelsHidden()
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                            .padding(Theme.Spacing.medium)
+                        Spacer()
+                    }
+                } else {
+                    NotesView(notes: $notes, isPresented: $showSheet)
+                }
+            }
         }
         .onReceive(dateObserved.$value, perform: { _ in
             if showSheet {
                 showSheet.toggle()
             }
         })
-        .sheet(isPresented: $showSheet) {
-            if sheetType == .calendar {
-                VStack {
-                    DatePicker("", selection: $dateObserved.value, displayedComponents: [.date])
-                        .labelsHidden()
-                        .datePickerStyle(GraphicalDatePickerStyle())
-                        .padding(Theme.Spacing.medium)
-                    Spacer()
-                }
-            } else {
-                NotesView(notes: $notes, isPresented: $showSheet)
-            }
-        }
     }
 }
 
