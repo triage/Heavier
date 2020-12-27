@@ -80,6 +80,7 @@ struct LiftView: View {
         case calendar
         case notes
         
+        // swiftlint:disable:next identifier_name
         var id: Int {
             hashValue
         }
@@ -132,7 +133,7 @@ struct LiftView: View {
         sheetType = type
         showSheet.toggle()
     }
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: Theme.Spacing.large) {
@@ -144,6 +145,7 @@ struct LiftView: View {
                     }, label: {
                         DateButton(date: $dateObserved.value)
                     })
+                    
                     Button(action: {
                         showSheet(type: .notes)
                     }, label: {
@@ -211,7 +213,9 @@ struct LiftView: View {
                         }.navigationTitle("Select Date")
                     }
                 case .notes:
-                    NotesView(notes: $notes, isPresented: $showSheet)
+                    NotesView(notes: $notes) {
+                        self.sheetType = nil
+                    }
                 }
             }
         }

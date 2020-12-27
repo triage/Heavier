@@ -10,8 +10,13 @@ import SwiftUI
 
 struct NotesView: View {
     
+    // bound to the parent view
     @Binding var notes: String
-    @Binding var isPresented: Bool
+    
+    // input on this view. Not "committed" till user taps navigation item.
+    @State var text: String
+    
+    let onSave: () -> Void
     
     let placeholders = [
         "It doesn't get easier. You just get stronger.",
@@ -24,9 +29,10 @@ struct NotesView: View {
     
     @State var placeholder: String
     
-    init?(notes: Binding<String>, isPresented: Binding<Bool>) {
+    init?(notes: Binding<String>, onSave: @escaping () -> Void) {
         _notes = notes
-        _isPresented = isPresented
+        _text = .init(wrappedValue: notes.wrappedValue)
+        self.onSave = onSave
         guard let placeholder = placeholders.randomElement() else {
             return nil
         }
@@ -37,13 +43,13 @@ struct NotesView: View {
         NavigationView {
             VStack {
                 ZStack(alignment: .topLeading) {
-                    TextView(becomeFirstResponder: true, text: $notes)
+                    TextView(becomeFirstResponder: true, text: $text)
                         .backgroundColor(UIColor.clear)
                         .padding(Theme.Spacing.medium)
                         .alignmentGuide(.top, computeValue: { dimension in
                             dimension[.top]
                         })
-                    if let placeholder = placeholder, notes.count == 0 {
+                    if let placeholder = placeholder, text.count == 0 {
                         Text(placeholder)
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                             .padding(Theme.Spacing.medium)
@@ -57,7 +63,8 @@ struct NotesView: View {
             .navigationBarItems(
                 trailing:
                     Button(action: {
-                        isPresented.toggle()
+                        notes = text
+                        onSave()
                     }, label: {
                         Image(systemName: "checkmark.circle")
                             .sfCompactDisplay(.bold, size: Theme.Font.Size.large)
@@ -69,6 +76,6 @@ struct NotesView: View {
 
 struct NotesView_Previews: PreviewProvider {
     static var previews: some View {
-        NotesView(notes: .constant(""), isPresented: .constant(false))
+        NotesView(notes: .constant(""), onSave: {})
     }
 }
