@@ -20,6 +20,7 @@ extension Color {
         case accent
         case liftDateBackground
         case liftDateForeground
+        case placeholder
     }
     private init(_ overload: Overload) {
         self.init(overload.rawValue)
@@ -28,6 +29,7 @@ extension Color {
     static let highlight = Color(.highlight)
     static let underline = Color(.underline)
     static let label = Color(.label)
+    static let placeholder = Color(.placeholder)
     static let accent = Color(.accent)
     static let calendarDayDefault = Color(.calendarDayDefault)
     static let calendarDayLifts = Color(.calendarDayLifts)

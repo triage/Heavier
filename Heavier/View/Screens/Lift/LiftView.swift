@@ -76,9 +76,13 @@ struct LiftView: View {
     let exercise: Exercise
     let lift: Lift?
     
-    enum SheetType {
+    enum SheetType: Identifiable {
         case calendar
         case notes
+        
+        var id: Int {
+            hashValue
+        }
     }
     
     @State var reps: Float
@@ -86,7 +90,7 @@ struct LiftView: View {
     @State var weight: Float
     @State var notes: String = ""
     @State var showSheet = false
-    @State var sheetType: SheetType = .calendar
+    @State var sheetType: SheetType?
     @Binding var presented: Bool
     
     @Environment(\.managedObjectContext) var managedObjectContext
@@ -124,6 +128,11 @@ struct LiftView: View {
         presented.toggle()
     }
     
+    func showSheet(type: SheetType) {
+        sheetType = type
+        showSheet.toggle()
+    }
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading, spacing: Theme.Spacing.large) {
@@ -131,14 +140,12 @@ struct LiftView: View {
                 
                 HStack {
                     Button(action: {
-                        sheetType = .calendar
-                        showSheet.toggle()
+                        showSheet(type: .calendar)
                     }, label: {
                         DateButton(date: $dateObserved.value)
                     })
                     Button(action: {
-                        sheetType = .notes
-                        showSheet.toggle()
+                        showSheet(type: .notes)
                     }, label: {
                         LiftButton(text: "Notes", imageName: "note.text")
                     })
@@ -191,16 +198,19 @@ struct LiftView: View {
                 
             }.padding([.top, .leading, .trailing], Theme.Spacing.large)
             .navigationTitle(exercise.name!)
-            .sheet(isPresented: $showSheet) {
-                if sheetType == .calendar {
-                    VStack {
-                        DatePicker("", selection: $dateObserved.value, displayedComponents: [.date])
-                            .labelsHidden()
-                            .datePickerStyle(GraphicalDatePickerStyle())
-                            .padding(Theme.Spacing.medium)
-                        Spacer()
+            .sheet(item: $sheetType) { sheetType in
+                switch sheetType {
+                case .calendar:
+                    NavigationView {
+                        VStack {
+                            DatePicker("", selection: $dateObserved.value, displayedComponents: [.date])
+                                .labelsHidden()
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                                .padding(Theme.Spacing.medium)
+                            Spacer()
+                        }.navigationTitle("Select Date")
                     }
-                } else {
+                case .notes:
                     NotesView(notes: $notes, isPresented: $showSheet)
                 }
             }
