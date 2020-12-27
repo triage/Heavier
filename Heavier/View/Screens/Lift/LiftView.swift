@@ -90,7 +90,6 @@ struct LiftView: View {
     @State var sets: Float
     @State var weight: Float
     @State var notes: String = ""
-    @State var showSheet = false
     @State var sheetType: SheetType?
     @Binding var presented: Bool
     
@@ -128,11 +127,6 @@ struct LiftView: View {
         }
         presented.toggle()
     }
-    
-    func showSheet(type: SheetType) {
-        sheetType = type
-        showSheet.toggle()
-    }
 
     var body: some View {
         NavigationView {
@@ -141,13 +135,13 @@ struct LiftView: View {
                 
                 HStack {
                     Button(action: {
-                        showSheet(type: .calendar)
+                        sheetType = .calendar
                     }, label: {
                         DateButton(date: $dateObserved.value)
                     })
                     
                     Button(action: {
-                        showSheet(type: .notes)
+                        sheetType = .notes
                     }, label: {
                         LiftButton(text: "Notes", imageName: "note.text")
                     })
@@ -220,8 +214,8 @@ struct LiftView: View {
             }
         }
         .onReceive(dateObserved.$value, perform: { _ in
-            if showSheet {
-                showSheet.toggle()
+            if sheetType == .calendar {
+                sheetType = nil
             }
         })
     }
