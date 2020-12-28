@@ -23,9 +23,6 @@ final class LiftsObservable: NSObject, ObservableObject {
             try fetchedResultsController.performFetch()
             lifts = fetchedResultsController.fetchedObjects ?? []
             sections = fetchedResultsController.sections ?? []
-            print(sections.compactMap {
-                $0.name
-            })
         } catch {
             print("failed to fetch items!")
         }

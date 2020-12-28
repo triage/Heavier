@@ -36,7 +36,6 @@
 		079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */; };
 		079E7474256B363200D87F98 /* Exercise+LiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7473256B363200D87F98 /* Exercise+LiftDate.swift */; };
 		079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E747B256B600100D87F98 /* Lift+Bodyweight.swift */; };
-		079E7481256D450F00D87F98 /* Exercise+WillSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7480256D450F00D87F98 /* Exercise+WillSave.swift */; };
 		07A7B53C25491EA3006468C1 /* Color+Overload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+Overload.swift */; };
 		07A7B544254A7396006468C1 /* LiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B543254A7396006468C1 /* LiftView.swift */; };
 		07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
@@ -70,6 +69,8 @@
 		798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BB51C2597E6AE00171407 /* ObservableValue.swift */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
 		79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
+		79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D77EA72599743B0051F03B /* MonthLabel.swift */; };
+		79D77EAD259974760051F03B /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D77EAC259974760051F03B /* DayLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,7 +126,6 @@
 		079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		079E7473256B363200D87F98 /* Exercise+LiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+LiftDate.swift"; sourceTree = "<group>"; };
 		079E747B256B600100D87F98 /* Lift+Bodyweight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Bodyweight.swift"; sourceTree = "<group>"; };
-		079E7480256D450F00D87F98 /* Exercise+WillSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+WillSave.swift"; sourceTree = "<group>"; };
 		07A7B53B25491EA3006468C1 /* Color+Overload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Overload.swift"; sourceTree = "<group>"; };
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
 		07A7B548254BB7E3006468C1 /* TransparentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPicker.swift; sourceTree = "<group>"; };
@@ -159,6 +159,9 @@
 		798BB51C2597E6AE00171407 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
 		79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedLiftsOnDay.swift; sourceTree = "<group>"; };
 		79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Margins.swift"; sourceTree = "<group>"; };
+		79D77EA72599743B0051F03B /* MonthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthLabel.swift; sourceTree = "<group>"; };
+		79D77EAC259974760051F03B /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
+		79D77EB1259A0AF80051F03B /* Overload 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 5.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				07022162256DFA4600456C4C /* LiftsCalendarView.swift */,
+				79D77EAC259974760051F03B /* DayLabel.swift */,
+				79D77EA72599743B0051F03B /* MonthLabel.swift */,
 			);
 			path = LiftsCalendarView;
 			sourceTree = "<group>";
@@ -421,7 +426,6 @@
 				077F8F45256987680075B307 /* Exercise+Init.swift */,
 				079E7473256B363200D87F98 /* Exercise+LiftDate.swift */,
 				0702218325715A4300456C4C /* Exercise+PreviewContent.swift */,
-				079E7480256D450F00D87F98 /* Exercise+WillSave.swift */,
 				079E747B256B600100D87F98 /* Lift+Bodyweight.swift */,
 				077F8F4025697E060075B307 /* Lift+FetchRequest.swift */,
 				07BD42872576748100E5CA05 /* Lift+Grouping.swift */,
@@ -670,9 +674,10 @@
 				071E3905251AF3F800A35799 /* RootView.swift in Sources */,
 				071E3903251AF3F800A35799 /* HeavierApp.swift in Sources */,
 				070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */,
-				079E7481256D450F00D87F98 /* Exercise+WillSave.swift in Sources */,
+				79D77EAD259974760051F03B /* DayLabel.swift in Sources */,
 				795A76BD25982A800094052B /* TextView.swift in Sources */,
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
+				79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */,
@@ -1061,12 +1066,13 @@
 		07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				79D77EB1259A0AF80051F03B /* Overload 5.xcdatamodel */,
 				07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */,
 				07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */,
 				798BB51A2597E62100171407 /* Overload 4.xcdatamodel */,
 				07CD00AC251C5027002FF127 /* Overload.xcdatamodel */,
 			);
-			currentVersion = 798BB51A2597E62100171407 /* Overload 4.xcdatamodel */;
+			currentVersion = 79D77EB1259A0AF80051F03B /* Overload 5.xcdatamodel */;
 			path = Overload.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
