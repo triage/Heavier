@@ -19,7 +19,7 @@ struct LiftsCalendarView: UIViewRepresentable {
     let onDateSelect: DaySelectionhandler
     
     static let minHeight: CGFloat = 420
-    private static let groupingDateFormat = "YYYY-MM-dd"
+    private static let groupingDateFormat = "yyyy-MM-dd"
     
     func makeUIView(context: Context) -> CalendarView {
         let calendar = CalendarView(initialContent: makeContent())
@@ -46,6 +46,7 @@ struct LiftsCalendarView: UIViewRepresentable {
     
     private static var groupingDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = Calendar.autoupdatingCurrent
         dateFormatter.dateFormat = LiftsCalendarView.groupingDateFormat
         return dateFormatter
     }
