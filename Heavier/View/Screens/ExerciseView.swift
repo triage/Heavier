@@ -119,6 +119,12 @@ struct RecentLift: View {
                         }
                     }
                 }
+                
+                if let notes = lift.notes, notes.count > 0 {
+                    Text(notes)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
+                        .padding([.top], Theme.Spacing.medium)
+                }
             }
             .frame(maxWidth: .infinity)
             .padding([.top, .bottom], Theme.Spacing.large)
@@ -187,6 +193,7 @@ struct ExerciseView_Previews: PreviewProvider {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10
             lift.sets = 1
+            lift.notes = "Light weight, baby!"
             lift.weight = 20
             lift.id = UUID()
             lift.timestamp = Date()

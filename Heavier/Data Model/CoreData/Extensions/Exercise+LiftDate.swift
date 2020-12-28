@@ -15,7 +15,7 @@ extension Exercise {
     
     private static var groupingDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-DD"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter
     }
     
