@@ -169,12 +169,18 @@ struct ExerciseView: View {
     var body: some View {
         Content(lifts: lifts)
             .navigationTitle(exercise.name!)
-            .navigationBarItems(trailing: Button(action: {
-                liftViewPresented = true
-            }, label: {
-                Image(systemName: "plus")
-                    .font(.system(size: Theme.Font.Size.large))
-            })).sheet(isPresented: $liftViewPresented) {
+            .toolbar(
+                content: {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            liftViewPresented = true
+                        }, label: {
+                            Image(systemName: "plus")
+                                .font(.system(size: Theme.Font.Size.large))
+                        })
+                    }
+                }
+            ).sheet(isPresented: $liftViewPresented) {
                 LiftView(exercise: exercise, lift: lifts.lifts.first, presented: $liftViewPresented)
             }
     }

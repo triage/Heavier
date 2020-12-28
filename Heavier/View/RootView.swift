@@ -99,17 +99,22 @@ struct RootView: View {
     var body: some View {
         NavigationView {
             ContentView(viewType: viewType)
-            .navigationBarItems(
-                leading:
-                    Button(action: {
-                        viewType.toggle()
-                    }) {
-                        viewType.toggled().icon
-                    }, trailing: Button(action: {
-                        settingsVisible.toggle()
-                    }) {
-                        Image(systemName: "gear")
-                    })
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            viewType.toggle()
+                        }) {
+                            viewType.toggled().icon
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            settingsVisible.toggle()
+                        }) {
+                            Image(systemName: "gear")
+                        }
+                    }
+                }
         }
         .accentColor(.accent)
         .edgesIgnoringSafeArea([.top, .bottom])
