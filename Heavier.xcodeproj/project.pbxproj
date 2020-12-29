@@ -251,7 +251,6 @@
 		79B687FB259A87B500845127 /* HeavierAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppClipApp.swift; sourceTree = "<group>"; };
 		79B687FD259A87B500845127 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		79B68802259A87B700845127 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		79B68804259A87B700845127 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		79B68807259A87B700845127 /* HeavierAppClip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HeavierAppClip.xcdatamodel; sourceTree = "<group>"; };
 		79B68809259A87B700845127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79B6880A259A87B700845127 /* HeavierAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HeavierAppClip.entitlements; sourceTree = "<group>"; };
@@ -611,7 +610,6 @@
 			children = (
 				79B687FB259A87B500845127 /* HeavierAppClipApp.swift */,
 				79B687FD259A87B500845127 /* ContentView.swift */,
-				79B68804259A87B700845127 /* Persistence.swift */,
 				79B68809259A87B700845127 /* Info.plist */,
 				79B6880A259A87B700845127 /* HeavierAppClip.entitlements */,
 				79B68806259A87B700845127 /* HeavierAppClip.xcdatamodeld */,
