@@ -15,24 +15,37 @@ struct RootCalendarView: View {
         @Published var dateComponents: DateComponents?
     }
     
-    @ObservedObject var lifts = LiftsObservable(exercise: nil)
     @StateObject private var daySelected = DateComponentsObservable()
     @State var isPresented = false
+    @State var sections: [LiftsSection]?
     
     private static let title = "Calendar"
     
     var body: some View {
-        LiftsCalendarView(lifts: lifts.lifts) { day in
-            daySelected.dateComponents = day.components
-            isPresented.toggle()
+        Lifts(exercise: nil) { (_, lifts) in
+            if let lifts = lifts {
+                HStack {
+                    LiftsCalendarView(lifts: lifts) { day in
+                        daySelected.dateComponents = day.components
+                        isPresented.toggle()
+                    }
+                    .frame(maxWidth: .infinity,
+                            maxHeight: .infinity,
+                            alignment: .topLeading)
+                    .navigationTitle(RootCalendarView.title)
+                    .background(Color.blue)
+                    NavigationLink(
+                        destination:
+                            LiftsOnDate(daySelected: daySelected.dateComponents)
+                        ,
+                        isActive: $isPresented,
+                        label: { EmptyView() }
+                    )
+                }
+            } else {
+                Text("No lifts")
+            }
         }
-            .frame(maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .topLeading)
-            .navigationTitle(RootCalendarView.title)
-            .sheet(isPresented: $isPresented) {
-                LiftsOnDate(daySelected: daySelected.dateComponents)
-            }.background(Color.blue)
     }
 }
 
@@ -54,7 +67,7 @@ struct ContentView: View {
     var body: some View {
         if viewType == .calendar {
             RootCalendarView()
-                .navigationBarSearch($query, isHidden: true)
+//                .navigationBarSearch($query, isHidden: true)
         } else {
             ListView(
                 query: query,

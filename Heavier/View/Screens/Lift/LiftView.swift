@@ -206,7 +206,6 @@ struct LiftView: View {
                 sheetType = nil
             }
         })
-        
     }
 }
 

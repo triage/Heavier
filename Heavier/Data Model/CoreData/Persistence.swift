@@ -53,7 +53,11 @@ struct PersistenceController {
     }
 
     init(inMemory: Bool = false) {
+        #if !APPCLIP
         container = NSPersistentCloudKitContainer(name: "Overload")
+        #else
+        container = NSPersistentCloudKitContainer(name: "Overload-AppClip")
+        #endif
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
