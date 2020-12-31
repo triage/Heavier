@@ -28,7 +28,6 @@ struct LiftsCalendarView: UIViewRepresentable {
         self.days = Dictionary(grouping: lifts) { (lift) -> String in
             LiftsCalendarView.groupingDateFormatter.string(from: lift.timestamp!)
         }
-        print("days:\(days)")
     }
     
     func makeUIView(context: Context) -> CalendarView {

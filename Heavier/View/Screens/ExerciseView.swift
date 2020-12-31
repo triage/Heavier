@@ -137,23 +137,25 @@ struct RecentLift: View {
 struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
+    @ObservedObject var lifts: LiftsObservable
+    @Environment(\.presentationMode) var presentation
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
             return nil
         }
         self.exercise = exercise
+        lifts = LiftsObservable(exercise: exercise, ascending: false)
     }
     
     struct Content: View {
-        let lifts: [Lift]
-        let sections: [LiftsSection]
+        @ObservedObject var lifts: LiftsObservable
         var body: some View {
-            if lifts.count > 0 {
+            if lifts.lifts.count > 0 {
                 VStack {
                     List {
-                        RecentLift(lift: lifts.first)
-                        OlderLifts(sections: sections)
+                        RecentLift(lift: lifts.lifts.first)
+                        OlderLifts(sections: lifts.sections)
                     }
                     .listStyle(PlainListStyle())
                 }
@@ -165,25 +167,22 @@ struct ExerciseView: View {
     }
     
     var body: some View {
-        Lifts(exercise: exercise, ascending: false) { (sections, lifts) in
-            Content(lifts: lifts, sections: sections)
-                .navigationTitle(exercise.name!)
-                .toolbar(
-                    content: {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button(action: {
-                                liftViewPresented = true
-                            }, label: {
-                                Image(systemName: "plus")
-                                    .font(.system(size: Theme.Font.Size.large))
-                            })
-                        }
+        Content(lifts: lifts)
+            .navigationTitle(exercise.name!)
+            .toolbar(
+                content: {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            liftViewPresented = true
+                        }, label: {
+                            Image(systemName: "plus")
+                                .font(.system(size: Theme.Font.Size.large))
+                        })
                     }
-                )
-                .sheet(isPresented: $liftViewPresented) {
-                    LiftView(exercise: exercise, lift: lifts.first, presented: $liftViewPresented)
                 }
-        }
+            ).sheet(isPresented: $liftViewPresented) {
+                LiftView(exercise: exercise, lift: lifts.lifts.first, presented: $liftViewPresented)
+            }
     }
 }
 

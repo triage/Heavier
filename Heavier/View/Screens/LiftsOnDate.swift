@@ -10,7 +10,8 @@ import SwiftUI
 
 struct LiftsOnDate: View {
     
-    private var daySelected: DateComponents!
+    @ObservedObject var lifts: LiftsObservable
+    private var daySelected: DateComponents?
     
     init?(daySelected: DateComponents?) {
         guard let daySelected = daySelected else {
@@ -18,6 +19,7 @@ struct LiftsOnDate: View {
         }
         self.daySelected = daySelected
         self.daySelected?.calendar = Calendar.current
+        lifts = LiftsObservable(dateComponents: daySelected)
     }
     
     func volume(lifts: [Lift]) -> String? {
@@ -32,16 +34,16 @@ struct LiftsOnDate: View {
         return "= \(formatted) \(Settings.shared.units.label)"
     }
     
-    private static var navigationTitleDateFormatter: DateFormatter {
+    private static var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .long
         return dateFormatter
     }
     
     var body: some View {
-        Lifts(dateComponents: daySelected) { (sections, _) in
+        NavigationView {
             List {
-                ForEach(sections ?? [LiftsSection](), id: \.id) { section in
+                ForEach(lifts.sections, id: \.name) { section in
                     let exercise = (section.objects!.first as! Lift).exercise!
                     VStack(alignment: .leading) {
                         NavigationLink(
@@ -65,7 +67,7 @@ struct LiftsOnDate: View {
                 }
             }
             .listRowInsets(EdgeInsets())
-            .navigationTitle(LiftsOnDate.navigationTitleDateFormatter.string(from: daySelected!.date!))
+            .navigationTitle(LiftsOnDate.dateFormatter.string(from: daySelected!.date!))
         }
     }
 }
