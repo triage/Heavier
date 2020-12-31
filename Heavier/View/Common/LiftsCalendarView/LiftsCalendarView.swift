@@ -23,11 +23,12 @@ struct LiftsCalendarView: UIViewRepresentable {
     private static let groupingDateFormat = "yyyy-MM-dd"
     
     init(lifts: [Lift], onDateSelect: @escaping DaySelectionhandler) {
-        self.lifts = Array(lifts)
+        self.lifts = lifts
         self.onDateSelect = onDateSelect
         self.days = Dictionary(grouping: lifts) { (lift) -> String in
             LiftsCalendarView.groupingDateFormatter.string(from: lift.timestamp!)
         }
+        print("days:\(days)")
     }
     
     func makeUIView(context: Context) -> CalendarView {
@@ -51,7 +52,6 @@ struct LiftsCalendarView: UIViewRepresentable {
     
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<LiftsCalendarView>) {
         uiView.daySelectionHandler = context.coordinator.daySelectionHandler
-        uiView.setContent(makeContent())
     }
     
     private static var groupingDateFormatter: DateFormatter {
