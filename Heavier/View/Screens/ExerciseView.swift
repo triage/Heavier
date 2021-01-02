@@ -174,6 +174,7 @@ struct ExerciseView: View {
                     })
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
+                    // This is stupid. If I don't put this here, after saving a new item to the context, the back button disappears. Likely Apple bug.
                     Text("")
                 }
             }
