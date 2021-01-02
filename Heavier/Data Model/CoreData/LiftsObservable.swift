@@ -10,7 +10,7 @@ import CoreData
 
 final class LiftsObservable: NSObject, ObservableObject {
     @Published var lifts: [Lift] = []
-    @Published var sections: [NSFetchedResultsSectionInfo] = []
+    @Published var sections: [LiftsSection] = []
     private let fetchedResultsController: NSFetchedResultsController<Lift>
     
     private init(fetchedResultsController: NSFetchedResultsController<Lift>) {
@@ -22,7 +22,11 @@ final class LiftsObservable: NSObject, ObservableObject {
         do {
             try fetchedResultsController.performFetch()
             lifts = fetchedResultsController.fetchedObjects ?? []
-            sections = fetchedResultsController.sections ?? []
+            if let sections = fetchedResultsController.sections {
+                self.sections = sections.map {
+                    LiftsSection(section: $0)
+                }
+            }
         } catch {
             print("failed to fetch items!")
         }
@@ -53,6 +57,39 @@ extension LiftsObservable: NSFetchedResultsControllerDelegate {
             return
         }
         self.lifts = lifts
-        self.sections = sections
+        self.sections = sections.map {
+            LiftsSection(section: $0)
+        }
+    }
+}
+
+class LiftsSection: NSFetchedResultsSectionInfo, Identifiable, Hashable {
+    static func == (lhs: LiftsSection, rhs: LiftsSection) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    let exercise: Exercise
+    init(section: NSFetchedResultsSectionInfo) {
+        exercise = (section.objects!.first as! Lift).exercise!
+        self.name = section.name
+        self.indexTitle = section.indexTitle
+        self.numberOfObjects = section.numberOfObjects
+        self.objects = section.objects
+    }
+    var name: String
+    
+    var indexTitle: String?
+    
+    var numberOfObjects: Int
+    
+    var objects: [Any]?
+    
+    var id: String {
+        (self.objects!.last as! Lift).exercise!.id!.uuidString
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.finalize()
     }
 }

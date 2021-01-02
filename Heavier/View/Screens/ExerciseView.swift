@@ -137,20 +137,18 @@ struct RecentLift: View {
 struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
-    @ObservedObject var lifts: LiftsObservable
-    @Environment(\.presentationMode) var presentation
+    @StateObject var lifts: LiftsObservable
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
             return nil
         }
         self.exercise = exercise
-        lifts = LiftsObservable(exercise: exercise, ascending: false)
+        _lifts = .init(wrappedValue: LiftsObservable(exercise: exercise, ascending: false))
     }
     
-    struct Content: View {
-        @ObservedObject var lifts: LiftsObservable
-        var body: some View {
+    var body: some View {
+        VStack {
             if lifts.lifts.count > 0 {
                 VStack {
                     List {
@@ -164,25 +162,24 @@ struct ExerciseView: View {
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
             }
         }
-    }
-    
-    var body: some View {
-        Content(lifts: lifts)
-            .navigationTitle(exercise.name!)
-            .toolbar(
-                content: {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            liftViewPresented = true
-                        }, label: {
-                            Image(systemName: "plus")
-                                .font(.system(size: Theme.Font.Size.large))
-                        })
-                    }
+        .navigationTitle(exercise.name!)
+        .toolbar(
+            content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        liftViewPresented = true
+                    }, label: {
+                        Image(systemName: "plus")
+                            .font(.system(size: Theme.Font.Size.large))
+                    })
                 }
-            ).sheet(isPresented: $liftViewPresented) {
-                LiftView(exercise: exercise, lift: lifts.lifts.first, presented: $liftViewPresented)
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("")
+                }
             }
+        ).sheet(isPresented: $liftViewPresented) {
+            LiftView(exercise: exercise, lift: lifts.lifts.first, presented: $liftViewPresented)
+        }
     }
 }
 

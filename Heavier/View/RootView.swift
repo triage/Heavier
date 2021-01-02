@@ -15,24 +15,31 @@ struct RootCalendarView: View {
         @Published var dateComponents: DateComponents?
     }
     
-    @ObservedObject var lifts = LiftsObservable(exercise: nil)
+    @StateObject var lifts = LiftsObservable(exercise: nil)
     @StateObject private var daySelected = DateComponentsObservable()
     @State var isPresented = false
     
     private static let title = "Calendar"
     
     var body: some View {
-        LiftsCalendarView(lifts: lifts.lifts) { day in
-            daySelected.dateComponents = day.components
-            isPresented.toggle()
-        }
+        return VStack {
+            LiftsCalendarView(lifts: lifts.lifts) { day in
+                daySelected.dateComponents = day.components
+                isPresented.toggle()
+            }
             .frame(maxWidth: .infinity,
                     maxHeight: .infinity,
                     alignment: .topLeading)
             .navigationTitle(RootCalendarView.title)
-            .sheet(isPresented: $isPresented) {
-                LiftsOnDate(daySelected: daySelected.dateComponents)
-            }.background(Color.blue)
+            .background(Color.blue)
+            NavigationLink(
+                destination: LiftsOnDate(daySelected: daySelected.dateComponents),
+                isActive: $isPresented,
+                label: {
+                    EmptyView()
+                }
+            )
+        }
     }
 }
 

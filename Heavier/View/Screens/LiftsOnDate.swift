@@ -10,28 +10,18 @@ import SwiftUI
 
 struct LiftsOnDate: View {
     
-    @ObservedObject var lifts: LiftsObservable
-    private var daySelected: DateComponents?
+    @StateObject var lifts: LiftsObservable
+    @State var shouldPushToExerciseView = false
+    
+    private let daySelected: DateComponents
     
     init?(daySelected: DateComponents?) {
-        guard let daySelected = daySelected else {
+        guard var daySelected = daySelected else {
             return nil
         }
+        daySelected.calendar = Calendar.autoupdatingCurrent
         self.daySelected = daySelected
-        self.daySelected?.calendar = Calendar.current
-        lifts = LiftsObservable(dateComponents: daySelected)
-    }
-    
-    func volume(lifts: [Lift]) -> String? {
-        if lifts.isBodyweight {
-            return "\(lifts.reps) reps"
-        }
-        guard
-            let volume = Lift.localize(weight: lifts.volume),
-            let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
-                return nil
-        }
-        return "= \(formatted) \(Settings.shared.units.label)"
+        _lifts = .init(wrappedValue: LiftsObservable(dateComponents: daySelected))
     }
     
     private static var dateFormatter: DateFormatter {
@@ -40,20 +30,30 @@ struct LiftsOnDate: View {
         return dateFormatter
     }
     
-    var body: some View {
-        NavigationView {
-            List {
-                ForEach(lifts.sections, id: \.name) { section in
-                    let exercise = (section.objects!.first as! Lift).exercise!
+    struct Row: View {
+        let section: LiftsSection
+        
+        func volume(lifts: [Lift]) -> String? {
+            if lifts.isBodyweight {
+                return "\(lifts.reps) reps"
+            }
+            guard
+                let volume = Lift.localize(weight: lifts.volume),
+                let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
+                    return nil
+            }
+            return "= \(formatted) \(Settings.shared.units.label)"
+        }
+
+        var body: some View {
+            NavigationLink(
+                destination: ExerciseView(exercise: section.exercise),
+                label: {
                     VStack(alignment: .leading) {
-                        NavigationLink(
-                            destination: NavigationLazyView(
-                                ExerciseView(exercise: exercise)
-                            )) {
-                                Text(exercise.name!)
-                                    .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                                    .padding([.bottom, .top], Theme.Spacing.medium)
-                            }
+                        Text(section.exercise.name!)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
+                            .padding([.bottom, .top], Theme.Spacing.medium)
+                        
                         if let lifts = section.objects as? [Lift] {
                             GroupedLiftsOnDay(lifts: lifts)
 
@@ -65,10 +65,27 @@ struct LiftsOnDate: View {
                         }
                     }
                 }
+            )
+        }
+    }
+    
+    var navigationTitle: String? {
+        guard let date = daySelected.date else {
+            return nil
+        }
+        return LiftsOnDate.dateFormatter.string(from: date)
+    }
+    
+    var body: some View {
+        VStack {
+            List {
+                ForEach(lifts.sections, id: \.id) { section in
+                    Row(section: section)
+                }
             }
             .listRowInsets(EdgeInsets())
-            .navigationTitle(LiftsOnDate.dateFormatter.string(from: daySelected!.date!))
         }
+        .navigationTitle(navigationTitle ?? "")
     }
 }
 

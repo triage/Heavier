@@ -65,13 +65,16 @@ struct LiftsCalendarView: UIViewRepresentable {
         let calendar = Calendar(identifier: .gregorian)
         let components = calendar.dateComponents([.day, .month, .year], from: date)
         
-        let calendarBounds: ClosedRange<Date>
+        var calendarBounds: ClosedRange<Date>
         if let timestampBounds = Lift.timestampBounds {
             calendarBounds = timestampBounds
         } else {
             let startDate = calendar.date(from: DateComponents(year: components.year, month: components.month, day: 1))!
             let endDate = calendar.date(byAdding: DateComponents(calendar: calendar, month: 1), to: startDate)!
             calendarBounds = startDate...endDate
+        }
+        if calendarBounds.upperBound < Date() {
+            calendarBounds = calendarBounds.lowerBound...Date()
         }
         
         return CalendarViewContent(
