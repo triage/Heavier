@@ -63,11 +63,7 @@ extension LiftsObservable: NSFetchedResultsControllerDelegate {
     }
 }
 
-class LiftsSection: NSFetchedResultsSectionInfo, Identifiable, Hashable {
-    static func == (lhs: LiftsSection, rhs: LiftsSection) -> Bool {
-        lhs.id == rhs.id
-    }
-    
+class LiftsSection: NSFetchedResultsSectionInfo {
     let exercise: Exercise
     init(section: NSFetchedResultsSectionInfo) {
         exercise = (section.objects!.first as! Lift).exercise!
@@ -83,13 +79,4 @@ class LiftsSection: NSFetchedResultsSectionInfo, Identifiable, Hashable {
     var numberOfObjects: Int
     
     var objects: [Any]?
-    
-    var id: String {
-        (self.objects!.last as! Lift).exercise!.id!.uuidString
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.finalize()
-    }
 }

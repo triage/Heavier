@@ -11,8 +11,6 @@ import SwiftUI
 struct LiftsOnDate: View {
     
     @StateObject var lifts: LiftsObservable
-    @State var shouldPushToExerciseView = false
-    
     private let daySelected: DateComponents
     
     init?(daySelected: DateComponents?) {
@@ -79,7 +77,7 @@ struct LiftsOnDate: View {
     var body: some View {
         VStack {
             List {
-                ForEach(lifts.sections, id: \.id) { section in
+                ForEach(lifts.sections, id: \.name) { section in
                     Row(section: section)
                 }
             }

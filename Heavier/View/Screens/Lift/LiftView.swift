@@ -103,12 +103,13 @@ struct LiftView: View {
         lift.exercise = exercise
         do {
             try? managedObjectContext.save()
+            exercise.clearLastGroupShortDescriptionCache()
+            
+            let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
+            hapticFeedback.impactOccurred()
+            
+            presented.toggle()
         }
-        
-        let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
-        hapticFeedback.impactOccurred()
-        
-        presented.toggle()
     }
 
     var body: some View {

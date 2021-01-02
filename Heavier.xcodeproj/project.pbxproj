@@ -65,6 +65,8 @@
 		795A76C52599006E0094052B /* LiftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76C42599006E0094052B /* LiftButton.swift */; };
 		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
 		79791D77259A9D9C005AAE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 071E3906251AF3F900A35799 /* Assets.xcassets */; };
+		79886C2825A00D3500FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
+		79886C4A25A00DFC00FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
 		798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BB51C2597E6AE00171407 /* ObservableValue.swift */; };
 		79B687FC259A87B500845127 /* HeavierAppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B687FB259A87B500845127 /* HeavierAppClipApp.swift */; };
 		79B68803259A87B700845127 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79B68802259A87B700845127 /* Preview Assets.xcassets */; };
@@ -245,6 +247,7 @@
 		795A76BC25982A800094052B /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		795A76C42599006E0094052B /* LiftButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftButton.swift; sourceTree = "<group>"; };
 		79791D96259AC94D005AAE8C /* Heavier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heavier.entitlements; sourceTree = "<group>"; };
+		79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+Relevance.swift"; sourceTree = "<group>"; };
 		798BB51A2597E62100171407 /* Overload 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 4.xcdatamodel"; sourceTree = "<group>"; };
 		798BB51C2597E6AE00171407 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
 		79B687F9259A87B500845127 /* HeavierAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeavierAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -554,18 +557,8 @@
 		07D435382547D66A00F16668 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */,
-				077F8F45256987680075B307 /* Exercise+Init.swift */,
-				079E7473256B363200D87F98 /* Exercise+LiftDate.swift */,
-				0702218325715A4300456C4C /* Exercise+PreviewContent.swift */,
-				079E747B256B600100D87F98 /* Lift+Bodyweight.swift */,
-				077F8F4025697E060075B307 /* Lift+FetchRequest.swift */,
-				07BD42872576748100E5CA05 /* Lift+Grouping.swift */,
-				070221882571D2DF00456C4C /* Lift+Range.swift */,
-				07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */,
-				0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */,
-				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
-				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
+				79886C2F25A00D6B00FC6CDC /* Exercise */,
+				79886C3625A00D7500FC6CDC /* Lift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -595,6 +588,33 @@
 				07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */,
 			);
 			path = Conversion;
+			sourceTree = "<group>";
+		};
+		79886C2F25A00D6B00FC6CDC /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */,
+				077F8F45256987680075B307 /* Exercise+Init.swift */,
+				079E7473256B363200D87F98 /* Exercise+LiftDate.swift */,
+				0702218325715A4300456C4C /* Exercise+PreviewContent.swift */,
+				79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */,
+			);
+			path = Exercise;
+			sourceTree = "<group>";
+		};
+		79886C3625A00D7500FC6CDC /* Lift */ = {
+			isa = PBXGroup;
+			children = (
+				079E747B256B600100D87F98 /* Lift+Bodyweight.swift */,
+				077F8F4025697E060075B307 /* Lift+FetchRequest.swift */,
+				07BD42872576748100E5CA05 /* Lift+Grouping.swift */,
+				070221882571D2DF00456C4C /* Lift+Range.swift */,
+				07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */,
+				0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */,
+				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
+				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
+			);
+			path = Lift;
 			sourceTree = "<group>";
 		};
 		798BB51B2597E6A200171407 /* Combine */ = {
@@ -974,6 +994,7 @@
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
 				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
+				79886C2825A00D3500FC6CDC /* Exercise+Relevance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1043,6 +1064,7 @@
 				79B688AB259A89CD00845127 /* NavigationLazyView.swift in Sources */,
 				79B688AC259A89CD00845127 /* TextView.swift in Sources */,
 				79B687FC259A87B500845127 /* HeavierAppClipApp.swift in Sources */,
+				79886C4A25A00DFC00FC6CDC /* Exercise+Relevance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
