@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import HorizonCalendar
 
 struct OlderLifts: View {
     private let sections: [NSFetchedResultsSectionInfo]
@@ -138,6 +139,7 @@ struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
     @StateObject var lifts: LiftsObservable
+    @StateObject var months: LiftsObservable
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
@@ -145,14 +147,38 @@ struct ExerciseView: View {
         }
         self.exercise = exercise
         _lifts = .init(wrappedValue: LiftsObservable(exercise: exercise, ascending: false))
+        _months = .init(
+            wrappedValue:
+                LiftsObservable(
+                    exercise: exercise,
+                    ascending: false,
+                    sectionNameKeyPath: #keyPath(Lift.monthGroupingIdentifier)
+                )
+        )
     }
     
+    let columns = [
+        GridItem(.fixed(UIScreen.main.bounds.size.width))
+    ]
+    
+    // RecentLift(lift: lifts.lifts.first)
     var body: some View {
         VStack {
             if lifts.lifts.count > 0 {
                 VStack {
                     List {
-                        RecentLift(lift: lifts.lifts.first)
+                        ScrollView {
+                            LazyHStack {
+                                ForEach(months.sections, id: \.name) { section in
+                                    LiftsCalendarView(lifts: section.lifts!, onDateSelect: { (day) in
+                                        print("hi")
+                                    }, monthsLayout: MonthsLayout.horizontal(monthWidth: UIScreen.main.bounds.width)
+                                    ).frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
+                                }
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
+                        .offset(x: -Theme.Spacing.large)
                         OlderLifts(sections: lifts.sections)
                     }
                     .listStyle(PlainListStyle())

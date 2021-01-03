@@ -41,11 +41,11 @@ final class LiftsObservable: NSObject, ObservableObject {
         ))
     }
     
-    convenience init(exercise: Exercise?, ascending: Bool = true) {
+    convenience init(exercise: Exercise?, ascending: Bool = true, sectionNameKeyPath: String = #keyPath(Lift.dayGroupingIdentifier)) {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(exercise: exercise, ascending: ascending),
             managedObjectContext: PersistenceController.shared.container.viewContext,
-            sectionNameKeyPath: #keyPath(Lift.dayGroupingIdentifier),
+            sectionNameKeyPath: sectionNameKeyPath,
             cacheName: nil
         ))
     }
@@ -79,4 +79,8 @@ class LiftsSection: NSFetchedResultsSectionInfo {
     var numberOfObjects: Int
     
     var objects: [Any]?
+    
+    var lifts: [Lift]? {
+        return objects as? [Lift]
+    }
 }

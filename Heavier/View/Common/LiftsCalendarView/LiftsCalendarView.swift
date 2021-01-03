@@ -18,12 +18,13 @@ struct LiftsCalendarView: UIViewRepresentable {
     let lifts: [Lift]
     let days: [String: [Lift]]
     let onDateSelect: DaySelectionhandler
-    
+    let monthsLayout: MonthsLayout
     static let minHeight: CGFloat = 420
     private static let groupingDateFormat = "yyyy-MM-dd"
     
-    init(lifts: [Lift], onDateSelect: @escaping DaySelectionhandler) {
+    init(lifts: [Lift], onDateSelect: @escaping DaySelectionhandler, monthsLayout: MonthsLayout = MonthsLayout.vertical(options: VerticalMonthsLayoutOptions())) {
         self.lifts = lifts
+        self.monthsLayout = monthsLayout
         self.onDateSelect = onDateSelect
         self.days = Dictionary(grouping: lifts) { (lift) -> String in
             LiftsCalendarView.groupingDateFormatter.string(from: lift.timestamp!)
@@ -80,7 +81,7 @@ struct LiftsCalendarView: UIViewRepresentable {
         return CalendarViewContent(
             calendar: calendar,
             visibleDateRange: calendarBounds,
-            monthsLayout: .vertical(options: VerticalMonthsLayoutOptions())
+            monthsLayout: monthsLayout
         ).withDayItemModelProvider { day in
             CalendarItemModel<DayLabel>(
                 invariantViewProperties: .init(),

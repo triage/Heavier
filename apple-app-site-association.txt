@@ -1,5 +1,13 @@
 {
     "appclips": {
-        "apps": ["JM3283H9KB.com.strategicinformationservices.Overload.Clip"]
+        "apps": [
+            "JM3283H9KB.com.strategicinformationservices.Overload.Clip"
+        ]
+    },
+    "applinks": {
+        "apps": [
+            "JM3283H9KB.com.strategicinformationservices.Overload.Clip"
+        ],
+        "details": []
     }
-} 
+}
