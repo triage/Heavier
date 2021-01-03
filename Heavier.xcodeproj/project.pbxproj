@@ -128,6 +128,10 @@
 		79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
 		79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D77EA72599743B0051F03B /* MonthLabel.swift */; };
 		79D77EAD259974760051F03B /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D77EAC259974760051F03B /* DayLabel.swift */; };
+		79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 79DF5E5125A16DE2000067E4 /* SwiftUIPager */; };
+		79DF5E5A25A16ED6000067E4 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 79DF5E5925A16ED6000067E4 /* SwiftUIPager */; };
+		79DF5E6225A17896000067E4 /* Lift+Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF5E6125A17896000067E4 /* Lift+Bounds.swift */; };
+		79DF5E6925A1792A000067E4 /* Lift+Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF5E6125A17896000067E4 /* Lift+Bounds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,6 +272,7 @@
 		79D77EA72599743B0051F03B /* MonthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthLabel.swift; sourceTree = "<group>"; };
 		79D77EAC259974760051F03B /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		79D77EB1259A0AF80051F03B /* Overload 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 5.xcdatamodel"; sourceTree = "<group>"; };
+		79DF5E6125A17896000067E4 /* Lift+Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Bounds.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +282,7 @@
 			files = (
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
 				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
+				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +306,7 @@
 			files = (
 				79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */,
 				79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */,
+				79DF5E5A25A16ED6000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +618,7 @@
 				070221882571D2DF00456C4C /* Lift+Range.swift */,
 				07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */,
 				0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */,
+				79DF5E6125A17896000067E4 /* Lift+Bounds.swift */,
 				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
 				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
 			);
@@ -701,6 +709,7 @@
 			packageProductDependencies = (
 				0702215D256DFA2C00456C4C /* HorizonCalendar */,
 				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
+				79DF5E5125A16DE2000067E4 /* SwiftUIPager */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -758,6 +767,7 @@
 			packageProductDependencies = (
 				79B688D1259A8BB300845127 /* HorizonCalendar */,
 				79B688D3259A8BB300845127 /* SwiftlySearch */,
+				79DF5E5925A16ED6000067E4 /* SwiftUIPager */,
 			);
 			productName = HeavierAppClip;
 			productReference = 79B687F9259A87B500845127 /* HeavierAppClip.app */;
@@ -844,6 +854,7 @@
 			packageReferences = (
 				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
+				79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -981,6 +992,7 @@
 				0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */,
 				0781F2A6254E521F00B9AE63 /* DifferenceView.swift in Sources */,
 				07DA92DE25850A2100FB95BB /* MetricImperialConversion.swift in Sources */,
+				79DF5E6225A17896000067E4 /* Lift+Bounds.swift in Sources */,
 				077F8F46256987680075B307 /* Exercise+Init.swift in Sources */,
 				798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */,
 				07BD42882576748100E5CA05 /* Lift+Grouping.swift in Sources */,
@@ -1051,6 +1063,7 @@
 				79B6889D259A89CD00845127 /* Persistence.swift in Sources */,
 				79B6889E259A89CD00845127 /* Settings.swift in Sources */,
 				79B6889F259A89CD00845127 /* ObservableValue.swift in Sources */,
+				79DF5E6925A1792A000067E4 /* Lift+Bounds.swift in Sources */,
 				79B688A0259A89CD00845127 /* DateComponents+Range.swift in Sources */,
 				79B688A1259A89CD00845127 /* JSONSerialization+Load.swift in Sources */,
 				79B688A2259A89CD00845127 /* Color+Overload.swift in Sources */,
@@ -1584,6 +1597,14 @@
 				kind = branch;
 			};
 		};
+		79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.14.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1606,6 +1627,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
+		};
+		79DF5E5125A16DE2000067E4 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
+		79DF5E5925A16ED6000067E4 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
 		};
 /* End XCSwiftPackageProductDependency section */
 

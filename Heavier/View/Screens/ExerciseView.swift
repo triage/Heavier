@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import CoreData
 import HorizonCalendar
+import SwiftUIPager
 
 struct OlderLifts: View {
     private let sections: [NSFetchedResultsSectionInfo]
@@ -151,7 +152,7 @@ struct ExerciseView: View {
             wrappedValue:
                 LiftsObservable(
                     exercise: exercise,
-                    ascending: false,
+                    ascending: true,
                     sectionNameKeyPath: #keyPath(Lift.monthGroupingIdentifier)
                 )
         )
@@ -161,24 +162,46 @@ struct ExerciseView: View {
         GridItem(.fixed(UIScreen.main.bounds.size.width))
     ]
     
+    @State var page: Int = 0
+    
+    let screenWidth = UIScreen.main.bounds.width
+    
     // RecentLift(lift: lifts.lifts.first)
     var body: some View {
         VStack {
             if lifts.lifts.count > 0 {
                 VStack {
                     List {
-                        ScrollView {
-                            LazyHStack {
-                                ForEach(months.sections, id: \.name) { section in
-                                    LiftsCalendarView(lifts: section.lifts!, onDateSelect: { (day) in
+                        Pager(page: $page,
+                              data: months.sections,
+                              id: \.name,
+                              content: { section in
+                                // create a page based on the data passed
+                                LiftsCalendarView(
+                                    lifts: section.lifts!,
+                                    onDateSelect: { (day) in
                                         print("hi")
-                                    }, monthsLayout: MonthsLayout.horizontal(monthWidth: UIScreen.main.bounds.width)
-                                    ).frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
-                                }
-                            }
-                        }
-                        .frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
-                        .offset(x: -Theme.Spacing.large)
+                                    },
+                                    monthsLayout: MonthsLayout.vertical(options: VerticalMonthsLayoutOptions()),
+                                    timestampBounds: section.lifts?.timestampBounds
+                                ).frame(width: screenWidth, height: LiftsCalendarView.minHeight)
+                              }
+                        ).preferredItemSize(CGSize(width: screenWidth, height: LiftsCalendarView.minHeight))
+                        .frame(height: LiftsCalendarView.minHeight)
+                        .clipped()
+//                        ScrollView {
+//                            LazyHStack {
+//                                ForEach(months.sections, id: \.name) { section in
+//                                    LiftsCalendarView(lifts: section.lifts!, onDateSelect: { (day) in
+//                                        print("hi")
+//                                    }, monthsLayout: MonthsLayout.horizontal(monthWidth: UIScreen.main.bounds.width)
+//                                    ).frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
+//                                }
+//                            }
+//                        }
+//                        .frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
+//                        .offset(x: -Theme.Spacing.large)
+                        
                         OlderLifts(sections: lifts.sections)
                     }
                     .listStyle(PlainListStyle())

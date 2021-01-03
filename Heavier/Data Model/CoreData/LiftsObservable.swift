@@ -63,7 +63,11 @@ extension LiftsObservable: NSFetchedResultsControllerDelegate {
     }
 }
 
-class LiftsSection: NSFetchedResultsSectionInfo {
+class LiftsSection: NSFetchedResultsSectionInfo, Equatable {
+    static func == (lhs: LiftsSection, rhs: LiftsSection) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
     let exercise: Exercise
     init(section: NSFetchedResultsSectionInfo) {
         exercise = (section.objects!.first as! Lift).exercise!
