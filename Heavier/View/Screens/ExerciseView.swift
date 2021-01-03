@@ -139,6 +139,7 @@ struct RecentLift: View {
 struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
+    @State var page: Int
     @StateObject var lifts: LiftsObservable
     @StateObject var months: LiftsObservable
     
@@ -148,60 +149,72 @@ struct ExerciseView: View {
         }
         self.exercise = exercise
         _lifts = .init(wrappedValue: LiftsObservable(exercise: exercise, ascending: false))
+        
+        let monthsObservable = LiftsObservable(
+            exercise: exercise,
+            ascending: true,
+            sectionNameKeyPath: #keyPath(Lift.monthGroupingIdentifier)
+        )
         _months = .init(
             wrappedValue:
-                LiftsObservable(
-                    exercise: exercise,
-                    ascending: true,
-                    sectionNameKeyPath: #keyPath(Lift.monthGroupingIdentifier)
-                )
+                monthsObservable
         )
+        _page = .init(initialValue: monthsObservable.sections.count - 1)
     }
     
-    let columns = [
-        GridItem(.fixed(UIScreen.main.bounds.size.width))
-    ]
-    
-    @State var page: Int = 0
-    
-    let screenWidth = UIScreen.main.bounds.width
+    struct ExerciseCalendar: View {
+        let sections: [LiftsSection]
+        private static let screenWidth = UIScreen.main.bounds.width
+        private static let layoutMargin = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        @Binding var page: Int
+        
+        var body: some View {
+            Group {
+                Pager(page: $page,
+                      data: sections,
+                      id: \.name,
+                      content: { section in
+                        LiftsCalendarView(
+                            lifts: section.lifts!,
+                            timestampBounds: section.lifts?.timestampBounds,
+                            monthsLayout: MonthsLayout.horizontal(
+                                monthWidth: ExerciseCalendar.screenWidth - Theme.Spacing.edgesDefault
+                            ),
+                            onDateSelect: { (day) in
+                                print("hi")
+                            }
+                        ).offset(x: -ExerciseCalendar.layoutMargin.left)
+                      }
+                )
+                .expandPageToEdges()
+                .preferredItemSize(
+                    CGSize(
+                        width: ExerciseCalendar.screenWidth,
+                        height: LiftsCalendarView.calendarHeight
+                    )
+                )
+                .frame(
+                    width: ExerciseCalendar.screenWidth,
+                    height: LiftsCalendarView.calendarHeight
+                )
+            }
+            .padding([.top], Theme.Spacing.smallPlus)
+            .frame(
+                width: ExerciseCalendar.screenWidth,
+                height: LiftsCalendarView.frameHeight
+            )
+            .clipped()
+            .offset(x: -ExerciseCalendar.layoutMargin.horizontal, y: 0.0)
+        }
+    }
     
     // RecentLift(lift: lifts.lifts.first)
     var body: some View {
-        VStack {
+        return VStack {
             if lifts.lifts.count > 0 {
                 VStack {
                     List {
-                        Pager(page: $page,
-                              data: months.sections,
-                              id: \.name,
-                              content: { section in
-                                // create a page based on the data passed
-                                LiftsCalendarView(
-                                    lifts: section.lifts!,
-                                    onDateSelect: { (day) in
-                                        print("hi")
-                                    },
-                                    monthsLayout: MonthsLayout.vertical(options: VerticalMonthsLayoutOptions()),
-                                    timestampBounds: section.lifts?.timestampBounds
-                                ).frame(width: screenWidth, height: LiftsCalendarView.minHeight)
-                              }
-                        ).preferredItemSize(CGSize(width: screenWidth, height: LiftsCalendarView.minHeight))
-                        .frame(height: LiftsCalendarView.minHeight)
-                        .clipped()
-//                        ScrollView {
-//                            LazyHStack {
-//                                ForEach(months.sections, id: \.name) { section in
-//                                    LiftsCalendarView(lifts: section.lifts!, onDateSelect: { (day) in
-//                                        print("hi")
-//                                    }, monthsLayout: MonthsLayout.horizontal(monthWidth: UIScreen.main.bounds.width)
-//                                    ).frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
-//                                }
-//                            }
-//                        }
-//                        .frame(width: UIScreen.main.bounds.width, height: LiftsCalendarView.minHeight, alignment: .topLeading)
-//                        .offset(x: -Theme.Spacing.large)
-                        
+                        ExerciseCalendar(sections: months.sections, page: $page)
                         OlderLifts(sections: lifts.sections)
                     }
                     .listStyle(PlainListStyle())
@@ -225,7 +238,7 @@ struct ExerciseView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     // This is stupid. If I don't put this here, after
                     // saving a new item to the context, the back button
-                    // disappears. Likely Apple bug.
+                    // disappears. Possible Apple bug.
                     Text("")
                 }
             }
@@ -251,7 +264,7 @@ struct ExerciseView_Previews: PreviewProvider {
             lift.notes = "Light weight, baby!"
             lift.weight = 20
             lift.id = UUID()
-            lift.timestamp = Date()
+            lift.timestamp = Date(timeIntervalSince1970: 1608508800)
             lifts.append(lift)
         }
         exercise.lifts = NSOrderedSet(array: lifts)

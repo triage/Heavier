@@ -33,6 +33,7 @@ class Theme {
         static let mediumPlus: CGFloat = 18.0
         static let large: CGFloat = 20.0
         static let giga: CGFloat = 24.0
+        static let edgesDefault: CGFloat = 20.0
     }
     
     enum Font {

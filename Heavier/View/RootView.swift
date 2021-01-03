@@ -23,7 +23,10 @@ struct RootCalendarView: View {
     
     var body: some View {
         return VStack {
-            LiftsCalendarView(lifts: lifts.lifts) { day in
+            LiftsCalendarView(
+                lifts: lifts.lifts,
+                timestampBounds: Lift.timestampBounds
+            ) { day in
                 daySelected.dateComponents = day.components
                 isPresented.toggle()
             }

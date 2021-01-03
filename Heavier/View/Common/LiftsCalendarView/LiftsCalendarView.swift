@@ -21,14 +21,23 @@ struct LiftsCalendarView: UIViewRepresentable {
     private let monthsLayout: MonthsLayout
     private let timestampBounds: ClosedRange<Date>?
     
-    static let minHeight: CGFloat = 420
+    /*
+     The height we must supply as the height of the calendar.
+     Anything less than this results in a crash.
+     */
+    static let calendarHeight: CGFloat = 420
+    /*
+     The maximum height the calendar will _actually_ be.
+     This is the height that we should clip to.
+     */
+    static let frameHeight: CGFloat = 410
     private static let groupingDateFormat = "yyyy-MM-dd"
     
     init(
         lifts: [Lift],
-        onDateSelect: @escaping DaySelectionhandler,
+        timestampBounds: ClosedRange<Date>? = nil,
         monthsLayout: MonthsLayout = MonthsLayout.vertical(options: VerticalMonthsLayoutOptions()),
-        timestampBounds: ClosedRange<Date>? = nil
+        onDateSelect: @escaping DaySelectionhandler
     ) {
         self.lifts = lifts
         self.monthsLayout = monthsLayout
@@ -39,9 +48,21 @@ struct LiftsCalendarView: UIViewRepresentable {
         }
     }
     
+    private var shouldScrollToDate: Bool {
+        let date = Date()
+        if let timestampBounds = timestampBounds,
+            date > timestampBounds.lowerBound &&
+            date < timestampBounds.upperBound {
+            return true
+        }
+        return false
+    }
+    
     func makeUIView(context: Context) -> CalendarView {
         let calendar = CalendarView(initialContent: makeContent())
-//        calendar.scroll(toDayContaining: Date(), scrollPosition: .centered, animated: false)
+        if shouldScrollToDate {
+            calendar.scroll(toDayContaining: Date(), scrollPosition: .centered, animated: false)
+        }
         return calendar
     }
     
@@ -70,21 +91,20 @@ struct LiftsCalendarView: UIViewRepresentable {
     }
     
     private func makeContent() -> CalendarViewContent {
-        let date = Date()
         let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents([.day, .month, .year], from: date)
-        
         var calendarBounds: ClosedRange<Date>
+        
         if let timestampBounds = timestampBounds {
             calendarBounds = timestampBounds
         } else {
-            if let timestampBounds = Lift.timestampBounds {
-                calendarBounds = timestampBounds
-            } else {
-                let startDate = calendar.date(from: DateComponents(year: components.year, month: components.month, day: 1))!
-                let endDate = calendar.date(byAdding: DateComponents(calendar: calendar, month: 1), to: startDate)!
-                calendarBounds = startDate...endDate
-            }
+            // default if there are no lifts yet - show current month
+            
+            let date = Date()
+            let components = calendar.dateComponents([.day, .month, .year], from: date)
+            let startDate = calendar.date(from: DateComponents(year: components.year, month: components.month, day: 1))!
+            let endDate = calendar.date(byAdding: DateComponents(calendar: calendar, month: 1), to: startDate)!
+            calendarBounds = startDate...endDate
+            
             if calendarBounds.upperBound < Date() {
                 calendarBounds = calendarBounds.lowerBound...Date()
             }
