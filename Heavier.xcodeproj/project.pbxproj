@@ -126,6 +126,8 @@
 		79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 79B688D3259A8BB300845127 /* SwiftlySearch */; };
 		79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79B8B27E25A26AA30099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
+		79B8B29325A2B1DB0099D932 /* SwiftUITrackableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 79B8B29225A2B1DB0099D932 /* SwiftUITrackableScrollView */; };
+		79B8B29B25A2B1E60099D932 /* SwiftUITrackableScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = 79B8B29A25A2B1E60099D932 /* SwiftUITrackableScrollView */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
 		79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
 		79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D77EA72599743B0051F03B /* MonthLabel.swift */; };
@@ -283,6 +285,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B8B29325A2B1DB0099D932 /* SwiftUITrackableScrollView in Frameworks */,
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
 				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
 				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
@@ -307,6 +310,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B8B29B25A2B1E60099D932 /* SwiftUITrackableScrollView in Frameworks */,
 				79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */,
 				79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */,
 				79DF5E5A25A16ED6000067E4 /* SwiftUIPager in Frameworks */,
@@ -730,6 +734,7 @@
 				0702215D256DFA2C00456C4C /* HorizonCalendar */,
 				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
 				79DF5E5125A16DE2000067E4 /* SwiftUIPager */,
+				79B8B29225A2B1DB0099D932 /* SwiftUITrackableScrollView */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -788,6 +793,7 @@
 				79B688D1259A8BB300845127 /* HorizonCalendar */,
 				79B688D3259A8BB300845127 /* SwiftlySearch */,
 				79DF5E5925A16ED6000067E4 /* SwiftUIPager */,
+				79B8B29A25A2B1E60099D932 /* SwiftUITrackableScrollView */,
 			);
 			productName = HeavierAppClip;
 			productReference = 79B687F9259A87B500845127 /* HeavierAppClip.app */;
@@ -875,6 +881,7 @@
 				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
 				79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				79B8B29125A2B1DB0099D932 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -1619,6 +1626,14 @@
 				kind = branch;
 			};
 		};
+		79B8B29125A2B1DB0099D932 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxnatchanon/trackable-scroll-view.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -1649,6 +1664,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
+		};
+		79B8B29225A2B1DB0099D932 /* SwiftUITrackableScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79B8B29125A2B1DB0099D932 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */;
+			productName = SwiftUITrackableScrollView;
+		};
+		79B8B29A25A2B1E60099D932 /* SwiftUITrackableScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79B8B29125A2B1DB0099D932 /* XCRemoteSwiftPackageReference "trackable-scroll-view" */;
+			productName = SwiftUITrackableScrollView;
 		};
 		79DF5E5125A16DE2000067E4 /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;

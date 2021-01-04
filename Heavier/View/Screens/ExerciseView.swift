@@ -10,6 +10,7 @@ import SwiftUI
 import CoreData
 import HorizonCalendar
 import SwiftUIPager
+import SwiftUITrackableScrollView
 
 struct OlderLifts: View {
     private let sections: [NSFetchedResultsSectionInfo]
@@ -136,6 +137,68 @@ struct RecentLift: View {
     }
 }
 
+struct ExerciseCalendar: View {
+    private static let screenWidth = UIScreen.main.bounds.width
+    
+    private static let layoutMargin = UIEdgeInsets(
+        top: 0.0,
+        left: 10.0,
+        bottom: 0.0,
+        right: 10.0
+    )
+    
+    let sections: [LiftsSection]
+    
+    @Binding var page: Int
+    
+    var body: some View {
+        Group {
+            Pager(page: $page,
+                  data: sections,
+                  id: \.name,
+                  content: { section in
+                    LiftsCalendarView(
+                        lifts: section.lifts!,
+                        timestampBounds: section.lifts?.timestampBounds,
+                        monthsLayout: MonthsLayout.horizontal(
+                            monthWidth: ExerciseCalendar.screenWidth - Theme.Spacing.edgesDefault
+                        ),
+                        onDateSelect: { (day) in
+                            print("hi")
+                        }
+                    ).offset(x: -ExerciseCalendar.layoutMargin.left)
+                  }
+            )
+            .expandPageToEdges()
+            .preferredItemSize(
+                CGSize(
+                    width: ExerciseCalendar.screenWidth,
+                    height: LiftsCalendarView.calendarHeight
+                )
+            )
+            .frame(
+                width: ExerciseCalendar.screenWidth,
+                height: LiftsCalendarView.calendarHeight
+            )
+        }
+        .padding([.top], Theme.Spacing.smallPlus)
+        .frame(
+            width: ExerciseCalendar.screenWidth,
+            height: LiftsCalendarView.frameHeight
+        )
+        .clipped()
+        .offset(x: -ExerciseCalendar.layoutMargin.horizontal, y: 0.0)
+    }
+}
+
+struct CalendarButton: View {
+    var body: some View {
+        Group {
+            Image(systemName: "calendar")
+        }
+    }
+}
+
 struct ExerciseView: View {
     let exercise: Exercise
     @State var liftViewPresented = false
@@ -165,75 +228,28 @@ struct ExerciseView: View {
         _page = .init(initialValue: monthsObservable.sections.count - 1)
     }
     
-    struct ExerciseCalendar: View {
-        private static let screenWidth = UIScreen.main.bounds.width
-        
-        private static let layoutMargin = UIEdgeInsets(
-            top: 0.0,
-            left: 10.0,
-            bottom: 0.0,
-            right: 10.0
-        )
-        
-        let sections: [LiftsSection]
-        
-        @Binding var page: Int
-        
-        var body: some View {
-            Group {
-                Pager(page: $page,
-                      data: sections,
-                      id: \.name,
-                      content: { section in
-                        LiftsCalendarView(
-                            lifts: section.lifts!,
-                            timestampBounds: section.lifts?.timestampBounds,
-                            monthsLayout: MonthsLayout.horizontal(
-                                monthWidth: ExerciseCalendar.screenWidth - Theme.Spacing.edgesDefault
-                            ),
-                            onDateSelect: { (day) in
-                                print("hi")
-                            }
-                        ).offset(x: -ExerciseCalendar.layoutMargin.left)
-                      }
-                )
-                .expandPageToEdges()
-                .preferredItemSize(
-                    CGSize(
-                        width: ExerciseCalendar.screenWidth,
-                        height: LiftsCalendarView.calendarHeight
-                    )
-                )
-                .frame(
-                    width: ExerciseCalendar.screenWidth,
-                    height: LiftsCalendarView.calendarHeight
-                )
-            }
-            .padding([.top], Theme.Spacing.smallPlus)
-            .frame(
-                width: ExerciseCalendar.screenWidth,
-                height: LiftsCalendarView.frameHeight
-            )
-            .clipped()
-            .offset(x: -ExerciseCalendar.layoutMargin.horizontal, y: 0.0)
-        }
-    }
+    @State private var scrollViewContentOffset: CGFloat = 0.0
     
     // RecentLift(lift: lifts.lifts.first)
     var body: some View {
-        return VStack {
-            if lifts.lifts.count > 0 {
-                VStack {
-                    List {
-                        ExerciseCalendar(sections: months.sections, page: $page)
-                        OlderLifts(sections: lifts.sections)
-                    }
-                    .listStyle(PlainListStyle())
+        ZStack(alignment: .topLeading) {
+            TrackableScrollView(.vertical, showIndicators: false, contentOffset: $scrollViewContentOffset) {
+                if lifts.lifts.count > 0 {
+                    LazyVStack(alignment: .leading) {
+                            OlderLifts(sections: lifts.sections)
+                                .padding([.top], LiftsCalendarView.frameHeight)
+                                .padding([.leading], Theme.Spacing.large)
+                        }
+                } else {
+                    Text("No lifts recorded yet.")
+                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
                 }
-            } else {
-                Text("No lifts recorded yet.")
-                    .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
             }
+            
+            ExerciseCalendar(sections: months.sections, page: $page)
+                .offset(x: 20.0, y: -scrollViewContentOffset)
+            
+            CalendarButton()
         }
         .navigationTitle(exercise.name!)
         .toolbar(
@@ -268,7 +284,7 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         var lifts = [Lift]()
-        for _ in 0...19 {
+        for _ in 0...39 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10
             lift.sets = 1
@@ -289,7 +305,7 @@ struct ExerciseView_Previews: PreviewProvider {
         exerciseBodyweight.id = UUID()
         
         lifts.removeAll()
-        for _ in 0...0 {
+        for _ in 0...2 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10
             lift.sets = 2
