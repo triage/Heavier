@@ -148,7 +148,10 @@ struct ExerciseView: View {
             return nil
         }
         self.exercise = exercise
-        _lifts = .init(wrappedValue: LiftsObservable(exercise: exercise, ascending: false))
+        
+        _lifts = .init(
+            wrappedValue: LiftsObservable(exercise: exercise, ascending: false)
+        )
         
         let monthsObservable = LiftsObservable(
             exercise: exercise,
@@ -163,9 +166,17 @@ struct ExerciseView: View {
     }
     
     struct ExerciseCalendar: View {
-        let sections: [LiftsSection]
         private static let screenWidth = UIScreen.main.bounds.width
-        private static let layoutMargin = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        
+        private static let layoutMargin = UIEdgeInsets(
+            top: 0.0,
+            left: 10.0,
+            bottom: 0.0,
+            right: 10.0
+        )
+        
+        let sections: [LiftsSection]
+        
         @Binding var page: Int
         
         var body: some View {
