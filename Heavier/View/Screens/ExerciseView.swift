@@ -192,19 +192,34 @@ struct ExerciseCalendar: View {
 }
 
 struct CalendarButton: View {
+    let onPress: () -> Void
     var body: some View {
-        Group {
-            Image(systemName: "calendar")
-        }
+        Button(action: onPress, label: {
+            Group {
+                Image(systemName: "calendar")
+            }.padding(17.0)
+            .background(Color.white)
+            .overlay(
+                Circle()
+                    .strokeBorder(lineWidth: 2.0)
+            )
+        })
     }
 }
 
 struct ExerciseView: View {
     let exercise: Exercise
-    @State var liftViewPresented = false
-    @State var page: Int
-    @StateObject var lifts: LiftsObservable
-    @StateObject var months: LiftsObservable
+    
+    @State private var liftViewPresented = false
+    @State private var page: Int
+    @State private var scrollViewContentOffset: CGFloat = 0.0
+    @State private var showCalendarButton = false
+    
+    @StateObject private var lifts: LiftsObservable
+    @StateObject private var months: LiftsObservable
+    
+    private static let showCalendarButtonAtScrollOffset: CGFloat = 390.0
+    private static let animationDuration: TimeInterval = 0.18
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
@@ -228,29 +243,52 @@ struct ExerciseView: View {
         _page = .init(initialValue: monthsObservable.sections.count - 1)
     }
     
-    @State private var scrollViewContentOffset: CGFloat = 0.0
+    private func onScroll(value: CGFloat) {
+        if value > ExerciseView.showCalendarButtonAtScrollOffset && !showCalendarButton {
+            withAnimation(.easeOut(duration: ExerciseView.animationDuration)) {
+                showCalendarButton.toggle()
+            }
+        } else if value < ExerciseView.showCalendarButtonAtScrollOffset && showCalendarButton {
+            withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
+                showCalendarButton.toggle()
+            }
+        }
+    }
     
-    // RecentLift(lift: lifts.lifts.first)
+    @State var gestureChanged: _ChangedGesture<DragGesture>?
+    
+    private var dragGesture: DragGesture {
+        let gesture = DragGesture(minimumDistance: 0.0, coordinateSpace: .local)
+        gestureChanged = gesture.onChanged { (value) in
+            scrollViewContentOffset += value.translation.height
+        }
+        return gesture
+    }
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             TrackableScrollView(.vertical, showIndicators: false, contentOffset: $scrollViewContentOffset) {
                 if lifts.lifts.count > 0 {
                     LazyVStack(alignment: .leading) {
-                            OlderLifts(sections: lifts.sections)
-                                .padding([.top], LiftsCalendarView.frameHeight)
-                                .padding([.leading], Theme.Spacing.large)
-                        }
+                        OlderLifts(sections: lifts.sections)
+                            .padding([.leading], Theme.Spacing.large)
+                    }.padding([.top], LiftsCalendarView.frameHeight)
                 } else {
                     Text("No lifts recorded yet.")
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
                 }
             }
+            .onChange(of: scrollViewContentOffset, perform: onScroll)
             
             ExerciseCalendar(sections: months.sections, page: $page)
                 .offset(x: 20.0, y: -scrollViewContentOffset)
-            
-            CalendarButton()
+                .gesture(dragGesture)
         }
+        .overlay(
+            CalendarButton {}
+                .opacity(showCalendarButton ? 1.0 : 0.0)
+                .offset(x: -20, y: showCalendarButton ? 30 : -50), alignment: .topTrailing)
+        
         .navigationTitle(exercise.name!)
         .toolbar(
             content: {
@@ -284,15 +322,18 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         var lifts = [Lift]()
-        for _ in 0...39 {
-            let lift = Lift(context: PersistenceController.shared.container.viewContext)
-            lift.reps = 10
-            lift.sets = 1
-            lift.notes = "Light weight, baby!"
-            lift.weight = 20
-            lift.id = UUID()
-            lift.timestamp = Date(timeIntervalSince1970: 1608508800)
-            lifts.append(lift)
+        let secondsPerDay: TimeInterval = 60 * 60 * 24
+        for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 2)] {
+            for _ in 0...3 {
+                let lift = Lift(context: PersistenceController.shared.container.viewContext)
+                lift.reps = 10
+                lift.sets = 1
+                lift.notes = "Light weight, baby!"
+                lift.weight = 20
+                lift.id = UUID()
+                lift.timestamp = date
+                lifts.append(lift)
+            }
         }
         exercise.lifts = NSOrderedSet(array: lifts)
         
