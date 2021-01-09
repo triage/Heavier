@@ -68,6 +68,8 @@
 		79886C2825A00D3500FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
 		79886C4A25A00DFC00FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
 		798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BB51C2597E6AE00171407 /* ObservableValue.swift */; };
+		7994F6D125A9E71F004C14A9 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7994F6D025A9E71F004C14A9 /* Screen.swift */; };
+		7994F6D825AA0970004C14A9 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7994F6D025A9E71F004C14A9 /* Screen.swift */; };
 		79B687FC259A87B500845127 /* HeavierAppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B687FB259A87B500845127 /* HeavierAppClipApp.swift */; };
 		79B68803259A87B700845127 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79B68802259A87B700845127 /* Preview Assets.xcassets */; };
 		79B68814259A87B700845127 /* HeavierAppClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B68813259A87B700845127 /* HeavierAppClipTests.swift */; };
@@ -258,6 +260,7 @@
 		79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+Relevance.swift"; sourceTree = "<group>"; };
 		798BB51A2597E62100171407 /* Overload 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 4.xcdatamodel"; sourceTree = "<group>"; };
 		798BB51C2597E6AE00171407 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
+		7994F6D025A9E71F004C14A9 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		79B687F9259A87B500845127 /* HeavierAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeavierAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B687FB259A87B500845127 /* HeavierAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppClipApp.swift; sourceTree = "<group>"; };
 		79B687FD259A87B500845127 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -564,6 +567,7 @@
 			isa = PBXGroup;
 			children = (
 				07D435142547CD5900F16668 /* Fonts.swift */,
+				7994F6D025A9E71F004C14A9 /* Screen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1031,6 +1035,7 @@
 				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
 				79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
+				7994F6D125A9E71F004C14A9 /* Screen.swift in Sources */,
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
 				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
 				79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */,
@@ -1103,6 +1108,7 @@
 				79B688A9259A89CD00845127 /* MonthLabel.swift in Sources */,
 				79B688AA259A89CD00845127 /* GroupedLiftsOnDay.swift in Sources */,
 				79B688AB259A89CD00845127 /* NavigationLazyView.swift in Sources */,
+				7994F6D825AA0970004C14A9 /* Screen.swift in Sources */,
 				79B688AC259A89CD00845127 /* TextView.swift in Sources */,
 				79B687FC259A87B500845127 /* HeavierAppClipApp.swift in Sources */,
 				79B8B27E25A26AA30099D932 /* UIEdgeInsets+Edges.swift in Sources */,

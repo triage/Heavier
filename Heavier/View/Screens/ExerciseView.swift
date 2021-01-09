@@ -181,6 +181,7 @@ struct ExerciseCalendar: View {
                 height: LiftsCalendarView.calendarHeight
             )
         }
+        .background(Color.background)
         .padding([.top], Theme.Spacing.smallPlus)
         .frame(
             width: ExerciseCalendar.screenWidth,
@@ -198,7 +199,7 @@ struct CalendarButton: View {
             Group {
                 Image(systemName: "calendar")
             }.padding(17.0)
-            .background(Color.white)
+            .background(Color.background)
             .overlay(
                 Circle()
                     .strokeBorder(lineWidth: 2.0)
@@ -214,6 +215,9 @@ struct ExerciseView: View {
     @State private var page: Int
     @State private var scrollViewContentOffset: CGFloat = 0.0
     @State private var showCalendarButton = false
+    @State private var floatCalendar = false
+    @State private var calendarYOffset: CGFloat = 0.0
+    @State private var calendaryUnderlayOpacity: Double = 0.0
     
     @StateObject private var lifts: LiftsObservable
     @StateObject private var months: LiftsObservable
@@ -253,41 +257,84 @@ struct ExerciseView: View {
                 showCalendarButton.toggle()
             }
         }
+        if floatCalendar {
+            withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
+                floatCalendar.toggle()
+                calendaryUnderlayOpacity = 0.0
+                if showCalendarButton == false {
+                    showCalendarButton.toggle()
+                }
+            }
+        }
     }
     
-    @State var gestureChanged: _ChangedGesture<DragGesture>?
-    
-    private var dragGesture: DragGesture {
-        let gesture = DragGesture(minimumDistance: 0.0, coordinateSpace: .local)
-        gestureChanged = gesture.onChanged { (value) in
-            scrollViewContentOffset += value.translation.height
+    private func showCalendar() {
+        withAnimation(.easeOut(duration: ExerciseView.animationDuration)) {
+            floatCalendar.toggle()
+            calendaryUnderlayOpacity = 1.0
         }
-        return gesture
+    }
+    
+    private struct CalendarUnderlay: View {
+        let visible: Bool
+        var body: some View {
+            if visible {
+                Group {
+                    Text("")
+                }
+                .disabled(true)
+                .fillScreen()
+                .background(Color.overlay)
+                .edgesIgnoringSafeArea(.all)
+            } else {
+                EmptyView()
+            }
+        }
+    }
+    
+    func onTapUnderlay() {
+        withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
+            floatCalendar.toggle()
+            calendaryUnderlayOpacity = 0.0
+            showCalendarButton.toggle()
+        }
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            TrackableScrollView(.vertical, showIndicators: false, contentOffset: $scrollViewContentOffset) {
+        TrackableScrollView(.vertical, showIndicators: false, contentOffset: $scrollViewContentOffset) {
+            ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
                     LazyVStack(alignment: .leading) {
                         OlderLifts(sections: lifts.sections)
                             .padding([.leading], Theme.Spacing.large)
                     }.padding([.top], LiftsCalendarView.frameHeight)
+                    
+                    CalendarUnderlay(visible: floatCalendar)
+                        .opacity(calendaryUnderlayOpacity)
+                        .offset(x: 0.0, y: scrollViewContentOffset)
+                        .onTapGesture {
+                            onTapUnderlay()
+                        }
+
+                    ExerciseCalendar(sections: months.sections, page: $page)
+                        .offset(x: 20.0, y: floatCalendar ? scrollViewContentOffset : 0.0)
+                        .shadow(
+                            color: Color.black.opacity(floatCalendar ? 0.2 : 0.0),
+                            radius: 4.0, x: 0.0, y: 4.0
+                        )
                 } else {
                     Text("No lifts recorded yet.")
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
                 }
             }
-            .onChange(of: scrollViewContentOffset, perform: onScroll)
-            
-            ExerciseCalendar(sections: months.sections, page: $page)
-                .offset(x: 20.0, y: -scrollViewContentOffset)
-                .gesture(dragGesture)
-        }
+        }.onChange(of: scrollViewContentOffset, perform: onScroll)
         .overlay(
-            CalendarButton {}
-                .opacity(showCalendarButton ? 1.0 : 0.0)
-                .offset(x: -20, y: showCalendarButton ? 30 : -50), alignment: .topTrailing)
+            CalendarButton {
+                showCalendarButton.toggle()
+                showCalendar()
+            }
+            .opacity(showCalendarButton ? 1.0 : 0.0)
+            .offset(x: -20, y: showCalendarButton ? 30 : -50), alignment: .topTrailing)
         
         .navigationTitle(exercise.name!)
         .toolbar(
