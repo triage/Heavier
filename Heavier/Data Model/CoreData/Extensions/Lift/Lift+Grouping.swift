@@ -9,7 +9,7 @@ import Foundation
 
 extension Lift {
     
-    private static var dayGroupingFormatter: DateFormatter {
+    static var dayGroupingFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none
         dateFormatter.dateFormat = "yyyy-DD"

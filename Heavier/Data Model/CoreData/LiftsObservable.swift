@@ -41,7 +41,11 @@ final class LiftsObservable: NSObject, ObservableObject {
         ))
     }
     
-    convenience init(exercise: Exercise?, ascending: Bool = true, sectionNameKeyPath: String = #keyPath(Lift.dayGroupingIdentifier)) {
+    convenience init(
+        exercise: Exercise?,
+        ascending: Bool = true,
+        sectionNameKeyPath: String = #keyPath(Lift.dayGroupingIdentifier)
+    ) {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(exercise: exercise, ascending: ascending),
             managedObjectContext: PersistenceController.shared.container.viewContext,
