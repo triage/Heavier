@@ -66,7 +66,9 @@ struct OlderLifts: View {
                     return
                 }
                 let sectionId = Lift.dayGroupingFormatter.string(from: dateSelected)
-                proxy.scrollTo(sectionId, anchor: .top)
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    proxy.scrollTo(sectionId, anchor: .top)
+                }
             })
         }
     }
@@ -143,7 +145,7 @@ struct ExerciseCalendar: View {
             width: ExerciseCalendar.screenWidth,
             height: LiftsCalendarView.frameHeight
         )
-//        .clipped()
+        .clipped()
         .offset(x: -ExerciseCalendar.layoutMargin.horizontal, y: 0.0)
     }
 }
@@ -205,16 +207,16 @@ struct ExerciseView: View {
     }
     
     private func onScroll(value: CGFloat) {
-//        if floatCalendar {
-//            withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
-//                floatCalendar.toggle()
-//                calendaryUnderlayOpacity = 0.0
-//                if showCalendarButton == false {
-//                    showCalendarButton.toggle()
-//                }
-//            }
-//            return
-//        }
+        if floatCalendar {
+            withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
+                floatCalendar.toggle()
+                calendaryUnderlayOpacity = 0.0
+                if showCalendarButton == false {
+                    showCalendarButton.toggle()
+                }
+            }
+            return
+        }
         if value > ExerciseView.showCalendarButtonAtScrollOffset && !showCalendarButton {
             withAnimation(.easeOut(duration: ExerciseView.animationDuration)) {
                 showCalendarButton.toggle()
@@ -258,6 +260,10 @@ struct ExerciseView: View {
         }
     }
     
+    func onDateChanged(date: Date?) {
+        onTapUnderlay()
+    }
+    
     var calendarOffset: CGFloat {
         if floatCalendar {
             return scrollViewContentOffset
@@ -290,14 +296,11 @@ struct ExerciseView: View {
                         page: $page,
                         dateSelected: $dateSelected
                     )
-//                    .offset(x: Theme.Spacing.large, y: calendarOffset)
-//                    .offset(x: Theme.Spacing.large, y: calendarOffset)
-                    .padding([.top], calendarOffset)
-//                    .padding([.leading], Theme.Spacing.large)
-                    .shadow(
-                        color: Color.black.opacity(floatCalendar ? 0.12 : 0.0),
-                        radius: 3.0, x: 0.0, y: 3.0
-                    )
+                    .offset(x: Theme.Spacing.large, y: calendarOffset)
+//                    .shadow(
+//                        color: Color.black.opacity(floatCalendar ? 0.12 : 0.0),
+//                        radius: 3.0, x: 0.0, y: 3.0
+//                    )
                     
                 } else {
                     Text("No lifts recorded yet.")
@@ -305,6 +308,7 @@ struct ExerciseView: View {
                 }
             }
         }
+        .onChange(of: dateSelected, perform: onDateChanged)
         .onChange(of: scrollViewContentOffset, perform: onScroll)
         .overlay(
             CalendarButton {
