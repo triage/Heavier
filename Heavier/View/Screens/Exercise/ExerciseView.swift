@@ -33,9 +33,9 @@ struct ExerciseView: View {
     @State private var page: Int
     @State private var scrollViewContentOffset: CGFloat = 0.0
     @State private var showCalendarButton = false
-    @State private var floatCalendar = true
+    @State private var floatCalendar = false
     @State private var calendarYOffset: CGFloat = 0.0
-    @State private var calendaryUnderlayOpacity: Double = 1.0
+    @State private var calendaryUnderlayOpacity: Double = 0.0
     @State private var dateSelected: Date?
     
     @StateObject private var lifts: LiftsObservable
@@ -171,7 +171,7 @@ struct ExerciseView: View {
                     .shadow(
                         color: Color.black.opacity(floatCalendar ? 0.12 : 0.0),
                         radius: 3.0, x: 0.0, y: 3.0
-                    ).blur(radius: 10.0)
+                    )
                     
                     ExerciseCalendar(
                         sections: months.sections,
