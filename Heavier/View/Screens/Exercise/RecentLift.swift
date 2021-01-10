@@ -8,6 +8,23 @@
 import Foundation
 import SwiftUI
 
+struct RecentLiftMetric: View {
+    let value: CustomStringConvertible
+    let label: String
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(value.description)
+                .sfCompactDisplay(.medium, size: 44.0)
+                .minimumScaleFactor(0.2)
+                .lineLimit(0)
+            Text(label)
+                .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
+                .lineLimit(0)
+                .padding([.top], -Theme.Spacing.medium)
+        }
+    }
+}
+
 struct RecentLift: View {
     let lift: Lift?
     

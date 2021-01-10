@@ -36,7 +36,7 @@ struct RootCalendarView: View {
             .navigationTitle(RootCalendarView.title)
             .background(Color.blue)
             NavigationLink(
-                destination: LiftsOnDate(daySelected: daySelected.dateComponents),
+                destination: LiftsOnDateView(daySelected: daySelected.dateComponents),
                 isActive: $isPresented,
                 label: {
                     EmptyView()

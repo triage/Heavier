@@ -8,147 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
-import HorizonCalendar
-import SwiftUIPager
 import SwiftUITrackableScrollView
-
-struct OlderLifts: View {
-    private let sections: [NSFetchedResultsSectionInfo]
-    private let dateSelected: Date?
-    
-    init?(sections: [NSFetchedResultsSectionInfo]?, dateSelected: Date? = nil) {
-        guard let sections = sections else {
-            return nil
-        }
-        self.sections = sections
-        self.dateSelected = dateSelected
-    }
-    
-    func volume(lifts: [Lift]) -> String? {
-        if lifts.isBodyweight {
-            return "\(lifts.reps) reps"
-        }
-        
-        guard
-            let volume = Lift.localize(weight: lifts.volume),
-            let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
-                return nil
-        }
-        return "= \(formatted) \(Settings.shared.units.label)"
-    }
-    
-    var body: some View {
-        ScrollViewReader { (proxy: ScrollViewProxy) in
-            LazyVStack(alignment: .leading) {
-                ForEach(sections, id: \.name) { section in
-                    let lifts = section.objects as! [Lift]
-                    let day = lifts.first!.timestamp!
-                    
-                    VStack(alignment: .leading) {
-                        
-                        Text(MostRecentLift.lastLiftDateFormatter.string(from: day))
-                            .sfCompactDisplay(.bold, size: Theme.Font.Size.mediumPlus)
-                            .padding([.bottom, .top], Theme.Spacing.small)
-                        
-                        GroupedLiftsOnDay(lifts: lifts)
-                        
-                        if let volume = volume(lifts: lifts) {
-                            Text(volume)
-                                .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                                .padding([.top], Theme.Spacing.small)
-                                .padding([.bottom], Theme.Spacing.medium)
-                        }
-                    }.id(section.name)
-                }
-            }.padding([.top], LiftsCalendarView.frameHeight)
-            .onChange(of: dateSelected, perform: { dateSelected in
-                guard let dateSelected = dateSelected else {
-                    return
-                }
-                let sectionId = Lift.dayGroupingFormatter.string(from: dateSelected)
-                withAnimation(.easeInOut(duration: 0.3)) {
-                    proxy.scrollTo(sectionId, anchor: .top)
-                }
-            })
-        }
-    }
-}
-
-struct RecentLiftMetric: View {
-    let value: CustomStringConvertible
-    let label: String
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(value.description)
-                .sfCompactDisplay(.medium, size: 44.0)
-                .minimumScaleFactor(0.2)
-                .lineLimit(0)
-            Text(label)
-                .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                .lineLimit(0)
-                .padding([.top], -Theme.Spacing.medium)
-        }
-    }
-}
-
-struct ExerciseCalendar: View {
-    private static let screenWidth = UIScreen.main.bounds.width
-    
-    private static let layoutMargin = UIEdgeInsets(
-        top: 0.0,
-        left: 10.0,
-        bottom: 0.0,
-        right: 10.0
-    )
-    
-    let sections: [LiftsSection]
-    
-    @Binding var page: Int
-    @Binding var dateSelected: Date?
-    
-    var body: some View {
-        Group {
-            Pager(page: $page,
-                  data: sections,
-                  id: \.name,
-                  content: { section in
-                    LiftsCalendarView(
-                        lifts: section.lifts!,
-                        timestampBounds: section.lifts?.timestampBounds,
-                        monthsLayout: MonthsLayout.horizontal(
-                            monthWidth: ExerciseCalendar.screenWidth - Theme.Spacing.edgesDefault
-                        ),
-                        onDateSelect: { (day) in
-                            var components = day.components
-                            // why is day always missing calendar?
-                            // without this, date is nil
-                            components.calendar = Calendar.autoupdatingCurrent
-                            dateSelected = components.date
-                        }
-                    ).offset(x: -ExerciseCalendar.layoutMargin.left)
-                  }
-            )
-            .preferredItemSize(
-                CGSize(
-                    width: ExerciseCalendar.screenWidth,
-                    height: LiftsCalendarView.calendarHeight
-                )
-            )
-            .frame(
-                width: ExerciseCalendar.screenWidth,
-                height: LiftsCalendarView.calendarHeight
-            )
-        }
-        .background(Color.background)
-        .padding([.top], Theme.Spacing.smallPlus)
-        .frame(
-            width: ExerciseCalendar.screenWidth,
-            height: LiftsCalendarView.frameHeight
-        )
-        .clipped()
-        .offset(x: -ExerciseCalendar.layoutMargin.horizontal, y: 0.0)
-    }
-}
 
 struct CalendarButton: View {
     let onPress: () -> Void
@@ -173,9 +33,9 @@ struct ExerciseView: View {
     @State private var page: Int
     @State private var scrollViewContentOffset: CGFloat = 0.0
     @State private var showCalendarButton = false
-    @State private var floatCalendar = false
+    @State private var floatCalendar = true
     @State private var calendarYOffset: CGFloat = 0.0
-    @State private var calendaryUnderlayOpacity: Double = 0.0
+    @State private var calendaryUnderlayOpacity: Double = 1.0
     @State private var dateSelected: Date?
     
     @StateObject private var lifts: LiftsObservable
@@ -261,7 +121,13 @@ struct ExerciseView: View {
     }
     
     func onDateChanged(date: Date?) {
-        onTapUnderlay()
+        if floatCalendar {
+            withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
+                floatCalendar.toggle()
+                calendaryUnderlayOpacity = 0.0
+                showCalendarButton.toggle()
+            }
+        }
     }
     
     var calendarOffset: CGFloat {
@@ -290,17 +156,29 @@ struct ExerciseView: View {
                         .onTapGesture {
                             onTapUnderlay()
                         }
-
+                   
+                    Group {
+                        Spacer()
+                    }
+                    .frame(
+                        width: ExerciseCalendar.screenWidth,
+                        height: LiftsCalendarView.frameHeight
+                    )
+                    .edgesIgnoringSafeArea(.all)
+                    .background(Color.blue)
+                    .offset(x: 0, y: scrollViewContentOffset)
+                    .clipped()
+                    .shadow(
+                        color: Color.black.opacity(floatCalendar ? 0.12 : 0.0),
+                        radius: 3.0, x: 0.0, y: 3.0
+                    ).blur(radius: 10.0)
+                    
                     ExerciseCalendar(
                         sections: months.sections,
                         page: $page,
                         dateSelected: $dateSelected
                     )
                     .offset(x: Theme.Spacing.large, y: calendarOffset)
-//                    .shadow(
-//                        color: Color.black.opacity(floatCalendar ? 0.12 : 0.0),
-//                        radius: 3.0, x: 0.0, y: 3.0
-//                    )
                     
                 } else {
                     Text("No lifts recorded yet.")
