@@ -85,8 +85,10 @@ struct OlderLifts: View {
                 withAnimation(.easeInOut(duration: duration)) {
                     proxy.scrollTo(selectedSectionId)
                 }
-                withAnimation(Animation.easeInOut(duration: 1.0).delay(duration)) {
-                    selectedSectionId = nil
+                Timer.scheduledTimer(withTimeInterval: duration * 2, repeats: false) { (_) in
+                    withAnimation(Animation.easeInOut(duration: 1.0).delay(duration)) {
+                        selectedSectionId = nil
+                    }
                 }
             })
         }
