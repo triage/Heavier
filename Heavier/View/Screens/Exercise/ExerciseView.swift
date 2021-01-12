@@ -138,7 +138,6 @@ struct ExerciseView: View {
                         sections: lifts.sections,
                         dateSelected: dateSelected
                     )
-                    .padding([.leading], Theme.Spacing.large)
                     
                     BlackOverlay(visible: calendarIsFloating)
                         .opacity(calendaryUnderlayOpacity)

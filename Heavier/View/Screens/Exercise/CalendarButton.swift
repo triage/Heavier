@@ -15,11 +15,11 @@ struct CalendarButton: View {
             Group {
                 Image(systemName: "calendar")
             }.padding(17.0)
-            .background(Color.background)
+            .background(Color.background.opacity(0.8))
             .overlay(
                 Circle()
                     .strokeBorder(lineWidth: 2.0)
-            )
+            ).mask(Circle())
         })
     }
 }
@@ -27,9 +27,15 @@ struct CalendarButton: View {
 struct CalendarButtonPreview: PreviewProvider {
     static var previews: some View {
         Group {
-            CalendarButton {
-                print("hi")
-            }
+            VStack(alignment: .center) {
+                Spacer()
+                HStack(alignment: .center) {
+                    Spacer()
+                    CalendarButton {}
+                    Spacer()
+                }.background(Color.blue)
+                Spacer()
+            }.background(Color.blue)
         }
     }
 }
