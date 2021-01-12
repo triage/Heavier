@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct HeavierApp: App {
@@ -16,11 +17,7 @@ struct HeavierApp: App {
             RootView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear {
-                    print("Documents Directory: ",
-                          FileManager.default.urls(
-                            for: .documentDirectory,
-                            in: .userDomainMask).last ?? "Not Found!"
-                    )
+                    FirebaseApp.configure()
                 }
         }
     }

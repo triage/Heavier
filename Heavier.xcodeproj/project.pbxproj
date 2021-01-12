@@ -134,6 +134,10 @@
 		79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 79B688D3259A8BB300845127 /* SwiftlySearch */; };
 		79B6B9DB25AD43F9008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
 		79B6B9E225AD442A008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
+		79B6BA0325ADEBA6008EC2DC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79B6BA0225ADEBA6008EC2DC /* FirebaseAnalytics */; };
+		79B6BA0525ADEBA6008EC2DC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79B6BA0425ADEBA6008EC2DC /* FirebaseCrashlytics */; };
+		79B6BA3225ADECEC008EC2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */; };
+		79B6BA3325ADECEC008EC2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */; };
 		79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79B8B27E25A26AA30099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
@@ -289,6 +293,7 @@
 		79B6881E259A87B700845127 /* HeavierAppClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppClipUITests.swift; sourceTree = "<group>"; };
 		79B68820259A87B700845127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButton.swift; sourceTree = "<group>"; };
+		79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Edges.swift"; sourceTree = "<group>"; };
 		79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedLiftsOnDay.swift; sourceTree = "<group>"; };
 		79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Margins.swift"; sourceTree = "<group>"; };
@@ -309,6 +314,8 @@
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
 				799A92A525AD2F6400470D11 /* Introspect in Frameworks */,
 				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
+				79B6BA0525ADEBA6008EC2DC /* FirebaseCrashlytics in Frameworks */,
+				79B6BA0325ADEBA6008EC2DC /* FirebaseAnalytics in Frameworks */,
 				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				071E3906251AF3F900A35799 /* Assets.xcassets */,
+				79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */,
 				07D4351F2547D4D500F16668 /* SF-Compact-Display-Black.otf */,
 				07D4351D2547D4D500F16668 /* SF-Compact-Display-Bold.otf */,
 				07D435222547D4D500F16668 /* SF-Compact-Display-Heavy.otf */,
@@ -783,6 +791,7 @@
 				071E38FD251AF3F800A35799 /* Resources */,
 				07B30658257480DB005CB631 /* Swiftlint */,
 				79B68824259A87B700845127 /* Embed App Clips */,
+				79B6BA3A25AE03CB008EC2DC /* Firebase - Upload DSYM */,
 			);
 			buildRules = (
 			);
@@ -795,6 +804,8 @@
 				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
 				79DF5E5125A16DE2000067E4 /* SwiftUIPager */,
 				799A92A425AD2F6400470D11 /* Introspect */,
+				79B6BA0225ADEBA6008EC2DC /* FirebaseAnalytics */,
+				79B6BA0425ADEBA6008EC2DC /* FirebaseCrashlytics */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -942,6 +953,7 @@
 				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
 				79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -962,6 +974,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79B6BA3225ADECEC008EC2DC /* GoogleService-Info.plist in Resources */,
 				07D435262547D4D500F16668 /* SF-Compact-Display-Bold.otf in Resources */,
 				071E390A251AF3F900A35799 /* Preview Assets.xcassets in Resources */,
 				071E3907251AF3F900A35799 /* Assets.xcassets in Resources */,
@@ -1001,6 +1014,7 @@
 				79B6883B259A884B00845127 /* exercises-default.json in Resources */,
 				79791D77259A9D9C005AAE8C /* Assets.xcassets in Resources */,
 				79B68842259A885D00845127 /* SF-Compact-Display-Medium.otf in Resources */,
+				79B6BA3325ADECEC008EC2DC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,6 +1052,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		79B6BA3A25AE03CB008EC2DC /* Firebase - Upload DSYM */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Firebase - Upload DSYM";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\nfind dSYM_directory -name \"*.dSYM\" | xargs -I \\{\\} ${BUILD_DIR%Build/*}SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/upload-symbols -gsp ${SOURCE_ROOT}/GoogleService-Info.plist -p ios \\{\\}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1355,7 +1387,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1381,7 +1413,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1486,7 +1518,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1511,7 +1543,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1708,6 +1740,14 @@
 				minimumVersion = 0.1.2;
 			};
 		};
+		79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.3.1;
+			};
+		};
 		79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -1748,6 +1788,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
+		};
+		79B6BA0225ADEBA6008EC2DC /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		79B6BA0425ADEBA6008EC2DC /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		79DF5E5125A16DE2000067E4 /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;
