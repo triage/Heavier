@@ -23,7 +23,10 @@ struct RootCalendarView: View {
     
     var body: some View {
         return VStack {
-            LiftsCalendarView(lifts: lifts.lifts) { day in
+            LiftsCalendarView(
+                lifts: lifts.lifts,
+                timestampBounds: Lift.timestampBounds
+            ) { day in
                 daySelected.dateComponents = day.components
                 isPresented.toggle()
             }
@@ -31,9 +34,8 @@ struct RootCalendarView: View {
                     maxHeight: .infinity,
                     alignment: .topLeading)
             .navigationTitle(RootCalendarView.title)
-            .background(Color.blue)
             NavigationLink(
-                destination: LiftsOnDate(daySelected: daySelected.dateComponents),
+                destination: LiftsOnDateView(daySelected: daySelected.dateComponents),
                 isActive: $isPresented,
                 label: {
                     EmptyView()

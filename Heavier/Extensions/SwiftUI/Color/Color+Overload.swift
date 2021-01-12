@@ -10,6 +10,7 @@ import SwiftUI
 
 extension Color {
     enum Overload: String {
+        case background
         case highlight
         case underline
         case calendarDayDefault
@@ -22,12 +23,15 @@ extension Color {
         case liftDateForeground
         case placeholder
         case liftButtonBorderSelected
+        case overlay
     }
     private init(_ overload: Overload) {
         self.init(overload.rawValue)
     }
     
+    static let background = Color(.background)
     static let highlight = Color(.highlight)
+    static let overlay = Color(.overlay)
     static let underline = Color(.underline)
     static let label = Color(.label)
     static let placeholder = Color(.placeholder)

@@ -18,6 +18,24 @@
           "revision": "3b7c1f11a15452cb5c1ec674b1d18f735a3d0970",
           "version": null
         }
+      },
+      {
+        "package": "Introspect",
+        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
+        "state": {
+          "branch": null,
+          "revision": "36ecf80429d00a4cd1e81fbfe4655b1d99ebd651",
+          "version": "0.1.2"
+        }
+      },
+      {
+        "package": "SwiftUIPager",
+        "repositoryURL": "https://github.com/fermoya/SwiftUIPager.git",
+        "state": {
+          "branch": null,
+          "revision": "ccc3dfe866e614b516b9cb42710e8df254c361ad",
+          "version": "1.14.1"
+        }
       }
     ]
   },

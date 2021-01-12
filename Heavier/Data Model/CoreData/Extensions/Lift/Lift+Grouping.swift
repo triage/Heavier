@@ -9,10 +9,17 @@ import Foundation
 
 extension Lift {
     
-    private static var dayGroupingFormatter: DateFormatter {
+    static var dayGroupingFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .none
         dateFormatter.dateFormat = "yyyy-DD"
+        return dateFormatter
+    }
+    
+    private static var monthGroupingFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "yyyy-MM"
         return dateFormatter
     }
     
@@ -21,6 +28,13 @@ extension Lift {
             return nil
         }
         return Lift.dayGroupingFormatter.string(from: timestamp)
+    }
+    
+    @objc var monthGroupingIdentifier: String? {
+        guard let timestamp = timestamp else {
+            return nil
+        }
+        return Lift.monthGroupingFormatter.string(from: timestamp)
     }
     
     @objc var weightsRepsGroupingIdentifier: String {

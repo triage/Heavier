@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct LiftsOnDate: View {
+struct LiftsOnDateView: View {
     
     @StateObject var lifts: LiftsObservable
     private let daySelected: DateComponents
@@ -71,7 +71,7 @@ struct LiftsOnDate: View {
         guard let date = daySelected.date else {
             return nil
         }
-        return LiftsOnDate.dateFormatter.string(from: date)
+        return LiftsOnDateView.dateFormatter.string(from: date)
     }
     
     var body: some View {
@@ -95,7 +95,7 @@ struct LiftsOnDate_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            LiftsOnDate(daySelected: LiftsOnDate_Previews.components)
+            LiftsOnDateView(daySelected: LiftsOnDate_Previews.components)
                 .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }

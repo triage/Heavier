@@ -12,7 +12,7 @@
 		0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702218325715A4300456C4C /* Exercise+PreviewContent.swift */; };
 		070221892571D2DF00456C4C /* Lift+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221882571D2DF00456C4C /* Lift+Range.swift */; };
 		070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221902572BA8800456C4C /* DateComponents+Range.swift */; };
-		070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDate.swift */; };
+		070221992572C6DE00456C4C /* LiftsOnDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDateView.swift */; };
 		070494C42577414700AF00E6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070494C32577414700AF00E6 /* Settings.swift */; };
 		070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070494CB257747C500AF00E6 /* Lift+Weight.swift */; };
 		0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */; };
@@ -68,6 +68,14 @@
 		79886C2825A00D3500FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
 		79886C4A25A00DFC00FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
 		798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BB51C2597E6AE00171407 /* ObservableValue.swift */; };
+		7994F6D125A9E71F004C14A9 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7994F6D025A9E71F004C14A9 /* Screen.swift */; };
+		7994F6D825AA0970004C14A9 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7994F6D025A9E71F004C14A9 /* Screen.swift */; };
+		79968A7925AD365400E318BE /* BlackOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79968A7825AD365400E318BE /* BlackOverlay.swift */; };
+		79968A8025AD365E00E318BE /* BlackOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79968A7825AD365400E318BE /* BlackOverlay.swift */; };
+		79968A8825AD368900E318BE /* UIScrollViewDelegateObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79968A8725AD368900E318BE /* UIScrollViewDelegateObservable.swift */; };
+		79968A8F25AD36A600E318BE /* UIScrollViewDelegateObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79968A8725AD368900E318BE /* UIScrollViewDelegateObservable.swift */; };
+		799A92A525AD2F6400470D11 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 799A92A425AD2F6400470D11 /* Introspect */; };
+		799A92AD25AD2F7100470D11 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 799A92AC25AD2F7100470D11 /* Introspect */; };
 		79B687FC259A87B500845127 /* HeavierAppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B687FB259A87B500845127 /* HeavierAppClipApp.swift */; };
 		79B68803259A87B700845127 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79B68802259A87B700845127 /* Preview Assets.xcassets */; };
 		79B68814259A87B700845127 /* HeavierAppClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B68813259A87B700845127 /* HeavierAppClipTests.swift */; };
@@ -118,16 +126,30 @@
 		79B688BD259A89FB00845127 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
 		79B688BE259A89FB00845127 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798EAF125771CB000008A28 /* SettingsView.swift */; };
 		79B688BF259A89FB00845127 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07899CEA252191EF006C85B1 /* ExerciseView.swift */; };
-		79B688C0259A89FB00845127 /* LiftsOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDate.swift */; };
+		79B688C0259A89FB00845127 /* LiftsOnDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221982572C6DE00456C4C /* LiftsOnDateView.swift */; };
 		79B688C1259A89FB00845127 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435392547D68B00F16668 /* ListView.swift */; };
 		79B688C2259A89FB00845127 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* RootView.swift */; };
 		79B688C3259A89FB00845127 /* Overload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */; };
 		79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 79B688D1259A8BB300845127 /* HorizonCalendar */; };
 		79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 79B688D3259A8BB300845127 /* SwiftlySearch */; };
+		79B6B9DB25AD43F9008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
+		79B6B9E225AD442A008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
+		79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
+		79B8B27E25A26AA30099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
 		79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
 		79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D77EA72599743B0051F03B /* MonthLabel.swift */; };
 		79D77EAD259974760051F03B /* DayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D77EAC259974760051F03B /* DayLabel.swift */; };
+		79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 79DF5E5125A16DE2000067E4 /* SwiftUIPager */; };
+		79DF5E5A25A16ED6000067E4 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 79DF5E5925A16ED6000067E4 /* SwiftUIPager */; };
+		79DF5E6225A17896000067E4 /* Lift+Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF5E6125A17896000067E4 /* Lift+Bounds.swift */; };
+		79DF5E6925A1792A000067E4 /* Lift+Bounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF5E6125A17896000067E4 /* Lift+Bounds.swift */; };
+		79F72E4E25AA5BC000C38F2E /* RecentLift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72E4D25AA5BC000C38F2E /* RecentLift.swift */; };
+		79F72E5525AA5BC500C38F2E /* RecentLift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72E4D25AA5BC000C38F2E /* RecentLift.swift */; };
+		79F72E5D25AB5A9700C38F2E /* OlderLifts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72E5C25AB5A9700C38F2E /* OlderLifts.swift */; };
+		79F72E6525AB5AD800C38F2E /* ExerciseCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72E6425AB5AD800C38F2E /* ExerciseCalendar.swift */; };
+		79F72E7925AB5CA600C38F2E /* OlderLifts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72E5C25AB5A9700C38F2E /* OlderLifts.swift */; };
+		79F72E8025AB5CAA00C38F2E /* ExerciseCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72E6425AB5AD800C38F2E /* ExerciseCalendar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,7 +209,7 @@
 		0702218325715A4300456C4C /* Exercise+PreviewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+PreviewContent.swift"; sourceTree = "<group>"; };
 		070221882571D2DF00456C4C /* Lift+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Range.swift"; sourceTree = "<group>"; };
 		070221902572BA8800456C4C /* DateComponents+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponents+Range.swift"; sourceTree = "<group>"; };
-		070221982572C6DE00456C4C /* LiftsOnDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDate.swift; sourceTree = "<group>"; };
+		070221982572C6DE00456C4C /* LiftsOnDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDateView.swift; sourceTree = "<group>"; };
 		070494C32577414700AF00E6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		070494CB257747C500AF00E6 /* Lift+Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Weight.swift"; sourceTree = "<group>"; };
 		0705CFB325373AAA00756220 /* Exercise+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+FetchRequest.swift"; sourceTree = "<group>"; };
@@ -250,6 +272,9 @@
 		79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+Relevance.swift"; sourceTree = "<group>"; };
 		798BB51A2597E62100171407 /* Overload 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 4.xcdatamodel"; sourceTree = "<group>"; };
 		798BB51C2597E6AE00171407 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
+		7994F6D025A9E71F004C14A9 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		79968A7825AD365400E318BE /* BlackOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackOverlay.swift; sourceTree = "<group>"; };
+		79968A8725AD368900E318BE /* UIScrollViewDelegateObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewDelegateObservable.swift; sourceTree = "<group>"; };
 		79B687F9259A87B500845127 /* HeavierAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeavierAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B687FB259A87B500845127 /* HeavierAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppClipApp.swift; sourceTree = "<group>"; };
 		79B687FD259A87B500845127 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -263,11 +288,17 @@
 		79B6881A259A87B700845127 /* HeavierAppClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeavierAppClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B6881E259A87B700845127 /* HeavierAppClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppClipUITests.swift; sourceTree = "<group>"; };
 		79B68820259A87B700845127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButton.swift; sourceTree = "<group>"; };
+		79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Edges.swift"; sourceTree = "<group>"; };
 		79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedLiftsOnDay.swift; sourceTree = "<group>"; };
 		79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Margins.swift"; sourceTree = "<group>"; };
 		79D77EA72599743B0051F03B /* MonthLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthLabel.swift; sourceTree = "<group>"; };
 		79D77EAC259974760051F03B /* DayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayLabel.swift; sourceTree = "<group>"; };
 		79D77EB1259A0AF80051F03B /* Overload 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 5.xcdatamodel"; sourceTree = "<group>"; };
+		79DF5E6125A17896000067E4 /* Lift+Bounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Bounds.swift"; sourceTree = "<group>"; };
+		79F72E4D25AA5BC000C38F2E /* RecentLift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentLift.swift; sourceTree = "<group>"; };
+		79F72E5C25AB5A9700C38F2E /* OlderLifts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OlderLifts.swift; sourceTree = "<group>"; };
+		79F72E6425AB5AD800C38F2E /* ExerciseCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCalendar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +307,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
+				799A92A525AD2F6400470D11 /* Introspect in Frameworks */,
 				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
+				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +332,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */,
+				799A92AD25AD2F7100470D11 /* Introspect in Frameworks */,
 				79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */,
+				79DF5E5A25A16ED6000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,9 +476,9 @@
 			children = (
 				0781F2A1254E416100B9AE63 /* Lift */,
 				0798EAF025771CA200008A28 /* Settings */,
-				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
-				070221982572C6DE00456C4C /* LiftsOnDate.swift */,
-				07D435392547D68B00F16668 /* ListView.swift */,
+				79F72E6C25AB5B1A00C38F2E /* Exercise */,
+				79F72E8D25AB5F0C00C38F2E /* LiftsOnDate */,
+				79F72E9425AB5F1500C38F2E /* List */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -475,8 +510,7 @@
 			children = (
 				0702217F2571566300456C4C /* LiftsCalendarView */,
 				79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */,
-				079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */,
-				795A76BC25982A800094052B /* TextView.swift */,
+				795B601F25AD22E000A6550B /* SwiftUI */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -550,6 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				07D435142547CD5900F16668 /* Fonts.swift */,
+				7994F6D025A9E71F004C14A9 /* Screen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -590,6 +625,16 @@
 			path = Conversion;
 			sourceTree = "<group>";
 		};
+		795B601F25AD22E000A6550B /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */,
+				795A76BC25982A800094052B /* TextView.swift */,
+				79968A7825AD365400E318BE /* BlackOverlay.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		79886C2F25A00D6B00FC6CDC /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
@@ -611,6 +656,7 @@
 				070221882571D2DF00456C4C /* Lift+Range.swift */,
 				07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */,
 				0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */,
+				79DF5E6125A17896000067E4 /* Lift+Bounds.swift */,
 				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
 				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
 			);
@@ -671,12 +717,58 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		79CAC6FC258F152D00B32630 /* UIKit */ = {
+		79B8B26E25A26A230099D932 /* Geometry */ = {
+			isa = PBXGroup;
+			children = (
+				79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */,
+			);
+			path = Geometry;
+			sourceTree = "<group>";
+		};
+		79B8B26F25A26A2B0099D932 /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
 				79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */,
 			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
+		79CAC6FC258F152D00B32630 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				79B8B26F25A26A2B0099D932 /* UILabel */,
+				79B8B26E25A26A230099D932 /* Geometry */,
+				79968A8725AD368900E318BE /* UIScrollViewDelegateObservable.swift */,
+			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		79F72E6C25AB5B1A00C38F2E /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
+				79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */,
+				79F72E6425AB5AD800C38F2E /* ExerciseCalendar.swift */,
+				79F72E5C25AB5A9700C38F2E /* OlderLifts.swift */,
+				79F72E4D25AA5BC000C38F2E /* RecentLift.swift */,
+			);
+			path = Exercise;
+			sourceTree = "<group>";
+		};
+		79F72E8D25AB5F0C00C38F2E /* LiftsOnDate */ = {
+			isa = PBXGroup;
+			children = (
+				070221982572C6DE00456C4C /* LiftsOnDateView.swift */,
+			);
+			path = LiftsOnDate;
+			sourceTree = "<group>";
+		};
+		79F72E9425AB5F1500C38F2E /* List */ = {
+			isa = PBXGroup;
+			children = (
+				07D435392547D68B00F16668 /* ListView.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -701,6 +793,8 @@
 			packageProductDependencies = (
 				0702215D256DFA2C00456C4C /* HorizonCalendar */,
 				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
+				79DF5E5125A16DE2000067E4 /* SwiftUIPager */,
+				799A92A425AD2F6400470D11 /* Introspect */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -758,6 +852,8 @@
 			packageProductDependencies = (
 				79B688D1259A8BB300845127 /* HorizonCalendar */,
 				79B688D3259A8BB300845127 /* SwiftlySearch */,
+				79DF5E5925A16ED6000067E4 /* SwiftUIPager */,
+				799A92AC25AD2F7100470D11 /* Introspect */,
 			);
 			productName = HeavierAppClip;
 			productReference = 79B687F9259A87B500845127 /* HeavierAppClip.app */;
@@ -844,6 +940,8 @@
 			packageReferences = (
 				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
 				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
+				79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -956,9 +1054,11 @@
 				795A76B525981FA80094052B /* NotesView.swift in Sources */,
 				0798EAF225771CB000008A28 /* SettingsView.swift in Sources */,
 				070494C42577414700AF00E6 /* Settings.swift in Sources */,
+				79968A8825AD368900E318BE /* UIScrollViewDelegateObservable.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
 				07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */,
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
+				79F72E5D25AB5A9700C38F2E /* OlderLifts.swift in Sources */,
 				07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
 				071E390C251AF3F900A35799 /* Persistence.swift in Sources */,
@@ -968,11 +1068,12 @@
 				07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */,
 				071E3905251AF3F800A35799 /* RootView.swift in Sources */,
 				071E3903251AF3F800A35799 /* HeavierApp.swift in Sources */,
-				070221992572C6DE00456C4C /* LiftsOnDate.swift in Sources */,
+				070221992572C6DE00456C4C /* LiftsOnDateView.swift in Sources */,
 				79D77EAD259974760051F03B /* DayLabel.swift in Sources */,
 				795A76BD25982A800094052B /* TextView.swift in Sources */,
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
 				79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */,
+				79968A7925AD365400E318BE /* BlackOverlay.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */,
@@ -981,19 +1082,25 @@
 				0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */,
 				0781F2A6254E521F00B9AE63 /* DifferenceView.swift in Sources */,
 				07DA92DE25850A2100FB95BB /* MetricImperialConversion.swift in Sources */,
+				79DF5E6225A17896000067E4 /* Lift+Bounds.swift in Sources */,
 				077F8F46256987680075B307 /* Exercise+Init.swift in Sources */,
 				798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */,
 				07BD42882576748100E5CA05 /* Lift+Grouping.swift in Sources */,
+				79F72E4E25AA5BC000C38F2E /* RecentLift.swift in Sources */,
 				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,
 				079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */,
 				07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */,
 				070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */,
+				79B6B9DB25AD43F9008EC2DC /* CalendarButton.swift in Sources */,
 				07D4353A2547D68B00F16668 /* ListView.swift in Sources */,
 				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
+				79F72E6525AB5AD800C38F2E /* ExerciseCalendar.swift in Sources */,
 				79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
+				7994F6D125A9E71F004C14A9 /* Screen.swift in Sources */,
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
 				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
+				79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */,
 				79886C2825A00D3500FC6CDC /* Exercise+Relevance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1026,9 +1133,11 @@
 				79B688BC259A89FB00845127 /* NotesView.swift in Sources */,
 				79B688BD259A89FB00845127 /* TransparentPicker.swift in Sources */,
 				79B688BE259A89FB00845127 /* SettingsView.swift in Sources */,
+				79968A8F25AD36A600E318BE /* UIScrollViewDelegateObservable.swift in Sources */,
 				79B688BF259A89FB00845127 /* ExerciseView.swift in Sources */,
-				79B688C0259A89FB00845127 /* LiftsOnDate.swift in Sources */,
+				79B688C0259A89FB00845127 /* LiftsOnDateView.swift in Sources */,
 				79B688C1259A89FB00845127 /* ListView.swift in Sources */,
+				79F72E7925AB5CA600C38F2E /* OlderLifts.swift in Sources */,
 				79B688C2259A89FB00845127 /* RootView.swift in Sources */,
 				79B688C3259A89FB00845127 /* Overload.xcdatamodeld in Sources */,
 				79B6888C259A89CD00845127 /* Conversion.swift in Sources */,
@@ -1043,6 +1152,7 @@
 				79B68895259A89CD00845127 /* Lift+FetchRequest.swift in Sources */,
 				79B68896259A89CD00845127 /* Lift+Grouping.swift in Sources */,
 				79B68897259A89CD00845127 /* Lift+Range.swift in Sources */,
+				79968A8025AD365E00E318BE /* BlackOverlay.swift in Sources */,
 				79B68898259A89CD00845127 /* Lift+ShortDescription.swift in Sources */,
 				79B68899259A89CD00845127 /* Lift+Volume.swift in Sources */,
 				79B6889A259A89CD00845127 /* Lift+Weight.swift in Sources */,
@@ -1051,19 +1161,25 @@
 				79B6889D259A89CD00845127 /* Persistence.swift in Sources */,
 				79B6889E259A89CD00845127 /* Settings.swift in Sources */,
 				79B6889F259A89CD00845127 /* ObservableValue.swift in Sources */,
+				79DF5E6925A1792A000067E4 /* Lift+Bounds.swift in Sources */,
 				79B688A0259A89CD00845127 /* DateComponents+Range.swift in Sources */,
 				79B688A1259A89CD00845127 /* JSONSerialization+Load.swift in Sources */,
 				79B688A2259A89CD00845127 /* Color+Overload.swift in Sources */,
+				79F72E5525AA5BC500C38F2E /* RecentLift.swift in Sources */,
 				79B688A3259A89CD00845127 /* List+SeparatorInset.swift in Sources */,
 				79B688A4259A89CD00845127 /* Fonts.swift in Sources */,
 				79B688A6259A89CD00845127 /* UILabel+Margins.swift in Sources */,
 				79B688A7259A89CD00845127 /* LiftsCalendarView.swift in Sources */,
+				79B6B9E225AD442A008EC2DC /* CalendarButton.swift in Sources */,
 				79B688A8259A89CD00845127 /* DayLabel.swift in Sources */,
 				79B688A9259A89CD00845127 /* MonthLabel.swift in Sources */,
+				79F72E8025AB5CAA00C38F2E /* ExerciseCalendar.swift in Sources */,
 				79B688AA259A89CD00845127 /* GroupedLiftsOnDay.swift in Sources */,
 				79B688AB259A89CD00845127 /* NavigationLazyView.swift in Sources */,
+				7994F6D825AA0970004C14A9 /* Screen.swift in Sources */,
 				79B688AC259A89CD00845127 /* TextView.swift in Sources */,
 				79B687FC259A87B500845127 /* HeavierAppClipApp.swift in Sources */,
+				79B8B27E25A26AA30099D932 /* UIEdgeInsets+Edges.swift in Sources */,
 				79886C4A25A00DFC00FC6CDC /* Exercise+Relevance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1249,7 +1365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1275,7 +1391,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1380,7 +1496,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1405,7 +1521,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1584,6 +1700,22 @@
 				kind = branch;
 			};
 		};
+		799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
+		79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.14.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1597,6 +1729,16 @@
 			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
 		};
+		799A92A425AD2F6400470D11 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+		799A92AC25AD2F7100470D11 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		79B688D1259A8BB300845127 /* HorizonCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
@@ -1606,6 +1748,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
+		};
+		79DF5E5125A16DE2000067E4 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
+		79DF5E5925A16ED6000067E4 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
 		};
 /* End XCSwiftPackageProductDependency section */
 
