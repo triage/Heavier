@@ -8,38 +8,25 @@
 import Foundation
 import SwiftUI
 import CoreData
-import SwiftUITrackableScrollView
-
-struct CalendarButton: View {
-    let onPress: () -> Void
-    var body: some View {
-        Button(action: onPress, label: {
-            Group {
-                Image(systemName: "calendar")
-            }.padding(17.0)
-            .background(Color.background)
-            .overlay(
-                Circle()
-                    .strokeBorder(lineWidth: 2.0)
-            )
-        })
-    }
-}
+import Introspect
+import UIKit
 
 struct ExerciseView: View {
     let exercise: Exercise
     
     @State private var liftViewPresented = false
     @State private var page: Int
-    @State private var scrollViewContentOffset: CGFloat = 0.0
-    @State private var showCalendarButton = false
-    @State private var floatCalendar = false
+    @State private var calendarButtonIsVisible = false
+    @State private var calendarIsFloating = false
     @State private var calendarYOffset: CGFloat = 0.0
     @State private var calendaryUnderlayOpacity: Double = 0.0
     @State private var dateSelected: Date?
     
     @StateObject private var lifts: LiftsObservable
     @StateObject private var months: LiftsObservable
+    
+    // swiftlint:disable:next weak_delegate
+    @StateObject private var scrollViewDelegate = UIScrollViewDelegateObservable()
     
     private static let showCalendarButtonAtScrollOffset: CGFloat = 390.0
     private static let animationDuration: TimeInterval = 0.24
@@ -66,72 +53,71 @@ struct ExerciseView: View {
         _page = .init(initialValue: monthsObservable.sections.count - 1)
     }
     
-    private func onScroll(value: CGFloat) {
-        if floatCalendar {
-            withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
-                floatCalendar.toggle()
-                calendaryUnderlayOpacity = 0.0
-                if showCalendarButton == false {
-                    showCalendarButton.toggle()
+    private func onScroll(value: CGPoint) {
+        if calendarIsFloating {
+            if scrollViewDelegate.isDragging {
+                withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
+                    calendarIsFloating.toggle()
+                    calendarButtonIsVisible.toggle()
+                }
+            } else {
+                guard !scrollViewDelegate.isDragging && !scrollViewDelegate.isDecelerating else {
+                    return
+                }
+                withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
+                    calendarIsFloating.toggle()
+                    calendaryUnderlayOpacity = 0.0
+                    if calendarButtonIsVisible == false {
+                        calendarButtonIsVisible.toggle()
+                    }
                 }
             }
-            return
-        }
-        if value > ExerciseView.showCalendarButtonAtScrollOffset && !showCalendarButton {
+        } else if value.y > ExerciseView.showCalendarButtonAtScrollOffset && !calendarButtonIsVisible {
+            // show the calendar button
             withAnimation(.easeOut(duration: ExerciseView.animationDuration)) {
-                showCalendarButton.toggle()
+                calendarButtonIsVisible.toggle()
             }
-        } else if value < ExerciseView.showCalendarButtonAtScrollOffset && showCalendarButton {
+        } else if
+            value.y < ExerciseView.showCalendarButtonAtScrollOffset &&
+                calendarButtonIsVisible {
+            // hide the calendar button
             withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
-                showCalendarButton.toggle()
+                calendarButtonIsVisible.toggle()
             }
         }
     }
     
-    private func showCalendar() {
+    private func onTopCalendarButton() {
         withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
-            floatCalendar.toggle()
+            calendarIsFloating.toggle()
             calendaryUnderlayOpacity = 1.0
         }
     }
     
-    private struct CalendarUnderlay: View {
-        let visible: Bool
-        var body: some View {
-            if visible {
-                Group {
-                    Text("")
-                }
-                .disabled(true)
-                .fillScreen()
-                .background(Color.overlay)
-                .edgesIgnoringSafeArea(.all)
-            } else {
-                EmptyView()
-            }
-        }
-    }
-    
-    func onTapUnderlay() {
+    private func onTapUnderlay() {
         withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
-            floatCalendar.toggle()
+            calendarIsFloating.toggle()
             calendaryUnderlayOpacity = 0.0
-            showCalendarButton.toggle()
+            calendarButtonIsVisible.toggle()
         }
     }
     
-    func onDateChanged(date: Date?) {
-        if floatCalendar {
+    private func onDateChanged(date: Date?) {
+        if calendarIsFloating {
             withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
-                floatCalendar.toggle()
+                calendarIsFloating.toggle()
                 calendaryUnderlayOpacity = 0.0
-                showCalendarButton.toggle()
+                calendarButtonIsVisible.toggle()
             }
         }
     }
     
-    var calendarOffset: CGFloat {
-        if floatCalendar {
+    private var scrollViewContentOffset: CGFloat {
+        scrollViewDelegate.offset.y
+    }
+    
+    private var calendarOffset: CGFloat {
+        if calendarIsFloating {
             return scrollViewContentOffset
         } else {
             return scrollViewContentOffset > LiftsCalendarView.frameHeight ?
@@ -139,8 +125,12 @@ struct ExerciseView: View {
         }
     }
     
+    var shadowOpacity: Double {
+        calendarIsFloating ? 0.12 : 0.0
+    }
+    
     var body: some View {
-        TrackableScrollView(.vertical, showIndicators: false, contentOffset: $scrollViewContentOffset) {
+        ScrollView {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
                     
@@ -150,13 +140,15 @@ struct ExerciseView: View {
                     )
                     .padding([.leading], Theme.Spacing.large)
                     
-                    CalendarUnderlay(visible: floatCalendar)
+                    BlackOverlay(visible: calendarIsFloating)
                         .opacity(calendaryUnderlayOpacity)
                         .offset(x: 0.0, y: scrollViewContentOffset)
                         .onTapGesture {
                             onTapUnderlay()
                         }
                    
+                    // If we add .shadow to ExerciseCalendar, touch events don't register
+                    // when we change the offset. This view is only intended to add a shadow
                     Group {
                         Spacer()
                     }
@@ -169,7 +161,7 @@ struct ExerciseView: View {
                     .offset(x: 0, y: scrollViewContentOffset)
                     .clipped()
                     .shadow(
-                        color: Color.black.opacity(floatCalendar ? 0.12 : 0.0),
+                        color: Color.black.opacity(shadowOpacity),
                         radius: 3.0, x: 0.0, y: 3.0
                     )
                     
@@ -186,15 +178,18 @@ struct ExerciseView: View {
                 }
             }
         }
+        .introspectScrollView { scrollView in
+            scrollView.delegate = scrollViewDelegate
+        }
         .onChange(of: dateSelected, perform: onDateChanged)
-        .onChange(of: scrollViewContentOffset, perform: onScroll)
+        .onChange(of: scrollViewDelegate.offset, perform: onScroll)
         .overlay(
             CalendarButton {
-                showCalendarButton.toggle()
-                showCalendar()
+                calendarButtonIsVisible.toggle()
+                onTopCalendarButton()
             }
-            .opacity(showCalendarButton ? 1.0 : 0.0)
-            .offset(x: -20, y: showCalendarButton ? 30 : -50), alignment: .topTrailing)
+            .opacity(calendarButtonIsVisible ? 1.0 : 0.0)
+            .offset(x: -20, y: calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)
         
         .navigationTitle(exercise.name!)
         .toolbar(

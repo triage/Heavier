@@ -34,7 +34,6 @@ struct RootCalendarView: View {
                     maxHeight: .infinity,
                     alignment: .topLeading)
             .navigationTitle(RootCalendarView.title)
-            .background(Color.blue)
             NavigationLink(
                 destination: LiftsOnDateView(daySelected: daySelected.dateComponents),
                 isActive: $isPresented,
