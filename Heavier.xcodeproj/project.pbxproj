@@ -134,11 +134,10 @@
 		79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 79B688D3259A8BB300845127 /* SwiftlySearch */; };
 		79B6B9DB25AD43F9008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
 		79B6B9E225AD442A008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
-		79B6BA0325ADEBA6008EC2DC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79B6BA0225ADEBA6008EC2DC /* FirebaseAnalytics */; };
-		79B6BA0525ADEBA6008EC2DC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79B6BA0425ADEBA6008EC2DC /* FirebaseCrashlytics */; };
 		79B6BA3225ADECEC008EC2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */; };
 		79B6BA8A25B09B4F008EC2DC /* LiftsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */; };
 		79B6BA8B25B09B4F008EC2DC /* LiftsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */; };
+		79B6BAB925B0A18D008EC2DC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */; };
 		79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79B8B27E25A26AA30099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
@@ -315,9 +314,8 @@
 			files = (
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
 				799A92A525AD2F6400470D11 /* Introspect in Frameworks */,
+				79B6BAB925B0A18D008EC2DC /* FirebaseCrashlytics in Frameworks */,
 				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
-				79B6BA0525ADEBA6008EC2DC /* FirebaseCrashlytics in Frameworks */,
-				79B6BA0325ADEBA6008EC2DC /* FirebaseAnalytics in Frameworks */,
 				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,8 +805,7 @@
 				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
 				79DF5E5125A16DE2000067E4 /* SwiftUIPager */,
 				799A92A425AD2F6400470D11 /* Introspect */,
-				79B6BA0225ADEBA6008EC2DC /* FirebaseAnalytics */,
-				79B6BA0425ADEBA6008EC2DC /* FirebaseCrashlytics */,
+				79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -1793,12 +1790,7 @@
 			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
 			productName = SwiftlySearch;
 		};
-		79B6BA0225ADEBA6008EC2DC /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		79B6BA0425ADEBA6008EC2DC /* FirebaseCrashlytics */ = {
+		79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
