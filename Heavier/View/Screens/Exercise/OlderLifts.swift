@@ -10,7 +10,7 @@ import CoreData
 import SwiftUI
 
 struct OlderLift: View {
-    let section: NSFetchedResultsSectionInfo
+    var section: LiftsSection
     let selectedSectionId: String?
     
     func volume(lifts: [Lift]) -> String? {
@@ -26,43 +26,48 @@ struct OlderLift: View {
         return "= \(formatted) \(Settings.shared.units.label)"
     }
     
+    var day: Date? {
+        section.lifts?.first?.timestamp
+    }
+    
     var body: some View {
-        let lifts = section.objects as! [Lift]
-        let day = lifts.first!.timestamp!
-
-        return HStack {
-            VStack(alignment: .leading) {
-                
-                Text(MostRecentLift.lastLiftDateFormatter.string(from: day))
-                    .sfCompactDisplay(.bold, size: Theme.Font.Size.mediumPlus)
-                    .padding([.bottom, .top], Theme.Spacing.small)
-                
-                GroupedLiftsOnDay(lifts: lifts)
-                
-                if let volume = volume(lifts: lifts) {
-                    Text(volume)
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
-                        .padding([.top], Theme.Spacing.small)
-                        .padding([.bottom], Theme.Spacing.medium)
+        if let day = day {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(MostRecentLift.lastLiftDateFormatter.string(from: day))
+                        .sfCompactDisplay(.bold, size: Theme.Font.Size.mediumPlus)
+                        .padding([.bottom, .top], Theme.Spacing.small)
+                    
+                    GroupedLiftsOnDay(lifts: section.lifts!)
+                    
+                    if let volume = volume(lifts: section.lifts!) {
+                        Text(volume)
+                            .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                            .padding([.top], Theme.Spacing.small)
+                            .padding([.bottom], Theme.Spacing.medium)
+                    }
                 }
+                Spacer()
             }
-            Spacer()
+            .padding([.leading], Theme.Spacing.large)
+            .background(section.id == selectedSectionId ? Color.blue : Color.clear)
+        } else {
+            EmptyView()
         }
-        .padding([.leading], Theme.Spacing.large)
-        .background(section.name == selectedSectionId ? Color.blue : Color.clear)
-        .id(section.name)
     }
 }
 
 struct OlderLifts: View {
-    private let sections: [NSFetchedResultsSectionInfo]
+    @State private var lifts: LiftsObservable
+    
+    private let exercise: Exercise
     private let dateSelected: Date?
     
-    init?(sections: [NSFetchedResultsSectionInfo]?, dateSelected: Date? = nil) {
-        guard let sections = sections else {
-            return nil
-        }
-        self.sections = sections
+    init(exercise: Exercise, dateSelected: Date? = nil) {
+        self.exercise = exercise
+        _lifts = .init(
+            wrappedValue: LiftsObservable(exercise: exercise, ascending: false)
+        )
         self.dateSelected = dateSelected
     }
     
@@ -71,8 +76,9 @@ struct OlderLifts: View {
     var body: some View {
         ScrollViewReader { (proxy: ScrollViewProxy) in
             LazyVStack(alignment: .leading) {
-                ForEach(sections, id: \.name) { section in
+                ForEach(lifts.sections, id: \.id) { section in
                     OlderLift(section: section, selectedSectionId: selectedSectionId)
+                        .id(section.id)
                 }
             }
             .padding([.top], LiftsCalendarView.frameHeight)
@@ -81,13 +87,20 @@ struct OlderLifts: View {
                     return
                 }
                 let duration: TimeInterval = 0.3
-                selectedSectionId = Lift.dayGroupingFormatter.string(from: dateSelected)
-                withAnimation(.easeInOut(duration: duration)) {
-                    proxy.scrollTo(selectedSectionId)
-                }
-                Timer.scheduledTimer(withTimeInterval: duration * 2, repeats: false) { (_) in
-                    withAnimation(Animation.easeInOut(duration: 1.0).delay(duration)) {
-                        selectedSectionId = nil
+                self.selectedSectionId = lifts.sections.first(where: { (section) -> Bool in
+                    if let day = section.lifts?.day {
+                        return day == dateSelected
+                    }
+                    return false
+                })?.id
+                if let selectedSectionId = selectedSectionId {
+                    withAnimation(.easeInOut(duration: duration)) {
+                        proxy.scrollTo(selectedSectionId)
+                    }
+                    Timer.scheduledTimer(withTimeInterval: duration * 2, repeats: false) { (_) in
+                        withAnimation(Animation.easeInOut(duration: 1.0).delay(duration)) {
+                            self.selectedSectionId = nil
+                        }
                     }
                 }
             })
@@ -119,8 +132,6 @@ struct OlderLiftsPreviews: PreviewProvider {
         }
         exercise.lifts = NSOrderedSet(array: lifts)
         
-        let observable = LiftsObservable(exercise: exercise)
-        
-        return OlderLifts(sections: observable.sections, dateSelected: Date())
+        return OlderLifts(exercise: exercise, dateSelected: Date())
     }
 }

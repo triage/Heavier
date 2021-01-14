@@ -52,7 +52,7 @@ struct LiftsOnDateView: View {
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                             .padding([.bottom, .top], Theme.Spacing.medium)
                         
-                        if let lifts = section.objects as? [Lift] {
+                        if let lifts = section.lifts {
                             GroupedLiftsOnDay(lifts: lifts)
 
                             if let volume = volume(lifts: lifts) {
@@ -77,7 +77,7 @@ struct LiftsOnDateView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(lifts.sections, id: \.name) { section in
+                ForEach(lifts.sections, id: \.id) { section in
                     Row(section: section)
                 }
             }

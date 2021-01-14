@@ -137,7 +137,8 @@
 		79B6BA0325ADEBA6008EC2DC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79B6BA0225ADEBA6008EC2DC /* FirebaseAnalytics */; };
 		79B6BA0525ADEBA6008EC2DC /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79B6BA0425ADEBA6008EC2DC /* FirebaseCrashlytics */; };
 		79B6BA3225ADECEC008EC2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */; };
-		79B6BA3325ADECEC008EC2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */; };
+		79B6BA8A25B09B4F008EC2DC /* LiftsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */; };
+		79B6BA8B25B09B4F008EC2DC /* LiftsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */; };
 		79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79B8B27E25A26AA30099D932 /* UIEdgeInsets+Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */; };
 		79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */; };
@@ -294,6 +295,7 @@
 		79B68820259A87B700845127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarButton.swift; sourceTree = "<group>"; };
 		79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsSection.swift; sourceTree = "<group>"; };
 		79B8B27025A26A410099D932 /* UIEdgeInsets+Edges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Edges.swift"; sourceTree = "<group>"; };
 		79CAC6F7258F120400B32630 /* GroupedLiftsOnDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedLiftsOnDay.swift; sourceTree = "<group>"; };
 		79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Margins.swift"; sourceTree = "<group>"; };
@@ -572,6 +574,7 @@
 			children = (
 				07D435382547D66A00F16668 /* Extensions */,
 				077F8F3B25697D3B0075B307 /* LiftsObservable.swift */,
+				79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */,
 				071E390B251AF3F900A35799 /* Persistence.swift */,
 			);
 			path = CoreData;
@@ -1014,7 +1017,6 @@
 				79B6883B259A884B00845127 /* exercises-default.json in Resources */,
 				79791D77259A9D9C005AAE8C /* Assets.xcassets in Resources */,
 				79B68842259A885D00845127 /* SF-Compact-Display-Medium.otf in Resources */,
-				79B6BA3325ADECEC008EC2DC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1101,6 +1103,7 @@
 				071E3905251AF3F800A35799 /* RootView.swift in Sources */,
 				071E3903251AF3F800A35799 /* HeavierApp.swift in Sources */,
 				070221992572C6DE00456C4C /* LiftsOnDateView.swift in Sources */,
+				79B6BA8A25B09B4F008EC2DC /* LiftsSection.swift in Sources */,
 				79D77EAD259974760051F03B /* DayLabel.swift in Sources */,
 				795A76BD25982A800094052B /* TextView.swift in Sources */,
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
@@ -1180,6 +1183,7 @@
 				79B68891259A89CD00845127 /* Exercise+Init.swift in Sources */,
 				79B68892259A89CD00845127 /* Exercise+LiftDate.swift in Sources */,
 				79B68893259A89CD00845127 /* Exercise+PreviewContent.swift in Sources */,
+				79B6BA8B25B09B4F008EC2DC /* LiftsSection.swift in Sources */,
 				79B68894259A89CD00845127 /* Lift+Bodyweight.swift in Sources */,
 				79B68895259A89CD00845127 /* Lift+FetchRequest.swift in Sources */,
 				79B68896259A89CD00845127 /* Lift+Grouping.swift in Sources */,
@@ -1387,7 +1391,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1397,7 +1401,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1413,7 +1417,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1423,7 +1427,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1518,7 +1522,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1528,7 +1532,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1543,7 +1547,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1553,7 +1557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

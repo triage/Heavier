@@ -12,6 +12,14 @@ extension Array where Element == Lift {
         guard let first = first?.timestamp, let last = last?.timestamp else {
             return nil
         }
-        return first...last
+        let bounds = [first, last].sorted()
+        return bounds.first!...bounds.last!
+    }
+    
+    var day: Date? {
+        guard let first = first?.timestamp else {
+            return nil
+        }
+        return Calendar.autoupdatingCurrent.startOfDay(for: first)
     }
 }

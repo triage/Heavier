@@ -10,8 +10,9 @@ import SwiftUI
 
 struct GroupedLiftsOnDay: View {
     let lifts: [Lift]
+    
     var body: some View {
-        ForEach(Array(lifts.groupedByWeightAndReps.values).sorted(by: { (first, second) -> Bool in
+        ForEach((lifts.groupedByWeightAndReps.values).sorted(by: { (first, second) -> Bool in
             first.mostRecent.timestamp! < second.mostRecent.timestamp!
         }), id: \.self) { lifts in
             VStack(alignment: .leading) {

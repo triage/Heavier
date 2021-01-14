@@ -135,7 +135,7 @@ struct ExerciseView: View {
                 if lifts.lifts.count > 0 {
                     
                     OlderLifts(
-                        sections: lifts.sections,
+                        exercise: exercise,
                         dateSelected: dateSelected
                     )
                     
