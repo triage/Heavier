@@ -7,12 +7,12 @@
 		<key>Heavier.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>0</integer>
 		</dict>
 		<key>HeavierAppClip.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>MyPlayground (Playground).xcscheme</key>
 		<dict>
