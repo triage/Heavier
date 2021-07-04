@@ -24,7 +24,7 @@ struct RootCalendarView: View {
     var body: some View {
         return VStack {
             LiftsCalendarView(
-                lifts: lifts.lifts,
+                lifts: $lifts.lifts,
                 timestampBounds: Lift.timestampBoundsMonth
             ) { day in
                 daySelected.dateComponents = day.components

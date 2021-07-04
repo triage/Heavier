@@ -152,7 +152,7 @@ struct ExerciseView: View {
                     )
                     
                     ExerciseCalendar(
-                        lifts: lifts.lifts,
+                        lifts: $lifts.lifts,
                         dateSelected: $dateSelected
                     )
                     .offset(x: 0, y: calendarOffset)

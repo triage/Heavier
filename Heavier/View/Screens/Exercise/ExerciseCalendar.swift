@@ -20,14 +20,14 @@ struct ExerciseCalendar: View {
         right: 0.0
     )
     
-    @State var lifts: [Lift]
+    @Binding var lifts: [Lift]
     
     @Binding var dateSelected: Date?
     
     var body: some View {
         Group {
             LiftsCalendarView(
-                lifts: lifts,
+                lifts: $lifts,
                 timestampBounds: [Lift]().timestampBoundsMonths,
                 monthsLayout: .horizontal(options:
                                             HorizontalMonthsLayoutOptions(
