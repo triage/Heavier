@@ -172,8 +172,16 @@ struct ExerciseView: View {
                     .offset(x: Theme.Spacing.large, y: calendarOffset)
                     
                 } else {
-                    Text("No lifts recorded yet.")
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                    Text("No lifts recorded yet")
+                        .offset(x: Theme.Spacing.large, y: Theme.Spacing.medium)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.large)
+                        .frame(
+                            minWidth: 0,
+                            maxWidth: .infinity,
+                            minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                            maxHeight: .infinity,
+                            alignment: .topLeading
+                        )
                 }
             }
         }
@@ -264,11 +272,11 @@ struct ExerciseView_Previews: PreviewProvider {
                     exercise: exercise
                 )
             }
-//            NavigationView {
-//                ExerciseView(
-//                    exercise: exerciseNoLifts
-//                )
-//            }
+            NavigationView {
+                ExerciseView(
+                    exercise: exerciseNoLifts
+                )
+            }
 //            NavigationView {
 //                ExerciseView(
 //                    exercise: exerciseBodyweight
