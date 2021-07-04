@@ -40,6 +40,8 @@
 		07A7B544254A7396006468C1 /* LiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B543254A7396006468C1 /* LiftView.swift */; };
 		07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
 		07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B30650257460A8005CB631 /* List+SeparatorInset.swift */; };
+		07B937AF2691FC51007CE93C /* ExerciseOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B937AE2691FC51007CE93C /* ExerciseOnDate.swift */; };
+		07B937B02691FC51007CE93C /* ExerciseOnDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B937AE2691FC51007CE93C /* ExerciseOnDate.swift */; };
 		07BD42882576748100E5CA05 /* Lift+Grouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BD42872576748100E5CA05 /* Lift+Grouping.swift */; };
 		07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */; };
 		07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */; };
@@ -248,6 +250,7 @@
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
 		07A7B548254BB7E3006468C1 /* TransparentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPicker.swift; sourceTree = "<group>"; };
 		07B30650257460A8005CB631 /* List+SeparatorInset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+SeparatorInset.swift"; sourceTree = "<group>"; };
+		07B937AE2691FC51007CE93C /* ExerciseOnDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseOnDate.swift; sourceTree = "<group>"; };
 		07BD42872576748100E5CA05 /* Lift+Grouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Grouping.swift"; sourceTree = "<group>"; };
 		07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostRecentLift.swift; sourceTree = "<group>"; };
 		07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+WeightsFormatter.swift"; sourceTree = "<group>"; };
@@ -759,6 +762,7 @@
 				79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */,
 				79F72E6425AB5AD800C38F2E /* ExerciseCalendar.swift */,
 				79F72E5C25AB5A9700C38F2E /* OlderLifts.swift */,
+				07B937AE2691FC51007CE93C /* ExerciseOnDate.swift */,
 				79F72E4D25AA5BC000C38F2E /* RecentLift.swift */,
 			);
 			path = Exercise;
@@ -1127,6 +1131,7 @@
 				07D4353A2547D68B00F16668 /* ListView.swift in Sources */,
 				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
 				79F72E6525AB5AD800C38F2E /* ExerciseCalendar.swift in Sources */,
+				07B937AF2691FC51007CE93C /* ExerciseOnDate.swift in Sources */,
 				79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
 				7994F6D125A9E71F004C14A9 /* Screen.swift in Sources */,
@@ -1207,6 +1212,7 @@
 				79B688A8259A89CD00845127 /* DayLabel.swift in Sources */,
 				79B688A9259A89CD00845127 /* MonthLabel.swift in Sources */,
 				79F72E8025AB5CAA00C38F2E /* ExerciseCalendar.swift in Sources */,
+				07B937B02691FC51007CE93C /* ExerciseOnDate.swift in Sources */,
 				79B688AA259A89CD00845127 /* GroupedLiftsOnDay.swift in Sources */,
 				79B688AB259A89CD00845127 /* NavigationLazyView.swift in Sources */,
 				7994F6D825AA0970004C14A9 /* Screen.swift in Sources */,

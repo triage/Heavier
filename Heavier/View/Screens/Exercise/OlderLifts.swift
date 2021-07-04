@@ -77,8 +77,14 @@ struct OlderLifts: View {
         ScrollViewReader { (proxy: ScrollViewProxy) in
             LazyVStack(alignment: .leading) {
                 ForEach(lifts.sections, id: \.id) { section in
-                    OlderLift(section: section, selectedSectionId: selectedSectionId)
-                        .id(section.id)
+                    NavigationLink(
+                        destination: NavigationLazyView(
+                            Text("hi")
+                        ),
+                        label: {
+                            OlderLift(section: section, selectedSectionId: selectedSectionId)
+                                .id(section.id)
+                        }) 
                 }
             }
             .padding([.top], LiftsCalendarView.frameHeight)
