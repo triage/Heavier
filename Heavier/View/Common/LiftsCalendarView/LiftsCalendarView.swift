@@ -83,6 +83,15 @@ struct LiftsCalendarView: UIViewRepresentable {
         uiView.daySelectionHandler = context.coordinator.daySelectionHandler
     }
     
+    private var intermonthSpacing: Float {
+        switch monthsLayout {
+        case .horizontal:
+            return 10.0
+        default:
+            return 50.0
+        }
+    }
+    
     private static var groupingDateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.calendar = Calendar.autoupdatingCurrent
@@ -125,7 +134,8 @@ struct LiftsCalendarView: UIViewRepresentable {
                     month: month
                 )
             )
-        }.withInterMonthSpacing(50.0)
+        }
+        .withInterMonthSpacing(10.0)
     }
 }
 
