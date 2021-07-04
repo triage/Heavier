@@ -241,9 +241,9 @@ struct ExerciseView_Previews: PreviewProvider {
         exerciseBodyweight.id = UUID()
         
         lifts.removeAll()
-        for _ in 0...2 {
+        for index in 0...2 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
-            lift.reps = 10
+            lift.reps = 10 + Int16(index)
             lift.sets = 2
             lift.weight = 0
             lift.id = UUID()
@@ -263,11 +263,11 @@ struct ExerciseView_Previews: PreviewProvider {
                     exercise: exerciseNoLifts
                 )
             }
-//            NavigationView {
-//                ExerciseView(
-//                    exercise: exerciseBodyweight
-//                )
-//            }
+            NavigationView {
+                ExerciseView(
+                    exercise: exerciseBodyweight
+                )
+            }
         }
     }
 }

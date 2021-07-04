@@ -79,7 +79,7 @@ struct OlderLifts: View {
                 ForEach(lifts.sections, id: \.id) { section in
                     NavigationLink(
                         destination: NavigationLazyView(
-                            Text("hi")
+                            ExerciseOnDate(exercise: exercise, date: section.lifts!.first!.timestamp!)
                         ),
                         label: {
                             OlderLift(section: section, selectedSectionId: selectedSectionId)
@@ -125,9 +125,9 @@ struct OlderLiftsPreviews: PreviewProvider {
         var lifts = [Lift]()
         let secondsPerDay: TimeInterval = 60 * 60 * 24
         for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 2)] {
-            for _ in 0...3 {
+            for index in 0...3 {
                 let lift = Lift(context: PersistenceController.shared.container.viewContext)
-                lift.reps = 10
+                lift.reps = 10 + Int16(index)
                 lift.sets = 1
                 lift.notes = "Light weight, baby!"
                 lift.weight = 20
@@ -137,7 +137,8 @@ struct OlderLiftsPreviews: PreviewProvider {
             }
         }
         exercise.lifts = NSOrderedSet(array: lifts)
-        
-        return OlderLifts(exercise: exercise, dateSelected: Date())
+        return NavigationView {
+            OlderLifts(exercise: exercise, dateSelected: Date())
+        }
     }
 }
