@@ -8,24 +8,32 @@
 import Foundation
 import SwiftUI
 
+final class SheetManager: NSObject, ObservableObject {
+    @Published var lift: Lift?
+}
+
 struct ExerciseOnDate: View {
     let exercise: Exercise
     let date: Date
     
     @StateObject private var lifts: LiftsObservable
     @State var presented = false
-    @State var lift: Lift?
+    @StateObject var sheetManager = SheetManager()
     
     init(exercise: Exercise, date: Date) {
         self.exercise = exercise
         self.date = date
+        
+        var dateComponents = Calendar.autoupdatingCurrent.dateComponents(
+            [.day, .month, .year],
+            from: date
+        )
+        dateComponents.calendar = Calendar.autoupdatingCurrent
+        
         _lifts = .init(
             wrappedValue: LiftsObservable(
                 exercise: exercise,
-                dateComponents: Calendar.autoupdatingCurrent.dateComponents(
-                    [.day, .month, .year],
-                    from: date
-                )
+                dateComponents: dateComponents
             )
         )
     }
@@ -49,7 +57,7 @@ struct ExerciseOnDate: View {
             ForEach(lifts.lifts, id: \.id) { lift in
                 Group {
                     Button(action: {
-                        self.lift = lift
+                        sheetManager.lift = lift
                         self.presented = true
                     }, label: {
                         Text(lift.shortDescription(units: Settings.shared.units))
@@ -76,9 +84,9 @@ struct ExerciseOnDate: View {
             }
         }.navigationTitle(title)
         .listStyle(PlainListStyle())
-        .sheet(item: $lift) { item in
-            LiftView(exercise: exercise, lift: item, presented: $presented, mode: .editing)
-        }
+        .sheet(isPresented: $presented, content: {
+            LiftView(exercise: exercise, lift: sheetManager.lift, presented: $presented, mode: .editing)
+        })
     }
     
     struct ExerciseOnDate_Previews: PreviewProvider {

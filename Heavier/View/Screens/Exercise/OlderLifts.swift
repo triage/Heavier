@@ -58,7 +58,7 @@ struct OlderLift: View {
 }
 
 struct OlderLifts: View {
-    @State private var lifts: LiftsObservable
+    @StateObject private var lifts: LiftsObservable
     
     private let exercise: Exercise
     private let dateSelected: Date?

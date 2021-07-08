@@ -19,7 +19,7 @@ struct ListView: View {
         return fetchRequest.wrappedValue
     }
     
-    private static let timestampFormatter: DateFormatter = {
+    static let timestampFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         return formatter
@@ -43,7 +43,7 @@ struct ListView: View {
     }
     
     private func cell(exercise: Exercise) -> some View {
-        NavigationLink(
+        return NavigationLink(
             destination:
                 NavigationLazyView(
                     ExerciseView(exercise: exercise)
@@ -108,16 +108,66 @@ struct ListView: View {
     
     var body: some View {
         List {
-            ForEach(rows, id: \.self) { row in
+            ForEach(rows, id: \.hashValue) { row in
                 if let exercise = row as? Exercise {
-                    cell(exercise: exercise)
+                    ExerciseCell(exercise: exercise)
+                        .id(exercise.listViewIdentifier)
                 } else if let name = row as? String {
                     cell(name: name)
+                        .id(name)
                 } else {
                     EmptyView()
                 }
             }
         }.listStyle(PlainListStyle())
+    }
+}
+
+private extension Exercise {
+    var listViewIdentifier: String {
+        if let name = name, let timestamp = timestamp {
+            return "\(name) - \(timestamp.timeIntervalSince1970)"
+        }
+        return ""
+    }
+}
+
+struct ExerciseCell: View {
+    private struct LiftShortDescription: View {
+        let group: [Lift]
+        let settings: Settings
+        var body: some View {
+            VStack(alignment: .leading) {
+                if let shortDescription = group.shortDescription(units: settings.units) {
+                    Text(shortDescription)
+                }
+                if let timestamp = group.first?.timestamp {
+                    Text(ListView.timestampFormatter.string(from: timestamp))
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
+                        .padding([.top], 2.0)
+                }
+            }
+        }
+    }
+    @ObservedObject var exercise: Exercise
+    @ObservedObject var settings = Settings.shared
+    
+    var body: some View {
+        return NavigationLink(
+            destination:
+                NavigationLazyView(
+                    ExerciseView(exercise: exercise)
+                )
+        ) {
+            VStack(alignment: .leading) {
+                Text(exercise.name!)
+                    .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
+                if let lastGroup = exercise.lastGroup {
+                    LiftShortDescription(group: lastGroup, settings: settings)
+                }
+            }
+            .padding(.vertical, Theme.Spacing.medium)
+        }
     }
 }
 

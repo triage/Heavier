@@ -87,9 +87,13 @@ struct LiftView: View {
         self.lift = lift
         self.mode = mode
         self._presented = presented
+
         _sets = .init(initialValue: Float(lift?.sets ?? 3))
         _reps = .init(initialValue: Float(lift?.reps ?? 10))
         _weight = .init(initialValue: Float(lift?.weightLocalized.weight ?? Settings.shared.units.defaultWeight))
+        if mode == .editing, let timestamp = lift?.timestamp {
+            dateObserved.value = timestamp
+        }
     }
     
     var volume: Float {
@@ -107,6 +111,7 @@ struct LiftView: View {
             lift.weight = Float(Lift.normalize(weight: weight))
             lift.notes = notes
             lift.timestamp = dateObserved.value
+            lift.exercise?.timestamp = Date()
         }
         
         if mode == .creating {

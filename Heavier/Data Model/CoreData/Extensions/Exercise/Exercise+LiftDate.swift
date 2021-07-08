@@ -29,6 +29,20 @@ extension Exercise {
         if let cached = Exercise.lastGroupCache.object(forKey: self) as? [Lift] {
             return cached
         }
+        guard let fetchRequest = exerciseLiftsOnDayFetchRequest else {
+            return nil
+        }
+        
+        do {
+            let results = try PersistenceController.shared.container.viewContext.fetch(fetchRequest)
+            Exercise.lastGroupCache.setObject(results as NSArray, forKey: self)
+            return results
+        } catch {
+            return nil
+        }
+    }
+    
+    var exerciseLiftsOnDayFetchRequest: NSFetchRequest<Lift>? {
         guard let lastLift = lastLift,
               let timestamp = lastLift.timestamp,
               let exercise = lastLift.exercise
@@ -51,14 +65,7 @@ extension Exercise {
             Lift.CoreData.Predicate.weight(lastLift.weight)
         ])
         fetchRequest.predicate = predicate
-        
-        do {
-            let results = try PersistenceController.shared.container.viewContext.fetch(fetchRequest)
-            Exercise.lastGroupCache.setObject(results as NSArray, forKey: self)
-            return results
-        } catch {
-            return nil
-        }
+        return fetchRequest
     }
     
     var lastLift: Lift? {
