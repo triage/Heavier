@@ -72,19 +72,35 @@ struct OlderLifts: View {
     }
     
     @State var selectedSectionId: String?
+    @State var isPresented = false
+    @State var date: Date = Date()
     
     var body: some View {
         ScrollViewReader { (proxy: ScrollViewProxy) in
+            NavigationLink(
+                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: self.date)),
+                isActive: $isPresented,
+                label: {
+                    EmptyView()
+                }
+            )
             LazyVStack(alignment: .leading) {
                 ForEach(lifts.sections, id: \.id) { section in
-                    NavigationLink(
-                        destination: NavigationLazyView(
-                            ExerciseOnDate(exercise: exercise, date: section.lifts!.first!.timestamp!)
-                        ),
-                        label: {
+//                    NavigationLink(
+//                        destination: NavigationLazyView(
+//                            ExerciseOnDate(exercise: exercise, date: section.lifts!.first!.timestamp!)
+//                        ),
+//                        label: {
+                        Button(action: {
+//                            self.section = section
+                            date = section.lifts!.first!.timestamp!
+                            isPresented = true
+                        }, label: {
                             OlderLift(section: section, selectedSectionId: selectedSectionId)
                                 .id(section.id)
-                        }) 
+                        })
+                            
+//                        })
                 }
             }
             .padding([.top], LiftsCalendarView.frameHeight)

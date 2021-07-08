@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class LiftsSection: NSFetchedResultsSectionInfo, Equatable {
+class LiftsSection: NSFetchedResultsSectionInfo, Equatable, ObservableObject {
     static func == (lhs: LiftsSection, rhs: LiftsSection) -> Bool {
         return lhs.name == rhs.name
     }
