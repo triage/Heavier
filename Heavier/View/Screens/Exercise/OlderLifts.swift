@@ -58,11 +58,20 @@ struct OlderLift: View {
 }
 
 struct OlderLifts: View {
+    private class DateObservable: ObservableObject {
+        @Published var date: Date = Date()
+    }
+    
     @StateObject private var lifts: LiftsObservable
+    @StateObject private var olderLiftDateSelected = DateObservable()
+    
+    @State var selectedSectionId: String?
+    @State var isPresented = false
+    @State var date: Date = Date()
     
     private let exercise: Exercise
     private let dateSelected: Date?
-    
+
     init(exercise: Exercise, dateSelected: Date? = nil) {
         self.exercise = exercise
         _lifts = .init(
@@ -71,14 +80,10 @@ struct OlderLifts: View {
         self.dateSelected = dateSelected
     }
     
-    @State var selectedSectionId: String?
-    @State var isPresented = false
-    @State var date: Date = Date()
-    
     var body: some View {
         ScrollViewReader { (proxy: ScrollViewProxy) in
             NavigationLink(
-                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: self.date)),
+                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date)),
                 isActive: $isPresented,
                 label: {
                     EmptyView()
@@ -86,21 +91,13 @@ struct OlderLifts: View {
             )
             LazyVStack(alignment: .leading) {
                 ForEach(lifts.sections, id: \.id) { section in
-//                    NavigationLink(
-//                        destination: NavigationLazyView(
-//                            ExerciseOnDate(exercise: exercise, date: section.lifts!.first!.timestamp!)
-//                        ),
-//                        label: {
-                        Button(action: {
-//                            self.section = section
-                            date = section.lifts!.first!.timestamp!
-                            isPresented = true
-                        }, label: {
-                            OlderLift(section: section, selectedSectionId: selectedSectionId)
-                                .id(section.id)
-                        })
-                            
-//                        })
+                    Button(action: {
+                        olderLiftDateSelected.date = section.lifts!.first!.timestamp!
+                        isPresented = true
+                    }, label: {
+                        OlderLift(section: section, selectedSectionId: selectedSectionId)
+                            .id(section.id)
+                    })
                 }
             }
             .padding([.top], LiftsCalendarView.frameHeight)
