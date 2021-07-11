@@ -29,7 +29,7 @@ extension Array where Element == Lift {
         
         if let first = bounds.first, let last = bounds.last,
            let start = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 1, of: first),
-           let end = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 2, of: last) {
+           let end = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 28, of: last) {
             return start...end
         }
         return nil

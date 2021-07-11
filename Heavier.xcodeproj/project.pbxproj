@@ -411,7 +411,6 @@
 		071E38F6251AF3F800A35799 = {
 			isa = PBXGroup;
 			children = (
-				071E588A26955ED000542610 /* ExercisesObservable.swift */,
 				071E3901251AF3F800A35799 /* Heavier */,
 				071E3918251AF3F900A35799 /* OverloadTests */,
 				071E3923251AF3F900A35799 /* OverloadUITests */,
@@ -766,6 +765,7 @@
 		79F72E6C25AB5B1A00C38F2E /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
+				071E588A26955ED000542610 /* ExercisesObservable.swift */,
 				07899CEA252191EF006C85B1 /* ExerciseView.swift */,
 				79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */,
 				79F72E6425AB5AD800C38F2E /* ExerciseCalendar.swift */,

@@ -164,7 +164,7 @@ struct ExerciseView: View {
                         .frame(
                             minWidth: 0,
                             maxWidth: .infinity,
-                            minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/,
+                            minHeight: 0/*@END_MENU_TOKEN@*/,
                             maxHeight: .infinity,
                             alignment: .topLeading
                         )
