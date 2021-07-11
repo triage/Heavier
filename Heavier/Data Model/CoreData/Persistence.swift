@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import Combine
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -76,65 +77,96 @@ struct PersistenceController {
                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             } else {
-                if UserDefaults.standard.bool(forKey: PersistenceController.defaultsKey) == true {
-                    // already have old-style default content
-                    if UserDefaults.standard.bool(forKey: PersistenceController.featureAddRelevanceKey) == false {
-                        // upgrade
-                        DispatchQueue.global().async {
-                            guard let exercises: [ExerciseJSONObject]
-                                    = JSONSerialization.load(fileName: "exercises-default") else {
-                                return
-                            }
-                            PersistenceController.shared.container.performBackgroundTask { (context) in
-                                exercises.forEach { json in
-                                    let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
-                                    fetchRequest.predicate = NSPredicate(format: "name =[c] %@", json.name)
-                                    if let results: [Exercise] = try? context.fetch(fetchRequest) {
-                                        results.forEach {
-                                            $0.relevance = Int16(json.relevance)
-                                        }
+                PersistenceController.performDataMigration()
+            }
+        })
+    }
+    
+    @discardableResult
+    private static func importDefaultExercisesIfNecessary() -> Future<Bool, Never> {
+        Future { promise in
+            if UserDefaults.standard.bool(forKey: PersistenceController.defaultsKey) == true {
+                // already have old-style default content
+                if UserDefaults.standard.bool(forKey: PersistenceController.featureAddRelevanceKey) == false {
+                    // upgrade
+                    DispatchQueue.global().async {
+                        guard let exercises: [ExerciseJSONObject]
+                                = JSONSerialization.load(fileName: "exercises-default") else {
+                            return
+                        }
+                        PersistenceController.shared.container.performBackgroundTask { (context) in
+                            exercises.forEach { json in
+                                let fetchRequest: NSFetchRequest<Exercise> = Exercise.fetchRequest()
+                                fetchRequest.predicate = NSPredicate(format: "name =[c] %@", json.name)
+                                if let results: [Exercise] = try? context.fetch(fetchRequest) {
+                                    results.forEach {
+                                        $0.relevance = Int16(json.relevance)
                                     }
                                 }
-                                do {
-                                    try context.save()
-                                    UserDefaults.standard.set(
-                                        true,
-                                        forKey: PersistenceController.featureAddRelevanceKey
-                                    )
-                                } catch {
-                                    print("unable to save changes to relevance")
-                                }
-                            }
-                        }
-                    }
-                } else if UserDefaults.standard.bool(forKey: PersistenceController.defaultsV2Key) == false {
-                    // default content
-                    DispatchQueue.global().async {
-                        PersistenceController.shared.container.performBackgroundTask { (context) in
-                            guard let exercises: [ExerciseJSONObject]
-                                    = JSONSerialization.load(fileName: "exercises-default") else {
-                                return
-                            }
-                            exercises.forEach { json in
-                                guard let exercise
-                                        = Exercise(
-                                            name: json.name.capitalized,
-                                            relevance: json.relevance, context: context
-                                        ) else {
-                                    return
-                                }
-                                exercise.id = UUID()
                             }
                             do {
                                 try context.save()
-                                UserDefaults.standard.set(true, forKey: PersistenceController.defaultsV2Key)
+                                UserDefaults.standard.set(
+                                    true,
+                                    forKey: PersistenceController.featureAddRelevanceKey
+                                )
+                                promise(.success(true))
                             } catch {
-                                print("unable to save default content")
+                                print("unable to save changes to relevance")
+                                promise(.success(true))
                             }
+                        }
+                    }
+                } else {
+                    promise(.success(false))
+                }
+            } else {
+                promise(.success(false))
+            }
+        }
+    }
+    
+    @discardableResult
+    private static func addRelevanceIfNecessary() -> Future<Bool, Never> {
+        Future { promise in
+            if UserDefaults.standard.bool(forKey: PersistenceController.defaultsV2Key) == false {
+                // default content
+                DispatchQueue.global().async {
+                    PersistenceController.shared.container.performBackgroundTask { (context) in
+                        guard let exercises: [ExerciseJSONObject]
+                                = JSONSerialization.load(fileName: "exercises-default") else {
+                            return
+                        }
+                        exercises.forEach { json in
+                            guard let exercise
+                                    = Exercise(
+                                        name: json.name.capitalized,
+                                        relevance: json.relevance, context: context
+                                    ) else {
+                                return
+                            }
+                            exercise.id = UUID()
+                        }
+                        do {
+                            try context.save()
+                            UserDefaults.standard.set(true, forKey: PersistenceController.defaultsV2Key)
+                            promise(.success(true))
+                        } catch {
+                            print("unable to save default content")
+                            promise(.success(true))
                         }
                     }
                 }
             }
-        })
+            promise(.success(false))
+        }
+    }
+    
+    private static func performDataMigration() {
+        _ = importDefaultExercisesIfNecessary().sink { migrated in
+            if !migrated {
+                addRelevanceIfNecessary()
+            }
+        }
     }
 }

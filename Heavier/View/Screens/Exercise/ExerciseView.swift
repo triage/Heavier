@@ -15,7 +15,6 @@ struct ExerciseView: View {
     let exercise: Exercise
     
     @State private var liftViewPresented = false
-    @State private var page: Int
     @State private var calendarButtonIsVisible = false
     @State private var calendarIsFloating = false
     @State private var calendarYOffset: CGFloat = 0.0
@@ -23,7 +22,6 @@ struct ExerciseView: View {
     @State private var dateSelected: Date?
     
     @StateObject private var lifts: LiftsObservable
-    @StateObject private var months: LiftsObservable
     
     // swiftlint:disable:next weak_delegate
     @StateObject private var scrollViewDelegate = UIScrollViewDelegateObservable()
@@ -40,17 +38,6 @@ struct ExerciseView: View {
         _lifts = .init(
             wrappedValue: LiftsObservable(exercise: exercise, ascending: false)
         )
-        
-        let monthsObservable = LiftsObservable(
-            exercise: exercise,
-            ascending: true,
-            sectionNameKeyPath: #keyPath(Lift.monthGroupingIdentifier)
-        )
-        _months = .init(
-            wrappedValue:
-                monthsObservable
-        )
-        _page = .init(initialValue: monthsObservable.sections.count - 1)
     }
     
     private func onScroll(value: CGPoint) {
@@ -165,15 +152,22 @@ struct ExerciseView: View {
                     )
                     
                     ExerciseCalendar(
-                        sections: months.sections,
-                        page: $page,
+                        lifts: $lifts.lifts,
                         dateSelected: $dateSelected
                     )
-                    .offset(x: Theme.Spacing.large, y: calendarOffset)
+                    .offset(x: 0, y: calendarOffset)
                     
                 } else {
-                    Text("No lifts recorded yet.")
-                        .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)
+                    Text("No lifts recorded yet")
+                        .offset(x: Theme.Spacing.large, y: Theme.Spacing.medium)
+                        .sfCompactDisplay(.regular, size: Theme.Font.Size.large)
+                        .frame(
+                            minWidth: 0,
+                            maxWidth: .infinity,
+                            minHeight: 0/*@END_MENU_TOKEN@*/,
+                            maxHeight: .infinity,
+                            alignment: .topLeading
+                        )
                 }
             }
         }
@@ -224,8 +218,8 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.id = UUID()
         var lifts = [Lift]()
         let secondsPerDay: TimeInterval = 60 * 60 * 24
-        for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 2)] {
-            for _ in 0...3 {
+        for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 60)] {
+            for _ in 0...2 {
                 let lift = Lift(context: PersistenceController.shared.container.viewContext)
                 lift.reps = 10
                 lift.sets = 1
@@ -247,9 +241,9 @@ struct ExerciseView_Previews: PreviewProvider {
         exerciseBodyweight.id = UUID()
         
         lifts.removeAll()
-        for _ in 0...2 {
+        for index in 0...2 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
-            lift.reps = 10
+            lift.reps = 10 + Int16(index)
             lift.sets = 2
             lift.weight = 0
             lift.id = UUID()
@@ -264,16 +258,16 @@ struct ExerciseView_Previews: PreviewProvider {
                     exercise: exercise
                 )
             }
-//            NavigationView {
-//                ExerciseView(
-//                    exercise: exerciseNoLifts
-//                )
-//            }
-//            NavigationView {
-//                ExerciseView(
-//                    exercise: exerciseBodyweight
-//                )
-//            }
+            NavigationView {
+                ExerciseView(
+                    exercise: exerciseNoLifts
+                )
+            }
+            NavigationView {
+                ExerciseView(
+                    exercise: exerciseBodyweight
+                )
+            }
         }
     }
 }

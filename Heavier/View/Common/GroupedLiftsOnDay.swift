@@ -14,7 +14,7 @@ struct GroupedLiftsOnDay: View {
     var body: some View {
         ForEach((lifts.groupedByWeightAndReps.values).sorted(by: { (first, second) -> Bool in
             first.mostRecent.timestamp! < second.mostRecent.timestamp!
-        }), id: \.self) { lifts in
+        }), id: \.identifiableHashValue) { lifts in
             VStack(alignment: .leading) {
                 if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
                     Text(shortDescription)

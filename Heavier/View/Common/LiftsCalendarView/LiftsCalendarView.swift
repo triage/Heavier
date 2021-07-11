@@ -15,7 +15,7 @@ struct LiftsCalendarView: UIViewRepresentable {
     
     typealias DaySelectionhandler = ((Day) -> Void)
     
-    private let lifts: [Lift]
+    @Binding var lifts: [Lift]
     private let days: [String: [Lift]]
     private let onDateSelect: DaySelectionhandler
     private let monthsLayout: MonthsLayout
@@ -34,16 +34,16 @@ struct LiftsCalendarView: UIViewRepresentable {
     private static let groupingDateFormat = "yyyy-MM-dd"
     
     init(
-        lifts: [Lift],
+        lifts: Binding<[Lift]>,
         timestampBounds: ClosedRange<Date>? = nil,
         monthsLayout: MonthsLayout = MonthsLayout.vertical(options: VerticalMonthsLayoutOptions()),
         onDateSelect: @escaping DaySelectionhandler
     ) {
-        self.lifts = lifts
+        self._lifts = lifts
         self.monthsLayout = monthsLayout
         self.onDateSelect = onDateSelect
         self.timestampBounds = timestampBounds
-        self.days = Dictionary(grouping: lifts) { (lift) -> String in
+        self.days = Dictionary(grouping: lifts.wrappedValue) { (lift) -> String in
             LiftsCalendarView.groupingDateFormatter.string(from: lift.timestamp!)
         }
     }
@@ -81,6 +81,16 @@ struct LiftsCalendarView: UIViewRepresentable {
     
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<LiftsCalendarView>) {
         uiView.daySelectionHandler = context.coordinator.daySelectionHandler
+        uiView.setContent(makeContent())
+    }
+    
+    private var intermonthSpacing: Float {
+        switch monthsLayout {
+        case .horizontal:
+            return 10.0
+        default:
+            return 50.0
+        }
     }
     
     private static var groupingDateFormatter: DateFormatter {
@@ -125,16 +135,17 @@ struct LiftsCalendarView: UIViewRepresentable {
                     month: month
                 )
             )
-        }.withInterMonthSpacing(50.0)
+        }
+        .withInterMonthSpacing(10.0)
     }
 }
 
 struct LiftsCalendar_ContentPreviews: PreviewProvider {
     static var previews: some View {
         Group {
-            LiftsCalendarView(lifts: Exercise.Preview.preview.lifts!.array as! [Lift], onDateSelect: { day in
-                print("day selected:\(day.description)")
-            })
+//            LiftsCalendarView(lifts: Exercise.Preview.preview.lifts!.array as! [Lift], onDateSelect: { day in
+//                print("day selected:\(day.description)")
+//            })
         }
     }
 }

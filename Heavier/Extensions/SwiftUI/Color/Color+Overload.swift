@@ -24,11 +24,13 @@ extension Color {
         case placeholder
         case liftButtonBorderSelected
         case overlay
+        case faint
     }
     private init(_ overload: Overload) {
         self.init(overload.rawValue)
     }
     
+    static let faint = Color(.faint)
     static let background = Color(.background)
     static let highlight = Color(.highlight)
     static let overlay = Color(.overlay)

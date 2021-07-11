@@ -52,4 +52,16 @@ extension Lift {
         }
         return min...max
     }
+    
+    static var timestampBoundsMonth: ClosedRange<Date>? {
+        guard let min = timestampValue(at: .min), let max = timestampValue(at: .max) else {
+            return nil
+        }
+        
+        if let firstMonthStart = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 1, of: min),
+           let lastMonthEnd = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 2, of: max) {
+            return firstMonthStart...lastMonthEnd
+        }
+        return nil
+    }
 }

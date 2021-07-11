@@ -54,6 +54,7 @@ struct DateButton: View {
 struct LiftView: View {
     let exercise: Exercise
     let lift: Lift?
+    private let mode: Mode
     
     enum SheetType: Identifiable {
         case calendar
@@ -70,18 +71,29 @@ struct LiftView: View {
     @State var weight: Float
     @State var notes: String = ""
     @State var sheetType: SheetType?
+    
     @Binding var presented: Bool
     
     @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var dateObserved = ObservableValue(value: Date())
     
-    init(exercise: Exercise, lift: Lift?, presented: Binding<Bool>) {
+    enum Mode {
+        case creating
+        case editing
+    }
+    
+    init(exercise: Exercise, lift: Lift?, presented: Binding<Bool>, mode: Mode = .creating) {
         self.exercise = exercise
         self.lift = lift
+        self.mode = mode
         self._presented = presented
+
         _sets = .init(initialValue: Float(lift?.sets ?? 3))
         _reps = .init(initialValue: Float(lift?.reps ?? 10))
         _weight = .init(initialValue: Float(lift?.weightLocalized.weight ?? Settings.shared.units.defaultWeight))
+        if mode == .editing, let timestamp = lift?.timestamp {
+            dateObserved.value = timestamp
+        }
     }
     
     var volume: Float {
@@ -93,14 +105,24 @@ struct LiftView: View {
     }
     
     func save() {
-        let lift = Lift(context: managedObjectContext)
-        lift.reps = Int16(reps)
-        lift.sets = Int16(sets)
-        lift.weight = Float(Lift.normalize(weight: weight))
-        lift.id = UUID()
-        lift.notes = notes
-        lift.timestamp = dateObserved.value
-        lift.exercise = exercise
+        func updateFromState(lift: Lift) {
+            lift.reps = Int16(reps)
+            lift.sets = Int16(sets)
+            lift.weight = Float(Lift.normalize(weight: weight))
+            lift.notes = notes
+            lift.timestamp = dateObserved.value
+            lift.exercise?.timestamp = Date()
+        }
+        
+        if mode == .creating {
+            let lift = Lift(context: managedObjectContext)
+            lift.id = UUID()
+            lift.exercise = exercise
+            updateFromState(lift: lift)
+        } else if let lift = lift {
+            updateFromState(lift: lift)
+        }
+        
         do {
             try? managedObjectContext.save()
             exercise.clearLastGroupShortDescriptionCache()
@@ -230,7 +252,7 @@ struct LiftView_ContentPreviews: PreviewProvider {
         
         return Group {
             LiftView(exercise: exercise, lift: lift, presented: $presented)
-            LiftView(exercise: exercise, lift: lift, presented: $presented)
+            LiftView(exercise: exercise, lift: lift, presented: $presented, mode: .editing)
                     .environment(\.colorScheme, ColorScheme.dark)
         }
     }

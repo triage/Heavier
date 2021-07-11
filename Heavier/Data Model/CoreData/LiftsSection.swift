@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class LiftsSection: NSFetchedResultsSectionInfo, Equatable {
+class LiftsSection: NSFetchedResultsSectionInfo, Equatable, ObservableObject {
     static func == (lhs: LiftsSection, rhs: LiftsSection) -> Bool {
         return lhs.name == rhs.name
     }
@@ -39,9 +39,10 @@ extension LiftsSection: Identifiable {
     var id: String {
         guard let objects = objects,
               let first = (objects.first as? Lift)?.timestamp,
-              let last = (objects.last as? Lift)?.timestamp else {
+              let last = (objects.last as? Lift)?.timestamp,
+              let hashValue = lifts?.identifiableHashValue else {
             return ""
         }
-        return "\(first) - \(last)"
+        return "\(first) - \(last) - \(hashValue)"
     }
 }

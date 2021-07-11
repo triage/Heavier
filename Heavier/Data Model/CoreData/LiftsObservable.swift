@@ -41,6 +41,15 @@ final class LiftsObservable: NSObject, ObservableObject {
         ))
     }
     
+    convenience init(exercise: Exercise, dateComponents: DateComponents) {
+        self.init(fetchedResultsController: NSFetchedResultsController(
+            fetchRequest: Lift.CoreData.fetchRequest(exercise: exercise, ascending: true, day: dateComponents),
+            managedObjectContext: PersistenceController.shared.container.viewContext,
+            sectionNameKeyPath: Lift.CoreData.KeyPath.exerciseId,
+            cacheName: nil
+        ))
+    }
+    
     convenience init(
         exercise: Exercise?,
         ascending: Bool = true,
