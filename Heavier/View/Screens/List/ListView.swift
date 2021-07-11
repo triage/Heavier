@@ -130,6 +130,10 @@ private extension Exercise {
 struct ExerciseCell: View {
     @Binding var exerciseSelected: Exercise?
     @Binding var isPresenting: Bool
+    
+    @ObservedObject var exercise: Exercise
+    @ObservedObject var settings = Settings.shared
+    
     private struct LiftShortDescription: View {
         let lifts: [Lift]
         let settings: Settings
@@ -146,8 +150,6 @@ struct ExerciseCell: View {
             }
         }
     }
-    @ObservedObject var exercise: Exercise
-    @ObservedObject var settings = Settings.shared
     
     var body: some View {
         

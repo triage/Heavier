@@ -60,25 +60,23 @@ struct ExerciseOnDate: View {
                         sheetManager.lift = lift
                         self.presented = true
                     }, label: {
-                        Text(lift.shortDescription(units: Settings.shared.units))
-                            .sfCompactDisplay(.regular, size: Theme.Font.Size.large)
-                            .padding(
-                                EdgeInsets(
-                                    top: Theme.Spacing.medium,
-                                    leading: 0.0,
-                                    bottom: Theme.Spacing.medium,
-                                    trailing: 0.0
+                        HStack {
+                            Text(lift.shortDescription(units: Settings.shared.units))
+                                .sfCompactDisplay(.regular, size: Theme.Font.Size.large)
+                                .padding(
+                                    EdgeInsets(
+                                        top: Theme.Spacing.medium,
+                                        leading: 0.0,
+                                        bottom: Theme.Spacing.medium,
+                                        trailing: 0.0
+                                    )
                                 )
-                            )
-                            .frame(
-                                minWidth: 0.0,
-                                idealWidth: 100,
-                                maxWidth: .infinity,
-                                minHeight: 0,
-                                idealHeight: 50,
-                                maxHeight: .infinity,
-                                alignment: .leading
-                            )
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: Theme.Font.Size.large))
+                                .opacity(0.25)
+                                .scaleEffect(0.5)
+                        }
                     })
                 }
             }
