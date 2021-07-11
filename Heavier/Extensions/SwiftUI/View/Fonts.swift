@@ -54,6 +54,16 @@ class Theme {
                 case black = "SF Compact Display Black"
                 
                 var textStyle: UIFont.TextStyle {
+                    #if APPCLIP
+                    switch self {
+                    case .regular:
+                        return .body
+                    case .bold:
+                        return .callout
+                    default:
+                        return .body
+                    }
+                    #else
                     switch self {
                     case .regular:
                         return .body
@@ -64,6 +74,7 @@ class Theme {
                     case .medium:
                         return .subheadline
                     }
+                    #endif
                 }
             }
             let variation: Variation
