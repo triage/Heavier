@@ -31,6 +31,8 @@
 		0781F2A6254E521F00B9AE63 /* DifferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781F2A5254E521F00B9AE63 /* DifferenceView.swift */; };
 		0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */; };
 		07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07899CEA252191EF006C85B1 /* ExerciseView.swift */; };
+		079331FB269BD33700D37202 /* Date+Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079331FA269BD33700D37202 /* Date+Month.swift */; };
+		079331FC269BD33700D37202 /* Date+Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079331FA269BD33700D37202 /* Date+Month.swift */; };
 		079376142579E17000382DB1 /* exercises-default.json in Resources */ = {isa = PBXBuildFile; fileRef = 079376132579E17000382DB1 /* exercises-default.json */; };
 		079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */; };
 		0798EAF225771CB000008A28 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798EAF125771CB000008A28 /* SettingsView.swift */; };
@@ -244,6 +246,7 @@
 		0781F2AD254E59A500B9AE63 /* Lift+Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Volume.swift"; sourceTree = "<group>"; };
 		07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 2.xcdatamodel"; sourceTree = "<group>"; };
 		07899CEA252191EF006C85B1 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		079331FA269BD33700D37202 /* Date+Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Month.swift"; sourceTree = "<group>"; };
 		079376132579E17000382DB1 /* exercises-default.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "exercises-default.json"; sourceTree = "<group>"; };
 		079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+Load.swift"; sourceTree = "<group>"; };
 		0798EAF125771CB000008A28 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -384,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				070221902572BA8800456C4C /* DateComponents+Range.swift */,
+				079331FA269BD33700D37202 /* Date+Month.swift */,
 				079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */,
 			);
 			path = Foundation;
@@ -1128,6 +1132,7 @@
 				07DA92DE25850A2100FB95BB /* MetricImperialConversion.swift in Sources */,
 				79DF5E6225A17896000067E4 /* Lift+Bounds.swift in Sources */,
 				077F8F46256987680075B307 /* Exercise+Init.swift in Sources */,
+				079331FB269BD33700D37202 /* Date+Month.swift in Sources */,
 				798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */,
 				07BD42882576748100E5CA05 /* Lift+Grouping.swift in Sources */,
 				79F72E4E25AA5BC000C38F2E /* RecentLift.swift in Sources */,
@@ -1220,6 +1225,7 @@
 				79B6B9E225AD442A008EC2DC /* CalendarButton.swift in Sources */,
 				79B688A8259A89CD00845127 /* DayLabel.swift in Sources */,
 				79B688A9259A89CD00845127 /* MonthLabel.swift in Sources */,
+				079331FC269BD33700D37202 /* Date+Month.swift in Sources */,
 				79F72E8025AB5CAA00C38F2E /* ExerciseCalendar.swift in Sources */,
 				07B937B02691FC51007CE93C /* ExerciseOnDate.swift in Sources */,
 				79B688AA259A89CD00845127 /* GroupedLiftsOnDay.swift in Sources */,

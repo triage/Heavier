@@ -47,7 +47,7 @@ struct ExerciseCalendar: View {
                     components.calendar = Calendar.autoupdatingCurrent
                     dateSelected = components.date
                 }
-            )        .frame(
+            ).frame(
                 width: ExerciseCalendar.screenWidth,
                 height: LiftsCalendarView.frameHeight
             )
