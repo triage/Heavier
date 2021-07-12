@@ -60,20 +60,24 @@ struct LiftsCalendarView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> CalendarView {
         let calendar = CalendarView(initialContent: makeContent())
-        if shouldScrollToDate {
-            calendar.scroll(toDayContaining: Date(), scrollPosition: .centered, animated: false)
-        }
         return calendar
     }
     
     class Coordinator: NSObject {
         let daySelectionHandler: DaySelectionhandler
+        
+        private var didScrollToLatestDate = false
+        
         init(daySelectionHandler: @escaping DaySelectionhandler) {
             self.daySelectionHandler = daySelectionHandler
         }
+        
+        var shouldScrollToLatestDate: Bool {
+            !didScrollToLatestDate
+        }
     }
     
-    func makeCoordinator() ->LiftsCalendarView.Coordinator {
+    func makeCoordinator() -> LiftsCalendarView.Coordinator {
         Coordinator(
             daySelectionHandler: onDateSelect
         )
@@ -82,6 +86,9 @@ struct LiftsCalendarView: UIViewRepresentable {
     func updateUIView(_ uiView: CalendarView, context: UIViewRepresentableContext<LiftsCalendarView>) {
         uiView.daySelectionHandler = context.coordinator.daySelectionHandler
         uiView.setContent(makeContent())
+        if let timestampBounds = timestampBounds, context.coordinator.shouldScrollToLatestDate {
+            uiView.scroll(toDayContaining: timestampBounds.upperBound, scrollPosition: .centered, animated: false)
+        }
     }
     
     private var intermonthSpacing: Float {

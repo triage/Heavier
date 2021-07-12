@@ -26,10 +26,12 @@ extension Array where Element == Lift {
             return nil
         }
         let bounds = [first, last].sorted()
+        let calendar = Calendar.autoupdatingCurrent
         
-        if let first = bounds.first, let last = bounds.last,
-           let start = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 1, of: first),
-           let end = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 28, of: last) {
+        if let first = bounds.first,
+           let last = bounds.last,
+           let start = calendar.date(from: calendar.dateComponents([.year, .month], from: first)),
+           let end = calendar.date(from: calendar.dateComponents([.year, .month], from: last)) {
             return start...end
         }
         return nil
