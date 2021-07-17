@@ -25,7 +25,7 @@ struct LiftsCalendarView: UIViewRepresentable {
      The height we must supply as the height of the calendar.
      Anything less than this results in a crash.
      */
-    static let calendarHeight: CGFloat = 420
+    static let calendarHeight: CGFloat = 380
     /*
      The maximum height the calendar will _actually_ be.
      This is the height that we should clip to.

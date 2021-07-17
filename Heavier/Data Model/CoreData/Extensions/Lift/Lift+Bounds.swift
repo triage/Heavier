@@ -16,7 +16,7 @@ extension Array where Element == Lift {
 
         if let start = bounds.first,
            let end = bounds.last {
-            return start.startOfMonth...end.endOfMonth
+            return start.startOfMonth...end.startOfMonth
         }
         return nil
     }

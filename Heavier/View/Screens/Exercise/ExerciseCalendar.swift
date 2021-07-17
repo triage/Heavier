@@ -25,6 +25,7 @@ struct ExerciseCalendar: View {
     @Binding var dateSelected: Date?
     
     var body: some View {
+        print("bounds:\(lifts.timestampBoundsMonths)")
         return Group {
             LiftsCalendarView(
                 lifts: $lifts,

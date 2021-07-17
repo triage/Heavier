@@ -26,7 +26,7 @@ struct ExerciseView: View {
     // swiftlint:disable:next weak_delegate
     @StateObject private var scrollViewDelegate = UIScrollViewDelegateObservable()
     
-    private static let showCalendarButtonAtScrollOffset: CGFloat = 390.0
+    private static let showCalendarButtonAtScrollOffset: CGFloat = 330.0
     private static let animationDuration: TimeInterval = 0.24
     
     init?(exercise: Exercise?) {
@@ -218,15 +218,15 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.id = UUID()
         var lifts = [Lift]()
         let secondsPerDay: TimeInterval = 60 * 60 * 24
-        for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 60)] {
-            for _ in 0...2 {
+        for _ in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 60)] {
+            for index in 0...100 {
                 let lift = Lift(context: PersistenceController.shared.container.viewContext)
                 lift.reps = 10
                 lift.sets = 1
                 lift.notes = "Light weight, baby!"
                 lift.weight = 20
                 lift.id = UUID()
-                lift.timestamp = date
+                lift.timestamp = Date().addingTimeInterval(TimeInterval(60 * 60 * 24 * index))
                 lifts.append(lift)
             }
         }
@@ -241,13 +241,13 @@ struct ExerciseView_Previews: PreviewProvider {
         exerciseBodyweight.id = UUID()
         
         lifts.removeAll()
-        for index in 0...2 {
+        for index in 0...30 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10 + Int16(index)
             lift.sets = 2
             lift.weight = 0
             lift.id = UUID()
-            lift.timestamp = Date()
+            lift.timestamp = Date().addingTimeInterval(60 * 60 * 12)
             lifts.append(lift)
         }
         exerciseBodyweight.lifts = NSOrderedSet(array: lifts)
