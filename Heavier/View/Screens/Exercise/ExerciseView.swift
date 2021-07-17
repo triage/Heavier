@@ -10,18 +10,27 @@ import SwiftUI
 import CoreData
 import Introspect
 import UIKit
+import Combine
+
+class ScrollState: ObservableObject {
+    @Published var calendarButtonIsVisible = false
+    @Published var calendarIsFloating = false
+    @Published var calendarYOffset: CGFloat = 0.0
+}
 
 struct ExerciseView: View {
     let exercise: Exercise
     
     @State private var liftViewPresented = false
-    @State private var calendarButtonIsVisible = false
-    @State private var calendarIsFloating = false
-    @State private var calendarYOffset: CGFloat = 0.0
+//    @State private var calendarButtonIsVisible = false
+//    @State private var calendarIsFloating = false
+//    @State private var calendarYOffset: CGFloat = 0.0
     @State private var calendaryUnderlayOpacity: Double = 0.0
     @State private var dateSelected: Date?
     
     @StateObject private var lifts: LiftsObservable
+    
+    @StateObject private var scrollState = ScrollState()
     
     // swiftlint:disable:next weak_delegate
     @StateObject private var scrollViewDelegate = UIScrollViewDelegateObservable()
@@ -41,60 +50,61 @@ struct ExerciseView: View {
     }
     
     private func onScroll(value: CGPoint) {
-        if calendarIsFloating {
+//        return
+        if scrollState.calendarIsFloating {
             if scrollViewDelegate.isDragging {
                 withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
-                    calendarIsFloating.toggle()
-                    calendarButtonIsVisible.toggle()
+                    scrollState.calendarIsFloating.toggle()
+                    scrollState.calendarButtonIsVisible.toggle()
                 }
             } else {
                 guard !scrollViewDelegate.isDragging && !scrollViewDelegate.isDecelerating else {
                     return
                 }
                 withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
-                    calendarIsFloating.toggle()
-                    calendaryUnderlayOpacity = 0.0
-                    if calendarButtonIsVisible == false {
-                        calendarButtonIsVisible.toggle()
+                    scrollState.calendarIsFloating.toggle()
+//                    calendaryUnderlayOpacity = 0.0
+                    if scrollState.calendarButtonIsVisible == false {
+                        scrollState.calendarButtonIsVisible.toggle()
                     }
                 }
             }
-        } else if value.y > ExerciseView.showCalendarButtonAtScrollOffset && !calendarButtonIsVisible {
+        } else if value.y > ExerciseView.showCalendarButtonAtScrollOffset && !scrollState.calendarButtonIsVisible {
             // show the calendar button
             withAnimation(.easeOut(duration: ExerciseView.animationDuration)) {
-                calendarButtonIsVisible.toggle()
+                scrollState.calendarButtonIsVisible.toggle()
             }
         } else if
             value.y < ExerciseView.showCalendarButtonAtScrollOffset &&
-                calendarButtonIsVisible {
+                scrollState.calendarButtonIsVisible {
             // hide the calendar button
             withAnimation(.easeIn(duration: ExerciseView.animationDuration)) {
-                calendarButtonIsVisible.toggle()
+                scrollState.calendarButtonIsVisible.toggle()
             }
         }
     }
     
     private func onTopCalendarButton() {
         withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
-            calendarIsFloating.toggle()
+            scrollState.calendarIsFloating.toggle()
             calendaryUnderlayOpacity = 1.0
         }
     }
     
     private func onTapUnderlay() {
         withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
-            calendarIsFloating.toggle()
+            scrollState.calendarIsFloating.toggle()
             calendaryUnderlayOpacity = 0.0
-            calendarButtonIsVisible.toggle()
+            scrollState.calendarButtonIsVisible.toggle()
         }
     }
     
     private func onDateChanged(date: Date?) {
-        if calendarIsFloating {
+        if scrollState.calendarIsFloating {
             withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
-                calendarIsFloating.toggle()
+                scrollState.calendarIsFloating.toggle()
                 calendaryUnderlayOpacity = 0.0
-                calendarButtonIsVisible.toggle()
+                scrollState.calendarButtonIsVisible.toggle()
             }
         }
     }
@@ -104,8 +114,8 @@ struct ExerciseView: View {
     }
     
     private var calendarOffset: CGFloat {
-        if calendarIsFloating {
-            return scrollViewContentOffset
+        if scrollState.calendarIsFloating {
+            return scrollViewContentOffset + 90
         } else {
             return scrollViewContentOffset > LiftsCalendarView.frameHeight ?
                 scrollViewContentOffset - LiftsCalendarView.calendarHeight : 0.0
@@ -113,11 +123,12 @@ struct ExerciseView: View {
     }
     
     var shadowOpacity: Double {
-        calendarIsFloating ? 0.12 : 0.0
+        scrollState.calendarIsFloating ? 0.12 : 0.0
     }
     
     var body: some View {
-        ScrollView {
+        print("new exercise view")
+        return ScrollView {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
                     
@@ -126,7 +137,7 @@ struct ExerciseView: View {
                         dateSelected: dateSelected
                     )
                     
-                    BlackOverlay(visible: calendarIsFloating)
+                    BlackOverlay(visible: scrollState.calendarIsFloating)
                         .opacity(calendaryUnderlayOpacity)
                         .offset(x: 0.0, y: scrollViewContentOffset)
                         .onTapGesture {
@@ -151,9 +162,11 @@ struct ExerciseView: View {
                         radius: 3.0, x: 0.0, y: 3.0
                     )
                     
-                    ExerciseCalendar(
-                        lifts: $lifts.lifts,
-                        dateSelected: $dateSelected
+                    EquatableView(content:
+                        ExerciseCalendar(
+                            lifts: $lifts.lifts,
+                            dateSelected: $dateSelected
+                        )
                     )
                     .offset(x: 0, y: calendarOffset)
                     
@@ -172,17 +185,23 @@ struct ExerciseView: View {
             }
         }
         .introspectScrollView { scrollView in
+            let delegate = scrollView.delegate
+            print("delegate:\(delegate)")
             scrollView.delegate = scrollViewDelegate
         }
+        .didScroll({ point in
+            scrollViewDelegate.offset = point
+            print("point:\(point)")
+        })
         .onChange(of: dateSelected, perform: onDateChanged)
         .onChange(of: scrollViewDelegate.offset, perform: onScroll)
         .overlay(
             CalendarButton {
-                calendarButtonIsVisible.toggle()
+                scrollState.calendarButtonIsVisible.toggle()
                 onTopCalendarButton()
             }
-            .opacity(calendarButtonIsVisible ? 1.0 : 0.0)
-            .offset(x: -20, y: calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)
+            .opacity(scrollState.calendarButtonIsVisible ? 1.0 : 0.0)
+            .offset(x: -20, y: scrollState.calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)
         
         .navigationTitle(exercise.name!)
         .toolbar(
@@ -270,4 +289,41 @@ struct ExerciseView_Previews: PreviewProvider {
             }
         }
     }
+}
+
+
+
+struct ScrollViewDidScrollViewModifier: ViewModifier {
+  class ViewModel: ObservableObject {
+    @Published var contentOffset: CGPoint = .zero
+    
+    var contentOffsetSubscription: AnyCancellable?
+    
+    func subscribe(scrollView: UIScrollView) {
+      contentOffsetSubscription = scrollView.publisher(for: \.contentOffset).sink { [weak self] contentOffset in
+        self?.contentOffset = contentOffset
+      }
+    }
+  }
+
+  @StateObject var viewModel = ViewModel()
+  var didScroll: (CGPoint) -> Void
+  
+  func body(content: Content) -> some View {
+    content
+      .introspectScrollView { scrollView in
+        if viewModel.contentOffsetSubscription == nil {
+          viewModel.subscribe(scrollView: scrollView)
+        }
+      }
+      .onReceive(viewModel.$contentOffset) { contentOffset in
+        didScroll(contentOffset)
+      }
+  }
+}
+
+extension View {
+  func didScroll(_ didScroll: @escaping (CGPoint) -> Void) -> some View {
+    self.modifier(ScrollViewDidScrollViewModifier(didScroll: didScroll))
+  }
 }

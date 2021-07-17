@@ -25,9 +25,7 @@ class UIScrollViewDelegateObservable: NSObject, UIScrollViewDelegate, Observable
         isDragging = false
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        isDecelerating = false
-    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {}
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         isDecelerating = false

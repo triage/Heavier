@@ -39,6 +39,7 @@ struct LiftsCalendarView: UIViewRepresentable {
         monthsLayout: MonthsLayout = MonthsLayout.vertical(options: VerticalMonthsLayoutOptions()),
         onDateSelect: @escaping DaySelectionhandler
     ) {
+        print("created calendar")
         self._lifts = lifts
         self.monthsLayout = monthsLayout
         self.onDateSelect = onDateSelect
