@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
-struct OlderLift: View, Equatable {
+struct OlderLift: View {
     var section: LiftsSection
     let selectedSectionId: String?
     
@@ -55,12 +55,7 @@ struct OlderLift: View, Equatable {
             EmptyView()
         }
     }
-    static func ==(lhs: OlderLift, rhs: OlderLift) -> Bool {
-        lhs.section.lifts == rhs.section.lifts
-    }
 }
-
-
 
 struct OlderLifts: View {
     private class DateObservable: ObservableObject {
@@ -86,7 +81,6 @@ struct OlderLifts: View {
     }
     
     var body: some View {
-        print("render OlderLifts")
         return ScrollViewReader { (proxy: ScrollViewProxy) in
             NavigationLink(
                 destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date)),
@@ -97,15 +91,13 @@ struct OlderLifts: View {
             )
             LazyVStack(alignment: .leading) {
                 ForEach(lifts.sections, id: \.id) { section in
-//                    Button(action: {
-//                        olderLiftDateSelected.date = section.lifts!.first!.timestamp!
-//                        isPresented = true
-//                    }, label: {
-//                    EquatableView(content:
+                    Button(action: {
+                        olderLiftDateSelected.date = section.lifts!.first!.timestamp!
+                        isPresented = true
+                    }, label: {
                         OlderLift(section: section, selectedSectionId: selectedSectionId)
                             .id(section.id)
-//                    )
-//                    })
+                    })
                 }
             }
             .padding([.top], LiftsCalendarView.frameHeight)

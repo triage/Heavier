@@ -14,15 +14,27 @@ class LiftsSection: NSFetchedResultsSectionInfo, Equatable, ObservableObject {
     }
     
     let exercise: Exercise
+    private var hashValue: String!
     init(section: NSFetchedResultsSectionInfo) {
         exercise = (section.objects!.first as! Lift).exercise!
         self.name = section.name
         self.indexTitle = section.indexTitle
         self.numberOfObjects = section.numberOfObjects
         self.objects = section.objects
+        self.hashValue = self.computeHashValue()
         self.groups = lifts?.groupedByWeightAndReps.values.sorted { first, second in
             first.mostRecent.timestamp! < second.mostRecent.timestamp!
         }
+    }
+    
+    private func computeHashValue() -> String {
+        guard let lifts = objects as? [Lift],
+              let first = (lifts.first)?.timestamp,
+              let last = (lifts.last)?.timestamp else {
+            return ""
+        }
+        let hashValue = lifts.identifiableHashValue
+        return "\(first) - \(last) - \(hashValue)"
     }
     
     var groups: [[Lift]]?
@@ -43,13 +55,6 @@ class LiftsSection: NSFetchedResultsSectionInfo, Equatable, ObservableObject {
 extension LiftsSection: Identifiable {
     // swiftlint:disable:next identifier_name
     var id: String {
-        guard let objects = objects,
-              let first = (objects.first as? Lift)?.timestamp,
-              let last = (objects.last as? Lift)?.timestamp else {
-//              let hashValue = lifts?.identifiableHashValue else {
-            return ""
-        }
-//        return "\(first) - \(last) - \(hashValue)"
-        return "\(first) - \(last)"
+        hashValue
     }
 }
