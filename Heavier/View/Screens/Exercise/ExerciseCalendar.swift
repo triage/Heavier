@@ -26,27 +26,29 @@ struct ExerciseCalendar: View {
     
     var body: some View {
         return Group {
-            LiftsCalendarView(
-                lifts: $lifts,
-                timestampBounds: lifts.timestampBoundsMonths,
-                monthsLayout: .horizontal(options:
-                                            HorizontalMonthsLayoutOptions(
-                                                maximumFullyVisibleMonths: 1,
-                                                scrollingBehavior: .paginatedScrolling(
-                                                    HorizontalMonthsLayoutOptions.PaginationConfiguration(
-                                                        restingPosition: .atIncrementsOfCalendarWidth,
-                                                        restingAffinity: .atPositionsClosestToTargetOffset
+            EquatableView(content:
+                LiftsCalendarView(
+                    lifts: $lifts,
+                    timestampBounds: lifts.timestampBoundsMonths,
+                    monthsLayout: .horizontal(options:
+                                                HorizontalMonthsLayoutOptions(
+                                                    maximumFullyVisibleMonths: 1,
+                                                    scrollingBehavior: .paginatedScrolling(
+                                                        HorizontalMonthsLayoutOptions.PaginationConfiguration(
+                                                            restingPosition: .atIncrementsOfCalendarWidth,
+                                                            restingAffinity: .atPositionsClosestToTargetOffset
+                                                        )
                                                     )
                                                 )
-                                            )
-                ),
-                onDateSelect: { (day) in
-                    var components = day.components
-                    // why is day always missing calendar?
-                    // without this, date is nil
-                    components.calendar = Calendar.autoupdatingCurrent
-                    dateSelected = components.date
-                }
+                    ),
+                    onDateSelect: { (day) in
+                        var components = day.components
+                        // why is day always missing calendar?
+                        // without this, date is nil
+                        components.calendar = Calendar.autoupdatingCurrent
+                        dateSelected = components.date
+                    }
+                )
             ).frame(
                 width: ExerciseCalendar.screenWidth,
                 height: LiftsCalendarView.frameHeight
@@ -94,10 +96,10 @@ struct ExerciseCalendar_Previews: PreviewProvider {
         
         return Group {
             NavigationView {
-//                ExerciseCalendar(
-//                    lifts: exercise.lifts!.array as! [Lift],
-//                    dateSelected: $dateSelected
-//                )
+                ExerciseCalendar(
+                    lifts: .constant(exercise.lifts!.array as! [Lift]),
+                    dateSelected: $dateSelected
+                )
             }
         }
     }

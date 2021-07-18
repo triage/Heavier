@@ -437,8 +437,6 @@
 				071E3908251AF3F900A35799 /* Preview Content */,
 				07D435192547D4C900F16668 /* Resources */,
 				071E6B7F254E671D0078ADD3 /* View */,
-				071E3910251AF3F900A35799 /* Info.plist */,
-				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
 			);
 			path = Heavier;
 			sourceTree = "<group>";
@@ -534,6 +532,7 @@
 		07B3064B25745590005CB631 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
 				07DA92DB25850A0300FB95BB /* Constants */,
 				07D4352F2547D63A00F16668 /* CoreData */,
 				070494C22577413B00AF00E6 /* UserPreferences */,
@@ -552,6 +551,7 @@
 		07D435192547D4C900F16668 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				071E3910251AF3F900A35799 /* Info.plist */,
 				079331FD26A3C95200D37202 /* Heavier.entitlements */,
 				071E3906251AF3F900A35799 /* Assets.xcassets */,
 				79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */,
@@ -1397,17 +1397,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Resources/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Heavier/Info.plist;
+				INFOPLIST_FILE = Heavier/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1423,17 +1423,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Resources/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Heavier/Info.plist;
+				INFOPLIST_FILE = Heavier/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1528,7 +1528,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1538,7 +1538,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
@@ -1554,7 +1554,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1564,7 +1564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;
