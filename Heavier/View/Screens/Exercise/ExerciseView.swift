@@ -28,7 +28,7 @@ struct ExerciseView: View {
     
     private static let showCalendarButtonAtScrollOffset: CGFloat = 330.0
     private static let animationDuration: TimeInterval = 0.24
-    private static let scrollViewFloatingOffset: CGFloat = 90
+    private static let scrollViewFloatingOffset: CGFloat = 86
     private static let calendarShadowRadius: CGFloat = 3.0
     
     init?(exercise: Exercise?) {
@@ -123,9 +123,11 @@ struct ExerciseView: View {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
                     
-                    OlderLifts(
-                        exercise: exercise,
-                        dateSelected: dateSelected
+                    EquatableView(content:
+                        OlderLifts(
+                            exercise: exercise,
+                            dateSelected: dateSelected
+                        )
                     )
                     
                     BlackOverlay(visible: calendarIsFloating)
@@ -145,7 +147,6 @@ struct ExerciseView: View {
                         height: LiftsCalendarView.frameHeight
                     )
                     .edgesIgnoringSafeArea(.all)
-                    .background(Color.blue)
                     .offset(x: 0, y: scrollViewContentOffset)
                     .clipped()
                     .shadow(
@@ -274,41 +275,4 @@ struct ExerciseView_Previews: PreviewProvider {
             }
         }
     }
-}
-
-
-
-struct ScrollViewDidScrollViewModifier: ViewModifier {
-  class ViewModel: ObservableObject {
-    @Published var contentOffset: CGPoint = .zero
-    
-    var contentOffsetSubscription: AnyCancellable?
-    
-    func subscribe(scrollView: UIScrollView) {
-      contentOffsetSubscription = scrollView.publisher(for: \.contentOffset).sink { [weak self] contentOffset in
-        self?.contentOffset = contentOffset
-      }
-    }
-  }
-
-  @StateObject var viewModel = ViewModel()
-  var didScroll: (CGPoint) -> Void
-  
-  func body(content: Content) -> some View {
-    content
-      .introspectScrollView { scrollView in
-        if viewModel.contentOffsetSubscription == nil {
-          viewModel.subscribe(scrollView: scrollView)
-        }
-      }
-      .onReceive(viewModel.$contentOffset) { contentOffset in
-        didScroll(contentOffset)
-      }
-  }
-}
-
-extension View {
-  func didScroll(_ didScroll: @escaping (CGPoint) -> Void) -> some View {
-    self.modifier(ScrollViewDidScrollViewModifier(didScroll: didScroll))
-  }
 }

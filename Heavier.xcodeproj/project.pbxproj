@@ -242,6 +242,7 @@
 		07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 2.xcdatamodel"; sourceTree = "<group>"; };
 		07899CEA252191EF006C85B1 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		079331FA269BD33700D37202 /* Date+Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Month.swift"; sourceTree = "<group>"; };
+		079331FD26A3C95200D37202 /* Heavier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heavier.entitlements; sourceTree = "<group>"; };
 		079376132579E17000382DB1 /* exercises-default.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "exercises-default.json"; sourceTree = "<group>"; };
 		079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+Load.swift"; sourceTree = "<group>"; };
 		0798EAF125771CB000008A28 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -269,7 +270,6 @@
 		795A76B425981FA80094052B /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		795A76BC25982A800094052B /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		795A76C42599006E0094052B /* LiftButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftButton.swift; sourceTree = "<group>"; };
-		79791D96259AC94D005AAE8C /* Heavier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heavier.entitlements; sourceTree = "<group>"; };
 		79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+Relevance.swift"; sourceTree = "<group>"; };
 		798BB51A2597E62100171407 /* Overload 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 4.xcdatamodel"; sourceTree = "<group>"; };
 		798BB51C2597E6AE00171407 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
@@ -552,7 +552,7 @@
 		07D435192547D4C900F16668 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				79791D96259AC94D005AAE8C /* Heavier.entitlements */,
+				079331FD26A3C95200D37202 /* Heavier.entitlements */,
 				071E3906251AF3F900A35799 /* Assets.xcassets */,
 				79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */,
 				079376132579E17000382DB1 /* exercises-default.json */,
@@ -1395,7 +1395,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Heavier/Heavier.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Heavier/Resources/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
@@ -1421,7 +1421,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Heavier/Heavier.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Heavier/Resources/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";

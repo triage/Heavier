@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
-struct OlderLift: View {
+struct OlderLift: View, Equatable {
     var section: LiftsSection
     let selectedSectionId: String?
     
@@ -31,14 +31,14 @@ struct OlderLift: View {
     }
     
     var body: some View {
-        if let day = day {
+        if let day = day, let groups = section.groups {
             HStack {
                 VStack(alignment: .leading) {
                     Text(MostRecentLift.lastLiftDateFormatter.string(from: day))
                         .sfCompactDisplay(.bold, size: Theme.Font.Size.mediumPlus)
                         .padding([.bottom, .top], Theme.Spacing.small)
                     
-                    GroupedLiftsOnDay(lifts: section.lifts!)
+                    GroupedLiftsOnDay(groups: groups)
                     
                     if let volume = volume(lifts: section.lifts!) {
                         Text(volume)
@@ -55,7 +55,12 @@ struct OlderLift: View {
             EmptyView()
         }
     }
+    static func ==(lhs: OlderLift, rhs: OlderLift) -> Bool {
+        lhs.section.lifts == rhs.section.lifts
+    }
 }
+
+
 
 struct OlderLifts: View {
     private class DateObservable: ObservableObject {
@@ -81,7 +86,8 @@ struct OlderLifts: View {
     }
     
     var body: some View {
-        ScrollViewReader { (proxy: ScrollViewProxy) in
+        print("render OlderLifts")
+        return ScrollViewReader { (proxy: ScrollViewProxy) in
             NavigationLink(
                 destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date)),
                 isActive: $isPresented,
@@ -91,13 +97,15 @@ struct OlderLifts: View {
             )
             LazyVStack(alignment: .leading) {
                 ForEach(lifts.sections, id: \.id) { section in
-                    Button(action: {
-                        olderLiftDateSelected.date = section.lifts!.first!.timestamp!
-                        isPresented = true
-                    }, label: {
+//                    Button(action: {
+//                        olderLiftDateSelected.date = section.lifts!.first!.timestamp!
+//                        isPresented = true
+//                    }, label: {
+//                    EquatableView(content:
                         OlderLift(section: section, selectedSectionId: selectedSectionId)
                             .id(section.id)
-                    })
+//                    )
+//                    })
                 }
             }
             .padding([.top], LiftsCalendarView.frameHeight)
@@ -124,6 +132,12 @@ struct OlderLifts: View {
                 }
             })
         }
+    }
+}
+
+extension OlderLifts: Equatable {
+    static func == (lhs: OlderLifts, rhs: OlderLifts) -> Bool {
+        lhs.exercise.lifts == rhs.exercise.lifts
     }
 }
 

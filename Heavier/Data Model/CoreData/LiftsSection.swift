@@ -20,7 +20,13 @@ class LiftsSection: NSFetchedResultsSectionInfo, Equatable, ObservableObject {
         self.indexTitle = section.indexTitle
         self.numberOfObjects = section.numberOfObjects
         self.objects = section.objects
+        self.groups = lifts?.groupedByWeightAndReps.values.sorted { first, second in
+            first.mostRecent.timestamp! < second.mostRecent.timestamp!
+        }
     }
+    
+    var groups: [[Lift]]?
+    
     var name: String
     
     var indexTitle: String?
@@ -39,10 +45,11 @@ extension LiftsSection: Identifiable {
     var id: String {
         guard let objects = objects,
               let first = (objects.first as? Lift)?.timestamp,
-              let last = (objects.last as? Lift)?.timestamp,
-              let hashValue = lifts?.identifiableHashValue else {
+              let last = (objects.last as? Lift)?.timestamp else {
+//              let hashValue = lifts?.identifiableHashValue else {
             return ""
         }
-        return "\(first) - \(last) - \(hashValue)"
+//        return "\(first) - \(last) - \(hashValue)"
+        return "\(first) - \(last)"
     }
 }

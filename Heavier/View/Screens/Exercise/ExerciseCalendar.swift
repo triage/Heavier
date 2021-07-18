@@ -10,13 +10,7 @@ import SwiftUI
 import HorizonCalendar
 import SwiftUIPager
 
-struct ExerciseCalendar: View, Equatable {
-    static func == (lhs: ExerciseCalendar, rhs: ExerciseCalendar) -> Bool {
-        let equal = lhs.lifts == rhs.lifts
-        print("equal:\(equal)")
-        return equal
-    }
-    
+struct ExerciseCalendar: View {
     static let screenWidth = UIScreen.main.bounds.width
     
     private static let layoutMargin = UIEdgeInsets(
@@ -31,7 +25,6 @@ struct ExerciseCalendar: View, Equatable {
     @Binding var dateSelected: Date?
     
     var body: some View {
-        print("new exercise calendar")
         return Group {
             LiftsCalendarView(
                 lifts: $lifts,
@@ -64,6 +57,12 @@ struct ExerciseCalendar: View, Equatable {
             width: ExerciseCalendar.screenWidth,
             height: LiftsCalendarView.frameHeight
         )
+    }
+}
+
+extension ExerciseCalendar: Equatable {
+    static func == (lhs: ExerciseCalendar, rhs: ExerciseCalendar) -> Bool {
+        lhs.lifts == rhs.lifts
     }
 }
 

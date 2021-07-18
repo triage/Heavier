@@ -7,14 +7,13 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct GroupedLiftsOnDay: View {
-    let lifts: [Lift]
+    let groups: [[Lift]]
     
     var body: some View {
-        ForEach((lifts.groupedByWeightAndReps.values).sorted(by: { (first, second) -> Bool in
-            first.mostRecent.timestamp! < second.mostRecent.timestamp!
-        }), id: \.identifiableHashValue) { lifts in
+        ForEach(groups, id: \.identifiableHashValue) { lifts in
             VStack(alignment: .leading) {
                 if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
                     Text(shortDescription)

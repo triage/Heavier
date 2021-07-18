@@ -18,14 +18,19 @@ final class LiftsObservable: NSObject, ObservableObject {
         super.init()
         
         fetchedResultsController.delegate = self
-        
         do {
             try fetchedResultsController.performFetch()
             lifts = fetchedResultsController.fetchedObjects ?? []
             if let sections = fetchedResultsController.sections {
-                self.sections = sections.map {
-                    LiftsSection(section: $0)
+                DispatchQueue.global().async {
+                    let liftsSections = sections.map {
+                        LiftsSection(section: $0)
+                    }
+                    DispatchQueue.main.async {
+                        self.sections = liftsSections
+                    }
                 }
+
             }
         } catch {
             print("failed to fetch items!")
@@ -70,8 +75,13 @@ extension LiftsObservable: NSFetchedResultsControllerDelegate {
             return
         }
         self.lifts = lifts
-        self.sections = sections.map {
-            LiftsSection(section: $0)
+        DispatchQueue.global().async {
+            let liftsSections = sections.map {
+                LiftsSection(section: $0)
+            }
+            DispatchQueue.main.async {
+                self.sections = liftsSections
+            }
         }
     }
 }
