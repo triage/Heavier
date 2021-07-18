@@ -18,7 +18,6 @@ struct ExerciseView: View {
     @State private var liftViewPresented = false
     @State private var calendarButtonIsVisible = false
     @State private var calendarIsFloating = false
-    @State private var calendarYOffset: CGFloat = 0.0
     @State private var calendaryUnderlayOpacity: Double = 0.0
     @State private var dateSelected: Date?
     
@@ -29,6 +28,8 @@ struct ExerciseView: View {
     
     private static let showCalendarButtonAtScrollOffset: CGFloat = 330.0
     private static let animationDuration: TimeInterval = 0.24
+    private static let scrollViewFloatingOffset: CGFloat = 90
+    private static let calendarShadowRadius: CGFloat = 3.0
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
@@ -106,7 +107,7 @@ struct ExerciseView: View {
     
     private var calendarOffset: CGFloat {
         if calendarIsFloating {
-            return scrollViewContentOffset + 90
+            return scrollViewContentOffset + ExerciseView.scrollViewFloatingOffset
         } else {
             return scrollViewContentOffset > LiftsCalendarView.frameHeight ?
                 scrollViewContentOffset - LiftsCalendarView.calendarHeight : 0.0
@@ -149,7 +150,7 @@ struct ExerciseView: View {
                     .clipped()
                     .shadow(
                         color: Color.black.opacity(shadowOpacity),
-                        radius: 3.0, x: 0.0, y: 3.0
+                        radius: ExerciseView.calendarShadowRadius, x: 0.0, y: ExerciseView.calendarShadowRadius
                     )
                     
                     EquatableView(content:
@@ -175,11 +176,8 @@ struct ExerciseView: View {
             }
         }
         .introspectScrollView { scrollView in
-            scrollView.delegate = scrollView.delegate
+            scrollView.delegate = scrollViewDelegate
         }
-        .didScroll({ point in
-            scrollViewDelegate.offset = point
-        })
         .onChange(of: dateSelected, perform: onDateChanged)
         .onChange(of: scrollViewDelegate.offset, perform: onScroll)
         .overlay(
@@ -188,7 +186,7 @@ struct ExerciseView: View {
                 onTopCalendarButton()
             }
             .opacity(calendarButtonIsVisible ? 1.0 : 0.0)
-            .offset(x: -20, y: calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)
+            .offset(x: -Theme.Spacing.large, y: calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)
         
         .navigationTitle(exercise.name!)
         .toolbar(
