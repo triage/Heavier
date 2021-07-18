@@ -76,7 +76,7 @@ struct ExerciseView: View {
         }
     }
     
-    private func onTopCalendarButton() {
+    private func onTapCalendarButton() {
         withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
             calendarIsFloating.toggle()
             calendaryUnderlayOpacity = 1.0
@@ -123,12 +123,12 @@ struct ExerciseView: View {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
                     
-                    EquatableView(content:
+//                    EquatableView(content:
                         OlderLifts(
                             exercise: exercise,
-                            dateSelected: dateSelected
+                            dateSelected: $dateSelected
                         )
-                    )
+//                    )
                     
                     BlackOverlay(visible: calendarIsFloating)
                         .opacity(calendaryUnderlayOpacity)
@@ -184,7 +184,7 @@ struct ExerciseView: View {
         .overlay(
             CalendarButton {
                 calendarButtonIsVisible.toggle()
-                onTopCalendarButton()
+                onTapCalendarButton()
             }
             .opacity(calendarButtonIsVisible ? 1.0 : 0.0)
             .offset(x: -Theme.Spacing.large, y: calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)

@@ -67,17 +67,18 @@ struct OlderLifts: View {
     
     @State var selectedSectionId: String?
     @State var isPresented = false
-    @State var date: Date = Date()
+    
+    @Binding var dateSelected: Date?
     
     private let exercise: Exercise
-    private let dateSelected: Date?
+    private static let scrollAnimationDuration: TimeInterval = 0.3
 
-    init(exercise: Exercise, dateSelected: Date? = nil) {
+    init(exercise: Exercise, dateSelected: Binding<Date?>) {
         self.exercise = exercise
+        self._dateSelected = dateSelected
         _lifts = .init(
             wrappedValue: LiftsObservable(exercise: exercise, ascending: false)
         )
-        self.dateSelected = dateSelected
     }
     
     var body: some View {
@@ -105,7 +106,6 @@ struct OlderLifts: View {
                 guard let dateSelected = dateSelected else {
                     return
                 }
-                let duration: TimeInterval = 0.3
                 self.selectedSectionId = lifts.sections.first(where: { (section) -> Bool in
                     if let day = section.lifts?.day {
                         return day == dateSelected
@@ -113,11 +113,14 @@ struct OlderLifts: View {
                     return false
                 })?.id
                 if let selectedSectionId = selectedSectionId {
-                    withAnimation(.easeInOut(duration: duration)) {
+                    withAnimation(.easeInOut(duration: OlderLifts.scrollAnimationDuration)) {
                         proxy.scrollTo(selectedSectionId)
                     }
-                    Timer.scheduledTimer(withTimeInterval: duration * 2, repeats: false) { (_) in
-                        withAnimation(Animation.easeInOut(duration: 1.0).delay(duration)) {
+                    Timer.scheduledTimer(
+                        withTimeInterval: OlderLifts.scrollAnimationDuration * 2,
+                        repeats: false
+                    ) { (_) in
+                        withAnimation(Animation.easeInOut(duration: 1.0).delay(OlderLifts.scrollAnimationDuration)) {
                             self.selectedSectionId = nil
                         }
                     }
@@ -157,7 +160,7 @@ struct OlderLiftsPreviews: PreviewProvider {
         }
         exercise.lifts = NSOrderedSet(array: lifts)
         return NavigationView {
-            OlderLifts(exercise: exercise, dateSelected: Date())
+            OlderLifts(exercise: exercise, dateSelected: .constant(Date()))
         }
     }
 }
