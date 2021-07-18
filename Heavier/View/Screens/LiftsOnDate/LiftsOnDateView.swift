@@ -52,8 +52,8 @@ struct LiftsOnDateView: View {
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                             .padding([.bottom, .top], Theme.Spacing.medium)
                         
-                        if let lifts = section.lifts {
-                            GroupedLiftsOnDay(lifts: lifts)
+                        if let lifts = section.lifts, let groups = section.groups {
+                            GroupedLiftsOnDay(groups: groups)
 
                             if let volume = volume(lifts: lifts) {
                                 Text(volume)

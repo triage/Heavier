@@ -11,11 +11,12 @@ import HorizonCalendar
 import CoreText
 import UIKit
 
-struct LiftsCalendarView: UIViewRepresentable {
+struct LiftsCalendarView: UIViewRepresentable, Equatable {
     
     typealias DaySelectionhandler = ((Day) -> Void)
     
     @Binding var lifts: [Lift]
+    
     private let days: [String: [Lift]]
     private let onDateSelect: DaySelectionhandler
     private let monthsLayout: MonthsLayout
@@ -25,7 +26,7 @@ struct LiftsCalendarView: UIViewRepresentable {
      The height we must supply as the height of the calendar.
      Anything less than this results in a crash.
      */
-    static let calendarHeight: CGFloat = 420
+    static let calendarHeight: CGFloat = 380
     /*
      The maximum height the calendar will _actually_ be.
      This is the height that we should clip to.
@@ -145,14 +146,21 @@ struct LiftsCalendarView: UIViewRepresentable {
         }
         .withInterMonthSpacing(10.0)
     }
+    
+    static func == (lhs: LiftsCalendarView, rhs: LiftsCalendarView) -> Bool {
+        return lhs.lifts == rhs.lifts
+    }
 }
 
 struct LiftsCalendar_ContentPreviews: PreviewProvider {
     static var previews: some View {
         Group {
-//            LiftsCalendarView(lifts: Exercise.Preview.preview.lifts!.array as! [Lift], onDateSelect: { day in
-//                print("day selected:\(day.description)")
-//            })
+            LiftsCalendarView(
+                lifts: .constant(Exercise.Preview.preview.lifts!.array as! [Lift]),
+                onDateSelect: { day in
+                    print("day selected:\(day.description)")
+                }
+            )
         }
     }
 }

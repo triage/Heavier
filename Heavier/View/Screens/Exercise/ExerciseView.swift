@@ -10,6 +10,7 @@ import SwiftUI
 import CoreData
 import Introspect
 import UIKit
+import Combine
 
 struct ExerciseView: View {
     let exercise: Exercise
@@ -17,7 +18,6 @@ struct ExerciseView: View {
     @State private var liftViewPresented = false
     @State private var calendarButtonIsVisible = false
     @State private var calendarIsFloating = false
-    @State private var calendarYOffset: CGFloat = 0.0
     @State private var calendaryUnderlayOpacity: Double = 0.0
     @State private var dateSelected: Date?
     
@@ -26,8 +26,10 @@ struct ExerciseView: View {
     // swiftlint:disable:next weak_delegate
     @StateObject private var scrollViewDelegate = UIScrollViewDelegateObservable()
     
-    private static let showCalendarButtonAtScrollOffset: CGFloat = 390.0
+    private static let showCalendarButtonAtScrollOffset: CGFloat = 330.0
     private static let animationDuration: TimeInterval = 0.24
+    private static let scrollViewFloatingOffset: CGFloat = 86
+    private static let calendarShadowRadius: CGFloat = 3.0
     
     init?(exercise: Exercise?) {
         guard let exercise = exercise else {
@@ -74,7 +76,7 @@ struct ExerciseView: View {
         }
     }
     
-    private func onTopCalendarButton() {
+    private func onTapCalendarButton() {
         withAnimation(.easeInOut(duration: ExerciseView.animationDuration)) {
             calendarIsFloating.toggle()
             calendaryUnderlayOpacity = 1.0
@@ -105,7 +107,7 @@ struct ExerciseView: View {
     
     private var calendarOffset: CGFloat {
         if calendarIsFloating {
-            return scrollViewContentOffset
+            return scrollViewContentOffset + ExerciseView.scrollViewFloatingOffset
         } else {
             return scrollViewContentOffset > LiftsCalendarView.frameHeight ?
                 scrollViewContentOffset - LiftsCalendarView.calendarHeight : 0.0
@@ -117,14 +119,16 @@ struct ExerciseView: View {
     }
     
     var body: some View {
-        ScrollView {
+        return ScrollView {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
                     
-                    OlderLifts(
-                        exercise: exercise,
-                        dateSelected: dateSelected
-                    )
+//                    EquatableView(content:
+                        OlderLifts(
+                            exercise: exercise,
+                            dateSelected: $dateSelected
+                        )
+//                    )
                     
                     BlackOverlay(visible: calendarIsFloating)
                         .opacity(calendaryUnderlayOpacity)
@@ -143,17 +147,18 @@ struct ExerciseView: View {
                         height: LiftsCalendarView.frameHeight
                     )
                     .edgesIgnoringSafeArea(.all)
-                    .background(Color.blue)
                     .offset(x: 0, y: scrollViewContentOffset)
                     .clipped()
                     .shadow(
                         color: Color.black.opacity(shadowOpacity),
-                        radius: 3.0, x: 0.0, y: 3.0
+                        radius: ExerciseView.calendarShadowRadius, x: 0.0, y: ExerciseView.calendarShadowRadius
                     )
                     
-                    ExerciseCalendar(
-                        lifts: $lifts.lifts,
-                        dateSelected: $dateSelected
+                    EquatableView(content:
+                        ExerciseCalendar(
+                            lifts: $lifts.lifts,
+                            dateSelected: $dateSelected
+                        )
                     )
                     .offset(x: 0, y: calendarOffset)
                     
@@ -179,10 +184,10 @@ struct ExerciseView: View {
         .overlay(
             CalendarButton {
                 calendarButtonIsVisible.toggle()
-                onTopCalendarButton()
+                onTapCalendarButton()
             }
             .opacity(calendarButtonIsVisible ? 1.0 : 0.0)
-            .offset(x: -20, y: calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)
+            .offset(x: -Theme.Spacing.large, y: calendarButtonIsVisible ? 30 : -50), alignment: .topTrailing)
         
         .navigationTitle(exercise.name!)
         .toolbar(
@@ -218,15 +223,15 @@ struct ExerciseView_Previews: PreviewProvider {
         exercise.id = UUID()
         var lifts = [Lift]()
         let secondsPerDay: TimeInterval = 60 * 60 * 24
-        for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 60)] {
-            for _ in 0...2 {
+        for _ in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 60)] {
+            for index in 0...100 {
                 let lift = Lift(context: PersistenceController.shared.container.viewContext)
                 lift.reps = 10
                 lift.sets = 1
                 lift.notes = "Light weight, baby!"
                 lift.weight = 20
                 lift.id = UUID()
-                lift.timestamp = date
+                lift.timestamp = Date().addingTimeInterval(TimeInterval(60 * 60 * 24 * index))
                 lifts.append(lift)
             }
         }
@@ -241,13 +246,13 @@ struct ExerciseView_Previews: PreviewProvider {
         exerciseBodyweight.id = UUID()
         
         lifts.removeAll()
-        for index in 0...2 {
+        for index in 0...30 {
             let lift = Lift(context: PersistenceController.shared.container.viewContext)
             lift.reps = 10 + Int16(index)
             lift.sets = 2
             lift.weight = 0
             lift.id = UUID()
-            lift.timestamp = Date()
+            lift.timestamp = Date().addingTimeInterval(60 * 60 * 12)
             lifts.append(lift)
         }
         exerciseBodyweight.lifts = NSOrderedSet(array: lifts)
