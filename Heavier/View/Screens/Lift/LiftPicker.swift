@@ -95,26 +95,28 @@ struct LiftPicker: View {
 struct LiftPicker_Previews: PreviewProvider {
     @State static var value: Float = 135
     static var previews: some View {
-        LiftPicker(
-            label: "lbs",
-            range: 5...300,
-            interval: 5,
-            value: $value,
-            initialValue: 135
-        )
-        LiftPicker(
-            label: "lbs",
-            range: 5...300,
-            interval: 5,
-            value: $value,
-            initialValue: 130
-        )
-        LiftPicker(
-            label: "lbs",
-            range: 5...300,
-            interval: 5,
-            value: $value,
-            initialValue: 140
-        )
+        Group {
+            LiftPicker(
+                label: "lbs",
+                range: 5...300,
+                interval: 5,
+                value: $value,
+                initialValue: 135
+            )
+            LiftPicker(
+                label: "lbs",
+                range: 5...300,
+                interval: 5,
+                value: $value,
+                initialValue: 130
+            )
+            LiftPicker(
+                label: "lbs",
+                range: 5...300,
+                interval: 5,
+                value: $value,
+                initialValue: 140
+            )
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

@@ -161,6 +161,6 @@ struct LiftsCalendar_ContentPreviews: PreviewProvider {
                     print("day selected:\(day.description)")
                 }
             )
-        }
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

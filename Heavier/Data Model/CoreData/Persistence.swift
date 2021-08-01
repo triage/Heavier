@@ -14,21 +14,25 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
+        let exerciseNames = ["Romanian Deadlift", "Back Squat", "Bench Press"]
+        for exerciseIndex in 0..<exerciseNames.count {
             let exercise = Exercise(context: viewContext)
-            exercise.name = "New Exercise"
+            exercise.name = exerciseNames[exerciseIndex]
             exercise.id = UUID()
             
-            let lift = Lift(context: viewContext)
-            lift.id = UUID()
-            lift.timestamp = Date()
-            lift.reps = 10
-            lift.sets = 3
-            lift.weight = 135
+            var lifts = NSMutableOrderedSet()
+            for liftIndex in 0..<90 {
+                let lift = Lift(context: viewContext)
+                lift.id = UUID()
+                lift.timestamp = Date() + TimeInterval((liftIndex * 60 * 60 * 24))
+                lift.reps = 10
+                lift.sets = 3
+                lift.weight = 135
+                lift.exercise = exercise
+                lifts.add(lift)
+            }
             
-            exercise.lifts = NSOrderedSet(
-                object: lift
-            )
+            exercise.lifts = lifts
         }
         do {
             try viewContext.save()

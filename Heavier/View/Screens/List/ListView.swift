@@ -16,6 +16,7 @@ struct ListView: View {
     @State var exerciseSelected: Exercise?
     @State var isPresenting = false
     @ObservedObject var settings = Settings.shared
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     var exercises: FetchedResults<Exercise> {
         return fetchRequest.wrappedValue
@@ -48,7 +49,7 @@ struct ListView: View {
         NavigationLink(
             destination:
                 NavigationLazyView(
-                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum))
+                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum), managedObjectContext: managedObjectContext)
                 )
         ) {
             HStack {
@@ -93,7 +94,7 @@ struct ListView: View {
     var body: some View {
         VStack {
             NavigationLink(
-                destination: ExerciseView(exercise: exerciseSelected),
+                destination: ExerciseView(exercise: exerciseSelected, managedObjectContext: managedObjectContext),
                 isActive: $isPresenting,
                 label: {
                     EmptyView()
@@ -183,11 +184,11 @@ struct ContentView_Previews: PreviewProvider {
             ListView(
                 query: "Romanian",
                 fetchRequest: Exercise.CoreData.search("Exercise")
-            ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            )
             ListView(
                 query: "Romanian",
                 fetchRequest: Exercise.CoreData.search("Romanian")
-            ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
+            )
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

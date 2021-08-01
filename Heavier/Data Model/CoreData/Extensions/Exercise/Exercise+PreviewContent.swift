@@ -10,7 +10,7 @@ import Foundation
 extension Exercise {
     enum Preview {
         static var preview: Exercise {
-            let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+            let exercise = Exercise(context: PersistenceController.preview.container.viewContext)
             exercise.name = "Romanian Deadlift"
             exercise.id = UUID()
             
@@ -18,7 +18,7 @@ extension Exercise {
             
             var lifts = [Lift]()
             for iterator in 0...20 {
-                let lift = Lift(context: PersistenceController.shared.container.viewContext)
+                let lift = Lift(context: PersistenceController.preview.container.viewContext)
                 lift.reps = 10
                 lift.sets = Int16(iterator + 10)
                 lift.weight = 100

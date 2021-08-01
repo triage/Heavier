@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 final class SheetManager: NSObject, ObservableObject {
     @Published var lift: Lift?
@@ -20,7 +21,7 @@ struct ExerciseOnDate: View {
     @State var presented = false
     @StateObject var sheetManager = SheetManager()
     
-    init(exercise: Exercise, date: Date) {
+    init(exercise: Exercise, date: Date, managedObjectContext: NSManagedObjectContext) {
         self.exercise = exercise
         self.date = date
         
@@ -33,7 +34,8 @@ struct ExerciseOnDate: View {
         _lifts = .init(
             wrappedValue: LiftsObservable(
                 exercise: exercise,
-                dateComponents: dateComponents
+                dateComponents: dateComponents,
+                managedObjectContext: managedObjectContext
             )
         )
     }
@@ -92,12 +94,12 @@ struct ExerciseOnDate: View {
         static var previews: some View {
             Settings.shared.units = .metric
             
-            let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+            let exercise = Exercise(context: PersistenceController.preview.container.viewContext)
             exercise.name = "Romanian Deadlift"
             exercise.id = UUID()
             var lifts = [Lift]()
             for index in 1...20 {
-                let lift = Lift(context: PersistenceController.shared.container.viewContext)
+                let lift = Lift(context: PersistenceController.preview.container.viewContext)
                 lift.reps = Int16(index)
                 lift.sets = 4
                 lift.notes = "Light weight, baby!"
@@ -112,10 +114,11 @@ struct ExerciseOnDate: View {
                 NavigationView {
                     ExerciseOnDate(
                         exercise: exercise,
-                        date: Date()
+                        date: Date(),
+                        managedObjectContext: PersistenceController.preview.container.viewContext
                     )
                 }
-            }
+            }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

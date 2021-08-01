@@ -19,7 +19,7 @@ extension Exercise {
         self.relevance = Int16(relevance)
         self.id = UUID()
         do {
-            try PersistenceController.shared.container.viewContext.save()
+            try context.save()
         } catch {
             return nil
         }

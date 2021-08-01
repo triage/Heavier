@@ -62,6 +62,8 @@ struct OlderLifts: View {
         @Published var date: Date = Date()
     }
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
     @StateObject private var lifts: LiftsObservable
     @StateObject private var olderLiftDateSelected = DateObservable()
     
@@ -73,18 +75,23 @@ struct OlderLifts: View {
     private let exercise: Exercise
     private static let scrollAnimationDuration: TimeInterval = 0.3
 
-    init(exercise: Exercise, dateSelected: Binding<Date?>) {
+    init(exercise: Exercise, dateSelected: Binding<Date?>, managedObjectContext: NSManagedObjectContext) {
         self.exercise = exercise
         self._dateSelected = dateSelected
+
         _lifts = .init(
-            wrappedValue: LiftsObservable(exercise: exercise, ascending: false)
+            wrappedValue: LiftsObservable(
+                exercise: exercise,
+                managedObjectContext: managedObjectContext,
+                ascending: false
+            )
         )
     }
     
     var body: some View {
         return ScrollViewReader { (proxy: ScrollViewProxy) in
             NavigationLink(
-                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date)),
+                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date, managedObjectContext: managedObjectContext)),
                 isActive: $isPresented,
                 label: {
                     EmptyView()
@@ -141,14 +148,16 @@ struct OlderLiftsPreviews: PreviewProvider {
         
         Settings.shared.units = .metric
         
-        let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+        let moc = PersistenceController.preview.container.viewContext
+        
+        let exercise = Exercise(context: moc)
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         var lifts = [Lift]()
         let secondsPerDay: TimeInterval = 60 * 60 * 24
         for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 2)] {
             for index in 0...3 {
-                let lift = Lift(context: PersistenceController.shared.container.viewContext)
+                let lift = Lift(context: moc)
                 lift.reps = 10 + Int16(index)
                 lift.sets = 1
                 lift.notes = "Light weight, baby!"
@@ -160,7 +169,7 @@ struct OlderLiftsPreviews: PreviewProvider {
         }
         exercise.lifts = NSOrderedSet(array: lifts)
         return NavigationView {
-            OlderLifts(exercise: exercise, dateSelected: .constant(Date()))
-        }
+            OlderLifts(exercise: exercise, dateSelected: .constant(Date()), managedObjectContext: moc)
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

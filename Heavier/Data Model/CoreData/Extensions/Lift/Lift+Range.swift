@@ -15,7 +15,7 @@ extension Lift {
         case min = "min:"
     }
     
-    private static func timestampValue(at expression: ExpressionType) -> Date? {
+    private static func timestampValue(at expression: ExpressionType, managedObjectContext: NSManagedObjectContext) -> Date? {
         let request: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
         request.entity = Lift.entity()
         request.resultType = NSFetchRequestResultType.dictionaryResultType
@@ -33,7 +33,7 @@ extension Lift {
         var timestamp: Date?
 
         do {
-            if let result = try PersistenceController.shared.container.viewContext.fetch(request)
+            if let result = try managedObjectContext.fetch(request)
                 as? [[String: Date]], let dict = result.first {
                 
                 timestamp = dict[expression.rawValue]
@@ -46,15 +46,15 @@ extension Lift {
         return nil
     }
     
-    static var timestampBounds: ClosedRange<Date>? {
-        guard let min = timestampValue(at: .min), let max = timestampValue(at: .max) else {
+    static func timestampBounds(managedObjectContext: NSManagedObjectContext) -> ClosedRange<Date>? {
+        guard let min = timestampValue(at: .min, managedObjectContext: managedObjectContext), let max = timestampValue(at: .max, managedObjectContext: managedObjectContext) else {
             return nil
         }
         return min...max
     }
     
-    static var timestampBoundsMonth: ClosedRange<Date>? {
-        guard let min = timestampValue(at: .min), let max = timestampValue(at: .max) else {
+    static func timestampBoundsMonth(managedObjectContext: NSManagedObjectContext) -> ClosedRange<Date>? {
+        guard let min = timestampValue(at: .min, managedObjectContext: managedObjectContext), let max = timestampValue(at: .max, managedObjectContext: managedObjectContext) else {
             return nil
         }
         
