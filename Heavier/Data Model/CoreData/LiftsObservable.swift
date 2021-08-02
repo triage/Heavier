@@ -39,7 +39,7 @@ final class LiftsObservable: NSObject, ObservableObject {
     
     convenience init(
         dateComponents: DateComponents,
-        managedObjectContext: NSManagedObjectContext
+        context managedObjectContext: NSManagedObjectContext
     ) {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(day: dateComponents)!,
@@ -52,7 +52,7 @@ final class LiftsObservable: NSObject, ObservableObject {
     convenience init(
         exercise: Exercise,
         dateComponents: DateComponents,
-        managedObjectContext: NSManagedObjectContext
+        context managedObjectContext: NSManagedObjectContext
     ) {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(exercise: exercise, ascending: true, day: dateComponents),
@@ -64,7 +64,7 @@ final class LiftsObservable: NSObject, ObservableObject {
     
     convenience init(
         exercise: Exercise?,
-        managedObjectContext: NSManagedObjectContext,
+        context managedObjectContext: NSManagedObjectContext,
         ascending: Bool = true,
         sectionNameKeyPath: String = #keyPath(Lift.dayGroupingIdentifier)
     ) {

@@ -21,7 +21,7 @@ struct ExerciseOnDate: View {
     @State var presented = false
     @StateObject var sheetManager = SheetManager()
     
-    init(exercise: Exercise, date: Date, managedObjectContext: NSManagedObjectContext) {
+    init(exercise: Exercise, date: Date, context managedObjectContext: NSManagedObjectContext) {
         self.exercise = exercise
         self.date = date
         
@@ -35,7 +35,7 @@ struct ExerciseOnDate: View {
             wrappedValue: LiftsObservable(
                 exercise: exercise,
                 dateComponents: dateComponents,
-                managedObjectContext: managedObjectContext
+                context: managedObjectContext
             )
         )
     }
@@ -115,7 +115,7 @@ struct ExerciseOnDate: View {
                     ExerciseOnDate(
                         exercise: exercise,
                         date: Date(),
-                        managedObjectContext: PersistenceController.preview.container.viewContext
+                        context: PersistenceController.preview.container.viewContext
                     )
                 }
             }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

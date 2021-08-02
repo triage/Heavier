@@ -82,7 +82,7 @@ struct OlderLifts: View {
         _lifts = .init(
             wrappedValue: LiftsObservable(
                 exercise: exercise,
-                managedObjectContext: managedObjectContext,
+                context: managedObjectContext,
                 ascending: false
             )
         )
@@ -91,7 +91,7 @@ struct OlderLifts: View {
     var body: some View {
         return ScrollViewReader { (proxy: ScrollViewProxy) in
             NavigationLink(
-                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date, managedObjectContext: context)),
+                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date, context: context)),
                 isActive: $isPresented,
                 label: {
                     EmptyView()

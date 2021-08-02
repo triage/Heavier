@@ -26,7 +26,7 @@ struct RootCalendarView: View {
     
     init(context: NSManagedObjectContext) {
         self.managedObjectContext = context
-        _lifts = .init(wrappedValue: LiftsObservable(exercise: nil, managedObjectContext: context))
+        _lifts = .init(wrappedValue: LiftsObservable(exercise: nil, context: context))
     }
     
     var body: some View {
@@ -44,7 +44,7 @@ struct RootCalendarView: View {
             .navigationTitle(RootCalendarView.title)
             NavigationLink(
                 destination: LiftsOnDateView(daySelected: daySelected.dateComponents,
-                                             managedObjectContext: managedObjectContext),
+                                             context: managedObjectContext),
                 isActive: $isPresented,
                 label: {
                     EmptyView()

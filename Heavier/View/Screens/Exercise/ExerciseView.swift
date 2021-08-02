@@ -40,7 +40,7 @@ struct ExerciseView: View {
         _lifts = .init(
             wrappedValue: LiftsObservable(
                 exercise: exercise,
-                managedObjectContext: managedObjectContext,
+                context: managedObjectContext,
                 ascending: false
             )
         )
