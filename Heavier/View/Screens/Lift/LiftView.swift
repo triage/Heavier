@@ -74,7 +74,7 @@ struct LiftView: View {
     
     @Binding var presented: Bool
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) var context
     @ObservedObject var dateObserved = ObservableValue(value: Date())
     
     enum Mode {
@@ -115,7 +115,7 @@ struct LiftView: View {
         }
         
         if mode == .creating {
-            let lift = Lift(context: managedObjectContext)
+            let lift = Lift(context: context)
             lift.id = UUID()
             lift.exercise = exercise
             updateFromState(lift: lift)
@@ -124,7 +124,7 @@ struct LiftView: View {
         }
         
         do {
-            try? managedObjectContext.save()
+            try? context.save()
             exercise.clearLastGroupShortDescriptionCache()
             
             let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)

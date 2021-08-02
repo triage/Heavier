@@ -16,7 +16,7 @@ struct ContentView: View {
 
     private var searchHidden: Bool = true
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) var context
     
     @State var daySelected: DateComponents?
     @State private var query: String = ""
@@ -28,7 +28,7 @@ struct ContentView: View {
     
     var body: some View {
         if viewType == .calendar {
-            RootCalendarView(managedObjectContext: managedObjectContext)
+            RootCalendarView(context: context)
                 .navigationBarSearch($query, isHidden: true)
         } else {
             ListView(

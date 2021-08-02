@@ -20,16 +20,16 @@ struct RootCalendarView: View {
     @StateObject private var daySelected = DateComponentsObservable()
     @State var isPresented = false
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    private let managedObjectContext: NSManagedObjectContext
     
     private static let title = "Calendar"
     
-    init(managedObjectContext: NSManagedObjectContext) {
-        _lifts = .init(wrappedValue: LiftsObservable(exercise: nil, managedObjectContext: managedObjectContext))
+    init(context: NSManagedObjectContext) {
+        self.managedObjectContext = context
+        _lifts = .init(wrappedValue: LiftsObservable(exercise: nil, managedObjectContext: context))
     }
     
     var body: some View {
-        print("lifts:\(lifts.lifts)")
         return VStack {
             LiftsCalendarView(
                 lifts: $lifts.lifts,
@@ -58,7 +58,7 @@ struct RootCalendarView_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
         Group {
-            RootCalendarView(managedObjectContext: PersistenceController.preview.container.viewContext)
+            RootCalendarView(context: PersistenceController.preview.container.viewContext)
         }
     }
 }

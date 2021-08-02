@@ -16,7 +16,7 @@ struct ListView: View {
     @State var exerciseSelected: Exercise?
     @State var isPresenting = false
     @ObservedObject var settings = Settings.shared
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) var context
     
     var exercises: FetchedResults<Exercise> {
         return fetchRequest.wrappedValue
@@ -49,7 +49,7 @@ struct ListView: View {
         NavigationLink(
             destination:
                 NavigationLazyView(
-                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum), managedObjectContext: managedObjectContext)
+                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum), managedObjectContext: context)
                 )
         ) {
             HStack {
@@ -94,7 +94,7 @@ struct ListView: View {
     var body: some View {
         VStack {
             NavigationLink(
-                destination: ExerciseView(exercise: exerciseSelected, managedObjectContext: managedObjectContext),
+                destination: ExerciseView(exercise: exerciseSelected, managedObjectContext: context),
                 isActive: $isPresenting,
                 label: {
                     EmptyView()
@@ -135,6 +135,8 @@ struct ExerciseCell: View {
     @ObservedObject var exercise: Exercise
     @ObservedObject var settings = Settings.shared
     
+    @Environment(\.managedObjectContext) var context
+    
     private struct LiftShortDescription: View {
         let lifts: [Lift]
         let settings: Settings
@@ -153,16 +155,15 @@ struct ExerciseCell: View {
     }
     
     var body: some View {
-        
         Button(action: {
-            self.exerciseSelected = exercise
-            self.isPresenting = true
+            exerciseSelected = exercise
+            isPresenting = true
         }, label: {
             HStack(alignment: .top, spacing: nil, content: {
                 VStack(alignment: .leading) {
                     Text(exercise.name!)
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                    if let lastGroup = exercise.lastGroup {
+                    if let lastGroup = exercise.lastGroup(context: context) {
                         LiftShortDescription(lifts: lastGroup, settings: settings)
                     }
                 }

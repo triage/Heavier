@@ -44,11 +44,11 @@ struct LiftsOnDateView: View {
             return "= \(formatted) \(Settings.shared.units.label)"
         }
         
-        @Environment(\.managedObjectContext) var managedObjectContext
+        @Environment(\.managedObjectContext) var context
 
         var body: some View {
             NavigationLink(
-                destination: ExerciseView(exercise: section.exercise, managedObjectContext: managedObjectContext),
+                destination: ExerciseView(exercise: section.exercise, managedObjectContext: context),
                 label: {
                     VStack(alignment: .leading) {
                         Text(section.exercise.name!)

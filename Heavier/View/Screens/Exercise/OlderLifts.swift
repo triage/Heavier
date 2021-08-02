@@ -62,7 +62,7 @@ struct OlderLifts: View {
         @Published var date: Date = Date()
     }
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) var context
     
     @StateObject private var lifts: LiftsObservable
     @StateObject private var olderLiftDateSelected = DateObservable()
@@ -91,7 +91,7 @@ struct OlderLifts: View {
     var body: some View {
         return ScrollViewReader { (proxy: ScrollViewProxy) in
             NavigationLink(
-                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date, managedObjectContext: managedObjectContext)),
+                destination: NavigationLazyView(ExerciseOnDate(exercise: exercise, date: olderLiftDateSelected.date, managedObjectContext: context)),
                 isActive: $isPresented,
                 label: {
                     EmptyView()

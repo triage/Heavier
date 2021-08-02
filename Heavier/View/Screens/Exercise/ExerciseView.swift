@@ -122,20 +122,17 @@ struct ExerciseView: View {
         calendarIsFloating ? 0.12 : 0.0
     }
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) var context
     
     var body: some View {
         return ScrollView {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
-                    
-//                    EquatableView(content:
-                        OlderLifts(
-                            exercise: exercise,
-                            dateSelected: $dateSelected,
-                            managedObjectContext: managedObjectContext
-                        )
-//                    )
+                    OlderLifts(
+                        exercise: exercise,
+                        dateSelected: $dateSelected,
+                        managedObjectContext: context
+                    )
                     
                     BlackOverlay(visible: calendarIsFloating)
                         .opacity(calendaryUnderlayOpacity)
