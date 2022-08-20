@@ -48,7 +48,7 @@ struct ListView: View {
         NavigationLink(
             destination:
                 NavigationLazyView(
-                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum))
+                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum, context: PersistenceController.scrapContext))
                 )
         ) {
             HStack {
