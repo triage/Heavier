@@ -25,7 +25,7 @@ struct NotesView: View {
         "No excuses",
         "Body under construction. Mind on a mission",
         "If you cheat, you only cheat yourself",
-        "Don't be afraid to fail. Be afriad not to try",
+        "Don't be afraid to fail. Be afraid not to try",
         "Biceps don't grow on trees"
     ]
     
