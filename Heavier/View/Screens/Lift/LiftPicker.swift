@@ -58,7 +58,7 @@ struct LiftPicker: View {
                 .onReceive([self.rowSelected].publisher.first()) { (row) in
                     self.value = range.lowerBound + (interval * Float(row))
                 }
-                .frame(width: dimensions.width, height: dimensions.height)
+                .frame(width: dimensions.width, height: 60.0)
                 .clipped()
                 
                 // underline
@@ -95,13 +95,22 @@ struct LiftPicker: View {
 struct LiftPicker_Previews: PreviewProvider {
     @State static var value: Float = 135
     static var previews: some View {
-        LiftPicker(
-            label: "lbs",
-            range: 5...300,
-            interval: 5,
-            value: $value,
-            initialValue: 135
-        )
+        VStack {
+            LiftPicker(
+                label: "lbs",
+                range: 5...300,
+                interval: 5,
+                value: $value,
+                initialValue: 135
+            )
+            LiftPicker(
+                label: "lbs",
+                range: 5...300,
+                interval: 5,
+                value: $value,
+                initialValue: 135
+            )
+        }
         LiftPicker(
             label: "lbs",
             range: 5...300,
