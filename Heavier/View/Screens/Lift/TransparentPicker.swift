@@ -8,7 +8,17 @@
 import Foundation
 import SwiftUI
 
+extension UIPickerView {
+   open override var intrinsicContentSize: CGSize {
+       CGSize(
+        width: UIView.noIntrinsicMetric,
+        height: TransparentPickerView.height
+       )
+   }
+}
+
 final class TransparentPickerView: UIPickerView {
+    static let height: CGFloat = 85
     override func layoutSubviews() {
         super.layoutSubviews()
         subviews[1].isHidden = true
@@ -72,6 +82,7 @@ struct TransparentPicker<Content: View>: UIViewRepresentable {
         let view = TransparentPickerView()
         view.delegate = context.coordinator
         view.dataSource = context.coordinator
+        view.clipsToBounds = true
         return view
     }
     
@@ -88,6 +99,6 @@ struct TransparentPicker_Previews: PreviewProvider {
     static var previews: some View {
         TransparentPicker(selection: $selection, rowCount: 20) { (row) in
             Text("Row-\(row)")
-        }
+        }.frame(width: 200, height: 60.0, alignment: .center)
     }
 }

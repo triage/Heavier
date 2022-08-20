@@ -48,7 +48,7 @@ struct ListView: View {
         NavigationLink(
             destination:
                 NavigationLazyView(
-                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum))
+                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum, context: PersistenceController.scrapContext))
                 )
         ) {
             HStack {
@@ -92,12 +92,6 @@ struct ListView: View {
     
     var body: some View {
         VStack {
-            NavigationLink(
-                destination: ExerciseView(exercise: exerciseSelected),
-                isActive: $isPresenting,
-                label: {
-                    EmptyView()
-                })
             List {
                 ForEach(rows, id: \.hashValue) { row in
                     if let exercise = row as? Exercise {
@@ -114,6 +108,9 @@ struct ListView: View {
                     }
                 }
             }.listStyle(PlainListStyle())
+            .navigationDestination(for: $exerciseSelected) { exercise in
+                ExerciseView(exercise: exercise)
+            }
         }
     }
 }

@@ -123,12 +123,10 @@ struct ExerciseView: View {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
                     
-//                    EquatableView(content:
-                        OlderLifts(
-                            exercise: exercise,
-                            dateSelected: $dateSelected
-                        )
-//                    )
+                    OlderLifts(
+                        exercise: exercise,
+                        dateSelected: $dateSelected
+                    )
                     
                     BlackOverlay(visible: calendarIsFloating)
                         .opacity(calendaryUnderlayOpacity)

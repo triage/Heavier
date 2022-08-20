@@ -10,6 +10,12 @@ import Combine
 
 struct PersistenceController {
     static let shared = PersistenceController()
+    
+    static var scrapContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        context.parent = PersistenceController.shared.container.viewContext
+        return context
+    } ()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
