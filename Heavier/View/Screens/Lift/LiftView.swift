@@ -115,7 +115,7 @@ struct LiftView: View {
         }
         
         if mode == .creating {
-            let lift = Lift(context: context)
+            let lift = Lift(context: exercise.managedObjectContext!)
             lift.id = UUID()
             lift.exercise = exercise
             updateFromState(lift: lift)
@@ -124,7 +124,7 @@ struct LiftView: View {
         }
         
         do {
-            try? context.save()
+            try? exercise.managedObjectContext!.save()
             exercise.clearLastGroupShortDescriptionCache()
             
             let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)

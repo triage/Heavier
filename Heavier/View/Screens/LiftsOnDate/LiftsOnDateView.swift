@@ -85,6 +85,7 @@ struct LiftsOnDateView: View {
                 }
             }
             .listRowInsets(EdgeInsets())
+            .listStyle(.plain)
         }
         .navigationTitle(navigationTitle ?? "")
     }

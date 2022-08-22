@@ -60,6 +60,10 @@
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
 		07F4828B26923FD500BEECAD /* Lift+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */; };
 		07F4828C269240D700BEECAD /* Lift+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */; };
+		3A217D2028B158C800E4EA29 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */; };
+		3A217D2128B158C800E4EA29 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */; };
+		3A217D2428B1590400E4EA29 /* Binding+MapToBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A217D2328B1590400E4EA29 /* Binding+MapToBool.swift */; };
+		3A217D2528B1590400E4EA29 /* Binding+MapToBool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A217D2328B1590400E4EA29 /* Binding+MapToBool.swift */; };
 		795A76B525981FA80094052B /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76B425981FA80094052B /* NotesView.swift */; };
 		795A76BD25982A800094052B /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76BC25982A800094052B /* TextView.swift */; };
 		795A76C52599006E0094052B /* LiftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76C42599006E0094052B /* LiftButton.swift */; };
@@ -270,6 +274,8 @@
 		07DA92EE25850A5A00FB95BB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		07DA92F325850A6F00FB95BB /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 		07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Identifiable.swift"; sourceTree = "<group>"; };
+		3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
+		3A217D2328B1590400E4EA29 /* Binding+MapToBool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+MapToBool.swift"; sourceTree = "<group>"; };
 		795A76B425981FA80094052B /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		795A76BC25982A800094052B /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		795A76C42599006E0094052B /* LiftButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftButton.swift; sourceTree = "<group>"; };
@@ -388,6 +394,7 @@
 		0702218F2572BA7500456C4C /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				3A217D2228B158F900E4EA29 /* Binding */,
 				07A7B53A25491E8F006468C1 /* Color */,
 				07B3064F25746098005CB631 /* List */,
 				07D435342547D65100F16668 /* View */,
@@ -591,6 +598,7 @@
 			children = (
 				07D435142547CD5900F16668 /* Fonts.swift */,
 				7994F6D025A9E71F004C14A9 /* Screen.swift */,
+				3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -637,6 +645,14 @@
 				07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */,
 			);
 			path = Conversion;
+			sourceTree = "<group>";
+		};
+		3A217D2228B158F900E4EA29 /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				3A217D2328B1590400E4EA29 /* Binding+MapToBool.swift */,
+			);
+			path = Binding;
 			sourceTree = "<group>";
 		};
 		795B601F25AD22E000A6550B /* SwiftUI */ = {
@@ -1120,9 +1136,11 @@
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
 				79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */,
 				07D4A3F526B726EE00C1F243 /* RootCalendarView.swift in Sources */,
+				3A217D2028B158C800E4EA29 /* NavigationDestination.swift in Sources */,
 				79968A7925AD365400E318BE /* BlackOverlay.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
+				3A217D2428B1590400E4EA29 /* Binding+MapToBool.swift in Sources */,
 				079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */,
 				795A76C52599006E0094052B /* LiftButton.swift in Sources */,
 				07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */,
@@ -1186,6 +1204,7 @@
 				79968A8F25AD36A600E318BE /* UIScrollViewDelegateObservable.swift in Sources */,
 				79B688BF259A89FB00845127 /* ExerciseView.swift in Sources */,
 				07F4828C269240D700BEECAD /* Lift+Identifiable.swift in Sources */,
+				3A217D2128B158C800E4EA29 /* NavigationDestination.swift in Sources */,
 				79B688C0259A89FB00845127 /* LiftsOnDateView.swift in Sources */,
 				79B688C1259A89FB00845127 /* ListView.swift in Sources */,
 				79F72E7925AB5CA600C38F2E /* OlderLifts.swift in Sources */,
@@ -1229,6 +1248,7 @@
 				79F72E8025AB5CAA00C38F2E /* ExerciseCalendar.swift in Sources */,
 				07B937B02691FC51007CE93C /* ExerciseOnDate.swift in Sources */,
 				79B688AA259A89CD00845127 /* GroupedLiftsOnDay.swift in Sources */,
+				3A217D2528B1590400E4EA29 /* Binding+MapToBool.swift in Sources */,
 				79B688AB259A89CD00845127 /* NavigationLazyView.swift in Sources */,
 				7994F6D825AA0970004C14A9 /* Screen.swift in Sources */,
 				79B688AC259A89CD00845127 /* TextView.swift in Sources */,

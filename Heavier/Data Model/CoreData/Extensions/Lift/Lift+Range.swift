@@ -57,11 +57,6 @@ extension Lift {
         guard let min = timestampValue(at: .min, managedObjectContext: managedObjectContext), let max = timestampValue(at: .max, managedObjectContext: managedObjectContext) else {
             return nil
         }
-        
-        if let firstMonthStart = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 1, of: min),
-           let lastMonthEnd = Calendar.autoupdatingCurrent.date(bySetting: .day, value: 2, of: max) {
-            return firstMonthStart...lastMonthEnd
-        }
-        return nil
+        return min.startOfMonth...max.endOfMonth
     }
 }

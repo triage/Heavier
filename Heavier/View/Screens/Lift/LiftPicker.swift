@@ -58,7 +58,7 @@ struct LiftPicker: View {
                 .onReceive([self.rowSelected].publisher.first()) { (row) in
                     self.value = range.lowerBound + (interval * Float(row))
                 }
-                .frame(width: dimensions.width, height: dimensions.height)
+                .frame(width: dimensions.width, height: 60.0)
                 .clipped()
                 
                 // underline
