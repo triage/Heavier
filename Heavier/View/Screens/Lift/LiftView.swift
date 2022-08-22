@@ -74,7 +74,7 @@ struct LiftView: View {
     
     @Binding var presented: Bool
     
-    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.managedObjectContext) var context
     @ObservedObject var dateObserved = ObservableValue(value: Date())
     
     enum Mode {
@@ -254,6 +254,6 @@ struct LiftView_ContentPreviews: PreviewProvider {
             LiftView(exercise: exercise, lift: lift, presented: $presented)
             LiftView(exercise: exercise, lift: lift, presented: $presented, mode: .editing)
                     .environment(\.colorScheme, ColorScheme.dark)
-        }
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

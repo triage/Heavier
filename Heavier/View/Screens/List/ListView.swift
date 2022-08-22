@@ -16,6 +16,7 @@ struct ListView: View {
     @State var exerciseSelected: Exercise?
     @State var isPresenting = false
     @ObservedObject var settings = Settings.shared
+    @Environment(\.managedObjectContext) var context
     
     var exercises: FetchedResults<Exercise> {
         return fetchRequest.wrappedValue
@@ -48,7 +49,13 @@ struct ListView: View {
         NavigationLink(
             destination:
                 NavigationLazyView(
-                    ExerciseView(exercise: Exercise(name: name, relevance: Exercise.Relevance.maximum, context: PersistenceController.scrapContext))
+                    ExerciseView(
+                        exercise: Exercise(
+                            name: name,
+                            relevance: Exercise.Relevance.maximum,
+                            context: PersistenceController.scrapContext),
+                        managedObjectContext: PersistenceController.scrapContext
+                    )
                 )
         ) {
             HStack {
@@ -109,7 +116,7 @@ struct ListView: View {
                 }
             }.listStyle(PlainListStyle())
             .navigationDestination(for: $exerciseSelected) { exercise in
-                ExerciseView(exercise: exercise)
+                ExerciseView(exercise: exercise, managedObjectContext: PersistenceController.shared.container.viewContext)
             }
         }
     }
@@ -131,6 +138,8 @@ struct ExerciseCell: View {
     @ObservedObject var exercise: Exercise
     @ObservedObject var settings = Settings.shared
     
+    @Environment(\.managedObjectContext) var context
+    
     private struct LiftShortDescription: View {
         let lifts: [Lift]
         let settings: Settings
@@ -149,16 +158,15 @@ struct ExerciseCell: View {
     }
     
     var body: some View {
-        
         Button(action: {
-            self.exerciseSelected = exercise
-            self.isPresenting = true
+            exerciseSelected = exercise
+            isPresenting = true
         }, label: {
             HStack(alignment: .top, spacing: nil, content: {
                 VStack(alignment: .leading) {
                     Text(exercise.name!)
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
-                    if let lastGroup = exercise.lastGroup {
+                    if let lastGroup = exercise.lastGroup(context: context) {
                         LiftShortDescription(lifts: lastGroup, settings: settings)
                     }
                 }
@@ -180,11 +188,11 @@ struct ContentView_Previews: PreviewProvider {
             ListView(
                 query: "Romanian",
                 fetchRequest: Exercise.CoreData.search("Exercise")
-            ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            )
             ListView(
                 query: "Romanian",
                 fetchRequest: Exercise.CoreData.search("Romanian")
-            ).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
+            )
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

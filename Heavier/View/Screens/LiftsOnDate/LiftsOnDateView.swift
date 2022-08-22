@@ -7,19 +7,20 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 struct LiftsOnDateView: View {
     
     @StateObject var lifts: LiftsObservable
     private let daySelected: DateComponents
     
-    init?(daySelected: DateComponents?) {
+    init?(daySelected: DateComponents?, context: NSManagedObjectContext) {
         guard var daySelected = daySelected else {
             return nil
         }
         daySelected.calendar = Calendar.autoupdatingCurrent
         self.daySelected = daySelected
-        _lifts = .init(wrappedValue: LiftsObservable(dateComponents: daySelected))
+        _lifts = .init(wrappedValue: LiftsObservable(dateComponents: daySelected, context: context))
     }
     
     private static var dateFormatter: DateFormatter {
@@ -42,10 +43,12 @@ struct LiftsOnDateView: View {
             }
             return "= \(formatted) \(Settings.shared.units.label)"
         }
+        
+        @Environment(\.managedObjectContext) var context
 
         var body: some View {
             NavigationLink(
-                destination: ExerciseView(exercise: section.exercise),
+                destination: ExerciseView(exercise: section.exercise, managedObjectContext: context),
                 label: {
                     VStack(alignment: .leading) {
                         Text(section.exercise.name!)
@@ -96,8 +99,10 @@ struct LiftsOnDate_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            LiftsOnDateView(daySelected: LiftsOnDate_Previews.components)
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
+            LiftsOnDateView(
+                daySelected: LiftsOnDate_Previews.components,
+                context: PersistenceController.preview.container.viewContext
+            )
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

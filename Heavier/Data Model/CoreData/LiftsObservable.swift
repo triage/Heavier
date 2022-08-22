@@ -37,19 +37,26 @@ final class LiftsObservable: NSObject, ObservableObject {
         }
     }
     
-    convenience init(dateComponents: DateComponents) {
+    convenience init(
+        dateComponents: DateComponents,
+        context managedObjectContext: NSManagedObjectContext
+    ) {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(day: dateComponents)!,
-            managedObjectContext: PersistenceController.shared.container.viewContext,
+            managedObjectContext: managedObjectContext,
             sectionNameKeyPath: Lift.CoreData.KeyPath.exerciseId,
             cacheName: nil
         ))
     }
     
-    convenience init(exercise: Exercise, dateComponents: DateComponents) {
+    convenience init(
+        exercise: Exercise,
+        dateComponents: DateComponents,
+        context managedObjectContext: NSManagedObjectContext
+    ) {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(exercise: exercise, ascending: true, day: dateComponents),
-            managedObjectContext: PersistenceController.shared.container.viewContext,
+            managedObjectContext: managedObjectContext,
             sectionNameKeyPath: Lift.CoreData.KeyPath.exerciseId,
             cacheName: nil
         ))
@@ -57,12 +64,13 @@ final class LiftsObservable: NSObject, ObservableObject {
     
     convenience init(
         exercise: Exercise?,
+        context managedObjectContext: NSManagedObjectContext,
         ascending: Bool = true,
         sectionNameKeyPath: String = #keyPath(Lift.dayGroupingIdentifier)
     ) {
         self.init(fetchedResultsController: NSFetchedResultsController(
             fetchRequest: Lift.CoreData.fetchRequest(exercise: exercise, ascending: ascending),
-            managedObjectContext: PersistenceController.shared.container.viewContext,
+            managedObjectContext: managedObjectContext,
             sectionNameKeyPath: sectionNameKeyPath,
             cacheName: nil
         ))

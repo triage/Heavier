@@ -75,14 +75,14 @@ struct ExerciseCalendar_Previews: PreviewProvider {
     static var previews: some View {
         Settings.shared.units = .metric
         
-        let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+        let exercise = Exercise(context: PersistenceController.preview.container.viewContext)
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         var lifts = [Lift]()
         let secondsPerDay: TimeInterval = 60 * 60 * 24
         for date in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 60)] {
             for _ in 0...3 {
-                let lift = Lift(context: PersistenceController.shared.container.viewContext)
+                let lift = Lift(context: PersistenceController.preview.container.viewContext)
                 lift.reps = 10
                 lift.sets = 1
                 lift.notes = "Light weight, baby!"
@@ -101,6 +101,6 @@ struct ExerciseCalendar_Previews: PreviewProvider {
                     dateSelected: $dateSelected
                 )
             }
-        }
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

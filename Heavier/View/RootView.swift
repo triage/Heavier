@@ -9,48 +9,14 @@ import SwiftUI
 import CoreData
 import SwiftlySearch
 
-struct RootCalendarView: View {
-    
-    private class DateComponentsObservable: ObservableObject {
-        @Published var dateComponents: DateComponents?
-    }
-    
-    @StateObject var lifts = LiftsObservable(exercise: nil)
-    @StateObject private var daySelected = DateComponentsObservable()
-    @State var isPresented = false
-    
-    private static let title = "Calendar"
-    
-    var body: some View {
-        return VStack {
-            LiftsCalendarView(
-                lifts: $lifts.lifts,
-                timestampBounds: Lift.timestampBoundsMonth
-            ) { day in
-                daySelected.dateComponents = day.components
-                isPresented.toggle()
-            }
-            .frame(maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .topLeading)
-            .navigationTitle(RootCalendarView.title)
-            NavigationLink(
-                destination: LiftsOnDateView(daySelected: daySelected.dateComponents),
-                isActive: $isPresented,
-                label: {
-                    EmptyView()
-                }
-            )
-        }
-    }
-}
-
 struct ContentView: View {
     private static let title = "Exercises"
     
     let viewType: RootView.ViewType
 
     private var searchHidden: Bool = true
+    
+    @Environment(\.managedObjectContext) var context
     
     @State var daySelected: DateComponents?
     @State private var query: String = ""
@@ -62,7 +28,7 @@ struct ContentView: View {
     
     var body: some View {
         if viewType == .calendar {
-            RootCalendarView()
+            RootCalendarView(context: context)
                 .navigationBarSearch($query, isHidden: true)
         } else {
             ListView(
@@ -138,12 +104,9 @@ struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             RootView()
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             RootView(viewType: .calendar)
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
             RootView(viewType: .calendar)
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 .environment(\.colorScheme, ColorScheme.dark)
-        }
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

@@ -52,6 +52,8 @@
 		07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */; };
 		07D435152547CD5900F16668 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435142547CD5900F16668 /* Fonts.swift */; };
 		07D4353A2547D68B00F16668 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435392547D68B00F16668 /* ListView.swift */; };
+		07D4A3F526B726EE00C1F243 /* RootCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4A3F426B726EE00C1F243 /* RootCalendarView.swift */; };
+		07D4A3F626B726EE00C1F243 /* RootCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4A3F426B726EE00C1F243 /* RootCalendarView.swift */; };
 		07DA92DE25850A2100FB95BB /* MetricImperialConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */; };
 		07DA92EA25850A4800FB95BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92E925850A4800FB95BB /* Constants.swift */; };
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
@@ -265,6 +267,7 @@
 		07CD00AC251C5027002FF127 /* Overload.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Overload.xcdatamodel; sourceTree = "<group>"; };
 		07D435142547CD5900F16668 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		07D435392547D68B00F16668 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		07D4A3F426B726EE00C1F243 /* RootCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCalendarView.swift; sourceTree = "<group>"; };
 		07DA92D72584FFD100FB95BB /* Overload 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 3.xcdatamodel"; sourceTree = "<group>"; };
 		07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricImperialConversion.swift; sourceTree = "<group>"; };
 		07DA92E925850A4800FB95BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -284,7 +287,6 @@
 		79968A8725AD368900E318BE /* UIScrollViewDelegateObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewDelegateObservable.swift; sourceTree = "<group>"; };
 		79B687F9259A87B500845127 /* HeavierAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeavierAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79B687FB259A87B500845127 /* HeavierAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppClipApp.swift; sourceTree = "<group>"; };
-		79B687FD259A87B500845127 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		79B68802259A87B700845127 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		79B68807259A87B700845127 /* HeavierAppClip.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HeavierAppClip.xcdatamodel; sourceTree = "<group>"; };
 		79B68809259A87B700845127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -487,6 +489,7 @@
 		076487E7257672EB00E22030 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				07D4A3F326B726DE00C1F243 /* Calendar */,
 				0781F2A1254E416100B9AE63 /* Lift */,
 				0798EAF025771CA200008A28 /* Settings */,
 				79F72E6C25AB5B1A00C38F2E /* Exercise */,
@@ -609,6 +612,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		07D4A3F326B726DE00C1F243 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				07D4A3F426B726EE00C1F243 /* RootCalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		07DA92DB25850A0300FB95BB /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -695,7 +706,6 @@
 			isa = PBXGroup;
 			children = (
 				79B687FB259A87B500845127 /* HeavierAppClipApp.swift */,
-				79B687FD259A87B500845127 /* ContentView.swift */,
 				79B68809259A87B700845127 /* Info.plist */,
 				79B6880A259A87B700845127 /* HeavierAppClip.entitlements */,
 				79B68806259A87B700845127 /* HeavierAppClip.xcdatamodeld */,
@@ -1125,6 +1135,7 @@
 				795A76BD25982A800094052B /* TextView.swift in Sources */,
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
 				79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */,
+				07D4A3F526B726EE00C1F243 /* RootCalendarView.swift in Sources */,
 				3A217D2028B158C800E4EA29 /* NavigationDestination.swift in Sources */,
 				79968A7925AD365400E318BE /* BlackOverlay.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
@@ -1181,6 +1192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07D4A3F626B726EE00C1F243 /* RootCalendarView.swift in Sources */,
 				79B688B7259A89FA00845127 /* DifferenceView.swift in Sources */,
 				79B688B8259A89FA00845127 /* LiftPicker.swift in Sources */,
 				79B688B9259A89FB00845127 /* LiftView.swift in Sources */,

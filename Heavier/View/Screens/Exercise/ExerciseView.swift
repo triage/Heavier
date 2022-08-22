@@ -31,14 +31,18 @@ struct ExerciseView: View {
     private static let scrollViewFloatingOffset: CGFloat = 86
     private static let calendarShadowRadius: CGFloat = 3.0
     
-    init?(exercise: Exercise?) {
+    init?(exercise: Exercise?, managedObjectContext: NSManagedObjectContext) {
         guard let exercise = exercise else {
             return nil
         }
         self.exercise = exercise
         
         _lifts = .init(
-            wrappedValue: LiftsObservable(exercise: exercise, ascending: false)
+            wrappedValue: LiftsObservable(
+                exercise: exercise,
+                context: managedObjectContext,
+                ascending: false
+            )
         )
     }
     
@@ -118,14 +122,16 @@ struct ExerciseView: View {
         calendarIsFloating ? 0.12 : 0.0
     }
     
+    @Environment(\.managedObjectContext) var context
+    
     var body: some View {
         return ScrollView {
             ZStack(alignment: .topLeading) {
                 if lifts.lifts.count > 0 {
-                    
                     OlderLifts(
                         exercise: exercise,
-                        dateSelected: $dateSelected
+                        dateSelected: $dateSelected,
+                        managedObjectContext: context
                     )
                     
                     BlackOverlay(visible: calendarIsFloating)
@@ -216,14 +222,14 @@ struct ExerciseView_Previews: PreviewProvider {
     static var previews: some View {
         Settings.shared.units = .metric
         
-        let exercise = Exercise(context: PersistenceController.shared.container.viewContext)
+        let exercise = Exercise(context: PersistenceController.preview.container.viewContext)
         exercise.name = "Romanian Deadlift"
         exercise.id = UUID()
         var lifts = [Lift]()
         let secondsPerDay: TimeInterval = 60 * 60 * 24
         for _ in [Date(), Date().addingTimeInterval(secondsPerDay), Date().addingTimeInterval(secondsPerDay * 60)] {
             for index in 0...100 {
-                let lift = Lift(context: PersistenceController.shared.container.viewContext)
+                let lift = Lift(context: PersistenceController.preview.container.viewContext)
                 lift.reps = 10
                 lift.sets = 1
                 lift.notes = "Light weight, baby!"
@@ -235,17 +241,17 @@ struct ExerciseView_Previews: PreviewProvider {
         }
         exercise.lifts = NSOrderedSet(array: lifts)
         
-        let exerciseNoLifts = Exercise(context: PersistenceController.shared.container.viewContext)
+        let exerciseNoLifts = Exercise(context: PersistenceController.preview.container.viewContext)
         exerciseNoLifts.name = "Romanian Deadlift"
         exerciseNoLifts.id = UUID()
         
-        let exerciseBodyweight = Exercise(context: PersistenceController.shared.container.viewContext)
+        let exerciseBodyweight = Exercise(context: PersistenceController.preview.container.viewContext)
         exerciseBodyweight.name = "Romanian Deadlift"
         exerciseBodyweight.id = UUID()
         
         lifts.removeAll()
         for index in 0...30 {
-            let lift = Lift(context: PersistenceController.shared.container.viewContext)
+            let lift = Lift(context: PersistenceController.preview.container.viewContext)
             lift.reps = 10 + Int16(index)
             lift.sets = 2
             lift.weight = 0
@@ -258,19 +264,22 @@ struct ExerciseView_Previews: PreviewProvider {
         return Group {
             NavigationView {
                 ExerciseView(
-                    exercise: exercise
+                    exercise: exercise,
+                    managedObjectContext: PersistenceController.preview.container.viewContext
                 )
             }
             NavigationView {
                 ExerciseView(
-                    exercise: exerciseNoLifts
+                    exercise: exerciseNoLifts,
+                    managedObjectContext: PersistenceController.preview.container.viewContext
                 )
             }
             NavigationView {
                 ExerciseView(
-                    exercise: exerciseBodyweight
+                    exercise: exerciseBodyweight,
+                    managedObjectContext: PersistenceController.preview.container.viewContext
                 )
             }
-        }
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

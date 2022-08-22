@@ -25,7 +25,7 @@ extension Exercise {
         Exercise.lastGroupCache.removeObject(forKey: self)
     }
     
-    var lastGroup: [Lift]? {
+    func lastGroup(context: NSManagedObjectContext) -> [Lift]? {
         if let cached = Exercise.lastGroupCache.object(forKey: self) as? [Lift] {
             return cached
         }
@@ -34,7 +34,7 @@ extension Exercise {
         }
         
         do {
-            let results = try PersistenceController.shared.container.viewContext.fetch(fetchRequest)
+            let results = try context.fetch(fetchRequest)
             Exercise.lastGroupCache.setObject(results as NSArray, forKey: self)
             return results
         } catch {
