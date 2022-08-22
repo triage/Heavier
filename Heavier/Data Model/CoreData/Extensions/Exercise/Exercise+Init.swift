@@ -12,16 +12,11 @@ extension Exercise {
     convenience init?(
         name: String,
         relevance: Int,
-        context: NSManagedObjectContext = PersistenceController.shared.container.viewContext
+        context: NSManagedObjectContext
     ) {
         self.init(context: context)
         self.name = name
         self.relevance = Int16(relevance)
         self.id = UUID()
-        do {
-            try context.save()
-        } catch {
-            return nil
-        }
     }
 }
