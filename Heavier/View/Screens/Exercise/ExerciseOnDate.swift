@@ -53,8 +53,28 @@ struct ExerciseOnDate: View {
         return "\(name) - \(ExerciseOnDate.dateFormatter.string(from: date))"
     }
     
+    struct Notes: View {
+        let notes: String?
+        var body: some View {
+            if let notes = notes {
+                VStack {
+                    Text(notes)
+                        .padding(
+                            EdgeInsets(
+                                top: 0.0,
+                                leading: 0.0,
+                                bottom: Theme.Spacing.medium,
+                                trailing: 0.0
+                            )
+                        )
+                }
+            } else {
+                EmptyView()
+            }
+        }
+    }
+    
     var body: some View {
-        
         List {
             ForEach(lifts.lifts, id: \.id) { lift in
                 Group {
@@ -62,22 +82,25 @@ struct ExerciseOnDate: View {
                         sheetManager.lift = lift
                         self.presented = true
                     }, label: {
-                        HStack {
-                            Text(lift.shortDescription(units: Settings.shared.units))
-                                .sfCompactDisplay(.regular, size: Theme.Font.Size.large)
-                                .padding(
-                                    EdgeInsets(
-                                        top: Theme.Spacing.medium,
-                                        leading: 0.0,
-                                        bottom: Theme.Spacing.medium,
-                                        trailing: 0.0
+                        VStack(alignment: .leading, spacing: -Theme.Spacing.medium) {
+                            HStack {
+                                Text(lift.shortDescription(units: Settings.shared.units))
+                                    .sfCompactDisplay(.regular, size: Theme.Font.Size.large)
+                                    .padding(
+                                        EdgeInsets(
+                                            top: Theme.Spacing.medium,
+                                            leading: 0.0,
+                                            bottom: Theme.Spacing.medium,
+                                            trailing: 0.0
+                                        )
                                     )
-                                )
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: Theme.Font.Size.large))
-                                .opacity(0.25)
-                                .scaleEffect(0.5)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: Theme.Font.Size.large))
+                                    .opacity(0.25)
+                                    .scaleEffect(0.5)
+                            }
+                            Notes(notes: lift.notes)
                         }
                     })
                 }
@@ -102,7 +125,9 @@ struct ExerciseOnDate: View {
                 let lift = Lift(context: PersistenceController.preview.container.viewContext)
                 lift.reps = Int16(index)
                 lift.sets = 4
-                lift.notes = "Light weight, baby!"
+                if index % 2 == 0 {
+                    lift.notes = "Light weight, baby!"
+                }
                 lift.weight = 20
                 lift.id = UUID()
                 lift.timestamp = Date()
