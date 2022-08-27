@@ -50,8 +50,6 @@
 		07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */; };
 		07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */; };
 		07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */; };
-		07D22D4F28B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */; };
-		07D22D5028B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */; };
 		07D22D5228B9A39D003B9A62 /* ListViewObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */; };
 		07D22D5328B9A39D003B9A62 /* ListViewObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */; };
 		07D435152547CD5900F16668 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435142547CD5900F16668 /* Fonts.swift */; };
@@ -269,7 +267,6 @@
 		07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+WeightsFormatter.swift"; sourceTree = "<group>"; };
 		07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+ShortDescription.swift"; sourceTree = "<group>"; };
 		07CD00AC251C5027002FF127 /* Overload.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Overload.xcdatamodel; sourceTree = "<group>"; };
-		07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesRootObservable.swift; sourceTree = "<group>"; };
 		07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewObservable.swift; sourceTree = "<group>"; };
 		07D435142547CD5900F16668 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		07D435392547D68B00F16668 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -584,7 +581,6 @@
 				077F8F3B25697D3B0075B307 /* LiftsObservable.swift */,
 				79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */,
 				071E390B251AF3F900A35799 /* Persistence.swift */,
-				07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -1174,7 +1170,6 @@
 				79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
 				7994F6D125A9E71F004C14A9 /* Screen.swift in Sources */,
-				07D22D4F28B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */,
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
 				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
 				79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */,
@@ -1238,7 +1233,6 @@
 				79B68899259A89CD00845127 /* Lift+Volume.swift in Sources */,
 				79B6889A259A89CD00845127 /* Lift+Weight.swift in Sources */,
 				79B6889B259A89CD00845127 /* Lift+WeightsFormatter.swift in Sources */,
-				07D22D5028B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */,
 				79B6889C259A89CD00845127 /* LiftsObservable.swift in Sources */,
 				79B6889D259A89CD00845127 /* Persistence.swift in Sources */,
 				79B6889E259A89CD00845127 /* Settings.swift in Sources */,

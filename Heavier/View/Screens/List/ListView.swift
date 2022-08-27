@@ -86,7 +86,11 @@ struct ListView: View {
             .navigationDestination(for: $exerciseSelected) { exercise in
                 ExerciseView(exercise: exercise, managedObjectContext: PersistenceController.shared.container.viewContext)
             }
-        }.searchable(text: $observer.query, placement: .navigationBarDrawer(displayMode: .always), prompt: nil)
+        }.searchable(
+            text: $observer.query,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: nil
+        )
     }
 }
 
