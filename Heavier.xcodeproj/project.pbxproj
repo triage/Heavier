@@ -50,6 +50,10 @@
 		07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */; };
 		07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */; };
 		07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */; };
+		07D22D4F28B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */; };
+		07D22D5028B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */; };
+		07D22D5228B9A39D003B9A62 /* ListViewObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */; };
+		07D22D5328B9A39D003B9A62 /* ListViewObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */; };
 		07D435152547CD5900F16668 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435142547CD5900F16668 /* Fonts.swift */; };
 		07D4353A2547D68B00F16668 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435392547D68B00F16668 /* ListView.swift */; };
 		07D4A3F526B726EE00C1F243 /* RootCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4A3F426B726EE00C1F243 /* RootCalendarView.swift */; };
@@ -265,6 +269,8 @@
 		07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+WeightsFormatter.swift"; sourceTree = "<group>"; };
 		07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+ShortDescription.swift"; sourceTree = "<group>"; };
 		07CD00AC251C5027002FF127 /* Overload.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Overload.xcdatamodel; sourceTree = "<group>"; };
+		07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesRootObservable.swift; sourceTree = "<group>"; };
+		07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewObservable.swift; sourceTree = "<group>"; };
 		07D435142547CD5900F16668 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		07D435392547D68B00F16668 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		07D4A3F426B726EE00C1F243 /* RootCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCalendarView.swift; sourceTree = "<group>"; };
@@ -578,6 +584,7 @@
 				077F8F3B25697D3B0075B307 /* LiftsObservable.swift */,
 				79B6BA8925B09B4F008EC2DC /* LiftsSection.swift */,
 				071E390B251AF3F900A35799 /* Persistence.swift */,
+				07D22D4E28B85FCD003B9A62 /* ExercisesRootObservable.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -799,6 +806,7 @@
 			isa = PBXGroup;
 			children = (
 				07D435392547D68B00F16668 /* ListView.swift */,
+				07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -1130,6 +1138,7 @@
 				071E3905251AF3F800A35799 /* RootView.swift in Sources */,
 				071E3903251AF3F800A35799 /* HeavierApp.swift in Sources */,
 				070221992572C6DE00456C4C /* LiftsOnDateView.swift in Sources */,
+				07D22D5228B9A39D003B9A62 /* ListViewObservable.swift in Sources */,
 				79B6BA8A25B09B4F008EC2DC /* LiftsSection.swift in Sources */,
 				79D77EAD259974760051F03B /* DayLabel.swift in Sources */,
 				795A76BD25982A800094052B /* TextView.swift in Sources */,
@@ -1165,6 +1174,7 @@
 				79CAC6F8258F120400B32630 /* GroupedLiftsOnDay.swift in Sources */,
 				077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */,
 				7994F6D125A9E71F004C14A9 /* Screen.swift in Sources */,
+				07D22D4F28B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */,
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
 				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
 				79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */,
@@ -1228,6 +1238,7 @@
 				79B68899259A89CD00845127 /* Lift+Volume.swift in Sources */,
 				79B6889A259A89CD00845127 /* Lift+Weight.swift in Sources */,
 				79B6889B259A89CD00845127 /* Lift+WeightsFormatter.swift in Sources */,
+				07D22D5028B85FCD003B9A62 /* ExercisesRootObservable.swift in Sources */,
 				79B6889C259A89CD00845127 /* LiftsObservable.swift in Sources */,
 				79B6889D259A89CD00845127 /* Persistence.swift in Sources */,
 				79B6889E259A89CD00845127 /* Settings.swift in Sources */,
@@ -1250,6 +1261,7 @@
 				79B688AA259A89CD00845127 /* GroupedLiftsOnDay.swift in Sources */,
 				3A217D2528B1590400E4EA29 /* Binding+MapToBool.swift in Sources */,
 				79B688AB259A89CD00845127 /* NavigationLazyView.swift in Sources */,
+				07D22D5328B9A39D003B9A62 /* ListViewObservable.swift in Sources */,
 				7994F6D825AA0970004C14A9 /* Screen.swift in Sources */,
 				79B688AC259A89CD00845127 /* TextView.swift in Sources */,
 				79B687FC259A87B500845127 /* HeavierAppClipApp.swift in Sources */,
@@ -1356,7 +1368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1411,7 +1423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1434,7 +1446,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Heavier/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1460,7 +1472,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Heavier/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1480,7 +1492,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OverloadTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1501,7 +1513,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OverloadTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1565,7 +1577,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HeavierAppClip/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1591,7 +1603,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HeavierAppClip/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1613,7 +1625,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1635,7 +1647,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1656,7 +1668,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1677,7 +1689,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
