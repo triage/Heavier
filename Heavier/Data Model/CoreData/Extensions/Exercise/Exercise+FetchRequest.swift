@@ -15,9 +15,12 @@ extension Exercise {
             let predicate: NSPredicate?
             if let query = query, query.count > 0 {
                 let words = query.split(separator: " ")
-                let predicates: [NSPredicate] = words.map {
+                var predicates: [NSPredicate] = words.map {
                     NSPredicate(format: "name CONTAINS[c] %@", $0 as CVarArg)
                 }
+                predicates.append(
+                    NSPredicate(format: "placeholder == NO")
+                )
                 predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
             } else {
                 predicate = nil
@@ -29,9 +32,12 @@ extension Exercise {
             let predicate: NSPredicate?
             if let query = query, query.count > 0 {
                 let words = query.split(separator: " ")
-                let predicates: [NSPredicate] = words.map {
+                var predicates: [NSPredicate] = words.map {
                     NSPredicate(format: "name CONTAINS[c] %@", $0 as CVarArg)
                 }
+                predicates.append(
+                    NSPredicate(format: "placeholder == NO")
+                )
                 predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
             } else {
                 predicate = nil

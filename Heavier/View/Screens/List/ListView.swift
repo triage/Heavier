@@ -41,21 +41,18 @@ struct ListView: View {
         }
     }
     
-    private func cell(name: String) -> some View {
+    private func cell(placeholder exercise: Exercise) -> some View {
         NavigationLink(
             destination:
                 NavigationLazyView(
                     ExerciseView(
-                        exercise: Exercise(
-                            name: name,
-                            relevance: Exercise.Relevance.maximum,
-                            context: PersistenceController.scrapContext),
-                        managedObjectContext: PersistenceController.scrapContext
+                        exercise: exercise,
+                        managedObjectContext: exercise.managedObjectContext!
                     )
                 )
         ) {
             HStack {
-                Text(name)
+                Text(exercise.name!)
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                 Spacer()
                 Image(systemName: "plus.circle")
@@ -68,18 +65,16 @@ struct ListView: View {
     var body: some View {
         VStack {
             List {
-                ForEach(observer.rows, id: \.hashValue) { row in
-                    if let exercise = row as? Exercise {
+                ForEach(observer.rows, id: \.hashValue) { exercise in
+                    if exercise.placeholder {
+                        cell(placeholder: exercise)
+                            .id(exercise.listViewIdentifier)
+                    } else {
                         ExerciseCell(
                             exerciseSelected: $exerciseSelected,
                             isPresenting: $isPresenting,
                             exercise: exercise
                         ).id(exercise.listViewIdentifier)
-                    } else if let name = row as? String {
-                        cell(name: name)
-                            .id(name)
-                    } else {
-                        EmptyView()
                     }
                 }
             }.listStyle(PlainListStyle())

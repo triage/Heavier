@@ -118,15 +118,6 @@
       }
     },
     {
-      "identity" : "swiftlysearch",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/triage/SwiftlySearch",
-      "state" : {
-        "branch" : "ES/hideOnChange",
-        "revision" : "3b7c1f11a15452cb5c1ec674b1d18f735a3d0970"
-      }
-    },
-    {
       "identity" : "swiftui-introspect",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/siteline/SwiftUI-Introspect.git",

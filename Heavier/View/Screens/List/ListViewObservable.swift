@@ -10,7 +10,7 @@ import CoreData
 import Combine
 
 final class ListViewObservable: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
-    @Published var rows = [AnyHashable]()
+    @Published var rows = [Exercise]()
     @Published var query: String = "" {
         didSet {
             fetchedResultsController.fetchRequest.predicate = Exercise.CoreData.predicate(query: query)
@@ -49,7 +49,7 @@ final class ListViewObservable: NSObject, ObservableObject, NSFetchedResultsCont
              If there's not a direct match and the query length is > 0, show the "add new" cell, followed by the others
              Else, show all the exercises
              */
-            var rows: [AnyHashable] = Array(exercises).sorted {
+            var rows: [Exercise] = Array(exercises).sorted {
                 if $0.lastLiftDate != nil && $1.lastLift == nil {
                     return true
                 } else if $0.lastLiftDate == nil && $0.lastLiftDate != nil {
@@ -66,7 +66,11 @@ final class ListViewObservable: NSObject, ObservableObject, NSFetchedResultsCont
                 // Found a direct match. Move it to first position.
                 rows.move(fromOffsets: IndexSet(integer: index), toOffset: 0)
             } else if self.query.count > 0 {
-                rows.insert(self.query, at: 0)
+                guard let placeholder = Exercise.createPlaceholderIfNecessary(context: PersistenceController.shared.container.viewContext) else {
+                    fatalError("couldn't create placeholder Exercise")
+                }
+                placeholder.name = self.query
+                rows.insert(placeholder, at: 0)
             }
 
             DispatchQueue.main.async {

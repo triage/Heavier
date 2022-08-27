@@ -119,6 +119,7 @@ struct LiftView: View {
             let lift = Lift(context: exercise.managedObjectContext!)
             lift.id = UUID()
             lift.exercise = exercise
+            exercise.placeholder = false
             updateFromState(lift: lift)
         } else if let lift = lift {
             updateFromState(lift: lift)

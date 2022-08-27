@@ -35,6 +35,8 @@
 		079331FC269BD33700D37202 /* Date+Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079331FA269BD33700D37202 /* Date+Month.swift */; };
 		079376142579E17000382DB1 /* exercises-default.json in Resources */ = {isa = PBXBuildFile; fileRef = 079376132579E17000382DB1 /* exercises-default.json */; };
 		079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */; };
+		0796336028BADC4F00827861 /* Exercise+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0796335F28BADC4F00827861 /* Exercise+Placeholder.swift */; };
+		0796336128BADC4F00827861 /* Exercise+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0796335F28BADC4F00827861 /* Exercise+Placeholder.swift */; };
 		0798EAF225771CB000008A28 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0798EAF125771CB000008A28 /* SettingsView.swift */; };
 		079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */; };
 		079E7474256B363200D87F98 /* Exercise+LiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7473256B363200D87F98 /* Exercise+LiftDate.swift */; };
@@ -69,7 +71,6 @@
 		795A76B525981FA80094052B /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76B425981FA80094052B /* NotesView.swift */; };
 		795A76BD25982A800094052B /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76BC25982A800094052B /* TextView.swift */; };
 		795A76C52599006E0094052B /* LiftButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795A76C42599006E0094052B /* LiftButton.swift */; };
-		796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 796A43F12586CDF20066A2F3 /* SwiftlySearch */; };
 		79791D77259A9D9C005AAE8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 071E3906251AF3F900A35799 /* Assets.xcassets */; };
 		79886C2825A00D3500FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
 		79886C4A25A00DFC00FC6CDC /* Exercise+Relevance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */; };
@@ -134,7 +135,6 @@
 		79B688C2259A89FB00845127 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3904251AF3F800A35799 /* RootView.swift */; };
 		79B688C3259A89FB00845127 /* Overload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */; };
 		79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 79B688D1259A8BB300845127 /* HorizonCalendar */; };
-		79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */ = {isa = PBXBuildFile; productRef = 79B688D3259A8BB300845127 /* SwiftlySearch */; };
 		79B6B9DB25AD43F9008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
 		79B6B9E225AD442A008EC2DC /* CalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B6B9DA25AD43F9008EC2DC /* CalendarButton.swift */; };
 		79B6BA3225ADECEC008EC2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79B6BA3125ADECEC008EC2DC /* GoogleService-Info.plist */; };
@@ -253,6 +253,8 @@
 		079331FD26A3C95200D37202 /* Heavier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Heavier.entitlements; sourceTree = "<group>"; };
 		079376132579E17000382DB1 /* exercises-default.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "exercises-default.json"; sourceTree = "<group>"; };
 		079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONSerialization+Load.swift"; sourceTree = "<group>"; };
+		0796335E28BADB1A00827861 /* Overload 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 7.xcdatamodel"; sourceTree = "<group>"; };
+		0796335F28BADC4F00827861 /* Exercise+Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+Placeholder.swift"; sourceTree = "<group>"; };
 		0798EAF125771CB000008A28 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		079E7473256B363200D87F98 /* Exercise+LiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+LiftDate.swift"; sourceTree = "<group>"; };
@@ -327,7 +329,6 @@
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
 				799A92A525AD2F6400470D11 /* Introspect in Frameworks */,
 				79B6BAB925B0A18D008EC2DC /* FirebaseCrashlytics in Frameworks */,
-				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
 				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,7 +353,6 @@
 			files = (
 				79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */,
 				799A92AD25AD2F7100470D11 /* Introspect in Frameworks */,
-				79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */,
 				79DF5E5A25A16ED6000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -676,6 +676,7 @@
 				079E7473256B363200D87F98 /* Exercise+LiftDate.swift */,
 				0702218325715A4300456C4C /* Exercise+PreviewContent.swift */,
 				79886C2725A00D3500FC6CDC /* Exercise+Relevance.swift */,
+				0796335F28BADC4F00827861 /* Exercise+Placeholder.swift */,
 			);
 			path = Exercise;
 			sourceTree = "<group>";
@@ -840,7 +841,6 @@
 			name = Heavier;
 			packageProductDependencies = (
 				0702215D256DFA2C00456C4C /* HorizonCalendar */,
-				796A43F12586CDF20066A2F3 /* SwiftlySearch */,
 				79DF5E5125A16DE2000067E4 /* SwiftUIPager */,
 				799A92A425AD2F6400470D11 /* Introspect */,
 				79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */,
@@ -900,7 +900,6 @@
 			name = HeavierAppClip;
 			packageProductDependencies = (
 				79B688D1259A8BB300845127 /* HorizonCalendar */,
-				79B688D3259A8BB300845127 /* SwiftlySearch */,
 				79DF5E5925A16ED6000067E4 /* SwiftUIPager */,
 				799A92AC25AD2F7100470D11 /* Introspect */,
 			);
@@ -988,7 +987,6 @@
 			mainGroup = 071E38F6251AF3F800A35799;
 			packageReferences = (
 				0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */,
-				796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */,
 				79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -1140,6 +1138,7 @@
 				795A76BD25982A800094052B /* TextView.swift in Sources */,
 				079376242579EA3F00382DB1 /* JSONSerialization+Load.swift in Sources */,
 				79D77EA82599743B0051F03B /* MonthLabel.swift in Sources */,
+				0796336028BADC4F00827861 /* Exercise+Placeholder.swift in Sources */,
 				07D4A3F526B726EE00C1F243 /* RootCalendarView.swift in Sources */,
 				3A217D2028B158C800E4EA29 /* NavigationDestination.swift in Sources */,
 				79968A7925AD365400E318BE /* BlackOverlay.swift in Sources */,
@@ -1226,6 +1225,7 @@
 				79B6BA8B25B09B4F008EC2DC /* LiftsSection.swift in Sources */,
 				79B68894259A89CD00845127 /* Lift+Bodyweight.swift in Sources */,
 				79B68895259A89CD00845127 /* Lift+FetchRequest.swift in Sources */,
+				0796336128BADC4F00827861 /* Exercise+Placeholder.swift in Sources */,
 				79B68896259A89CD00845127 /* Lift+Grouping.swift in Sources */,
 				79B68897259A89CD00845127 /* Lift+Range.swift in Sources */,
 				79968A8025AD365E00E318BE /* BlackOverlay.swift in Sources */,
@@ -1435,7 +1435,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Resources/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1445,7 +1445,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1461,7 +1461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Heavier/Resources/Heavier.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Heavier/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1471,7 +1471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1566,7 +1566,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1576,7 +1576,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
@@ -1592,7 +1592,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HeavierAppClip/HeavierAppClip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HeavierAppClip/Preview Content\"";
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
@@ -1602,7 +1602,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;
@@ -1774,14 +1774,6 @@
 				minimumVersion = 1.8.3;
 			};
 		};
-		796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/triage/SwiftlySearch";
-			requirement = {
-				branch = ES/hideOnChange;
-				kind = branch;
-			};
-		};
 		799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
@@ -1814,11 +1806,6 @@
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
 		};
-		796A43F12586CDF20066A2F3 /* SwiftlySearch */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
-			productName = SwiftlySearch;
-		};
 		799A92A425AD2F6400470D11 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
@@ -1833,11 +1820,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
-		};
-		79B688D3259A8BB300845127 /* SwiftlySearch */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */;
-			productName = SwiftlySearch;
 		};
 		79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1860,6 +1842,7 @@
 		07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0796335E28BADB1A00827861 /* Overload 7.xcdatamodel */,
 				071E588C2696AB8800542610 /* Overload 6.xcdatamodel */,
 				79D77EB1259A0AF80051F03B /* Overload 5.xcdatamodel */,
 				07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */,
@@ -1867,7 +1850,7 @@
 				798BB51A2597E62100171407 /* Overload 4.xcdatamodel */,
 				07CD00AC251C5027002FF127 /* Overload.xcdatamodel */,
 			);
-			currentVersion = 071E588C2696AB8800542610 /* Overload 6.xcdatamodel */;
+			currentVersion = 0796335E28BADB1A00827861 /* Overload 7.xcdatamodel */;
 			path = Overload.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
