@@ -30,7 +30,7 @@ struct ContentView: View {
             RootCalendarView(context: context)
         } else {
             ListView()
-            .navigationTitle(ContentView.title)
+                .navigationTitle(ContentView.title)
         }
     }
 }
@@ -85,6 +85,7 @@ struct RootView: View {
                     }
                 }
         }
+        .navigationViewStyle(.stack)
         .accentColor(.accent)
         .edgesIgnoringSafeArea([.top, .bottom])
         .sheet(isPresented: $settingsVisible, content: {

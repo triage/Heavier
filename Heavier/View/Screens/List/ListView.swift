@@ -42,18 +42,14 @@ struct ListView: View {
     }
     
     private func cell(name: String) -> some View {
-        NavigationLink(
-            destination:
-                NavigationLazyView(
-                    ExerciseView(
-                        exercise: Exercise(
-                            name: name,
-                            relevance: Exercise.Relevance.maximum,
-                            context: PersistenceController.scrapContext),
-                        managedObjectContext: PersistenceController.scrapContext
-                    )
-                )
-        ) {
+        Button {
+            PersistenceController.scrapContext.reset()
+            exerciseSelected = Exercise(
+                name: name,
+                relevance: Exercise.Relevance.maximum,
+                context: PersistenceController.scrapContext
+            )
+        } label: {
             HStack {
                 Text(name)
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
