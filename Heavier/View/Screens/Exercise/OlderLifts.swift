@@ -160,7 +160,7 @@ struct OlderLiftsPreviews: PreviewProvider {
                 let lift = Lift(context: moc)
                 lift.reps = 10 + Int16(index)
                 lift.sets = 1
-                lift.notes = "Light weight, baby!"
+                lift.notes = "Middle\nHigh Outside"
                 lift.weight = 20
                 lift.id = UUID()
                 lift.timestamp = date

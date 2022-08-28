@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreData
-import SwiftlySearch
+import Combine
 
 struct ContentView: View {
     private static let title = "Exercises"
@@ -19,7 +19,6 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var context
     
     @State var daySelected: DateComponents?
-    @State private var query: String = ""
     
     init(viewType: RootView.ViewType) {
         self.viewType = viewType
@@ -29,14 +28,9 @@ struct ContentView: View {
     var body: some View {
         if viewType == .calendar {
             RootCalendarView(context: context)
-                .navigationBarSearch($query, isHidden: true)
         } else {
-            ListView(
-                query: query,
-                fetchRequest: Exercise.CoreData.search(query)
-            )
-            .navigationTitle(ContentView.title)
-            .navigationBarSearch($query, isHidden: searchHidden)
+            ListView()
+                .navigationTitle(ContentView.title)
         }
     }
 }
@@ -91,6 +85,7 @@ struct RootView: View {
                     }
                 }
         }
+        .navigationViewStyle(.stack)
         .accentColor(.accent)
         .edgesIgnoringSafeArea([.top, .bottom])
         .sheet(isPresented: $settingsVisible, content: {

@@ -88,6 +88,7 @@ struct LiftView: View {
         self.mode = mode
         self._presented = presented
 
+        _notes = .init(initialValue: lift?.notes ?? "")
         _sets = .init(initialValue: Float(lift?.sets ?? 3))
         _reps = .init(initialValue: Float(lift?.reps ?? 10))
         _weight = .init(initialValue: Float(lift?.weightLocalized.weight ?? Settings.shared.units.defaultWeight))
@@ -238,21 +239,36 @@ struct LiftView_ContentPreviews: PreviewProvider {
     
     static var previews: some View {
         
-        let exercise = Exercise(context: PersistenceController.preview.container.viewContext)
-        exercise.name = "Romanian Deadlift"
-        exercise.id = UUID()
+        func makeExercise() -> Exercise {
+            let exercise = Exercise(context: PersistenceController.preview.container.viewContext)
+            exercise.name = "Romanian Deadlift"
+            exercise.id = UUID()
+            return exercise
+        }
         
-        let lift = Lift(context: PersistenceController.preview.container.viewContext)
-        lift.reps = 10
-        lift.sets = 3
-        lift.weight = 135
-        lift.id = UUID()
-        lift.timestamp = Date()
-        exercise.lifts = NSOrderedSet(object: lift)
+        let (exercise1, exercise2) = (makeExercise(), makeExercise())
+        
+        func makeLift() -> Lift {
+            let lift = Lift(context: PersistenceController.preview.container.viewContext)
+            lift.reps = 10
+            lift.sets = 3
+            lift.weight = 135
+            lift.id = UUID()
+            lift.timestamp = Date()
+            return lift
+        }
+        
+        let lift = makeLift()
+        exercise1.lifts = NSOrderedSet(object: makeLift())
+        
+        let lift2 = makeLift()
+        lift2.notes = "Hello World"
+        exercise1.lifts = NSOrderedSet(object: lift2)
         
         return Group {
-            LiftView(exercise: exercise, lift: lift, presented: $presented)
-            LiftView(exercise: exercise, lift: lift, presented: $presented, mode: .editing)
+            LiftView(exercise: exercise1, lift: lift, presented: $presented)
+            LiftView(exercise: exercise1, lift: lift2, presented: $presented)
+            LiftView(exercise: exercise2, lift: lift2, presented: $presented, mode: .editing)
                     .environment(\.colorScheme, ColorScheme.dark)
         }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

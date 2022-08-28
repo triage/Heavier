@@ -132,11 +132,11 @@ struct LiftsCalendarView: UIViewRepresentable, Equatable {
             calendar: calendar,
             visibleDateRange: calendarBounds,
             monthsLayout: monthsLayout
-        ).withDayItemModelProvider { day in
+        ).dayItemProvider { day in
             CalendarItemModel<DayLabel>(
                 invariantViewProperties: .init(),
                 viewModel: .init(lifts: days[day.description], day: day))
-        }.withMonthHeaderItemModelProvider { month in
+        }.monthHeaderItemProvider { month in
             CalendarItemModel<MonthLabel>(
                 invariantViewProperties: .init(),
                 viewModel: .init(
@@ -144,7 +144,7 @@ struct LiftsCalendarView: UIViewRepresentable, Equatable {
                 )
             )
         }
-        .withInterMonthSpacing(10.0)
+        .interMonthSpacing(10.0)
     }
     
     static func == (lhs: LiftsCalendarView, rhs: LiftsCalendarView) -> Bool {
