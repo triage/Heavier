@@ -112,14 +112,17 @@ struct LiftView: View {
             lift.weight = Float(Lift.normalize(weight: weight))
             lift.notes = notes
             lift.timestamp = dateObserved.value
-            lift.exercise?.timestamp = Date()
+            if exercise.placeholder {
+                exercise.placeholder = false
+            } else {
+                lift.exercise?.timestamp = Date()
+            }
         }
         
         if mode == .creating {
             let lift = Lift(context: exercise.managedObjectContext!)
             lift.id = UUID()
             lift.exercise = exercise
-            exercise.placeholder = false
             updateFromState(lift: lift)
         } else if let lift = lift {
             updateFromState(lift: lift)
