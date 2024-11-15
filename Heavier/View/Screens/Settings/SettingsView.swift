@@ -20,7 +20,7 @@ struct SettingsView: View {
                     }
                 }
             }.navigationTitle("Settings")
-        }.accentColor(.accent)
+        }.accentColor(Color(.accent))
     }
 }
 

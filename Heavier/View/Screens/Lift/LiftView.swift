@@ -15,7 +15,7 @@ struct LiftViewCloseButton: View {
         Button(action: action) {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: Theme.Font.Size.large, weight: .bold, design: .default))
-                .accentColor(.highlight)
+                .accentColor(Color(.highlight))
         }
     }
 }

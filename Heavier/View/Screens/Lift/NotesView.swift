@@ -51,13 +51,13 @@ struct NotesView: View {
                         .alignmentGuide(.top, computeValue: { dimension in
                             dimension[.top]
                         })
-                    if let placeholder = placeholder, text.count == 0 {
+                    if text.count == 0 {
                         Text(placeholder)
                             .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                             .padding(Theme.Spacing.medium)
                             .padding([.top], Theme.Spacing.smallPlus)
                             .padding([.leading], Theme.Spacing.smallPlus - 2.0)
-                            .foregroundColor(.placeholder)
+                            .foregroundColor(Color(.placeholder))
                     }
                 }
                 Spacer()

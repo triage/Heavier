@@ -18,8 +18,8 @@ struct GroupedLiftsOnDay: View {
                 if let shortDescription = lifts.shortDescription(units: Settings.shared.units) {
                     Text(shortDescription)
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.mediumPlus)
-                    if let notes = lifts.notes, notes.count > 0 {
-                        Text(notes)
+                    if lifts.notes.count > 0 {
+                        Text(lifts.notes)
                             .multilineTextAlignment(.leading)
                             .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                             .padding([.bottom], Theme.Spacing.small)

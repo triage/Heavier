@@ -71,7 +71,7 @@ struct LiftPicker: View {
                         )
                     )
                 }
-                .fill(Color.underline)
+                .fill(Color(.underline))
                 .alignmentGuide(.leading, computeValue: { dimension in
                     dimension[.leading]
                 }).alignmentGuide(.trailing, computeValue: { dimension in
@@ -84,7 +84,7 @@ struct LiftPicker: View {
             
             Text(label)
                 .sfCompactDisplay(.regular, size: Theme.Font.Size.giga)
-                .foregroundColor(Color.label)
+                .foregroundColor(Color(.label))
                 .frame(width: .none, height: dimensions.height)
                 .offset(x: 0.0, y: -3.0)
             Spacer()

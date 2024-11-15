@@ -86,7 +86,7 @@ struct RootView: View {
                 }
         }
         .navigationViewStyle(.stack)
-        .accentColor(.accent)
+        .accentColor(Color(.accent))
         .edgesIgnoringSafeArea([.top, .bottom])
         .sheet(isPresented: $settingsVisible, content: {
             SettingsView()

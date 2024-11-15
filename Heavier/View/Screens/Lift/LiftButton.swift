@@ -21,7 +21,7 @@ struct LiftButton: View {
                 Image(systemName: imageName)
                 Text(text)
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                    .foregroundColor(.liftDateForeground)
+                    .foregroundColor(Color(.liftDateForeground))
                 if let imageNameTrailing = imageNameTrailing {
                     Image(systemName: imageNameTrailing)
                 }
@@ -29,16 +29,16 @@ struct LiftButton: View {
             .padding(Theme.Spacing.smallPlus)
             .overlay(
                 RoundedRectangle(cornerRadius: Theme.Spacing.large)
-                    .stroke(Color.liftButtonBorderSelected, lineWidth: selected ? 3.0 : 0.0)
+                    .stroke(Color(.liftButtonBorderSelected), lineWidth: selected ? 3.0 : 0.0)
             )
         }
-        .background(Color(Color.Overload.liftDateBackground.rawValue))
+        .background(Color(.liftDateBackground))
         .cornerRadius(Theme.Spacing.large)
         .padding([.bottom], Theme.Spacing.medium)
         .padding([.leading], Theme.Spacing.small)
-        .accentColor(Color.accent)
+        .accentColor(Color(.accent))
         .labelsHidden()
-        .foregroundColor(Color.liftDateForeground)
+        .foregroundColor(Color(.liftDateForeground))
         .background(Color.clear)
     }
 }

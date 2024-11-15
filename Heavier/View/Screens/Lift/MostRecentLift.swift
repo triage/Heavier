@@ -32,7 +32,7 @@ struct MostRecentLift: View {
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                 }
                     .padding(MostRecentLift.padding)
-                    .background(Color.highlight)
+                    .background(Color(.highlight))
                     .cornerRadius(MostRecentLift.padding * 2.0)
                 .foregroundColor(Color.black)
                 Spacer()
