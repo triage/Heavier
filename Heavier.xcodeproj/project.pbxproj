@@ -24,6 +24,9 @@
 		071E391A251AF3F900A35799 /* OverloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3919251AF3F900A35799 /* OverloadTests.swift */; };
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
+		074C6C5B2CEA7E9800D2B2F5 /* HeavierAppIntentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077C1FB92CEA6DFE00A3EBEE /* HeavierAppIntentExtension.swift */; };
+		074C6C5F2CEA856400D2B2F5 /* HeavierAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077C1FBB2CEA6DFE00A3EBEE /* HeavierAppIntent.swift */; };
+		077C1FC02CEA6DFE00A3EBEE /* HeavierAppIntent.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 077C1FB72CEA6DFE00A3EBEE /* HeavierAppIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8F3B25697D3B0075B307 /* LiftsObservable.swift */; };
 		077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8F4025697E060075B307 /* Lift+FetchRequest.swift */; };
 		077F8F46256987680075B307 /* Exercise+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8F45256987680075B307 /* Exercise+Init.swift */; };
@@ -180,6 +183,13 @@
 			remoteGlobalIDString = 071E38FE251AF3F800A35799;
 			remoteInfo = Overload;
 		};
+		077C1FBE2CEA6DFE00A3EBEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 071E38F7251AF3F800A35799 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 077C1FB62CEA6DFE00A3EBEE;
+			remoteInfo = HeavierAppIntent;
+		};
 		79B68810259A87B700845127 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 071E38F7251AF3F800A35799 /* Project object */;
@@ -204,6 +214,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		077C1FC12CEA6DFE00A3EBEE /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				077C1FC02CEA6DFE00A3EBEE /* HeavierAppIntent.appex in Embed ExtensionKit Extensions */,
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		79B68824259A87B700845127 /* Embed App Clips */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +262,10 @@
 		071E3926251AF3F900A35799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		071E588A26955ED000542610 /* ExercisesObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesObservable.swift; sourceTree = "<group>"; };
 		071E588C2696AB8800542610 /* Overload 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 6.xcdatamodel"; sourceTree = "<group>"; };
+		077C1FB72CEA6DFE00A3EBEE /* HeavierAppIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = HeavierAppIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		077C1FB92CEA6DFE00A3EBEE /* HeavierAppIntentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppIntentExtension.swift; sourceTree = "<group>"; };
+		077C1FBB2CEA6DFE00A3EBEE /* HeavierAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeavierAppIntent.swift; sourceTree = "<group>"; };
+		077C1FBD2CEA6DFE00A3EBEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		077F8F3B25697D3B0075B307 /* LiftsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsObservable.swift; sourceTree = "<group>"; };
 		077F8F4025697E060075B307 /* Lift+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+FetchRequest.swift"; sourceTree = "<group>"; };
 		077F8F45256987680075B307 /* Exercise+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+Init.swift"; sourceTree = "<group>"; };
@@ -346,6 +371,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		077C1FB42CEA6DFE00A3EBEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		79B687F6259A87B500845127 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,6 +454,7 @@
 				79B687FA259A87B500845127 /* HeavierAppClip */,
 				79B68812259A87B700845127 /* HeavierAppClipTests */,
 				79B6881D259A87B700845127 /* HeavierAppClipUITests */,
+				077C1FB82CEA6DFE00A3EBEE /* HeavierAppIntent */,
 				071E3900251AF3F800A35799 /* Products */,
 				79B688D0259A8BB300845127 /* Frameworks */,
 			);
@@ -436,6 +469,7 @@
 				79B687F9259A87B500845127 /* HeavierAppClip.app */,
 				79B6880F259A87B700845127 /* HeavierAppClipTests.xctest */,
 				79B6881A259A87B700845127 /* HeavierAppClipUITests.xctest */,
+				077C1FB72CEA6DFE00A3EBEE /* HeavierAppIntent.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -500,6 +534,16 @@
 				79F72E9425AB5F1500C38F2E /* List */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		077C1FB82CEA6DFE00A3EBEE /* HeavierAppIntent */ = {
+			isa = PBXGroup;
+			children = (
+				077C1FB92CEA6DFE00A3EBEE /* HeavierAppIntentExtension.swift */,
+				077C1FBB2CEA6DFE00A3EBEE /* HeavierAppIntent.swift */,
+				077C1FBD2CEA6DFE00A3EBEE /* Info.plist */,
+			);
+			path = HeavierAppIntent;
 			sourceTree = "<group>";
 		};
 		0781F2A1254E416100B9AE63 /* Lift */ = {
@@ -831,11 +875,13 @@
 				07B30658257480DB005CB631 /* Swiftlint */,
 				79B68824259A87B700845127 /* Embed App Clips */,
 				79B6BA3A25AE03CB008EC2DC /* Firebase - Upload DSYM */,
+				077C1FC12CEA6DFE00A3EBEE /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				79B68822259A87B700845127 /* PBXTargetDependency */,
+				077C1FBF2CEA6DFE00A3EBEE /* PBXTargetDependency */,
 			);
 			name = Heavier;
 			packageProductDependencies = (
@@ -884,6 +930,23 @@
 			productName = OverloadUITests;
 			productReference = 071E3920251AF3F900A35799 /* HeavierUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		077C1FB62CEA6DFE00A3EBEE /* HeavierAppIntent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 077C1FC42CEA6DFE00A3EBEE /* Build configuration list for PBXNativeTarget "HeavierAppIntent" */;
+			buildPhases = (
+				077C1FB32CEA6DFE00A3EBEE /* Sources */,
+				077C1FB42CEA6DFE00A3EBEE /* Frameworks */,
+				077C1FB52CEA6DFE00A3EBEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeavierAppIntent;
+			productName = HeavierAppIntent;
+			productReference = 077C1FB72CEA6DFE00A3EBEE /* HeavierAppIntent.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
 		};
 		79B687F8259A87B500845127 /* HeavierAppClip */ = {
 			isa = PBXNativeTarget;
@@ -950,8 +1013,9 @@
 		071E38F7251AF3F800A35799 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1200;
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					071E38FE251AF3F800A35799 = {
 						CreatedOnToolsVersion = 12.0;
@@ -963,6 +1027,9 @@
 					071E391F251AF3F900A35799 = {
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = 071E38FE251AF3F800A35799;
+					};
+					077C1FB62CEA6DFE00A3EBEE = {
+						CreatedOnToolsVersion = 15.4;
 					};
 					79B687F8259A87B500845127 = {
 						CreatedOnToolsVersion = 12.3;
@@ -1003,6 +1070,7 @@
 				79B687F8259A87B500845127 /* HeavierAppClip */,
 				79B6880E259A87B700845127 /* HeavierAppClipTests */,
 				79B68819259A87B700845127 /* HeavierAppClipUITests */,
+				077C1FB62CEA6DFE00A3EBEE /* HeavierAppIntent */,
 			);
 		};
 /* End PBXProject section */
@@ -1031,6 +1099,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		071E391E251AF3F900A35799 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077C1FB52CEA6DFE00A3EBEE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1125,6 +1200,7 @@
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
 				79F72E5D25AB5A9700C38F2E /* OlderLifts.swift in Sources */,
 				07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */,
+				074C6C5F2CEA856400D2B2F5 /* HeavierAppIntent.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
 				071E390C251AF3F900A35799 /* Persistence.swift in Sources */,
 				79CAC6FE258F153A00B32630 /* UILabel+Margins.swift in Sources */,
@@ -1190,6 +1266,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		077C1FB32CEA6DFE00A3EBEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				074C6C5B2CEA7E9800D2B2F5 /* HeavierAppIntentExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1292,6 +1376,11 @@
 			isa = PBXTargetDependency;
 			target = 071E38FE251AF3F800A35799 /* Heavier */;
 			targetProxy = 071E3921251AF3F900A35799 /* PBXContainerItemProxy */;
+		};
+		077C1FBF2CEA6DFE00A3EBEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 077C1FB62CEA6DFE00A3EBEE /* HeavierAppIntent */;
+			targetProxy = 077C1FBE2CEA6DFE00A3EBEE /* PBXContainerItemProxy */;
 		};
 		79B68811259A87B700845127 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1440,7 +1529,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Heavier/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1466,7 +1555,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Heavier/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1486,7 +1575,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OverloadTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1507,7 +1596,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OverloadTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1527,6 +1616,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OverloadUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1546,6 +1636,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = OverloadUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1556,6 +1647,69 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Overload;
+			};
+			name = Release;
+		};
+		077C1FC22CEA6DFE00A3EBEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JM3283H9KB;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HeavierAppIntent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HeavierAppIntent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.HeavierAppIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		077C1FC32CEA6DFE00A3EBEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JM3283H9KB;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HeavierAppIntent/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HeavierAppIntent;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.HeavierAppIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1571,7 +1725,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HeavierAppClip/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1597,7 +1751,7 @@
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HeavierAppClip/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1619,7 +1773,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1641,7 +1795,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1662,7 +1816,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1683,7 +1837,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JM3283H9KB;
 				INFOPLIST_FILE = HeavierAppClipUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1732,6 +1886,15 @@
 			buildConfigurations = (
 				071E3930251AF3F900A35799 /* Debug */,
 				071E3931251AF3F900A35799 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		077C1FC42CEA6DFE00A3EBEE /* Build configuration list for PBXNativeTarget "HeavierAppIntent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				077C1FC22CEA6DFE00A3EBEE /* Debug */,
+				077C1FC32CEA6DFE00A3EBEE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
