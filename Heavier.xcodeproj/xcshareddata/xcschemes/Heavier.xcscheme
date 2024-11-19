@@ -52,6 +52,7 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
+      intentQueryString = "Record a lift in Heavier"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -73,6 +74,7 @@
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
+      intentQueryString = "Record a lift in Heavier"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
