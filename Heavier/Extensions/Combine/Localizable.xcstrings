@@ -1,0 +1,105 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "Biceps don't grow on trees" : {
+
+    },
+    "Body under construction. Mind on a mission" : {
+
+    },
+    "Date" : {
+
+    },
+    "Don't be afraid to fail. Be afraid not to try" : {
+
+    },
+    "Exercise" : {
+
+    },
+    "Exercise name" : {
+
+    },
+    "Exercise Name" : {
+
+    },
+    "Files" : {
+
+    },
+    "If it doesn't challenge you, it doesn't change you" : {
+
+    },
+    "If you cheat, you only cheat yourself" : {
+
+    },
+    "It doesn't get easier. You just get stronger" : {
+
+    },
+    "Location" : {
+
+    },
+    "Message" : {
+
+    },
+    "Most recent lift:" : {
+      "comment" : "Most recent lift"
+    },
+    "No excuses" : {
+
+    },
+    "No lifts recorded yet" : {
+
+    },
+    "Notes" : {
+      "comment" : "Notes"
+    },
+    "Provide a display representation." : {
+
+    },
+    "Record a lift" : {
+
+    },
+    "Record a lift for ${exercise} - ${sets} sets of ${reps} at ${weight}" : {
+
+    },
+    "Record a lift!" : {
+
+    },
+    "Reps" : {
+
+    },
+    "Save" : {
+      "comment" : "Save"
+    },
+    "Select Date" : {
+      "comment" : "Select Date"
+    },
+    "Sets" : {
+
+    },
+    "Settings" : {
+      "comment" : "Settings"
+    },
+    "The pain you feel today will be the strength you feel tomorrow" : {
+
+    },
+    "Title" : {
+
+    },
+    "Today" : {
+
+    },
+    "total volume (%@)" : {
+
+    },
+    "Units" : {
+      "comment" : "Units"
+    },
+    "Weight" : {
+
+    }
+  },
+  "version" : "1.0"
+}

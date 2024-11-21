@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import Combine
+import Intents
 
 final class ListViewObservable: NSObject, ObservableObject, NSFetchedResultsControllerDelegate {
     @Published var rows = [AnyHashable]()
@@ -34,9 +35,10 @@ final class ListViewObservable: NSObject, ObservableObject, NSFetchedResultsCont
     func fetchRows() {
         do {
             try self.fetchedResultsController.performFetch()
-            guard let exercises = fetchedResultsController.fetchedObjects else {
+            guard let exercises: [Exercise] = fetchedResultsController.fetchedObjects else {
                 return
             }
+            INVocabulary.shared().setVocabularyStrings(NSOrderedSet(array: exercises.map { $0.name! }), of: .notebookItemTitle)
             sortExercises(exercises)
         } catch { }
     }
@@ -67,6 +69,7 @@ final class ListViewObservable: NSObject, ObservableObject, NSFetchedResultsCont
             rows.insert(self.query, at: 0)
         }
         self.rows = rows
+        
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

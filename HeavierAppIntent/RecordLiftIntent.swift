@@ -10,7 +10,7 @@ import CoreLocation
 
 @available(iOS 18.0, *)
 @AssistantIntent(schema: .journal.createEntry)
-struct HeavierAppIntent {
+struct RecordLiftIntent {
     
     static var title: LocalizedStringResource = "Record a lift!"
 
@@ -229,7 +229,7 @@ struct ExerciseEntityQuery: EntityPropertyQuery {
 @available(iOS 18.0, *)
 struct LiftShortcus: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
-        AppShortcut(intent: HeavierAppIntent(), phrases: [
+        AppShortcut(intent: RecordLiftIntent(), phrases: [
             "Record a lift in \(.applicationName)",
             "Log in \(.applicationName)",
         ], shortTitle: "Record a lift", systemImageName: "scalemass.fill")
