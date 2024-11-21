@@ -19,14 +19,14 @@ struct NotesView: View {
     let onSave: () -> Void
     
     let placeholders = [
-        "It doesn't get easier. You just get stronger",
-        "The pain you feel today will be the strength you feel tomorrow",
-        "If it doesn't challenge you, it doesn't change you",
-        "No excuses",
-        "Body under construction. Mind on a mission",
-        "If you cheat, you only cheat yourself",
-        "Don't be afraid to fail. Be afraid not to try",
-        "Biceps don't grow on trees"
+        String(localized: "It doesn't get easier. You just get stronger"),
+        String(localized: "The pain you feel today will be the strength you feel tomorrow"),
+        String(localized: "If it doesn't challenge you, it doesn't change you"),
+        String(localized: "No excuses"),
+        String(localized: "Body under construction. Mind on a mission"),
+        String(localized: "If you cheat, you only cheat yourself"),
+        String(localized: "Don't be afraid to fail. Be afraid not to try"),
+        String(localized: "Biceps don't grow on trees")
     ]
     
     @State var placeholder: String

@@ -41,7 +41,7 @@ struct RecentLift: View {
             VStack(alignment: .leading) {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("most recent lift:")
+                        Text("Most recent lift:", comment: "Most recent lift")
                             .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                         Text(MostRecentLift.lastLiftDateFormatter.string(from: lift.timestamp!))
                             .sfCompactDisplay(.bold, size: Theme.Font.Size.mediumPlus)

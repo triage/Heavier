@@ -35,7 +35,7 @@ struct DateButton: View {
         let date: Date
         var dateText: String {
             if Calendar.current.isDateInToday(date) {
-                return "Today"
+                return String(localized: "Today")
             }
             return ViewModel.dateFormatter.string(from: date)
         }
@@ -151,7 +151,7 @@ struct LiftView: View {
                         sheetType = .notes
                     }, label: {
                         LiftButton(
-                            text: "Notes",
+                            text: String(localized: "Notes", comment: "Notes"),
                             imageName: "note.text",
                             selected: notes.count > 0,
                             imageNameTrailing: notes.count > 0 ? "checkmark.circle.fill" : nil
@@ -193,7 +193,7 @@ struct LiftView: View {
                 Button(action: {
                     save()
                 }, label: {
-                    Text("Save")
+                    Text("Save", comment: "Save")
                         .padding(Theme.Spacing.medium)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(Color.white)
@@ -216,7 +216,7 @@ struct LiftView: View {
                                 .datePickerStyle(GraphicalDatePickerStyle())
                                 .padding(Theme.Spacing.medium)
                             Spacer()
-                        }.navigationTitle("Select Date")
+                        }.navigationTitle(String(localized: "Select Date", comment: "Select Date"))
                     }
                 case .notes:
                     NotesView(notes: $notes) {

@@ -24,7 +24,7 @@ struct MostRecentLift: View {
            let timestamp = lift.timestamp {
             HStack {
                 VStack(alignment: .leading) {
-                    Text("most recent lift:")
+                    Text("Most recent lift:", comment: "Most recent lift")
                         .sfCompactDisplay(.regular, size: Theme.Font.Size.medium)
                     Text(lift.shortDescription(units: Settings.shared.units))
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.mediumPlus)

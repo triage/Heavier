@@ -42,37 +42,31 @@ final class ListViewObservable: NSObject, ObservableObject, NSFetchedResultsCont
     }
     
     func sortExercises(_ exercises: [Exercise]) {
-        DispatchQueue.global().async {
-
-            /*
-             If there's a direct match, show that one first, followed by the others
-             If there's not a direct match and the query length is > 0, show the "add new" cell, followed by the others
-             Else, show all the exercises
-             */
-            var rows: [AnyHashable] = Array(exercises).sorted {
-                if $0.lastLiftDate != nil && $1.lastLift == nil {
-                    return true
-                } else if $0.lastLiftDate == nil && $0.lastLiftDate != nil {
-                    return false
-                }
-                guard let first = $0.lastLiftDate, let second = $1.lastLiftDate else {
-                    return false
-                }
-                return first > second
+        /*
+         If there's a direct match, show that one first, followed by the others
+         If there's not a direct match and the query length is > 0, show the "add new" cell, followed by the others
+         Else, show all the exercises
+         */
+        var rows: [AnyHashable] = Array(exercises).sorted {
+            if $0.lastLiftDate != nil && $1.lastLift == nil {
+                return true
+            } else if $0.lastLiftDate == nil && $0.lastLiftDate != nil {
+                return false
             }
-            if let directMatch: Exercise = exercises.first(where: { (exercise) -> Bool in
-                exercise.name?.lowercased() == self.query.lowercased()
-            }), let index = rows.firstIndex(of: directMatch) {
-                // Found a direct match. Move it to first position.
-                rows.move(fromOffsets: IndexSet(integer: index), toOffset: 0)
-            } else if self.query.count > 0 {
-                rows.insert(self.query, at: 0)
+            guard let first = $0.lastLiftDate, let second = $1.lastLiftDate else {
+                return false
             }
-
-            DispatchQueue.main.async {
-                self.rows = rows
-            }
+            return first > second
         }
+        if let directMatch: Exercise = exercises.first(where: { (exercise) -> Bool in
+            exercise.name?.lowercased() == self.query.lowercased()
+        }), let index = rows.firstIndex(of: directMatch) {
+            // Found a direct match. Move it to first position.
+            rows.move(fromOffsets: IndexSet(integer: index), toOffset: 0)
+        } else if self.query.count > 0 {
+            rows.insert(self.query, at: 0)
+        }
+        self.rows = rows
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
