@@ -14,19 +14,19 @@ struct RecordLiftIntent {
     
     static var title: LocalizedStringResource = "Record a lift!"
 
-    @Parameter(title: "Title")
+    @Parameter
     var title: String?
     
-    @Parameter(title: "Message")
+    @Parameter
     var message: AttributedString
     
-    @Parameter(title: "Files")
+    @Parameter(default: [])
     var mediaItems: [IntentFile]
     
-    @Parameter(title: "Date")
+    @Parameter(default: Date())
     var entryDate: Date?
     
-    @Parameter(title: "Location")
+    @Parameter
     var location: CLPlacemark?
     
     @Parameter(title: "Exercise Name")
@@ -47,8 +47,9 @@ struct RecordLiftIntent {
     
     func perform() async throws -> some ReturnsValue<LiftEntity> {
         // Print to indicate start
+        print("omfggggg")
         guard let sets = sets, let reps = reps, let weight = weight, let exercise = exercise else {
-            throw AppIntentError.restartPerform
+            throw AppIntentError.UserActionRequired.confirmation
         }
         print("Recording \(sets) sets of \(reps) \(exercise) with \(weight) pounds.")
         
@@ -58,7 +59,7 @@ struct RecordLiftIntent {
             persistentContainer.performBackgroundTask { context in
                 do {
                     guard let foundExerciseWithUUID = Exercise.CoreData.fetch(with: exercise.id, context: context) else {
-                        return
+                        throw AppIntentError.Unrecoverable.entityNotFound
                     }
                     
                     print("one!")
@@ -142,6 +143,7 @@ struct LiftEntity {
     var location: CLPlacemark?
 }
 
+@available(iOS 18.0, *)
 struct ExerciseEntity: AppEntity {
     static var defaultQuery: ExerciseEntityQuery = ExerciseEntityQuery()
     
@@ -168,6 +170,7 @@ struct ExerciseEntity: AppEntity {
     }
 }
 
+@available(iOS 18.0, *)
 struct ExerciseOptionsProvider: DynamicOptionsProvider {
     let query: String?
     
@@ -182,7 +185,7 @@ struct ExerciseOptionsProvider: DynamicOptionsProvider {
     func results() async throws -> [ExerciseEntity] {
         let results = try? PersistenceController.shared.container.viewContext.fetch(Exercise.CoreData.searchFetchRequest(nil))
         guard let results = results else {
-            return [ExerciseEntity]()
+            throw AppIntentError.Unrecoverable.entityNotFound
         }
         return results.compactMap { (exercise: Exercise) -> ExerciseEntity? in
             return ExerciseEntity(exercise: exercise)
@@ -190,6 +193,7 @@ struct ExerciseOptionsProvider: DynamicOptionsProvider {
     }
 }
 
+@available(iOS 18.0, *)
 struct ExerciseEntityQuery: EntityPropertyQuery {
     static var properties = EntityQueryProperties<ExerciseEntity, String> {
         Property(\.$name) {
