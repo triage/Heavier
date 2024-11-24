@@ -34,14 +34,14 @@ extension Exercise {
             return predicate
         }
 
-        static func findExactMatch(_ query: String) -> NSFetchRequest<Exercise> {
+        static func exactMatch(_ query: String, caseSensitive: Bool) -> NSFetchRequest<Exercise>? {
+            guard query.count > 0 else {
+                return nil
+            }
             let predicate: NSPredicate?
             if query.count > 0 {
-                let words = query.split(separator: " ")
-                let predicates: [NSPredicate] = words.map {
-                    NSPredicate(format: "name == %@", $0 as CVarArg)
-                }
-                predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+                let format = caseSensitive ? "name == %@" : "name ==[c] %@"
+                predicate = NSPredicate(format: format, query as CVarArg)
             } else {
                 predicate = nil
             }

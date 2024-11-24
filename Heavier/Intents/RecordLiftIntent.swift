@@ -9,6 +9,14 @@ import AppIntents
 import CoreLocation
 import CoreData
 
+enum RecordLiftError: Error, CustomStringConvertible {
+    var description: String {
+        String(localized: "OK! We won't create this exercise")
+    }
+    
+    case willNotCreate
+}
+
 @available(iOS 18.0, *)
 @AssistantIntent(schema: .journal.createEntry)
 struct RecordLiftIntent: AppIntent {
@@ -43,7 +51,7 @@ struct RecordLiftIntent: AppIntent {
     }
     
     func resolveExerciseName(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise {
-        let exactMatch = try? Exercise.CoreData.findExactMatch(name: name, context: context)
+        let exactMatch = try? Exercise.CoreData.findExactMatch(name: name, caseSensitive: false, context: context)
         // look for exact match
         if let found = exactMatch {
             return found
@@ -56,22 +64,30 @@ struct RecordLiftIntent: AppIntent {
         }
         
         if matches.count > 0 {
+            // Multiple matches. Disambiguate.
             let disambiguated = try await resolve.requestDisambiguation(among: matches.map {
                 AttributedString($0.name!)
             }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
-            if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), context: context) {
+            print("disambiguated: \(disambiguated)")
+            if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), caseSensitive: true, context: context) {
+                print("returning exact match from disambiguity")
+                print("found:\(found)")
                 return found
             }
         }
         // no matches, we'll create an exercise for the user, (but confirm first)
         print("create?")
-        let shouldCreate = try await resolve.requestConfirmation(for: AttributedString(name))
-        if shouldCreate {
-            print("create!")
-            let exercise = Exercise(context: context)
-            exercise.name = String(message.characters)
-            exercise.id = UUID()
-            return exercise
+        if matches.count == 0 {
+            let shouldCreate = try await resolve.requestConfirmation(for: AttributedString(name), dialog: IntentDialog(stringLiteral: String(localized: "Create a new exercise for \(message)?")))
+            if shouldCreate {
+                print("create!")
+                let exercise = Exercise(context: context)
+                exercise.name = String(message.characters)
+                exercise.id = UUID()
+                return exercise
+            } else {
+                throw RecordLiftError.willNotCreate
+            }
         } else {
             print("don't create")
             throw AppIntentError.Unrecoverable.entityNotFound

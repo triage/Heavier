@@ -13,6 +13,9 @@
     "Body under construction. Mind on a mission" : {
 
     },
+    "Create a new exercise for %@?" : {
+
+    },
     "Don't be afraid to fail. Be afraid not to try" : {
 
     },
@@ -54,6 +57,9 @@
     },
     "Notes" : {
       "comment" : "Notes"
+    },
+    "OK! We won't create this exercise" : {
+
     },
     "pounds" : {
 

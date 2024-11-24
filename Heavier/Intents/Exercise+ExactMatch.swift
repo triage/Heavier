@@ -11,13 +11,15 @@ import AppIntents
 
 @available(iOS 18.0, *)
 extension Exercise.CoreData {
-    static func findExactMatch(name: String, context: NSManagedObjectContext) throws -> Exercise? {
+    static func findExactMatch(name: String, caseSensitive: Bool, context: NSManagedObjectContext) throws -> Exercise? {
         do {
-            guard let exactMatches = try? context.fetch(Exercise.CoreData.findExactMatch(name)) else {
+            guard let query = Exercise.CoreData.exactMatch(name, caseSensitive: caseSensitive),
+                  let exactMatches = try? context.fetch(query) else {
                 print("couldn't fetch!")
                 throw AppIntentError.Unrecoverable.entityNotFound
             }
             // look for exact match
+            print("matches:\(exactMatches)")
             if let found = exactMatches.first, exactMatches.count == 1 {
                 print("found!!!")
                 return found
