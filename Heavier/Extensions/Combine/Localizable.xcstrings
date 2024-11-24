@@ -19,6 +19,12 @@
     "Exercise name" : {
 
     },
+    "How many reps?" : {
+
+    },
+    "How many sets?" : {
+
+    },
     "How much weight?" : {
 
     },
@@ -45,12 +51,6 @@
     },
     "Notes" : {
       "comment" : "Notes"
-    },
-    "Number of reps" : {
-
-    },
-    "Number of sets" : {
-
     },
     "Provide a display representation." : {
 
@@ -96,6 +96,9 @@
     },
     "Units" : {
       "comment" : "Units"
+    },
+    "We found a few results for %@. Which one do you want to use?" : {
+
     },
     "Weight" : {
 

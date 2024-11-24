@@ -85,69 +85,75 @@ struct RecordLiftIntent: AppIntent {
         let persistentContainer = PersistenceController.shared.container
         let entry: LiftEntity? = try await withCheckedThrowingContinuation { continuation in
             persistentContainer.performBackgroundTask { context in
-                do {
-                    let request = Exercise.CoreData.searchFetchRequest(String(message.characters))
-                    guard let results = try? context.fetch(request) else {
-                        throw AppIntentError.Unrecoverable.entityNotFound
-                    }
-                    if let first = results.first {
-                        
-                        print("one!")
-                        // Create and configure the Lift object
-                        let lift = Lift(context: context)
-                        lift.id = UUID()
-                        lift.timestamp = Date()
-                        lift.reps = Int16(reps)
-                        lift.sets = Int16(sets)
-                        lift.weight = Float(weight)
-                        lift.exercise = first
-                        try context.save() // Save changes on the background context
-                        
-                        // Create a LocalizedStringResource for dialog message
-                        continuation.resume(returning: LiftEntity(lift: lift))
-                    } else if results.isEmpty {
-                        let exercise = Exercise(context: context)
-                        exercise.name = String(message.characters)
-                        exercise.id = UUID()
-                        let lift = Lift(context: context)
-                        lift.id = UUID()
-                        lift.timestamp = Date()
-                        lift.reps = Int16(reps)
-                        lift.sets = Int16(sets)
-                        lift.weight = Float(weight)
-                        lift.exercise = exercise
-                        try context.save() // Save changes on the background context
-                        
-                        // Create a LocalizedStringResource for dialog message
-                        continuation.resume(returning: LiftEntity(lift: lift))
-                        
-                    } else if results.count > 1 {
-                        let disambiguated = try await $message.requestDisambiguation(among: results.map {
-                            AttributedString($0.name!)
-                        }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
-                        
+                Task {
+                    do {
                         let request = Exercise.CoreData.searchFetchRequest(String(message.characters))
-                        guard let results = try? context.fetch(request), let first = results.first else {
+                        guard let results = try? context.fetch(request) else {
                             throw AppIntentError.Unrecoverable.entityNotFound
                         }
-                        
-                        let lift = Lift(context: context)
-                        lift.id = UUID()
-                        lift.timestamp = Date()
-                        lift.reps = Int16(reps)
-                        lift.sets = Int16(sets)
-                        lift.weight = Float(weight)
-                        lift.exercise = first
-                        try context.save() // Save changes on the background context
-                        
-                        // Create a LocalizedStringResource for dialog message
-                        continuation.resume(returning: LiftEntity(lift: lift))
-                        
+                        if let first = results.first {
+                            
+                            print("one!")
+                            // Create and configure the Lift object
+                            let lift = Lift(context: context)
+                            lift.id = UUID()
+                            lift.timestamp = Date()
+                            lift.reps = Int16(reps)
+                            lift.sets = Int16(sets)
+                            lift.weight = Float(weight)
+                            lift.exercise = first
+                            try context.save() // Save changes on the background context
+                            
+                            // Create a LocalizedStringResource for dialog message
+                            continuation.resume(returning: LiftEntity(lift: lift))
+                        } else if results.isEmpty {
+                            print("empty! create!")
+                            let exercise = Exercise(context: context)
+                            exercise.name = String(message.characters)
+                            exercise.id = UUID()
+                            let lift = Lift(context: context)
+                            lift.id = UUID()
+                            lift.timestamp = Date()
+                            lift.reps = Int16(reps)
+                            lift.sets = Int16(sets)
+                            lift.weight = Float(weight)
+                            lift.exercise = exercise
+                            try context.save() // Save changes on the background context
+                            
+                            // Create a LocalizedStringResource for dialog message
+                            continuation.resume(returning: LiftEntity(lift: lift))
+                            
+                        } else if results.count > 1 {
+                            print("too many")
+                            let disambiguated = try await $message.requestDisambiguation(among: results.map {
+                                AttributedString($0.name!)
+                            }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
+                            
+                            let request = Exercise.CoreData.findExactMatch(String(disambiguated.characters))
+                            guard let results = try? context.fetch(request), let first = results.first else {
+                                throw AppIntentError.Unrecoverable.entityNotFound
+                            }
+                            
+                            print("found exact:\(first)")
+                            
+                            let lift = Lift(context: context)
+                            lift.id = UUID()
+                            lift.timestamp = Date()
+                            lift.reps = Int16(reps)
+                            lift.sets = Int16(sets)
+                            lift.weight = Float(weight)
+                            lift.exercise = first
+                            try context.save() // Save changes on the background context
+                            
+                            // Create a LocalizedStringResource for dialog message
+                            continuation.resume(returning: LiftEntity(lift: lift))
+                            
+                        }
+                    } catch {
+                        // Handle errors and resume the continuation with an error
+                        print("Error during background task: \(error)")
+                        continuation.resume(throwing: error)
                     }
-                } catch {
-                    // Handle errors and resume the continuation with an error
-                    print("Error during background task: \(error)")
-                    continuation.resume(throwing: error)
                 }
             }
         }
