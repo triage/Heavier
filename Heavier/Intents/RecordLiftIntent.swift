@@ -7,16 +7,17 @@
 
 import AppIntents
 import CoreLocation
+import CoreData
 
 @available(iOS 18.0, *)
 @AssistantIntent(schema: .journal.createEntry)
 struct RecordLiftIntent: AppIntent {
     
-    static var title: LocalizedStringResource = "Record a lift!!!omfg!"
+    static var title: LocalizedStringResource = "Record a lift"
 
     var title: String?
     
-    @Parameter(title: "Name", description: "What exercise?")
+    @Parameter(title: "Exercise", description: "What exercise?")
     var message: AttributedString
     
     @Parameter(default: [])
@@ -27,20 +28,58 @@ struct RecordLiftIntent: AppIntent {
     
     @Parameter
     var location: CLPlacemark?
-//
+
     @Parameter(title: "Sets", description: "The number of sets")
     var sets: Int?
-//    
+    
     @Parameter(title: "Reps", description: "The number of reps")
     var reps: Int?
     
     @Parameter(title: "Weight", description: "The amount of weight lifted")
     var weight: Double?
     
-//    static var parameterSummary: some ParameterSummary {
-//        Summary("\(\.$name) \(\.$sets) sets of \(\.$reps) at \(\.$weight)")
-//        ParameterSummaryBuilder.buildExpression(ParameterSummary)
-//    }
+    static var parameterSummary: some ParameterSummary {
+        Summary("\(\.$message) \(\.$sets) sets of \(\.$reps) at \(\.$weight)")
+    }
+    
+    func resolveExerciseName(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise {
+        guard let exactMatches = try? Exercise.CoreData.findExactMatch(name: name, context: context) else {
+            print("couldn't query exact match")
+            throw AppIntentError.Unrecoverable.entityNotFound
+        }
+        // look for exact match
+        if let found = exactMatches.first, exactMatches.count == 1 {
+            return found
+        }
+        // no exact match found, or multiple exact matches found. Search for
+        // exercises _like_ search and ask the user to disambiguate
+        guard let matches = try? context.fetch(Exercise.CoreData.searchFetchRequest(name)) else {
+            print("couldn't query for possible matches")
+            throw AppIntentError.Unrecoverable.entityNotFound
+        }
+        
+        if matches.count > 0 {
+            let disambiguated = try await resolve.requestDisambiguation(among: matches.map {
+                AttributedString($0.name!)
+            }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
+            if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), context: context)?.first {
+                return found
+            }
+        }
+        // no matches, we'll create an exercise for the user, (but confirm first)
+        print("create?")
+        let shouldCreate = try await resolve.requestConfirmation(for: AttributedString(name))
+        if shouldCreate {
+            print("create!")
+            let exercise = Exercise(context: context)
+            exercise.name = String(message.characters)
+            exercise.id = UUID()
+            return exercise
+        } else {
+            print("don't create")
+            throw AppIntentError.Unrecoverable.entityNotFound
+        }
+    }
     
     @MainActor
     func perform() async throws -> some ReturnsValue<LiftEntity> {
@@ -48,131 +87,51 @@ struct RecordLiftIntent: AppIntent {
         print("omfggg!!gg")
         print("\(message) sets:\(sets ?? -1) reps:\(reps ?? -1) weight:\(weight ?? -1)")
         
+        let context = PersistenceController.shared.container.viewContext
+        let exercise = try await resolveExerciseName(name: String(message.characters), context: context, resolve: $message)
+        self.message = AttributedString(exercise.name!)
+        
         if reps == nil {
-            print("asking for reps")
-//            throw $reps.requestValue("How many reps?")
             let reps = try await $reps.requestValue("How many reps?")
-            print("got reps!\(reps)")
             self.reps = reps
         }
-        
+
         if sets == nil {
-//            throw $reps.requestValue("How many reps?")
             let sets = try await $reps.requestValue("How many sets?")
-            print("got sets!\(sets)")
             self.sets = sets
         }
         
         if weight == nil {
-//            throw $reps.requestValue("How many reps?")
             let weight = try await $reps.requestValue("How much weight?")
-            print("got weight!\(weight)")
-            
             let weightNormalized = Lift.normalize(weight: Float(weight))
-            
             self.weight = Double(weightNormalized)
         }
         
-//        return .result(value: LiftEntity(message: "foobar"))
         guard let sets = sets, let reps = reps, let weight = weight else {
             throw AppIntentError.Unrecoverable.entityNotFound
         }
-//        print("Recording \(sets) sets of \(reps) \(exercise) with \(weight) pounds.")
-//        
-        // Use performBackgroundTask for Core Data operations
         
+        let lift = Lift(context: context)
+        lift.id = UUID()
+        lift.timestamp = Date()
+        lift.reps = Int16(reps)
+        lift.sets = Int16(sets)
+        lift.weight = Float(weight)
+        lift.exercise = exercise
+        try context.save() // Save changes on the background context
         
-        let persistentContainer = PersistenceController.shared.container
-        let entry: LiftEntity? = try await withCheckedThrowingContinuation { continuation in
-            persistentContainer.performBackgroundTask { context in
-                Task {
-                    do {
-                        let request = Exercise.CoreData.searchFetchRequest(String(message.characters))
-                        guard let results = try? context.fetch(request) else {
-                            throw AppIntentError.Unrecoverable.entityNotFound
-                        }
-                        if let first = results.first {
-                            
-                            print("one!")
-                            // Create and configure the Lift object
-                            let lift = Lift(context: context)
-                            lift.id = UUID()
-                            lift.timestamp = Date()
-                            lift.reps = Int16(reps)
-                            lift.sets = Int16(sets)
-                            lift.weight = Float(weight)
-                            lift.exercise = first
-                            try context.save() // Save changes on the background context
-                            
-                            // Create a LocalizedStringResource for dialog message
-                            continuation.resume(returning: LiftEntity(lift: lift))
-                        } else if results.isEmpty {
-                            print("empty! create!")
-                            let exercise = Exercise(context: context)
-                            exercise.name = String(message.characters)
-                            exercise.id = UUID()
-                            let lift = Lift(context: context)
-                            lift.id = UUID()
-                            lift.timestamp = Date()
-                            lift.reps = Int16(reps)
-                            lift.sets = Int16(sets)
-                            lift.weight = Float(weight)
-                            lift.exercise = exercise
-                            try context.save() // Save changes on the background context
-                            
-                            // Create a LocalizedStringResource for dialog message
-                            continuation.resume(returning: LiftEntity(lift: lift))
-                            
-                        } else if results.count > 1 {
-                            print("too many")
-                            let disambiguated = try await $message.requestDisambiguation(among: results.map {
-                                AttributedString($0.name!)
-                            }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
-                            
-                            let request = Exercise.CoreData.findExactMatch(String(disambiguated.characters))
-                            guard let results = try? context.fetch(request), let first = results.first else {
-                                throw AppIntentError.Unrecoverable.entityNotFound
-                            }
-                            
-                            print("found exact:\(first)")
-                            
-                            let lift = Lift(context: context)
-                            lift.id = UUID()
-                            lift.timestamp = Date()
-                            lift.reps = Int16(reps)
-                            lift.sets = Int16(sets)
-                            lift.weight = Float(weight)
-                            lift.exercise = first
-                            try context.save() // Save changes on the background context
-                            
-                            // Create a LocalizedStringResource for dialog message
-                            continuation.resume(returning: LiftEntity(lift: lift))
-                            
-                        }
-                    } catch {
-                        // Handle errors and resume the continuation with an error
-                        print("Error during background task: \(error)")
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        }
-        if let entry = entry {
-            return .result(value: entry)
+        print("saved")
+        if let entity = LiftEntity(lift: lift) {
+            print("partyyyyyyy")
+            return .result(value: entity)
+            
         } else {
-            throw AppIntentError.restartPerform
+            print("couldn't create entity")
+            throw AppIntentError.Unrecoverable.unknown
         }
     }
-    
-    
-    static let openAppWhenRun: Bool = false
-}
 
-private extension Lift {
-    var displayRepresentation: DisplayRepresentation {
-        let message = "Recorded \(exercise!.name!) \(sets) sets of \(reps) with \(weight) kilograms."
-        return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
-    }
+    static let openAppWhenRun: Bool = false
 }
 
 @available(iOS 18.0, *)
@@ -180,10 +139,18 @@ private extension Lift {
 struct LiftEntity {
     
     static var defaultQuery = Query()
-    var displayRepresentation: DisplayRepresentation { "Provide a display representation." }
+    var displayRepresentation: DisplayRepresentation {
+        let message = "Recorded \(String(message!.characters)) \(sets) sets of \(reps) with \(weight) kilograms."
+        return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
+    }
     let id: UUID
     var title: String?
     var message: AttributedString?
+    let sets: Int16
+    let reps: Int16
+    let weight: Float
+    let units: String
+    
     var mediaItems: [IntentFile]
     var entryDate: Date?
     var location: CLPlacemark?
@@ -193,37 +160,18 @@ struct LiftEntity {
         func entities(matching string: String) async throws -> [LiftEntity] { [] }
     }
     
-//    init(message: String) {
-//        id = UUID()
-//        self.message = AttributedString(stringLiteral: message)
-//        entryDate = Date()
-//        self.mediaItems = []
-//    }
-    
     init?(lift: Lift) {
         guard let id = lift.id, let exercise = lift.exercise, let name = exercise.name else {
             return nil
         }
         self.id = id
+        reps = lift.reps
+        sets = lift.sets
+        weight = lift.weightLocalized.weight
+        units = Settings().units == .imperial ? String(localized: "pounds") : String(localized: "kilograms")
         entryDate = lift.timestamp
-        var message = AttributedString(stringLiteral: "Recorded ")
-        message.append(bolded(name))
-        message.append(AttributedString(stringLiteral: ". "))
-        message.append(bolded("\(lift.sets) sets"))
-        message.append(AttributedString(stringLiteral: " of "))
-        message.append(bolded("\(lift.reps) reps"))
-        message.append(AttributedString(stringLiteral: " at "))
-        message.append(bolded("\(lift.weightLocalized)"))
-        self.message = message
-        self.mediaItems = []
-    }
-    
-    func bolded(_ string: String) -> AttributedString {
-        var attributedString = AttributedString(string)
-        var container = AttributeContainer()
-        container[AttributeScopes.SwiftUIAttributes.FontAttribute.self] = .body.weight(.bold)
-        attributedString.mergeAttributes(container, mergePolicy: .keepNew)
-        return attributedString
+        message = AttributedString(name)
+        mediaItems = []
     }
 }
 

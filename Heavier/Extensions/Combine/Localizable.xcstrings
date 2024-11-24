@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "${message} ${sets} sets of ${reps} at ${weight}" : {
+
+    },
     "Biceps don't grow on trees" : {
 
     },
@@ -37,11 +40,11 @@
     "It doesn't get easier. You just get stronger" : {
 
     },
+    "kilograms" : {
+
+    },
     "Most recent lift:" : {
       "comment" : "Most recent lift"
-    },
-    "Name" : {
-
     },
     "No excuses" : {
 
@@ -52,13 +55,10 @@
     "Notes" : {
       "comment" : "Notes"
     },
-    "Provide a display representation." : {
+    "pounds" : {
 
     },
     "Record a lift" : {
-
-    },
-    "Record a lift!!!omfg!" : {
 
     },
     "Reps" : {
