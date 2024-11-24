@@ -33,6 +33,26 @@ extension Exercise {
             }
             return predicate
         }
+
+        static func findExactMatch(_ query: String) -> NSFetchRequest<Exercise> {
+            let predicate: NSPredicate?
+            if query.count > 0 {
+                let words = query.split(separator: " ")
+                let predicates: [NSPredicate] = words.map {
+                    NSPredicate(format: "name == %@", $0 as CVarArg)
+                }
+                predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+            } else {
+                predicate = nil
+            }
+            let request = NSFetchRequest<Exercise>(entityName: Exercise.entity().name!)
+            request.predicate = predicate
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Exercise.relevance, ascending: false),
+                NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
+            ]
+            return request
+        }
         
         static func searchFetchRequest(_ query: String?) -> NSFetchRequest<Exercise> {
             let predicate: NSPredicate?

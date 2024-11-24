@@ -51,14 +51,14 @@ struct RecordLiftIntent: AppIntent {
         if reps == nil {
             print("asking for reps")
 //            throw $reps.requestValue("How many reps?")
-            let reps = try await $reps.requestValue("Number of reps")
+            let reps = try await $reps.requestValue("How many reps?")
             print("got reps!\(reps)")
             self.reps = reps
         }
         
         if sets == nil {
 //            throw $reps.requestValue("How many reps?")
-            let sets = try await $reps.requestValue("Number of sets")
+            let sets = try await $reps.requestValue("How many sets?")
             print("got sets!\(sets)")
             self.sets = sets
         }
@@ -67,48 +67,95 @@ struct RecordLiftIntent: AppIntent {
 //            throw $reps.requestValue("How many reps?")
             let weight = try await $reps.requestValue("How much weight?")
             print("got weight!\(weight)")
-            self.weight = Double(weight)
+            
+            let weightNormalized = Lift.normalize(weight: Float(weight))
+            
+            self.weight = Double(weightNormalized)
         }
         
-        return .result(value: LiftEntity(message: "foobar"))
-//        guard let sets = sets, let reps = reps, let weight = weight, let exercise = exercise else {
-//            throw AppIntentError.UserActionRequired.confirmation
-//        }
+//        return .result(value: LiftEntity(message: "foobar"))
+        guard let sets = sets, let reps = reps, let weight = weight else {
+            throw AppIntentError.Unrecoverable.entityNotFound
+        }
 //        print("Recording \(sets) sets of \(reps) \(exercise) with \(weight) pounds.")
 //        
-//        // Use performBackgroundTask for Core Data operations
-//        let persistentContainer = PersistenceController.shared.container
-//        let entry: LiftEntity? = try await withCheckedThrowingContinuation { continuation in
-//            persistentContainer.performBackgroundTask { context in
-//                do {
-//                    guard let foundExerciseWithUUID = Exercise.CoreData.fetch(with: exercise.id, context: context) else {
-//                        throw AppIntentError.Unrecoverable.entityNotFound
-//                    }
-//                    
-//                    print("one!")
-//                    // Create and configure the Lift object
-//                    let lift = Lift(context: context)
-//                    lift.id = UUID()
-//                    lift.timestamp = Date()
-//                    lift.reps = Int16(reps)
-//                    lift.sets = Int16(sets)
-//                    lift.exercise = foundExerciseWithUUID
-//                    try context.save() // Save changes on the background context
-//                    
-//                    // Create a LocalizedStringResource for dialog message
-//                    continuation.resume(returning: LiftEntity(lift: lift))
-//                } catch {
-//                    // Handle errors and resume the continuation with an error
-//                    print("Error during background task: \(error)")
-//                    continuation.resume(throwing: error)
-//                }
-//            }
-//        }
-//        if let entry = entry {
-//            return .result(value: entry)
-//        } else {
-//            throw AppIntentError.restartPerform
-//        }
+        // Use performBackgroundTask for Core Data operations
+        
+        
+        let persistentContainer = PersistenceController.shared.container
+        let entry: LiftEntity? = try await withCheckedThrowingContinuation { continuation in
+            persistentContainer.performBackgroundTask { context in
+                do {
+                    let request = Exercise.CoreData.searchFetchRequest(String(message.characters))
+                    guard let results = try? context.fetch(request) else {
+                        throw AppIntentError.Unrecoverable.entityNotFound
+                    }
+                    if let first = results.first {
+                        
+                        print("one!")
+                        // Create and configure the Lift object
+                        let lift = Lift(context: context)
+                        lift.id = UUID()
+                        lift.timestamp = Date()
+                        lift.reps = Int16(reps)
+                        lift.sets = Int16(sets)
+                        lift.weight = Float(weight)
+                        lift.exercise = first
+                        try context.save() // Save changes on the background context
+                        
+                        // Create a LocalizedStringResource for dialog message
+                        continuation.resume(returning: LiftEntity(lift: lift))
+                    } else if results.isEmpty {
+                        let exercise = Exercise(context: context)
+                        exercise.name = String(message.characters)
+                        exercise.id = UUID()
+                        let lift = Lift(context: context)
+                        lift.id = UUID()
+                        lift.timestamp = Date()
+                        lift.reps = Int16(reps)
+                        lift.sets = Int16(sets)
+                        lift.weight = Float(weight)
+                        lift.exercise = exercise
+                        try context.save() // Save changes on the background context
+                        
+                        // Create a LocalizedStringResource for dialog message
+                        continuation.resume(returning: LiftEntity(lift: lift))
+                        
+                    } else if results.count > 1 {
+                        let disambiguated = try await $message.requestDisambiguation(among: results.map {
+                            AttributedString($0.name!)
+                        }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
+                        
+                        let request = Exercise.CoreData.searchFetchRequest(String(message.characters))
+                        guard let results = try? context.fetch(request), let first = results.first else {
+                            throw AppIntentError.Unrecoverable.entityNotFound
+                        }
+                        
+                        let lift = Lift(context: context)
+                        lift.id = UUID()
+                        lift.timestamp = Date()
+                        lift.reps = Int16(reps)
+                        lift.sets = Int16(sets)
+                        lift.weight = Float(weight)
+                        lift.exercise = first
+                        try context.save() // Save changes on the background context
+                        
+                        // Create a LocalizedStringResource for dialog message
+                        continuation.resume(returning: LiftEntity(lift: lift))
+                        
+                    }
+                } catch {
+                    // Handle errors and resume the continuation with an error
+                    print("Error during background task: \(error)")
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+        if let entry = entry {
+            return .result(value: entry)
+        } else {
+            throw AppIntentError.restartPerform
+        }
     }
     
     
@@ -117,7 +164,7 @@ struct RecordLiftIntent: AppIntent {
 
 private extension Lift {
     var displayRepresentation: DisplayRepresentation {
-        let message = "Recorded \(exercise!.name!) \(sets) sets of \(reps) with \(weight) pounds."
+        let message = "Recorded \(exercise!.name!) \(sets) sets of \(reps) with \(weight) kilograms."
         return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
     }
 }
@@ -139,12 +186,13 @@ struct LiftEntity {
         func entities(for identifiers: [LiftEntity.ID]) async throws -> [LiftEntity] { [] }
         func entities(matching string: String) async throws -> [LiftEntity] { [] }
     }
-    init(message: String) {
-        id = UUID()
-        self.message = AttributedString(stringLiteral: message)
-        entryDate = Date()
-        self.mediaItems = []
-    }
+    
+//    init(message: String) {
+//        id = UUID()
+//        self.message = AttributedString(stringLiteral: message)
+//        entryDate = Date()
+//        self.mediaItems = []
+//    }
     
     init?(lift: Lift) {
         guard let id = lift.id, let exercise = lift.exercise, let name = exercise.name else {
@@ -159,7 +207,7 @@ struct LiftEntity {
         message.append(AttributedString(stringLiteral: " of "))
         message.append(bolded("\(lift.reps) reps"))
         message.append(AttributedString(stringLiteral: " at "))
-        message.append(bolded("\(lift.weight) pounds"))
+        message.append(bolded("\(lift.weightLocalized)"))
         self.message = message
         self.mediaItems = []
     }
