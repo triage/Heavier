@@ -19,7 +19,7 @@
     "Exercise name" : {
 
     },
-    "Exercise Name" : {
+    "How much weight?" : {
 
     },
     "If it doesn't challenge you, it doesn't change you" : {
@@ -34,6 +34,9 @@
     "Most recent lift:" : {
       "comment" : "Most recent lift"
     },
+    "Name" : {
+
+    },
     "No excuses" : {
 
     },
@@ -43,16 +46,19 @@
     "Notes" : {
       "comment" : "Notes"
     },
+    "Number of reps" : {
+
+    },
+    "Number of sets" : {
+
+    },
     "Provide a display representation." : {
 
     },
     "Record a lift" : {
 
     },
-    "Record a lift for ${exercise} - ${sets} sets of ${reps} at ${weight}" : {
-
-    },
-    "Record a lift!" : {
+    "Record a lift!!!omfg!" : {
 
     },
     "Reps" : {
@@ -70,6 +76,18 @@
     "Settings" : {
       "comment" : "Settings"
     },
+    "The amount of weight lifted" : {
+
+    },
+    "The name of the exercise" : {
+
+    },
+    "The number of reps" : {
+
+    },
+    "The number of sets" : {
+
+    },
     "The pain you feel today will be the strength you feel tomorrow" : {
 
     },
@@ -83,6 +101,9 @@
       "comment" : "Units"
     },
     "Weight" : {
+
+    },
+    "What exercise?" : {
 
     }
   },

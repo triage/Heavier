@@ -10,9 +10,9 @@ import CoreLocation
 
 @available(iOS 18.0, *)
 @AssistantIntent(schema: .journal.createEntry)
-struct RecordLiftIntent {
+struct RecordLiftIntent: AppIntent {
     
-    static var title: LocalizedStringResource = "Record a lift!"
+    static var title: LocalizedStringResource = "Record a lift!!!omfg!"
 
     @Parameter
     var title: String?
@@ -29,63 +29,96 @@ struct RecordLiftIntent {
     @Parameter
     var location: CLPlacemark?
     
-    @Parameter(title: "Exercise Name")
-    var exercise: ExerciseEntity?
-    
-    @Parameter(title: "Sets")
+    @Parameter(title: "Name", description: "The name of the exercise")
+    var name: String?
+//
+    @Parameter(title: "Sets", description: "The number of sets")
     var sets: Int?
-    
-    @Parameter(title: "Reps")
+//    
+    @Parameter(title: "Reps", description: "The number of reps")
     var reps: Int?
     
-    @Parameter(title: "Weight")
+    @Parameter(title: "Weight", description: "The amount of weight lifted")
     var weight: Double?
     
-    static var parameterSummary: some ParameterSummary {
-        Summary("Record a lift for \(\.$exercise) - \(\.$sets) sets of \(\.$reps) at \(\.$weight)")
-    }
+//    static var parameterSummary: some ParameterSummary {
+//        Summary("\(\.$name) \(\.$sets) sets of \(\.$reps) at \(\.$weight)")
+//        ParameterSummaryBuilder.buildExpression(ParameterSummary)
+//    }
     
+    @MainActor
     func perform() async throws -> some ReturnsValue<LiftEntity> {
         // Print to indicate start
-        print("omfggggg")
-        guard let sets = sets, let reps = reps, let weight = weight, let exercise = exercise else {
-            throw AppIntentError.UserActionRequired.confirmation
-        }
-        print("Recording \(sets) sets of \(reps) \(exercise) with \(weight) pounds.")
+        print("omfggg!!gg")
+        print("name:\(name ?? "not found") sets:\(sets ?? -1) reps:\(reps ?? -1) weight:\(weight ?? -1)")
         
-        // Use performBackgroundTask for Core Data operations
-        let persistentContainer = PersistenceController.shared.container
-        let entry: LiftEntity? = try await withCheckedThrowingContinuation { continuation in
-            persistentContainer.performBackgroundTask { context in
-                do {
-                    guard let foundExerciseWithUUID = Exercise.CoreData.fetch(with: exercise.id, context: context) else {
-                        throw AppIntentError.Unrecoverable.entityNotFound
-                    }
-                    
-                    print("one!")
-                    // Create and configure the Lift object
-                    let lift = Lift(context: context)
-                    lift.id = UUID()
-                    lift.timestamp = Date()
-                    lift.reps = Int16(reps)
-                    lift.sets = Int16(sets)
-                    lift.exercise = foundExerciseWithUUID
-                    try context.save() // Save changes on the background context
-                    
-                    // Create a LocalizedStringResource for dialog message
-                    continuation.resume(returning: LiftEntity(lift: lift))
-                } catch {
-                    // Handle errors and resume the continuation with an error
-                    print("Error during background task: \(error)")
-                    continuation.resume(throwing: error)
-                }
-            }
+        if reps == nil {
+            print("asking for reps")
+//            throw $reps.requestValue("How many reps?")
+            let reps = try await $reps.requestValue("Number of reps")
+            print("got reps!\(reps)")
+            self.reps = reps
         }
-        if let entry = entry {
-            return .result(value: entry)
-        } else {
-            throw AppIntentError.restartPerform
+        
+        if sets == nil {
+//            throw $reps.requestValue("How many reps?")
+            let sets = try await $reps.requestValue("Number of sets")
+            print("got sets!\(sets)")
+            self.sets = sets
         }
+        
+        if weight == nil {
+//            throw $reps.requestValue("How many reps?")
+            let weight = try await $reps.requestValue("How much weight?")
+            print("got weight!\(weight)")
+            self.weight = Double(weight)
+        }
+        
+        if name == nil {
+            let name = try await $name.requestValue("What exercise?")
+            print("got name!\(name)")
+            self.name = name
+        }
+        
+        return .result(value: LiftEntity(message: "foobar"))
+//        guard let sets = sets, let reps = reps, let weight = weight, let exercise = exercise else {
+//            throw AppIntentError.UserActionRequired.confirmation
+//        }
+//        print("Recording \(sets) sets of \(reps) \(exercise) with \(weight) pounds.")
+//        
+//        // Use performBackgroundTask for Core Data operations
+//        let persistentContainer = PersistenceController.shared.container
+//        let entry: LiftEntity? = try await withCheckedThrowingContinuation { continuation in
+//            persistentContainer.performBackgroundTask { context in
+//                do {
+//                    guard let foundExerciseWithUUID = Exercise.CoreData.fetch(with: exercise.id, context: context) else {
+//                        throw AppIntentError.Unrecoverable.entityNotFound
+//                    }
+//                    
+//                    print("one!")
+//                    // Create and configure the Lift object
+//                    let lift = Lift(context: context)
+//                    lift.id = UUID()
+//                    lift.timestamp = Date()
+//                    lift.reps = Int16(reps)
+//                    lift.sets = Int16(sets)
+//                    lift.exercise = foundExerciseWithUUID
+//                    try context.save() // Save changes on the background context
+//                    
+//                    // Create a LocalizedStringResource for dialog message
+//                    continuation.resume(returning: LiftEntity(lift: lift))
+//                } catch {
+//                    // Handle errors and resume the continuation with an error
+//                    print("Error during background task: \(error)")
+//                    continuation.resume(throwing: error)
+//                }
+//            }
+//        }
+//        if let entry = entry {
+//            return .result(value: entry)
+//        } else {
+//            throw AppIntentError.restartPerform
+//        }
     }
     
     
@@ -102,9 +135,25 @@ private extension Lift {
 @available(iOS 18.0, *)
 @AssistantEntity(schema: .journal.entry)
 struct LiftEntity {
+    
+    static var defaultQuery = Query()
+    var displayRepresentation: DisplayRepresentation { "Provide a display representation." }
+    let id: UUID
+    var title: String?
+    var message: AttributedString?
+    var mediaItems: [IntentFile]
+    var entryDate: Date?
+    var location: CLPlacemark?
+    
     struct Query: EntityStringQuery {
         func entities(for identifiers: [LiftEntity.ID]) async throws -> [LiftEntity] { [] }
         func entities(matching string: String) async throws -> [LiftEntity] { [] }
+    }
+    init(message: String) {
+        id = UUID()
+        self.message = AttributedString(stringLiteral: message)
+        entryDate = Date()
+        self.mediaItems = []
     }
     
     init?(lift: Lift) {
@@ -122,7 +171,7 @@ struct LiftEntity {
         message.append(AttributedString(stringLiteral: " at "))
         message.append(bolded("\(lift.weight) pounds"))
         self.message = message
-        
+        self.mediaItems = []
     }
     
     func bolded(_ string: String) -> AttributedString {
@@ -132,15 +181,6 @@ struct LiftEntity {
         attributedString.mergeAttributes(container, mergePolicy: .keepNew)
         return attributedString
     }
-
-    static var defaultQuery = Query()
-    var displayRepresentation: DisplayRepresentation { "Provide a display representation." }
-    let id: UUID
-    var title: String?
-    var message: AttributedString?
-    var mediaItems: [IntentFile]
-    var entryDate: Date?
-    var location: CLPlacemark?
 }
 
 @available(iOS 18.0, *)
@@ -235,7 +275,7 @@ struct LiftShortcus: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(intent: RecordLiftIntent(), phrases: [
             "Record a lift in \(.applicationName)",
-            "Log in \(.applicationName)",
+            "\(.applicationName), record",
         ], shortTitle: "Record a lift", systemImageName: "scalemass.fill")
     }
 }

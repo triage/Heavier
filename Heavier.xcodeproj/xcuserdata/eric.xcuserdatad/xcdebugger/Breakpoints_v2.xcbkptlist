@@ -190,82 +190,10 @@
             filePath = "HeavierAppIntent/RecordLiftIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "perform()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1077DC49-05A3-4E90-99DC-021B2720F0CE - 2ce5a4264fdf77d1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for Heavier.RecordLiftIntent.perform() async throws -&gt; some"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/HeavierAppIntent/RecordLiftIntent.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58">
-               </Location>
-               <Location
-                  uuid = "1077DC49-05A3-4E90-99DC-021B2720F0CE - 25d440e0ff31833e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for Heavier.RecordLiftIntent.perform() async throws -&gt; some"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/HeavierAppIntent/RecordLiftIntent.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58">
-               </Location>
-               <Location
-                  uuid = "1077DC49-05A3-4E90-99DC-021B2720F0CE - 3e0a7aff5a43cc2f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Heavier.RecordLiftIntent.perform() async throws -&gt; some"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/HeavierAppIntent/RecordLiftIntent.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58">
-               </Location>
-               <Location
-                  uuid = "1077DC49-05A3-4E90-99DC-021B2720F0CE - 30a36410d3fc6f2e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for Heavier.RecordLiftIntent.perform() async throws -&gt; some"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/HeavierAppIntent/RecordLiftIntent.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58">
-               </Location>
-               <Location
-                  uuid = "1077DC49-05A3-4E90-99DC-021B2720F0CE - 85ebaf3a49727464"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.CheckedContinuation&lt;Swift.Optional&lt;Heavier.LiftEntity&gt;, Swift.Error&gt;) -&gt; () in Heavier.RecordLiftIntent.perform() async throws -&gt; some"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/HeavierAppIntent/RecordLiftIntent.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -278,8 +206,8 @@
             filePath = "HeavierAppIntent/RecordLiftIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "perform()"
             landmarkType = "7">
          </BreakpointContent>
@@ -294,8 +222,8 @@
             filePath = "HeavierAppIntent/RecordLiftIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "perform()"
             landmarkType = "7">
          </BreakpointContent>
@@ -310,8 +238,8 @@
             filePath = "HeavierAppIntent/RecordLiftIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "perform()"
             landmarkType = "7">
          </BreakpointContent>
@@ -326,8 +254,8 @@
             filePath = "HeavierAppIntent/RecordLiftIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "perform()"
             landmarkType = "7">
          </BreakpointContent>
@@ -342,8 +270,24 @@
             filePath = "HeavierAppIntent/RecordLiftIntent.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "perform()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "171A431B-8A4C-41B3-B3B3-8A2E0D7BE47D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HeavierAppIntent/RecordLiftIntent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "perform()"
             landmarkType = "7">
          </BreakpointContent>
