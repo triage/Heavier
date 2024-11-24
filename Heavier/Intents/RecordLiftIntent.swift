@@ -14,10 +14,9 @@ struct RecordLiftIntent: AppIntent {
     
     static var title: LocalizedStringResource = "Record a lift!!!omfg!"
 
-    @Parameter
     var title: String?
     
-    @Parameter
+    @Parameter(title: "Name", description: "What exercise?")
     var message: AttributedString
     
     @Parameter(default: [])
@@ -28,9 +27,6 @@ struct RecordLiftIntent: AppIntent {
     
     @Parameter
     var location: CLPlacemark?
-    
-    @Parameter(title: "Name", description: "The name of the exercise")
-    var name: String?
 //
     @Parameter(title: "Sets", description: "The number of sets")
     var sets: Int?
@@ -50,7 +46,7 @@ struct RecordLiftIntent: AppIntent {
     func perform() async throws -> some ReturnsValue<LiftEntity> {
         // Print to indicate start
         print("omfggg!!gg")
-        print("name:\(name ?? "not found") sets:\(sets ?? -1) reps:\(reps ?? -1) weight:\(weight ?? -1)")
+        print("\(message) sets:\(sets ?? -1) reps:\(reps ?? -1) weight:\(weight ?? -1)")
         
         if reps == nil {
             print("asking for reps")
@@ -72,12 +68,6 @@ struct RecordLiftIntent: AppIntent {
             let weight = try await $reps.requestValue("How much weight?")
             print("got weight!\(weight)")
             self.weight = Double(weight)
-        }
-        
-        if name == nil {
-            let name = try await $name.requestValue("What exercise?")
-            print("got name!\(name)")
-            self.name = name
         }
         
         return .result(value: LiftEntity(message: "foobar"))
