@@ -269,6 +269,7 @@
 		071E588C2696AB8800542610 /* Overload 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 6.xcdatamodel"; sourceTree = "<group>"; };
 		075905842CF22F8B00536BAF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		075905972CF3CF3800536BAF /* Exercise+ExactMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+ExactMatch.swift"; sourceTree = "<group>"; };
+		075905992CF3D7D500536BAF /* SearchLiftIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLiftIntent.swift; sourceTree = "<group>"; };
 		077C1FBB2CEA6DFE00A3EBEE /* RecordLiftIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLiftIntent.swift; sourceTree = "<group>"; };
 		077F8F3B25697D3B0075B307 /* LiftsObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsObservable.swift; sourceTree = "<group>"; };
 		077F8F4025697E060075B307 /* Lift+FetchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+FetchRequest.swift"; sourceTree = "<group>"; };
@@ -527,6 +528,7 @@
 			children = (
 				077C1FBB2CEA6DFE00A3EBEE /* RecordLiftIntent.swift */,
 				075905972CF3CF3800536BAF /* Exercise+ExactMatch.swift */,
+				075905992CF3D7D500536BAF /* SearchLiftIntent.swift */,
 			);
 			path = Intents;
 			sourceTree = "<group>";

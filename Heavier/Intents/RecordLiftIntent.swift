@@ -43,12 +43,9 @@ struct RecordLiftIntent: AppIntent {
     }
     
     func resolveExerciseName(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise {
-        guard let exactMatches = try? Exercise.CoreData.findExactMatch(name: name, context: context) else {
-            print("couldn't query exact match")
-            throw AppIntentError.Unrecoverable.entityNotFound
-        }
+        let exactMatch = try? Exercise.CoreData.findExactMatch(name: name, context: context)
         // look for exact match
-        if let found = exactMatches.first, exactMatches.count == 1 {
+        if let found = exactMatch {
             return found
         }
         // no exact match found, or multiple exact matches found. Search for
@@ -62,7 +59,7 @@ struct RecordLiftIntent: AppIntent {
             let disambiguated = try await resolve.requestDisambiguation(among: matches.map {
                 AttributedString($0.name!)
             }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
-            if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), context: context)?.first {
+            if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), context: context) {
                 return found
             }
         }
