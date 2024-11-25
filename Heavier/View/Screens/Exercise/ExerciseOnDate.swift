@@ -74,6 +74,26 @@ struct ExerciseOnDate: View {
         }
     }
     
+    func delete(at offsets: IndexSet) {
+        let liftToDelete = lifts.lifts[offsets.first!]
+        guard let context = liftToDelete.managedObjectContext else {
+            return
+        }
+        context.performAndWait {
+            guard let exercise = liftToDelete.exercise else {
+                return
+            }
+            exercise.timestamp = Date()
+            exercise.clearLastGroupShortDescriptionCache()
+            context.delete(liftToDelete)
+            do {
+                try context.save()
+            } catch {
+                /* noop */
+            }
+        }
+    }
+    
     var body: some View {
         List {
             ForEach(lifts.lifts, id: \.id) { lift in
@@ -104,8 +124,9 @@ struct ExerciseOnDate: View {
                         }
                     })
                 }
-            }
-        }.navigationTitle(title)
+            }.onDelete(perform: delete)
+        }
+        .navigationTitle(title)
         .listStyle(PlainListStyle())
         .sheet(isPresented: $presented, content: {
             LiftView(exercise: exercise, lift: sheetManager.lift, presented: $presented, mode: .editing)
