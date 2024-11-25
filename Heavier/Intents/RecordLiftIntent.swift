@@ -50,7 +50,7 @@ struct RecordLiftIntent: AppIntent {
         Summary("\(\.$message) \(\.$sets) sets of \(\.$reps) at \(\.$weight)")
     }
     
-    func resolveExerciseName(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise {
+    func resolveExerciseName(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise? {
         let exactMatch = try? Exercise.CoreData.findExactMatch(name: name, caseSensitive: false, context: context)
         // look for exact match
         if let found = exactMatch {
@@ -75,8 +75,6 @@ struct RecordLiftIntent: AppIntent {
                 return found
             }
         }
-        // no matches, we'll create an exercise for the user, (but confirm first)
-        print("create?")
         if matches.count == 0 {
             let shouldCreate = try await resolve.requestConfirmation(for: AttributedString(name), dialog: IntentDialog(stringLiteral: String(localized: "Create a new exercise for \(message)?")))
             if shouldCreate {
@@ -86,11 +84,10 @@ struct RecordLiftIntent: AppIntent {
                 exercise.id = UUID()
                 return exercise
             } else {
-                throw RecordLiftError.willNotCreate
+                return nil
             }
         } else {
-            print("don't create")
-            throw AppIntentError.Unrecoverable.entityNotFound
+            return nil
         }
     }
     
@@ -101,7 +98,9 @@ struct RecordLiftIntent: AppIntent {
         print("\(message) sets:\(sets ?? -1) reps:\(reps ?? -1) weight:\(weight ?? -1)")
         
         let context = PersistenceController.shared.container.viewContext
-        let exercise = try await resolveExerciseName(name: String(message.characters), context: context, resolve: $message)
+        guard let exercise = try await resolveExerciseName(name: String(message.characters), context: context, resolve: $message) else {
+            throw AppIntentError.Unrecoverable.unknown
+        }
         self.message = AttributedString(exercise.name!)
         
         if reps == nil {
@@ -136,7 +135,7 @@ struct RecordLiftIntent: AppIntent {
         print("saved")
         if let entity = LiftEntity(lift: lift) {
             print("partyyyyyyy")
-            return .result(value: entity)
+            return .result(value: entity, dialog: IntentDialog(entity.displayRepresentation.title))
             
         } else {
             print("couldn't create entity")
@@ -153,7 +152,7 @@ struct LiftEntity {
     
     static var defaultQuery = Query()
     var displayRepresentation: DisplayRepresentation {
-        let message = "Recorded \(String(message!.characters)) \(sets) sets of \(reps) with \(weight) kilograms."
+        let message = "Recorded \(String(message!.characters)) \(sets) sets of \(reps) with \(weight) \(units)."
         return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
     }
     let id: UUID
