@@ -54,6 +54,12 @@ extension Exercise {
             return request
         }
         
+        static func matchingIdentifiers(_ ids: [UUID]) -> NSFetchRequest<Exercise> {
+            let request = NSFetchRequest<Exercise>(entityName: Exercise.entity().name!)
+            request.predicate = NSPredicate(format: "id IN %@", ids as CVarArg)
+            return request
+        }
+        
         static func searchFetchRequest(_ query: String?) -> NSFetchRequest<Exercise> {
             let predicate: NSPredicate?
             if let query = query, query.count > 0 {

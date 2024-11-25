@@ -50,7 +50,7 @@ struct RecordLiftIntent: AppIntent {
         Summary("\(\.$message) \(\.$sets) sets of \(\.$reps) at \(\.$weight)")
     }
     
-    func resolveExerciseName(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise? {
+    static func resolveExercise(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise? {
         let exactMatch = try? Exercise.CoreData.findExactMatch(name: name, caseSensitive: false, context: context)
         // look for exact match
         if let found = exactMatch {
@@ -67,7 +67,7 @@ struct RecordLiftIntent: AppIntent {
             // Multiple matches. Disambiguate.
             let disambiguated = try await resolve.requestDisambiguation(among: matches.map {
                 AttributedString($0.name!)
-            }, dialog: IntentDialog("We found a few results for \(message). Which one do you want to use?"))
+            }, dialog: IntentDialog("We found a few results for \(name). Which one do you want to use?"))
             print("disambiguated: \(disambiguated)")
             if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), caseSensitive: true, context: context) {
                 print("returning exact match from disambiguity")
@@ -76,11 +76,11 @@ struct RecordLiftIntent: AppIntent {
             }
         }
         if matches.count == 0 {
-            let shouldCreate = try await resolve.requestConfirmation(for: AttributedString(name), dialog: IntentDialog(stringLiteral: String(localized: "Create a new exercise for \(message)?")))
+            let shouldCreate = try await resolve.requestConfirmation(for: AttributedString(name), dialog: IntentDialog(stringLiteral: String(localized: "Create a new exercise for \(name)?")))
             if shouldCreate {
                 print("create!")
                 let exercise = Exercise(context: context)
-                exercise.name = String(message.characters)
+                exercise.name = String(name)
                 exercise.id = UUID()
                 return exercise
             } else {
@@ -98,7 +98,7 @@ struct RecordLiftIntent: AppIntent {
         print("\(message) sets:\(sets ?? -1) reps:\(reps ?? -1) weight:\(weight ?? -1)")
         
         let context = PersistenceController.shared.container.viewContext
-        guard let exercise = try await resolveExerciseName(name: String(message.characters), context: context, resolve: $message) else {
+        guard let exercise = try await RecordLiftIntent.resolveExercise(name: String(message.characters), context: context, resolve: $message) else {
             throw AppIntentError.Unrecoverable.unknown
         }
         self.message = AttributedString(exercise.name!)
@@ -188,94 +188,7 @@ struct LiftEntity {
 }
 
 @available(iOS 18.0, *)
-struct ExerciseEntity: AppEntity {
-    static var defaultQuery: ExerciseEntityQuery = ExerciseEntityQuery()
-    
-    typealias DefaultQuery = ExerciseEntityQuery
-    typealias ID = UUID
-    
-    let id: ID
-    
-    @Property(title: "Exercise name")
-    var name: String
-    
-    init?(exercise: Exercise) {
-        guard let name = exercise.name, let id = exercise.id else {
-            return nil
-        }
-        self.id = id
-        self.name = name
-    }
-    
-    static var typeDisplayRepresentation: TypeDisplayRepresentation = "Exercise"
-    
-    var displayRepresentation: DisplayRepresentation {
-        DisplayRepresentation(title: LocalizedStringResource(stringLiteral: name))
-    }
-}
-
-@available(iOS 18.0, *)
-struct ExerciseOptionsProvider: DynamicOptionsProvider {
-    let query: String?
-    
-    init() {
-        self.query = nil
-    }
-    
-    init(query: String?) {
-        self.query = query
-    }
-    
-    func results() async throws -> [ExerciseEntity] {
-        let results = try? PersistenceController.shared.container.viewContext.fetch(Exercise.CoreData.searchFetchRequest(nil))
-        guard let results = results else {
-            throw AppIntentError.Unrecoverable.entityNotFound
-        }
-        return results.compactMap { (exercise: Exercise) -> ExerciseEntity? in
-            return ExerciseEntity(exercise: exercise)
-        }
-    }
-}
-
-@available(iOS 18.0, *)
-struct ExerciseEntityQuery: EntityPropertyQuery {
-    static var properties = EntityQueryProperties<ExerciseEntity, String> {
-        Property(\.$name) {
-            EqualToComparator { $0 }
-            ContainsComparator { $0 }
-        }
-    }
-    
-    static var sortingOptions = SortingOptions {
-        SortableBy(\.$name)
-    }
-    
-    func entities(for identifiers: [UUID]) async throws -> [ExerciseEntity] {
-        do {
-            let entities = try await ExerciseOptionsProvider().results()
-            return entities.filter {
-                identifiers.contains($0.id)
-            }
-        } catch {
-            return []
-        }
-    }
-    
-    func entities(matching comparators: [String], mode: ComparatorMode, sortedBy: [Sort<ExerciseEntity>], limit: Int?) async throws -> [ExerciseEntity] {
-        guard !comparators.isEmpty, let name = comparators.first else {
-            return try await ExerciseOptionsProvider().results()
-        }
-        let entities = try await ExerciseOptionsProvider(query: name).results()
-        return entities
-    }
-    
-    func suggestedEntities() async throws -> [ExerciseEntity] {
-        return try await ExerciseOptionsProvider().results()
-    }
-}
-
-@available(iOS 18.0, *)
-struct LiftShortcus: AppShortcutsProvider {
+struct LiftShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(intent: RecordLiftIntent(), phrases: [
             "Record a lift in \(.applicationName)",

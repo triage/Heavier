@@ -21,6 +21,7 @@
 	<key>INIntentsSupported</key>
 	<array>
 		<string>RecordLiftIntent</string>
+		<string>ExerciseSearchIntent</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
