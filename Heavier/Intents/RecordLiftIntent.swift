@@ -20,6 +20,7 @@ enum RecordLiftError: Error, CustomStringConvertible {
 @available(iOS 18.0, *)
 @AssistantIntent(schema: .journal.createEntry)
 struct RecordLiftIntent: AppIntent {
+    var value: Never?
     
     static var title: LocalizedStringResource = "Record a lift"
 
@@ -59,7 +60,6 @@ struct RecordLiftIntent: AppIntent {
         // no exact match found, or multiple exact matches found. Search for
         // exercises _like_ search and ask the user to disambiguate
         guard let matches = try? context.fetch(Exercise.CoreData.searchFetchRequest(name)) else {
-            print("couldn't query for possible matches")
             throw AppIntentError.Unrecoverable.entityNotFound
         }
         
@@ -70,21 +70,18 @@ struct RecordLiftIntent: AppIntent {
             }, dialog: IntentDialog("We found a few results for \(name). Which one do you want to use?"))
             print("disambiguated: \(disambiguated)")
             if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), caseSensitive: true, context: context) {
-                print("returning exact match from disambiguity")
-                print("found:\(found)")
                 return found
             }
         }
         if matches.count == 0 {
             let shouldCreate = try await resolve.requestConfirmation(for: AttributedString(name), dialog: IntentDialog(stringLiteral: String(localized: "Create a new exercise for \(name)?")))
             if shouldCreate {
-                print("create!")
                 let exercise = Exercise(context: context)
                 exercise.name = String(name)
                 exercise.id = UUID()
                 return exercise
             } else {
-                return nil
+                throw RecordLiftError.willNotCreate
             }
         } else {
             return nil
@@ -92,11 +89,7 @@ struct RecordLiftIntent: AppIntent {
     }
     
     @MainActor
-    func perform() async throws -> some ReturnsValue<LiftEntity> {
-        // Print to indicate start
-        print("omfggg!!gg")
-        print("\(message) sets:\(sets ?? -1) reps:\(reps ?? -1) weight:\(weight ?? -1)")
-        
+    func perform() async throws -> some ReturnsValue<LiftEntity> & ProvidesDialog {
         let context = PersistenceController.shared.container.viewContext
         guard let exercise = try await RecordLiftIntent.resolveExercise(name: String(message.characters), context: context, resolve: $message) else {
             throw AppIntentError.Unrecoverable.unknown
@@ -132,13 +125,10 @@ struct RecordLiftIntent: AppIntent {
         lift.exercise = exercise
         try context.save() // Save changes on the background context
         
-        print("saved")
-        if let entity = LiftEntity(lift: lift) {
-            print("partyyyyyyy")
+        if let entity = LiftEntity(lift: lift, context: .record) {
             return .result(value: entity, dialog: IntentDialog(entity.displayRepresentation.title))
             
         } else {
-            print("couldn't create entity")
             throw AppIntentError.Unrecoverable.unknown
         }
     }
@@ -150,37 +140,119 @@ struct RecordLiftIntent: AppIntent {
 @AssistantEntity(schema: .journal.entry)
 struct LiftEntity {
     
+    enum Context {
+        case record
+        case searchFound
+        case searchNotFound
+        case exerciseNotFound
+    }
+    
     static var defaultQuery = Query()
     var displayRepresentation: DisplayRepresentation {
-        let message = "Recorded \(String(message!.characters)) \(sets) sets of \(reps) with \(weight) \(units)."
-        return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
+        switch context {
+        case .record:
+            if let reps = reps, let sets = sets, let weight = weight, let units = units, let message = message {
+                let message = "Recorded \(String(message.characters)) \(sets) sets of \(reps) with \(weight) \(units)."
+                return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
+            }
+        case .searchFound:
+            if let reps = reps, let sets = sets, let weight = weight, let units = units, let message = message {
+                let message = "Your most recent lift of \(String(message.characters)) was on \(entryDate!). You did \(sets) sets of \(reps) with \(weight) \(units)."
+                return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
+            }
+        case .searchNotFound:
+            if let message = message {
+                return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: String(localized: "We were unable to find a recent lift for \(message)")))
+            }
+        case .exerciseNotFound:
+            if let query = query {
+                return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: String(localized: "We were unable to find any lift for \(query)")))
+            }
+        }
+        return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: String(localized: "Something went wrong")))
     }
     let id: UUID
     var title: String?
     var message: AttributedString?
-    let sets: Int16
-    let reps: Int16
-    let weight: Float
-    let units: String
+    let sets: Int16?
+    let reps: Int16?
+    let weight: Float?
+    let units: String?
+    let context: Context
+    let query: String?
     
     var mediaItems: [IntentFile]
     var entryDate: Date?
     var location: CLPlacemark?
     
+    
     struct Query: EntityStringQuery {
-        func entities(for identifiers: [LiftEntity.ID]) async throws -> [LiftEntity] { [] }
-        func entities(matching string: String) async throws -> [LiftEntity] { [] }
+        func entities(for identifiers: [LiftEntity.ID]) async throws -> [LiftEntity] {
+            let request = Exercise.CoreData.matchingIdentifiers(identifiers)
+            let context = PersistenceController.shared.container.viewContext
+            guard let results = try? context.fetch(request) else {
+                return []
+            }
+            return results.compactMap { LiftEntity(exercise: $0) }
+        }
+        func entities(matching string: String) async throws -> [LiftEntity] {
+            let request = Exercise.CoreData.searchFetchRequest(string)
+            let context = PersistenceController.shared.container.viewContext
+            guard let results = try? context.fetch(request) else {
+                return []
+            }
+            return results.compactMap { LiftEntity(exercise: $0) }
+        }
     }
     
-    init?(lift: Lift) {
+    init(failedQuery: String) {
+        id = UUID()
+        context = .searchNotFound
+        sets = nil
+        reps = nil
+        units = nil
+        weight = nil
+        query = failedQuery
+        message = .init(localized: "No lifts found")
+        entryDate = nil
+    }
+    
+    init(exercise: Exercise) {
+        if let lift = exercise.lastLift, let name = exercise.name, let id = lift.id {
+            self.id = id
+            context = .searchFound
+            reps = lift.reps
+            sets = lift.sets
+            weight = lift.weightLocalized.weight
+            units = Settings().units == .imperial ? String(localized: "pounds") : String(localized: "kilograms")
+            query = nil
+            entryDate = lift.timestamp
+            message = AttributedString(name)
+            mediaItems = []
+        } else {
+            id = UUID()
+            context = .searchNotFound
+            sets = nil
+            reps = nil
+            units = nil
+            weight = nil
+            query = nil
+            message = .init(localized: "No lifts found")
+            entryDate = nil
+        }
+    }
+    
+    init?(lift: Lift, context _context: Context) {
         guard let id = lift.id, let exercise = lift.exercise, let name = exercise.name else {
             return nil
         }
         self.id = id
+        context = _context
         reps = lift.reps
         sets = lift.sets
         weight = lift.weightLocalized.weight
         units = Settings().units == .imperial ? String(localized: "pounds") : String(localized: "kilograms")
+        query = nil
         entryDate = lift.timestamp
         message = AttributedString(name)
         mediaItems = []
@@ -192,7 +264,15 @@ struct LiftShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(intent: RecordLiftIntent(), phrases: [
             "Record a lift in \(.applicationName)",
+            "Log in \(.applicationName)",
             "\(.applicationName), record",
         ], shortTitle: "Record a lift", systemImageName: "scalemass.fill")
+        
+        AppShortcut(intent: ExerciseSearchIntent(), phrases: [
+            "Look up an exercise in \(.applicationName)",
+            "Find a lift in \(.applicationName)",
+            "Find an exercise in \(.applicationName)",
+            "Search in \(.applicationName)",
+        ], shortTitle: "Search a lift", systemImageName: "magnifyingglass")
     }
 }

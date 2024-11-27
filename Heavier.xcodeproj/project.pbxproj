@@ -24,6 +24,7 @@
 		071E391A251AF3F900A35799 /* OverloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3919251AF3F900A35799 /* OverloadTests.swift */; };
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
+		072809462CF548880052EDEC /* ExerciseSearchIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075905992CF3D7D500536BAF /* ExerciseSearchIntent.swift */; };
 		075905982CF3CF3900536BAF /* Exercise+ExactMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075905972CF3CF3800536BAF /* Exercise+ExactMatch.swift */; };
 		077DE8732CED9389006C5663 /* RecordLiftIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077C1FBB2CEA6DFE00A3EBEE /* RecordLiftIntent.swift */; };
 		077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8F3B25697D3B0075B307 /* LiftsObservable.swift */; };
@@ -1164,6 +1165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */,
+				072809462CF548880052EDEC /* ExerciseSearchIntent.swift in Sources */,
 				07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */,
 				07DA92EA25850A4800FB95BB /* Constants.swift in Sources */,
 				07A7B53C25491EA3006468C1 /* Color+Heavier.swift in Sources */,

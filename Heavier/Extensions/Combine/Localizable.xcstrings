@@ -49,6 +49,9 @@
     "No excuses" : {
 
     },
+    "No lifts found" : {
+
+    },
     "No lifts recorded yet" : {
 
     },
@@ -70,6 +73,9 @@
     "Save" : {
       "comment" : "Save"
     },
+    "Search a lift" : {
+
+    },
     "Select Date" : {
       "comment" : "Select Date"
     },
@@ -78,6 +84,9 @@
     },
     "Settings" : {
       "comment" : "Settings"
+    },
+    "Something went wrong" : {
+
     },
     "The amount of weight lifted" : {
 
@@ -101,6 +110,15 @@
       "comment" : "Units"
     },
     "We found a few results for %@. Which one do you want to use?" : {
+
+    },
+    "We found a few results for %@. Which one do you want?" : {
+
+    },
+    "We were unable to find a recent lift for %@" : {
+
+    },
+    "We were unable to find any lift for %@" : {
 
     },
     "Weight" : {

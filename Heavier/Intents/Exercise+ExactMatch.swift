@@ -15,7 +15,7 @@ extension Exercise.CoreData {
         do {
             guard let query = Exercise.CoreData.exactMatch(name, caseSensitive: caseSensitive),
                   let exactMatches = try? context.fetch(query) else {
-                print("couldn't fetch!")
+                print("couldn't fetch:\(name)!")
                 throw AppIntentError.Unrecoverable.entityNotFound
             }
             // look for exact match
