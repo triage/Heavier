@@ -9,12 +9,56 @@ import AppIntents
 import CoreLocation
 import CoreData
 
-enum RecordLiftError: Error, CustomStringConvertible {
+enum RecordLiftError: Error, CustomLocalizedStringResourceConvertible {
+    var localizedStringResource: LocalizedStringResource {
+        LocalizedStringResource(stringLiteral: description)
+    }
+    
     var description: String {
         String(localized: "OK! We won't create this exercise")
     }
     
     case willNotCreate
+}
+
+import NaturalLanguage
+import CoreML
+
+struct RecordLiftParamResolver {
+    
+    enum RecordLiftParamResolverError: Error {
+        case keyNotFound
+    }
+    
+    static func model<Root, Value>(for keyPath: KeyPath<Root, Value>) throws -> MLModel {
+        switch keyPath {
+        case \RecordLiftIntent.$weight:
+            return try WeightClassifier(configuration: MLModelConfiguration()).model
+        case \RecordLiftIntent.$sets:
+            return try SetsClassifier(configuration: MLModelConfiguration()).model
+        case \RecordLiftIntent.$reps:
+            return try RepsClassifier(configuration: MLModelConfiguration()).model
+        case \RecordLiftIntent.$name:
+            return try NameClassifier(configuration: MLModelConfiguration()).model
+        default:
+            throw RecordLiftParamResolverError.keyNotFound
+        }
+    }
+
+    static func resolveValue<Root, T>(for keyPath: KeyPath<Root, IntentParameter<T?>>, message: String) throws -> T? {
+        let model = try RecordLiftParamResolver.model(for: keyPath)
+        let predictor = try NLModel(mlModel: model)
+        let label = predictor.predictedLabel(for: message)
+        if let label = label as? T {
+            return label
+        } else if let label = label {
+            let numberFormatter = NumberFormatter()
+            if let valueAsNumber = numberFormatter.number(from: message) as? T {
+                return valueAsNumber
+            }
+        }
+        return label as? T
+    }
 }
 
 @available(iOS 18.0, *)
@@ -38,6 +82,9 @@ struct RecordLiftIntent: AppIntent {
     @Parameter
     var location: CLPlacemark?
 
+    @Parameter(title: "Name", description: "Exercise name")
+    var name: String?
+    
     @Parameter(title: "Sets", description: "The number of sets")
     var sets: Int?
     
@@ -86,6 +133,21 @@ struct RecordLiftIntent: AppIntent {
         } else {
             return nil
         }
+    }
+    
+    struct ParamsResolved {
+        let reps: Int?
+        let sets: Int?
+        let weight: Double?
+        let name: String?
+    }
+    
+    static func resolveParamsFromInput(_ message: String) throws -> ParamsResolved? {
+        let reps = try? RecordLiftParamResolver.resolveValue(for: \RecordLiftIntent.$reps, message: message)
+        let sets = try? RecordLiftParamResolver.resolveValue(for: \RecordLiftIntent.$sets, message: message)
+        let weight = try? RecordLiftParamResolver.resolveValue(for: \RecordLiftIntent.$weight, message: message)
+        let name = try? RecordLiftParamResolver.resolveValue(for: \RecordLiftIntent.$name, message: message)
+        return ParamsResolved(reps: reps, sets: sets, weight: weight, name: nil)
     }
     
     @MainActor

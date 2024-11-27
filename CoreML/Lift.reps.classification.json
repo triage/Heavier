@@ -1,0 +1,42 @@
+[
+  {
+    "text": "deadlift, 3 sets of 10, 135 pounds",
+    "label": "10"
+  },
+  {
+    "text": "I did bench press, 10 reps, 1 set, 135 pounds",
+    "label": "10"
+  },
+  {
+    "text": "front squat, 135 pounds, 5 reps, 1 set",
+    "label": "5"
+  },
+  {
+    "text": "3 sets of 8 reps on deadlift at 185 pounds",
+    "label": "8"
+  },
+  {
+    "text": "overhead press, 95 pounds, 3 sets of 6",
+    "label": "6"
+  },
+  {
+    "text": "Did some back squats: 4 sets, 12 reps each, 225 pounds",
+    "label": "12"
+  },
+  {
+    "text": "curl 25 pounds for 3 sets of 15 reps",
+    "label": "15"
+  },
+  {
+    "text": "bench press at 155 pounds, 4 sets, 8 reps each",
+    "label": "8"
+  },
+  {
+    "text": "Just one set of overhead press with 115 pounds, 5 reps",
+    "label": "5"
+  },
+  {
+    "text": "I did 2 sets of 20 curls with 15 pounds each",
+    "label": "20"
+  }
+]
