@@ -25,13 +25,13 @@ struct MonthLabel: CalendarItemViewRepresentable {
     
     static func makeView(withInvariantViewProperties invariantViewProperties: InvariantViewProperties) -> UILabel {
         let label = UILabel()
-        label.textColor = Color.calendarMonth.uiColor
+        label.textColor = Color(.calendarMonth).uiColor
         label.font = MonthLabel.font
         return label
     }
     
     static func setViewModel(_ viewModel: ViewModel, on view: UILabel) {
         view.text = viewModel.text
-        view.setMargins(margin: SwiftUI.List.separatorInset)
+        view.setMargins(margin: UI.List.separatorInset)
     }
 }

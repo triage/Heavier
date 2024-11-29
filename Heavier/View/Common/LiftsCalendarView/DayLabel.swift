@@ -36,7 +36,7 @@ struct DayLabel: CalendarItemViewRepresentable {
         }
         
         var textColor: UIColor {
-            hasLifts ? Color.calendarDayLifts.uiColor : Color.calendarDayDefault.uiColor
+            hasLifts ? Color(.calendarDayLifts).uiColor : Color(.calendarDayDefault).uiColor
         }
         
         var text: String {
@@ -44,7 +44,7 @@ struct DayLabel: CalendarItemViewRepresentable {
         }
         
         var borderColor: UIColor {
-            hasLifts ? Color.calendarDayLifts.uiColor : UIColor.clear
+            hasLifts ? Color(.calendarDayLifts).uiColor : UIColor.clear
         }
         
         var borderWidth: CGFloat = 2.0

@@ -1,0 +1,30 @@
+[
+  {
+    "tokens": ["leg", "press", "4", "sets", "of", "12", "at", "200", "pounds"],
+    "labels": ["NAME", "NAME", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"]
+  },
+  {
+    "tokens": ["low", "row", "80", "pounds", "for", "10", "reps", "on", "each", "side"],
+    "labels": ["NAME", "NAME", "NAME", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"]
+  },
+  {
+    "tokens": ["back", "lunges", "with", "50", "pound", "dumbbells", "for", "3", "sets", "of", "12", "steps"],
+    "labels": ["NAME", "NAME", "NONE", "NONE", "NONE", "NAME", "NONE", "NONE", "NONE", "NONE", "NONE", "NONE"]
+  },
+  {
+    "tokens": ["3", "reps", "of", "squats", "at", "120", "pounds"],
+    "labels": ["NONE", "NONE", "NONE", "NAME", "NONE", "NONE", "NONE"]
+  },
+  {
+    "tokens": ["10", "reps", "of", "pull-ups"],
+    "labels": [ "NONE", "NONE", "NONE", "NAME"]
+  },
+  {
+    "tokens": ["20", "high", "rows", "with", "a", "50", "pounds"],
+    "labels": ["NONE", "NAME", "NAME", "NONE", "NONE", "NONE", "NONE"]
+  },
+  {
+    "tokens": ["25", "cable", "flies"],
+    "labels": ["NONE", "NAME", "NAME"]
+  }
+]

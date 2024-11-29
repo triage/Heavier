@@ -1,0 +1,138 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "${message} ${sets} sets of ${reps} at ${weight}" : {
+
+    },
+    "Biceps don't grow on trees" : {
+
+    },
+    "Body under construction. Mind on a mission" : {
+
+    },
+    "Create a new exercise for %@?" : {
+
+    },
+    "Don't be afraid to fail. Be afraid not to try" : {
+
+    },
+    "Exercise" : {
+
+    },
+    "Exercise name" : {
+
+    },
+    "How many reps?" : {
+
+    },
+    "How many sets?" : {
+
+    },
+    "How much weight?" : {
+
+    },
+    "If it doesn't challenge you, it doesn't change you" : {
+
+    },
+    "If you cheat, you only cheat yourself" : {
+
+    },
+    "It doesn't get easier. You just get stronger" : {
+
+    },
+    "kilograms" : {
+
+    },
+    "Most recent lift:" : {
+      "comment" : "Most recent lift"
+    },
+    "Name" : {
+
+    },
+    "No excuses" : {
+
+    },
+    "No lifts found" : {
+
+    },
+    "No lifts recorded yet" : {
+
+    },
+    "Notes" : {
+      "comment" : "Notes"
+    },
+    "OK! We won't create this exercise" : {
+
+    },
+    "pounds" : {
+
+    },
+    "Record a lift" : {
+
+    },
+    "Reps" : {
+
+    },
+    "Save" : {
+      "comment" : "Save"
+    },
+    "Search a lift" : {
+
+    },
+    "Select Date" : {
+      "comment" : "Select Date"
+    },
+    "Sets" : {
+
+    },
+    "Settings" : {
+      "comment" : "Settings"
+    },
+    "Something went wrong" : {
+
+    },
+    "The amount of weight lifted" : {
+
+    },
+    "The number of reps" : {
+
+    },
+    "The number of sets" : {
+
+    },
+    "The pain you feel today will be the strength you feel tomorrow" : {
+
+    },
+    "Today" : {
+
+    },
+    "total volume (%@)" : {
+
+    },
+    "Units" : {
+      "comment" : "Units"
+    },
+    "We found a few results for %@. Which one do you want to use?" : {
+
+    },
+    "We found a few results for %@. Which one do you want?" : {
+
+    },
+    "We were unable to find a recent lift for %@" : {
+
+    },
+    "We were unable to find any lift for %@" : {
+
+    },
+    "Weight" : {
+
+    },
+    "What exercise?" : {
+
+    }
+  },
+  "version" : "1.0"
+}

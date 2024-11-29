@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum SwiftUI {
+enum UI {
     enum List {
         static let separatorInset: CGFloat = 10.0
     }

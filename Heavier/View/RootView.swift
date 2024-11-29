@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreData
 import Combine
+import AppIntents
 
 struct ContentView: View {
     private static let title = "Exercises"
@@ -86,7 +87,7 @@ struct RootView: View {
                 }
         }
         .navigationViewStyle(.stack)
-        .accentColor(.accent)
+        .accentColor(Color(.accent))
         .edgesIgnoringSafeArea([.top, .bottom])
         .sheet(isPresented: $settingsVisible, content: {
             SettingsView()

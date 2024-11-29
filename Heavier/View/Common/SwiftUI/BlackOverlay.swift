@@ -17,7 +17,7 @@ struct BlackOverlay: View {
             }
             .disabled(true)
             .fillScreen()
-            .background(Color.overlay)
+            .background(Color(.overlayBackground))
             .edgesIgnoringSafeArea(.all)
         } else {
             EmptyView()

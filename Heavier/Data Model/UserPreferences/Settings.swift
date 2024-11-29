@@ -20,6 +20,15 @@ final class Settings: ObservableObject {
         case imperial
         case metric
         
+        init(measurementSystem: Locale.MeasurementSystem) {
+            switch (measurementSystem) {
+            case .metric:
+                self = .metric
+            default:
+                self = .imperial
+            }
+        }
+        
         var description: String {
             switch self {
             case .imperial:
@@ -81,7 +90,7 @@ final class Settings: ObservableObject {
         if let number = UserDefaults.standard.object(forKey: Settings.Keys.units) as? NSNumber {
             units = Units(rawValue: number.intValue)!
         } else {
-            units = Units(rawValue: (Locale.current.usesMetricSystem as NSNumber).intValue)!
+            units = Units(measurementSystem: Locale.current.measurementSystem)
         }
     }
 }

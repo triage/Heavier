@@ -14,13 +14,13 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Picker(selection: $settings.units, label: Text("Units")) {
+                Picker(selection: $settings.units, label: Text("Units", comment: "Units")) {
                     ForEach(Settings.Units.allCases, id: \.self) { unit in
                         Text(unit.description).tag(unit.rawValue)
                     }
                 }
-            }.navigationTitle("Settings")
-        }.accentColor(.accent)
+            }.navigationTitle(String(localized: "Settings", comment: "Settings"))
+        }.accentColor(Color(.accent))
     }
 }
 
