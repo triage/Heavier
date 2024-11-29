@@ -44,7 +44,7 @@ struct RecordLiftIntent: AppIntent {
     var weight: Double?
     
     static var parameterSummary: some ParameterSummary {
-        Summary("\(\.$message) \(\.$sets) sets of \(\.$reps) at \(\.$weight)")
+        Summary("\(\.$message) \(\.$sets) sets of \(\.$reps) reps at \(\.$weight)")
     }
     
     var units: String {
@@ -62,7 +62,7 @@ struct RecordLiftIntent: AppIntent {
         guard let name = exercise.name, let reps = reps, let sets = sets, let weight = weight else {
             return nil
         }
-        return "Confirm \(name) \(sets) sets of \(reps) at \(weight) \(units)."
+        return "Confirm \(name) \(sets) sets of \(reps) reps at \(weight) \(units)."
     }
     
     @MainActor

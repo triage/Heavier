@@ -73,7 +73,6 @@
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
 		07E3EA182CF8C8BB00E02286 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 07E3EA172CF8C8BB00E02286 /* OpenAI */; };
-		07E3EA1A2CF8CA0200E02286 /* env.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 07E3EA192CF8CA0200E02286 /* env.xcconfig */; };
 		07E3EA1C2CF96F8F00E02286 /* RecordLiftIntentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1B2CF96F8F00E02286 /* RecordLiftIntentError.swift */; };
 		07E3EA1E2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1D2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift */; };
 		07E3EA202CF9703C00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1F2CF9703B00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift */; };
@@ -1134,7 +1133,6 @@
 				07D89DFE2CF1880100334701 /* AppIntentVocabulary.plist in Resources */,
 				936722C3269D180A00C940C9 /* SF-Compact-Display-Black.otf in Resources */,
 				079376142579E17000382DB1 /* exercises-default.json in Resources */,
-				07E3EA1A2CF8CA0200E02286 /* env.xcconfig in Resources */,
 				07D89DF72CEF7C3800334701 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
