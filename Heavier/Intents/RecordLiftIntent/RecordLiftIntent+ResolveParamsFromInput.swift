@@ -15,6 +15,7 @@ extension RecordLiftIntent {
     static func resolveParamsFromInput(_ message: String) async throws -> ParamsResolved? {
         do {
             let response = try await HeavierApp.functions.httpsCallable("lift_resolve_params").call(["query": message])
+            print("response")
             if let exerciseDict = response.data as? [String: Any] {
                 print("has data")
                 let data = try JSONSerialization.data(withJSONObject: exerciseDict, options: [])

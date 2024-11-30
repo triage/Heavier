@@ -25,14 +25,14 @@ def _exercise_resolve_name(query: str) -> str | None:
     with open("exercises.json") as f:
         exercises = json.load(f)
     names = map(lambda x: x["name"], exercises)
-    found: str = process.extractOne(query.lower(), names)
+    found = process.extractOne(query.lower(), names)
     score = found[1]
     if score < MINIMUM_FUZZY_SCORE:
         return None
     return found[0]
 
 @https_fn.on_call()
-def exercise_resolve_name(req: https_fn.CallableRequest) -> dict[str, str]:
+def exercise_resolve_name(req: https_fn.CallableRequest) -> str:
     query = req.data.get("query")
     return _exercise_resolve_name(query)
 
@@ -98,6 +98,7 @@ def lift_resolve_params(req: https_fn.CallableRequest) -> Response | dict[str, s
 
     exercise_name_match = _exercise_resolve_name(exercise_name)
     if exercise_name_match is not None:
+        print(f"got a match: {exercise_name_match}")
         exercise_name_original = exercise_name
         exercise_name = exercise_name_match
 

@@ -327,75 +327,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B10AC4E8-FD64-4E59-B294-3DE13B61A7D0"
+            uuid = "F2E3D230-6E03-4471-A4DA-A713A0C314C8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Heavier/Intents/RecordLiftIntent/RecordLiftIntent+ResolveParamsFromInput.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "resolveParamsFromInput(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B10AC4E8-FD64-4E59-B294-3DE13B61A7D0 - dc286a272d93fdb2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for static Heavier.RecordLiftIntent.resolveParamsFromInput(Swift.String) async throws -&gt; Swift.Optional&lt;Heavier.RecordLiftIntent.ParamsResolved&gt;"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/Heavier/Intents/RecordLiftIntent/RecordLiftIntent+ResolveParamsFromInput.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29">
-               </Location>
-               <Location
-                  uuid = "B10AC4E8-FD64-4E59-B294-3DE13B61A7D0 - 26e8bb6f9b7643b3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(8) suspend resume partial function for static Heavier.RecordLiftIntent.resolveParamsFromInput(Swift.String) async throws -&gt; Swift.Optional&lt;Heavier.RecordLiftIntent.ParamsResolved&gt;"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/Heavier/Intents/RecordLiftIntent/RecordLiftIntent+ResolveParamsFromInput.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "29"
-                  endingLineNumber = "29">
-               </Location>
-               <Location
-                  uuid = "B10AC4E8-FD64-4E59-B294-3DE13B61A7D0 - dc286a272d93fd5d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for static Heavier.RecordLiftIntent.resolveParamsFromInput(Swift.String) async throws -&gt; Swift.Optional&lt;Heavier.RecordLiftIntent.ParamsResolved&gt;"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/Heavier/Intents/RecordLiftIntent/RecordLiftIntent+ResolveParamsFromInput.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28">
-               </Location>
-               <Location
-                  uuid = "B10AC4E8-FD64-4E59-B294-3DE13B61A7D0 - 26e8bb6f9b76435c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(8) suspend resume partial function for static Heavier.RecordLiftIntent.resolveParamsFromInput(Swift.String) async throws -&gt; Swift.Optional&lt;Heavier.RecordLiftIntent.ParamsResolved&gt;"
-                  moduleName = "Heavier.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/eric/Development/GitHub/Heavier/Heavier/Intents/RecordLiftIntent/RecordLiftIntent+ResolveParamsFromInput.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "28"
-                  endingLineNumber = "28">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEC220D6-E295-479F-BE36-8AAA39282DC3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Heavier/Intents/RecordLiftIntent/RecordLiftIntent+ResolveParamsFromInput.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "resolveParamsFromInput(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
