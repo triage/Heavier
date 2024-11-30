@@ -2,11 +2,14 @@
 # To get started, simply uncomment the below code or create your own.
 # Deploy with `firebase deploy`
 import json
+from typing import Any
+
 from firebase_functions import https_fn
-from firebase_admin import initialize_app, firestore
+from firebase_admin import initialize_app
 from firebase_functions.params import StringParam
+from flask import Response
 from openai import OpenAI
-import google.cloud.firestore
+from rapidfuzz import process
 
 OPENAI_API_KEY = StringParam("OPENAI_API_KEY")
 
@@ -15,18 +18,30 @@ client = OpenAI(
 )
 
 initialize_app()
-#
-#
-# @https_fn.on_request()
-# def on_request_example(req: https_fn.Request) -> https_fn.Response:
-#     return https_fn.Response("Hello world!")
 
-@https_fn.on_request()
-def lift_resolve_params(req: https_fn.Request) -> https_fn.Response:
+MINIMUM_FUZZY_SCORE = 80
+
+def _exercise_resolve_name(query: str) -> str | None:
+    with open("exercises.json") as f:
+        exercises = json.load(f)
+    names = map(lambda x: x["name"], exercises)
+    found: str = process.extractOne(query.lower(), names)
+    score = found[1]
+    if score < MINIMUM_FUZZY_SCORE:
+        return None
+    return found[0]
+
+@https_fn.on_call()
+def exercise_resolve_name(req: https_fn.CallableRequest) -> dict[str, str]:
+    query = req.data.get("query")
+    return _exercise_resolve_name(query)
+
+@https_fn.on_call()
+def lift_resolve_params(req: https_fn.CallableRequest) -> Response | dict[str, str | None | Any]:
     """Take the text parameter passed to this HTTP endpoint and insert it into
     a new document in the 'messages' collection."""
     # Grab the text parameter.
-    query = req.args.get("query")
+    query = req.data.get("query")
     if query is None:
         return https_fn.Response("No text parameter provided", status=400)
 
@@ -52,6 +67,7 @@ def lift_resolve_params(req: https_fn.Request) -> https_fn.Response:
         =====
         {query}
         """
+    print(f"prompt:{prompt}")
 
     chat_completion = client.chat.completions.create(
         messages=[
@@ -60,7 +76,7 @@ def lift_resolve_params(req: https_fn.Request) -> https_fn.Response:
                 "content": prompt,
             }
         ],
-        model="gpt4_o_mini",
+        model="gpt-4o-mini",
     )
 
     # Get the response from the chat completion
@@ -72,31 +88,24 @@ def lift_resolve_params(req: https_fn.Request) -> https_fn.Response:
     # Convert the response to JSON
     response_json = json.loads(response)
 
-    exercise_name = response_json["exercise"]
+    print(f"response_json:{response_json}")
+
+    exercise_name: str = response_json["exercise"]
     exercise_name_original = None
     weight = response_json["weight"]
     sets = response_json["sets"]
     reps = response_json["reps"]
 
-    firestore_client: google.cloud.firestore.Client = firestore.client()
-
-    document = firestore_client.collection("vocabulary").document("vocabulary")
-    synonyms = document.get().get("synonyms")
-    # check if there's a row with the exercise name as the key
-    if exercise_name in synonyms:
-        # if there is, increment the count
+    exercise_name_match = _exercise_resolve_name(exercise_name)
+    if exercise_name_match is not None:
         exercise_name_original = exercise_name
-        exercise_name = synonyms[exercise_name]
+        exercise_name = exercise_name_match
 
     # return the json response of the exercise name, weight, sets, and reps
-    return https_fn.Response(
-        json.dumps(
-            {
-                "exercise": exercise_name,
-                "exercise_original": exercise_name_original,
-                "weight": weight,
-                "sets": sets,
-                "reps": reps,
-            }
-        )
-    )
+    return {
+        "name": exercise_name,
+        "name_original": exercise_name_original,
+        "weight": weight,
+        "sets": sets,
+        "reps": reps,
+    }

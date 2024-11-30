@@ -31,6 +31,7 @@
 		074866912CF766CC00C5ABFD /* NameClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668A2CF766CC00C5ABFD /* NameClassifier.mlmodel */; };
 		074866932CF7B96D00C5ABFD /* LiftWordTagger.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 074866922CF7B96D00C5ABFD /* LiftWordTagger.mlmodel */; };
 		075905982CF3CF3900536BAF /* Exercise+ExactMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075905972CF3CF3800536BAF /* Exercise+ExactMatch.swift */; };
+		0759BE7C2CFB3FBE002F1618 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */; };
 		077DE8732CED9389006C5663 /* RecordLiftIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077C1FBB2CEA6DFE00A3EBEE /* RecordLiftIntent.swift */; };
 		077F8F3C25697D3B0075B307 /* LiftsObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8F3B25697D3B0075B307 /* LiftsObservable.swift */; };
 		077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077F8F4025697E060075B307 /* Lift+FetchRequest.swift */; };
@@ -72,13 +73,10 @@
 		07DA92EA25850A4800FB95BB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92E925850A4800FB95BB /* Constants.swift */; };
 		07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92EE25850A5A00FB95BB /* Measurement.swift */; };
 		07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DA92F325850A6F00FB95BB /* Conversion.swift */; };
-		07E3EA182CF8C8BB00E02286 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 07E3EA172CF8C8BB00E02286 /* OpenAI */; };
 		07E3EA1C2CF96F8F00E02286 /* RecordLiftIntentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1B2CF96F8F00E02286 /* RecordLiftIntentError.swift */; };
 		07E3EA1E2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1D2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift */; };
 		07E3EA202CF9703C00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1F2CF9703B00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift */; };
 		07E3EA222CF9708600E02286 /* LiftEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA212CF9708600E02286 /* LiftEntity.swift */; };
-		07E3EA252CF970D600E02286 /* OpenAI+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA242CF970D600E02286 /* OpenAI+Key.swift */; };
-		07E3EA262CF970D600E02286 /* OpenAI+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA242CF970D600E02286 /* OpenAI+Key.swift */; };
 		07F4828B26923FD500BEECAD /* Lift+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */; };
 		07F4828C269240D700BEECAD /* Lift+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */; };
 		3A217D2028B158C800E4EA29 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */; };
@@ -327,12 +325,10 @@
 		07DA92E925850A4800FB95BB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		07DA92EE25850A5A00FB95BB /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
 		07DA92F325850A6F00FB95BB /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
-		07E3EA192CF8CA0200E02286 /* env.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = env.xcconfig; sourceTree = "<group>"; };
 		07E3EA1B2CF96F8F00E02286 /* RecordLiftIntentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordLiftIntentError.swift; sourceTree = "<group>"; };
 		07E3EA1D2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordLiftIntent+ResolveExercise.swift"; sourceTree = "<group>"; };
 		07E3EA1F2CF9703B00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordLiftIntent+ResolveParamsFromInput.swift"; sourceTree = "<group>"; };
 		07E3EA212CF9708600E02286 /* LiftEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftEntity.swift; sourceTree = "<group>"; };
-		07E3EA242CF970D600E02286 /* OpenAI+Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OpenAI+Key.swift"; sourceTree = "<group>"; };
 		07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Identifiable.swift"; sourceTree = "<group>"; };
 		3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
 		3A217D2328B1590400E4EA29 /* Binding+MapToBool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+MapToBool.swift"; sourceTree = "<group>"; };
@@ -382,10 +378,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
+				0759BE7C2CFB3FBE002F1618 /* FirebaseFunctions in Frameworks */,
 				799A92A525AD2F6400470D11 /* Introspect in Frameworks */,
 				79B6BAB925B0A18D008EC2DC /* FirebaseCrashlytics in Frameworks */,
 				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
-				07E3EA182CF8C8BB00E02286 /* OpenAI in Frameworks */,
 				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -503,7 +499,6 @@
 			children = (
 				075905922CF2889A00536BAF /* Intents */,
 				071E3902251AF3F800A35799 /* HeavierApp.swift */,
-				07E3EA192CF8CA0200E02286 /* env.xcconfig */,
 				07B3064B25745590005CB631 /* Data Model */,
 				07D435302547D64500F16668 /* Extensions */,
 				071E3908251AF3F900A35799 /* Preview Content */,
@@ -673,7 +668,6 @@
 		07D435302547D64500F16668 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				07E3EA232CF970C800E02286 /* OpenAI */,
 				798BB51B2597E6A200171407 /* Combine */,
 				0702218E2572BA6B00456C4C /* Foundation */,
 				0702218F2572BA7500456C4C /* SwiftUI */,
@@ -734,14 +728,6 @@
 				07DA92DD25850A2100FB95BB /* MetricImperialConversion.swift */,
 			);
 			path = Conversion;
-			sourceTree = "<group>";
-		};
-		07E3EA232CF970C800E02286 /* OpenAI */ = {
-			isa = PBXGroup;
-			children = (
-				07E3EA242CF970D600E02286 /* OpenAI+Key.swift */,
-			);
-			path = OpenAI;
 			sourceTree = "<group>";
 		};
 		07E3EA272CF9710500E02286 /* RecordLiftIntent */ = {
@@ -953,7 +939,7 @@
 				79DF5E5125A16DE2000067E4 /* SwiftUIPager */,
 				799A92A425AD2F6400470D11 /* Introspect */,
 				79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */,
-				07E3EA172CF8C8BB00E02286 /* OpenAI */,
+				0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -1103,7 +1089,6 @@
 				79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				07E3EA162CF8C8BB00E02286 /* XCRemoteSwiftPackageReference "OpenAI" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -1270,7 +1255,6 @@
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				3A217D2428B1590400E4EA29 /* Binding+MapToBool.swift in Sources */,
 				079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */,
-				07E3EA262CF970D600E02286 /* OpenAI+Key.swift in Sources */,
 				795A76C52599006E0094052B /* LiftButton.swift in Sources */,
 				07899CEB252191EF006C85B1 /* ExerciseView.swift in Sources */,
 				0702218425715A4300456C4C /* Exercise+PreviewContent.swift in Sources */,
@@ -1332,7 +1316,6 @@
 				79B688B9259A89FB00845127 /* LiftView.swift in Sources */,
 				79B688BA259A89FB00845127 /* LiftButton.swift in Sources */,
 				79B688BB259A89FB00845127 /* MostRecentLift.swift in Sources */,
-				07E3EA252CF970D600E02286 /* OpenAI+Key.swift in Sources */,
 				79B688BC259A89FB00845127 /* NotesView.swift in Sources */,
 				79B688BD259A89FB00845127 /* TransparentPicker.swift in Sources */,
 				79B688BE259A89FB00845127 /* SettingsView.swift in Sources */,
@@ -1916,14 +1899,6 @@
 				minimumVersion = 1.8.3;
 			};
 		};
-		07E3EA162CF8C8BB00E02286 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
-			};
-		};
 		796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/triage/SwiftlySearch";
@@ -1964,10 +1939,10 @@
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
 		};
-		07E3EA172CF8C8BB00E02286 /* OpenAI */ = {
+		0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 07E3EA162CF8C8BB00E02286 /* XCRemoteSwiftPackageReference "OpenAI" */;
-			productName = OpenAI;
+			package = 79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
 		};
 		796A43F12586CDF20066A2F3 /* SwiftlySearch */ = {
 			isa = XCSwiftPackageProductDependency;

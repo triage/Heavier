@@ -8,7 +8,6 @@
 import AppIntents
 import CoreLocation
 import CoreData
-import OpenAI
 
 @available(iOS 18.0, *)
 @AssistantIntent(schema: .journal.createEntry)
@@ -55,7 +54,8 @@ struct RecordLiftIntent: AppIntent {
         let reps: Int?
         let sets: Int?
         let weight: Double?
-        let exercise: String?
+        let name: String?
+        let name_original: String?
     }
     
     func confirmationDialog(exercise: Exercise, units: String, reps: Int? = nil, sets: Int? = nil, weight: Double? = nil) -> String? {
@@ -78,11 +78,11 @@ struct RecordLiftIntent: AppIntent {
             if let parsed = try await RecordLiftIntent.resolveParamsFromInput(String(message.characters)) {
                 self.reps = parsed.reps
                 self.sets = parsed.sets
-                self.name = parsed.exercise
+                self.name = parsed.name
                 self.weight = parsed.weight
 
                 if let name = self.name {
-                    exercise = try await RecordLiftIntent.resolveExercise(name: name, context: context, resolve: $message)
+                    exercise = try await RecordLiftIntent.resolveExercise(name: name, fuzzyMatchName: false, context: context, resolve: $message)
                     self.name = exercise.name!
                 }
             }
@@ -91,7 +91,7 @@ struct RecordLiftIntent: AppIntent {
         }
         
         if exercise == nil {
-            exercise = try await RecordLiftIntent.resolveExercise(name: name ?? String(message.characters), context: context, resolve: $message)
+            exercise = try await RecordLiftIntent.resolveExercise(name: name ?? String(message.characters), fuzzyMatchName: true, context: context, resolve: $message)
             self.name = exercise.name!
         }
         

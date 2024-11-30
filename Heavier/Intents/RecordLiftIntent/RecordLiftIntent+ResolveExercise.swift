@@ -8,11 +8,25 @@
 import Foundation
 import AppIntents
 import CoreData
+import FirebaseFunctions
 
 @available(iOS 18.0, *)
 extension RecordLiftIntent {
-    
-    static func resolveExercise(name: String, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise? {
+    /*
+     fuzzyMatchName - resolve the provided name using our vocabulary
+     use false if the name has already been resolved, as it does in lift_resolve_params
+     
+     */
+    static func resolveExercise(name _name: String, fuzzyMatchName: Bool, context: NSManagedObjectContext, resolve: IntentParameter<AttributedString>) async throws -> Exercise? {
+        var name = _name
+        if fuzzyMatchName {
+            do {
+                let response = try await HeavierApp.functions.httpsCallable("exercise_resolve_name").call(["query": _name])
+                print("adjusted:\(response.data as? String ?? "none")")
+                name = response.data as? String ?? _name
+            } catch {}
+        }
+        
         let exactMatch = try? Exercise.CoreData.findExactMatch(name: name, caseSensitive: false, context: context)
         // look for exact match
         if let found = exactMatch {
