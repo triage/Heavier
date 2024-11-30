@@ -75,7 +75,7 @@ struct RecordLiftIntent: AppIntent {
         var exercise: Exercise!
         do {
             // try with chatgpt. If chatgpt fails for any reason, continue normally.
-            if let parsed = try await RecordLiftIntent.resolveParamsFromInput(String(message.characters)) {
+            if let parsed = await RecordLiftIntent.resolveParamsFromInput(String(message.characters)) {
                 self.reps = parsed.reps
                 self.sets = parsed.sets
                 self.name = parsed.name

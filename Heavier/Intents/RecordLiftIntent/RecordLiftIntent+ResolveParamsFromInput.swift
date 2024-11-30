@@ -12,21 +12,17 @@ import FirebaseFunctions
 @available(iOS 18.0, *)
 extension RecordLiftIntent {
     
-    static func resolveParamsFromInput(_ message: String) async throws -> ParamsResolved? {
+    static func resolveParamsFromInput(_ message: String) async -> ParamsResolved? {
         do {
             let response = try await HeavierApp.functions.httpsCallable("lift_resolve_params").call(["query": message])
-            print("response")
-            if let exerciseDict = response.data as? [String: Any] {
-                print("has data")
-                let data = try JSONSerialization.data(withJSONObject: exerciseDict, options: [])
-                let resolved = try JSONDecoder().decode(ParamsResolved.self, from: data)
-                print(resolved)
-                return resolved
-            } else {
-                print("couldn't deserialize")
+            guard let exerciseDict = response.data as? [String: Any] else {
+                return nil
             }
+            let data = try JSONSerialization.data(withJSONObject: exerciseDict, options: [])
+            let resolved = try JSONDecoder().decode(ParamsResolved.self, from: data)
+            return resolved
         } catch (let error) {
-            print(error)
+            /* noop */
         }
         return nil
     }

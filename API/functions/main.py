@@ -67,7 +67,6 @@ def lift_resolve_params(req: https_fn.CallableRequest) -> Response | dict[str, s
         =====
         {query}
         """
-    print(f"prompt:{prompt}")
 
     chat_completion = client.chat.completions.create(
         messages=[
@@ -88,8 +87,6 @@ def lift_resolve_params(req: https_fn.CallableRequest) -> Response | dict[str, s
     # Convert the response to JSON
     response_json = json.loads(response)
 
-    print(f"response_json:{response_json}")
-
     exercise_name: str = response_json["exercise"]
     exercise_name_original = None
     weight = response_json["weight"]
@@ -98,7 +95,6 @@ def lift_resolve_params(req: https_fn.CallableRequest) -> Response | dict[str, s
 
     exercise_name_match = _exercise_resolve_name(exercise_name)
     if exercise_name_match is not None:
-        print(f"got a match: {exercise_name_match}")
         exercise_name_original = exercise_name
         exercise_name = exercise_name_match
 
