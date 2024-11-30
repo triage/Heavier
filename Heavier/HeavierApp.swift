@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import OpenAI
 
 @main
 struct HeavierApp: App {
@@ -17,6 +18,7 @@ struct HeavierApp: App {
             RootView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear {
+                    print("openapikey:\(OpenAI.apiKey)")
                     FirebaseApp.configure()
             }
         }

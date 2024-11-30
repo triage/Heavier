@@ -10,6 +10,9 @@ import OpenAI
 
 extension OpenAI {
     static var apiKey: String? {
-        Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String
+        if let key = ProcessInfo.processInfo.environment["OPENAI_API_KEY"] {
+            return key
+        }
+        return nil
     }
 }
