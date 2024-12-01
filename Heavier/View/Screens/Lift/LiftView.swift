@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 import CoreData
+#if canImport(FirebaseFunctions)
+import FirebaseFunctions
+#endif
 
 struct LiftViewCloseButton: View {
     let action: () -> Void
@@ -126,6 +129,16 @@ struct LiftView: View {
         
         do {
             try? exercise.managedObjectContext!.save()
+#if canImport(FirebaseFunctions)
+            Task {
+                do {
+                    try await HeavierApp.functions.httpsCallable("exercise_add_name").call(["query": exercise.name!])
+                } catch {
+                    /* noop */
+                }
+            }
+            #endif
+            
             exercise.clearLastGroupShortDescriptionCache()
             
             let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)

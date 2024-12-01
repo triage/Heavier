@@ -23,7 +23,6 @@ struct HeavierApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .onAppear {
                     FirebaseApp.configure()
-//                    HeavierApp.functions.useEmulator(withHost: "http://127.0.0.1", port: 5001)
                 }
             }
         }

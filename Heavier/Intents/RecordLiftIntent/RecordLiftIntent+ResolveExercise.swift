@@ -22,7 +22,6 @@ extension RecordLiftIntent {
         if fuzzyMatchName {
             do {
                 let response = try await HeavierApp.functions.httpsCallable("exercise_resolve_name").call(["query": _name])
-                print("adjusted:\(response.data as? String ?? "none")")
                 name = response.data as? String ?? _name
             } catch {}
         }
@@ -43,7 +42,6 @@ extension RecordLiftIntent {
             let disambiguated = try await resolve.requestDisambiguation(among: matches.map {
                 AttributedString($0.name!)
             }, dialog: IntentDialog("We found a few results for \(name). Which one do you want to use?"))
-            print("disambiguated: \(disambiguated)")
             if let found = try? Exercise.CoreData.findExactMatch(name: String(disambiguated.characters), caseSensitive: true, context: context) {
                 return found
             }
@@ -54,6 +52,13 @@ extension RecordLiftIntent {
                 let exercise = Exercise(context: context)
                 exercise.name = String(name).capitalized
                 exercise.id = UUID()
+                Task {
+                    do {
+                        try await HeavierApp.functions.httpsCallable("exercise_add_name").call(["query": exercise.name!])
+                    } catch {
+                        /* noop */
+                    }
+                }
                 return exercise
             } else {
                 throw RecordLiftIntentError.willNotCreate

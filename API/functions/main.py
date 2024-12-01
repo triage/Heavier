@@ -5,11 +5,12 @@ import json
 from typing import Any
 
 from firebase_functions import https_fn
-from firebase_admin import initialize_app
+from firebase_admin import initialize_app, firestore
 from firebase_functions.params import StringParam
 from flask import Response
 from openai import OpenAI
 from rapidfuzz import process
+from exercise_add_name import exercise_add_name
 
 OPENAI_API_KEY = StringParam("OPENAI_API_KEY")
 
@@ -19,14 +20,15 @@ client = OpenAI(
 
 initialize_app()
 
-MINIMUM_FUZZY_SCORE = 80
+MINIMUM_FUZZY_SCORE = 70
 
 def _exercise_resolve_name(query: str) -> str | None:
-    with open("exercises.json") as f:
-        exercises = json.load(f)
-    names = map(lambda x: x["name"], exercises)
+    db = firestore.client()
+    doc_ref = db.collection("vocabulary").document("vocabulary")
+    names = doc_ref.get().to_dict().get("exercises")
     found = process.extractOne(query.lower(), names)
     score = found[1]
+    print("found", found)
     if score < MINIMUM_FUZZY_SCORE:
         return None
     return found[0]
