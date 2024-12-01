@@ -7,8 +7,6 @@
 
 import SwiftUI
 import Firebase
-import OpenAI
-import Firebase
 import FirebaseFunctions
 
 @main
