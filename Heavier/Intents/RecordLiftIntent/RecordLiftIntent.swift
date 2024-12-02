@@ -84,6 +84,11 @@ struct RecordLiftIntent: AppIntent {
                 if let name = self.name {
                     exercise = try await RecordLiftIntent.resolveExercise(name: name, fuzzyMatchName: false, context: context, resolve: $message)
                     self.name = exercise.name!
+                } else if let mostRecentLift = Lift.CoreData.mostRecent(context: context), let mostRecentExercise = mostRecentLift.exercise {
+                    // chatgpt couldn't find an exercise (or the user didn't specify one, ie: "5 reps at 500 pounds"
+                    // ... but there was a lift with an exercise super recently (5 minutes)
+                    // in this case, let's guess that they're talking about the same exercise fill it in for the users
+                    exercise = mostRecentExercise
                 }
             }
         } catch {

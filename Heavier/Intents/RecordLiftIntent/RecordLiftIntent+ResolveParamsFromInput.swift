@@ -21,7 +21,7 @@ extension RecordLiftIntent {
             let data = try JSONSerialization.data(withJSONObject: exerciseDict, options: [])
             let resolved = try JSONDecoder().decode(ParamsResolved.self, from: data)
             return resolved
-        } catch (let error) {
+        } catch {
             /* noop */
         }
         return nil

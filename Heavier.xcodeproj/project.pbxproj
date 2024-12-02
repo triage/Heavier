@@ -25,6 +25,7 @@
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
 		072809462CF548880052EDEC /* ExerciseSearchIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075905992CF3D7D500536BAF /* ExerciseSearchIntent.swift */; };
+		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
 		0748668E2CF766CC00C5ABFD /* WeightClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668D2CF766CC00C5ABFD /* WeightClassifier.mlmodel */; };
 		0748668F2CF766CC00C5ABFD /* RepsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668B2CF766CC00C5ABFD /* RepsClassifier.mlmodel */; };
 		074866902CF766CC00C5ABFD /* SetsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668C2CF766CC00C5ABFD /* SetsClassifier.mlmodel */; };
@@ -278,6 +279,7 @@
 		071E3926251AF3F900A35799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		071E588A26955ED000542610 /* ExercisesObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesObservable.swift; sourceTree = "<group>"; };
 		071E588C2696AB8800542610 /* Overload 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 6.xcdatamodel"; sourceTree = "<group>"; };
+		073150D92CFDFD080090F729 /* Lift+MostRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+MostRecent.swift"; sourceTree = "<group>"; };
 		0748668A2CF766CC00C5ABFD /* NameClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = NameClassifier.mlmodel; sourceTree = "<group>"; };
 		0748668B2CF766CC00C5ABFD /* RepsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RepsClassifier.mlmodel; sourceTree = "<group>"; };
 		0748668C2CF766CC00C5ABFD /* SetsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SetsClassifier.mlmodel; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 				07E3EA1F2CF9703B00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift */,
 				07E3EA1B2CF96F8F00E02286 /* RecordLiftIntentError.swift */,
 				07E3EA1D2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift */,
+				073150D92CFDFD080090F729 /* Lift+MostRecent.swift */,
 			);
 			path = RecordLiftIntent;
 			sourceTree = "<group>";
@@ -1268,6 +1271,7 @@
 				79F72E4E25AA5BC000C38F2E /* RecentLift.swift in Sources */,
 				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,
 				079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */,
+				073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */,
 				07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */,
 				070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */,
 				79B6B9DB25AD43F9008EC2DC /* CalendarButton.swift in Sources */,
