@@ -9,6 +9,11 @@ import Foundation
 import AppIntents
 import CoreLocation
 
+struct LiftsOnDateSummary {
+    let date: Date
+    let volume: Float
+}
+
 @available(iOS 18.0, *)
 @AssistantEntity(schema: .journal.entry)
 struct LiftEntity {
@@ -20,6 +25,50 @@ struct LiftEntity {
         case exerciseNotFound
     }
     
+    static var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.usesGroupingSeparator = true
+        return numberFormatter
+    }
+    
+    static func localizedDateFormatter(for date: Date) -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.month, .day], from: date)
+        
+        // Extract month and day as Int
+        guard let month = components.month, let day = components.day else {
+            return ""
+        }
+        
+        // Get the month name
+         let monthFormatter = DateFormatter()
+         monthFormatter.dateFormat = "MMMM"
+         monthFormatter.locale = Locale.current
+         let monthName = monthFormatter.monthSymbols[month - 1] // Adjust for 0-based index
+         
+         // Get the ordinal day
+         let numberFormatter = NumberFormatter()
+         numberFormatter.numberStyle = .ordinal
+         numberFormatter.locale = Locale.current
+         let ordinalDay = numberFormatter.string(from: NSNumber(value: day)) ?? "\(day)"
+         
+         // Combine month and ordinal day
+         let localizedFormat = DateFormatter.dateFormat(fromTemplate: "MMMMd", options: 0, locale: Locale.current) ?? "MMMM d"
+         if localizedFormat.contains("dMMMM") {
+             return "\(ordinalDay) \(monthName)" // e.g., "2nd January"
+         } else {
+             return "\(monthName) \(ordinalDay)" // e.g., "January 2nd"
+         }
+    }
+    
+    static var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("MMM dd")
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }
+    
     static var defaultQuery = Query()
     var displayRepresentation: DisplayRepresentation {
         switch context {
@@ -28,10 +77,22 @@ struct LiftEntity {
                let sets = sets,
                let weight = weight,
                let weightLocalized = Lift.localize(weight: weight),
-               let weightFormatted = NumberFormatter().string(from: weightLocalized as NSNumber),
+               let weightFormatted = LiftEntity.numberFormatter.string(from: weightLocalized as NSNumber),
                let units = units,
                let message = message {
-                let message = "Recorded \(String(message.characters)) \(sets) sets of \(reps) at \(weightFormatted) \(units)."
+                var volumeMessage: String = ""
+                if let dailyVolume = dailyVolume, let volumeFormatted = LiftEntity.numberFormatter.string(from: dailyVolume as NSNumber) {
+                    volumeMessage = ", for a total of \(volumeFormatted) \(units)"
+                }
+                
+                var message = "Recorded \(String(message.characters)) \(sets) sets of \(reps) at \(weightFormatted) \(units)\(volumeMessage)."
+                if let previousDate = previousDate,
+                   let volume = Lift.localize(weight: previousDate.volume),
+                   let volumeMessage = LiftEntity.numberFormatter.string(from: volume as NSNumber) {
+                    let dateFormatted = LiftEntity.localizedDateFormatter(for: previousDate.date)
+                    let previousMessage = "On \(dateFormatted), you did \(volumeMessage) solid ass \(units). Light weight, baby!"
+                    message.append("\n\(previousMessage)")
+                }
                 return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
             }
         case .searchFound:
@@ -59,6 +120,8 @@ struct LiftEntity {
     let units: String?
     let context: Context
     let query: String?
+    let dailyVolume: Float?
+    let previousDate: LiftsOnDateSummary?
     
     var mediaItems: [IntentFile]
     var entryDate: Date?
@@ -92,6 +155,8 @@ struct LiftEntity {
         units = nil
         weight = nil
         query = failedQuery
+        previousDate = nil
+        dailyVolume = nil
         message = .init(localized: "No lifts found")
         entryDate = nil
     }
@@ -105,6 +170,8 @@ struct LiftEntity {
             weight = lift.weight
             units = Settings().units == .imperial ? String(localized: "pounds") : String(localized: "kilograms")
             query = nil
+            previousDate = nil
+            dailyVolume = nil
             entryDate = lift.timestamp
             message = AttributedString(name)
             mediaItems = []
@@ -113,19 +180,27 @@ struct LiftEntity {
             context = .searchNotFound
             sets = nil
             reps = nil
+            previousDate = nil
             units = nil
             weight = nil
+            dailyVolume = nil
             query = nil
             message = .init(localized: "No lifts found")
             entryDate = nil
         }
     }
     
-    init?(lift: Lift, context _context: Context) {
+    init?(lift: Lift, dailyVolume: Float?, previousDate: (Date, [Lift])?, context _context: Context) {
         guard let id = lift.id, let exercise = lift.exercise, let name = exercise.name else {
             return nil
         }
         self.id = id
+        if let previousDate = previousDate {
+            self.previousDate = LiftsOnDateSummary(date: previousDate.0, volume: previousDate.1.volume)
+        } else {
+            self.previousDate = nil
+        }
+        self.dailyVolume = dailyVolume
         context = _context
         reps = lift.reps
         sets = lift.sets

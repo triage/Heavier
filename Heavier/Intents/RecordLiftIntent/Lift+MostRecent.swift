@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Algorithms
 
 extension Lift.CoreData {
     /*
@@ -44,7 +45,34 @@ extension Lift {
 }
 
 extension Exercise {
-    static func liftsOnPreviousDay(exercise: Exercise) -> [Lift]? {
-        
+    func liftsOnPreviousDay(context: NSManagedObjectContext) -> (Date, [Lift])? {
+        let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false)
+        let dates = try? context.fetch(fetchRequest).compactMap({ lift in
+            return lift.timestamp
+        }).map {
+            Calendar.current.startOfDay(for: $0)
+        }.filter {
+            Calendar.current.startOfDay(for: $0) != Calendar.current.startOfDay(for: Date())
+        }.uniqued().sorted(by: { first, second in
+            return first > second
+        })
+        if let previousDate = dates?.first {
+            let components = Calendar.current.dateComponents([.year, .month, .day], from: previousDate)
+            let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false, day: components)
+            if let lifts = try? context.fetch(fetchRequest), !lifts.isEmpty {
+                return (previousDate, lifts)
+            }
+        }
+        return nil
+    }
+    
+    func liftsToday(context: NSManagedObjectContext) -> [Lift]? {
+        let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false)
+        return try? context.fetch(fetchRequest).compactMap {
+            if let timestamp = $0.timestamp, Calendar.current.startOfDay(for: timestamp) == Calendar.current.startOfDay(for: Date()) {
+                return $0
+            }
+            return nil
+        }
     }
 }

@@ -25,6 +25,9 @@
     "Exercise name" : {
 
     },
+    "Exercise name, reps, sets and weight" : {
+
+    },
     "How many reps?" : {
 
     },
@@ -128,9 +131,6 @@
 
     },
     "Weight" : {
-
-    },
-    "What exercise?" : {
 
     }
   },

@@ -59,6 +59,7 @@
 		07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE016F254D16B7007E2BB7 /* MostRecentLift.swift */; };
 		07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */; };
 		07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE017C254D170C007E2BB7 /* Lift+ShortDescription.swift */; };
+		07CC43352CFEA8A20011691F /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 07CC43342CFEA8A20011691F /* Algorithms */; };
 		07CD00AD251C5027002FF127 /* Overload.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */; };
 		07D22D5228B9A39D003B9A62 /* ListViewObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */; };
 		07D22D5328B9A39D003B9A62 /* ListViewObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D22D5128B9A39D003B9A62 /* ListViewObservable.swift */; };
@@ -380,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
+				07CC43352CFEA8A20011691F /* Algorithms in Frameworks */,
 				0759BE7C2CFB3FBE002F1618 /* FirebaseFunctions in Frameworks */,
 				799A92A525AD2F6400470D11 /* Introspect in Frameworks */,
 				79B6BAB925B0A18D008EC2DC /* FirebaseCrashlytics in Frameworks */,
@@ -943,6 +945,7 @@
 				799A92A425AD2F6400470D11 /* Introspect */,
 				79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */,
 				0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */,
+				07CC43342CFEA8A20011691F /* Algorithms */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -1092,6 +1095,7 @@
 				79DF5E5025A16DE2000067E4 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				07C5F30F2CFEA70D00A51A3C /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -1903,12 +1907,20 @@
 				minimumVersion = 1.8.3;
 			};
 		};
+		07C5F30F2CFEA70D00A51A3C /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		796A43F02586CDF20066A2F3 /* XCRemoteSwiftPackageReference "SwiftlySearch" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/triage/SwiftlySearch";
 			requirement = {
-				branch = ES/hideOnChange;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
@@ -1947,6 +1959,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		07CC43342CFEA8A20011691F /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 07C5F30F2CFEA70D00A51A3C /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 		796A43F12586CDF20066A2F3 /* SwiftlySearch */ = {
 			isa = XCSwiftPackageProductDependency;

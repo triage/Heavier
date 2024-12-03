@@ -18,7 +18,7 @@ struct RecordLiftIntent: AppIntent {
 
     var title: String?
     
-    @Parameter(title: "Exercise", description: "What exercise?")
+    @Parameter(title: "Exercise", description: "Exercise name, reps, sets and weight")
     var message: AttributedString
     
     @Parameter(default: [])
@@ -62,7 +62,7 @@ struct RecordLiftIntent: AppIntent {
         guard let name = exercise.name, let reps = reps, let sets = sets, let weight = weight else {
             return nil
         }
-        return "Confirm \(name) \(sets) sets of \(reps) reps at \(weight) \(units)."
+        return "Confirm \(name) \(sets) sets of \(reps) at \(weight) \(units)."
     }
     
     @MainActor
@@ -91,7 +91,10 @@ struct RecordLiftIntent: AppIntent {
                     exercise = mostRecentExercise
                 }
             }
-        } catch {
+        } catch (let error) {
+            if error as? RecordLiftIntentError == RecordLiftIntentError.willNotCreate {
+                throw RecordLiftIntentError.willNotCreate
+            }
             // noop - continue
         }
         
@@ -135,9 +138,16 @@ struct RecordLiftIntent: AppIntent {
         lift.exercise = exercise
         try context.save() // Save changes on the background context
         
-        if let entity = LiftEntity(lift: lift, context: .record) {
+        let previousDate = exercise.liftsOnPreviousDay(context: context)
+        let liftsToday = exercise.liftsToday(context: context)
+        
+        if let entity = LiftEntity(
+            lift: lift,
+            dailyVolume: liftsToday?.volume,
+            previousDate: previousDate,
+            context: .record
+        ) {
             return .result(value: entity, dialog: IntentDialog(entity.displayRepresentation.title))
-            
         } else {
             throw AppIntentError.Unrecoverable.unknown
         }
