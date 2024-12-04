@@ -31,6 +31,10 @@
 		074866902CF766CC00C5ABFD /* SetsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668C2CF766CC00C5ABFD /* SetsClassifier.mlmodel */; };
 		074866912CF766CC00C5ABFD /* NameClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668A2CF766CC00C5ABFD /* NameClassifier.mlmodel */; };
 		074866932CF7B96D00C5ABFD /* LiftWordTagger.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 074866922CF7B96D00C5ABFD /* LiftWordTagger.mlmodel */; };
+		074C52982CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
+		074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
+		074C529B2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */; };
+		074C529C2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */; };
 		075905982CF3CF3900536BAF /* Exercise+ExactMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075905972CF3CF3800536BAF /* Exercise+ExactMatch.swift */; };
 		0759BE7C2CFB3FBE002F1618 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */; };
 		077DE8732CED9389006C5663 /* RecordLiftIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077C1FBB2CEA6DFE00A3EBEE /* RecordLiftIntent.swift */; };
@@ -286,6 +290,8 @@
 		0748668C2CF766CC00C5ABFD /* SetsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SetsClassifier.mlmodel; sourceTree = "<group>"; };
 		0748668D2CF766CC00C5ABFD /* WeightClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = WeightClassifier.mlmodel; sourceTree = "<group>"; };
 		074866922CF7B96D00C5ABFD /* LiftWordTagger.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = LiftWordTagger.mlmodel; path = CoreML/LiftWordTagger.mlmodel; sourceTree = SOURCE_ROOT; };
+		074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Heavier.swift"; sourceTree = "<group>"; };
+		074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		075905842CF22F8B00536BAF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		075905972CF3CF3800536BAF /* Exercise+ExactMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+ExactMatch.swift"; sourceTree = "<group>"; };
 		075905992CF3D7D500536BAF /* ExerciseSearchIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSearchIntent.swift; sourceTree = "<group>"; };
@@ -448,6 +454,8 @@
 				070221902572BA8800456C4C /* DateComponents+Range.swift */,
 				079331FA269BD33700D37202 /* Date+Month.swift */,
 				079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */,
+				074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */,
+				074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -560,13 +568,20 @@
 			path = CoreML;
 			sourceTree = "<group>";
 		};
+		074C529D2CFF6AE70078D4FE /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				07E3EA212CF9708600E02286 /* LiftEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		075905922CF2889A00536BAF /* Intents */ = {
 			isa = PBXGroup;
 			children = (
 				07E3EA272CF9710500E02286 /* RecordLiftIntent */,
 				075905992CF3D7D500536BAF /* ExerciseSearchIntent.swift */,
 				075905972CF3CF3800536BAF /* Exercise+ExactMatch.swift */,
-				07E3EA212CF9708600E02286 /* LiftEntity.swift */,
 			);
 			path = Intents;
 			sourceTree = "<group>";
@@ -737,6 +752,7 @@
 		07E3EA272CF9710500E02286 /* RecordLiftIntent */ = {
 			isa = PBXGroup;
 			children = (
+				074C529D2CFF6AE70078D4FE /* Entity */,
 				077C1FBB2CEA6DFE00A3EBEE /* RecordLiftIntent.swift */,
 				07E3EA1F2CF9703B00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift */,
 				07E3EA1B2CF96F8F00E02286 /* RecordLiftIntentError.swift */,
@@ -1226,6 +1242,7 @@
 				07E3EA222CF9708600E02286 /* LiftEntity.swift in Sources */,
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
 				795A76B525981FA80094052B /* NotesView.swift in Sources */,
+				074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */,
 				0798EAF225771CB000008A28 /* SettingsView.swift in Sources */,
 				070494C42577414700AF00E6 /* Settings.swift in Sources */,
 				074866932CF7B96D00C5ABFD /* LiftWordTagger.mlmodel in Sources */,
@@ -1271,6 +1288,7 @@
 				077F8F46256987680075B307 /* Exercise+Init.swift in Sources */,
 				079331FB269BD33700D37202 /* Date+Month.swift in Sources */,
 				798BB51D2597E6AE00171407 /* ObservableValue.swift in Sources */,
+				074C529B2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */,
 				07BD42882576748100E5CA05 /* Lift+Grouping.swift in Sources */,
 				79F72E4E25AA5BC000C38F2E /* RecentLift.swift in Sources */,
 				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,
@@ -1319,6 +1337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07D4A3F626B726EE00C1F243 /* RootCalendarView.swift in Sources */,
+				074C529C2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */,
 				79B688B7259A89FA00845127 /* DifferenceView.swift in Sources */,
 				79B688B8259A89FA00845127 /* LiftPicker.swift in Sources */,
 				79B688B9259A89FB00845127 /* LiftView.swift in Sources */,
@@ -1338,6 +1357,7 @@
 				79B688C3259A89FB00845127 /* Overload.xcdatamodeld in Sources */,
 				79B6888C259A89CD00845127 /* Conversion.swift in Sources */,
 				79B6888D259A89CD00845127 /* MetricImperialConversion.swift in Sources */,
+				074C52982CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */,
 				79B6888E259A89CD00845127 /* Measurement.swift in Sources */,
 				79B6888F259A89CD00845127 /* Constants.swift in Sources */,
 				79B68890259A89CD00845127 /* Exercise+FetchRequest.swift in Sources */,

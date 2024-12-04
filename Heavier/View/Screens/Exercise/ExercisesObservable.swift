@@ -21,9 +21,7 @@ final class ExercisesObservable: NSObject, ObservableObject {
         do {
             try fetchedResultsController.performFetch()
             exercises = fetchedResultsController.fetchedObjects ?? []
-        } catch {
-            print("failed to fetch items!")
-        }
+        } catch { /* noop */ }
     }
 }
 

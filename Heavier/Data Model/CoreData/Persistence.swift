@@ -122,7 +122,6 @@ struct PersistenceController {
                                 )
                                 promise(.success(true))
                             } catch {
-                                print("unable to save changes to relevance")
                                 promise(.success(true))
                             }
                         }
@@ -162,7 +161,6 @@ struct PersistenceController {
                             UserDefaults.standard.set(true, forKey: PersistenceController.defaultsV2Key)
                             promise(.success(true))
                         } catch {
-                            print("unable to save default content")
                             promise(.success(true))
                         }
                     }

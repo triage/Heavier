@@ -13,6 +13,16 @@
     "Body under construction. Mind on a mission" : {
 
     },
+    "Confirm %@ %lld sets of %lld at %@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm %1$@ %2$lld sets of %3$lld at %4$@ %5$@."
+          }
+        }
+      }
+    },
     "Create a new exercise for %@?" : {
 
     },
@@ -26,9 +36,6 @@
 
     },
     "Exercise name, reps, sets and weight" : {
-
-    },
-    "How many reps?" : {
 
     },
     "How many sets?" : {

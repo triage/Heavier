@@ -18,36 +18,37 @@ extension Lift.CoreData {
     static func mostRecent(context: NSManagedObjectContext) -> Lift? {
         let maximumTimeAgo = Date().addingTimeInterval(-5 * 60)
         let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "date >= %@", maximumTimeAgo as CVarArg)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        fetchRequest.predicate = NSPredicate(format: "timestamp >= %@", maximumTimeAgo as CVarArg)
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
         fetchRequest.fetchLimit = 1
-        do {
-            let result = try context.fetch(fetchRequest)
-            return (result.first)
-        } catch {
-            return nil
-        }
+        return try? context.fetch(fetchRequest).first
     }
 }
 
 extension Lift {
-    static func wasFirstLiftOfExerciseToday(lift: Lift, context: NSManagedObjectContext) throws -> Bool {
+    func wasFirstLiftOfExerciseToday() throws -> Bool {
+        guard let managedObjectContext = managedObjectContext else {
+            return false
+        }
         let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
         guard let fetchRequest = Lift.CoreData.fetchRequest(day: dateComponents) else {
             return false
         }
-        let liftsToday = try? context.fetch(fetchRequest)
+        let liftsToday = try? managedObjectContext.fetch(fetchRequest)
         if liftsToday?.count == 1, let first = liftsToday?.first {
-            return first == lift
+            return first == self
         }
         return false
     }
 }
 
 extension Exercise {
-    func liftsOnPreviousDay(context: NSManagedObjectContext) -> (Date, [Lift])? {
+    func liftsOnPreviousDay() -> (Date, [Lift])? {
+        guard let managedObjectContext = managedObjectContext else {
+            return nil
+        }
         let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false)
-        let dates = try? context.fetch(fetchRequest).compactMap({ lift in
+        let dates = try? managedObjectContext.fetch(fetchRequest).compactMap({ lift in
             return lift.timestamp
         }).map {
             Calendar.current.startOfDay(for: $0)
@@ -57,19 +58,21 @@ extension Exercise {
             return first > second
         })
         if let previousDate = dates?.first {
-            let components = Calendar.current.dateComponents([.year, .month, .day], from: previousDate)
-            let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false, day: components)
-            if let lifts = try? context.fetch(fetchRequest), !lifts.isEmpty {
+            let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false, date: previousDate)
+            if let lifts = try? managedObjectContext.fetch(fetchRequest), !lifts.isEmpty {
                 return (previousDate, lifts)
             }
         }
         return nil
     }
     
-    func liftsToday(context: NSManagedObjectContext) -> [Lift]? {
+    func liftsToday() -> [Lift]? {
+        guard let managedObjectContext = managedObjectContext else {
+            return nil
+        }
         let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false)
-        return try? context.fetch(fetchRequest).compactMap {
-            if let timestamp = $0.timestamp, Calendar.current.startOfDay(for: timestamp) == Calendar.current.startOfDay(for: Date()) {
+        return try? managedObjectContext.fetch(fetchRequest).compactMap {
+            if let timestamp = $0.timestamp, Calendar.autoupdatingCurrent.startOfDay(for: timestamp) == Calendar.autoupdatingCurrent.startOfDay(for: Date()) {
                 return $0
             }
             return nil

@@ -18,7 +18,7 @@ struct RecordLiftIntent: AppIntent {
 
     var title: String?
     
-    @Parameter(title: "Exercise", description: "Exercise name, reps, sets and weight")
+    @Parameter(title: "Exercise", description: LocalizedStringResource("Exercise name, reps, sets and weight"))
     var message: AttributedString
     
     @Parameter(default: [])
@@ -30,16 +30,16 @@ struct RecordLiftIntent: AppIntent {
     @Parameter
     var location: CLPlacemark?
 
-    @Parameter(title: "Name", description: "Exercise name")
+    @Parameter(title: "Name", description: LocalizedStringResource("Exercise name"))
     var name: String?
     
-    @Parameter(title: "Sets", description: "The number of sets")
+    @Parameter(title: "Sets", description: LocalizedStringResource("The number of sets"))
     var sets: Int?
     
-    @Parameter(title: "Reps", description: "The number of reps")
+    @Parameter(title: "Reps", description: LocalizedStringResource("The number of reps"))
     var reps: Int?
     
-    @Parameter(title: "Weight", description: "The amount of weight lifted")
+    @Parameter(title: "Weight", description: LocalizedStringResource("The amount of weight lifted"))
     var weight: Double?
     
     static var parameterSummary: some ParameterSummary {
@@ -59,10 +59,15 @@ struct RecordLiftIntent: AppIntent {
     }
     
     func confirmationDialog(exercise: Exercise, units: String, reps: Int? = nil, sets: Int? = nil, weight: Double? = nil) -> String? {
-        guard let name = exercise.name, let reps = reps, let sets = sets, let weight = weight else {
+        guard let name = exercise.name,
+              let reps = reps,
+              let sets = sets,
+              let weight = weight,
+              let weightFormatted = NumberFormatter.Heavier.weightFormatter.string(from: weight as NSNumber)
+        else {
             return nil
         }
-        return "Confirm \(name) \(sets) sets of \(reps) at \(weight) \(units)."
+        return String(localized: "Confirm \(name) \(sets) sets of \(reps) at \(weightFormatted) \(units).")
     }
     
     @MainActor
@@ -83,11 +88,13 @@ struct RecordLiftIntent: AppIntent {
 
                 if let name = self.name {
                     exercise = try await RecordLiftIntent.resolveExercise(name: name, fuzzyMatchName: false, context: context, resolve: $message)
-                    self.name = exercise.name!
                 } else if let mostRecentLift = Lift.CoreData.mostRecent(context: context), let mostRecentExercise = mostRecentLift.exercise {
-                    // chatgpt couldn't find an exercise (or the user didn't specify one, ie: "5 reps at 500 pounds"
-                    // ... but there was a lift with an exercise super recently (5 minutes)
-                    // in this case, let's guess that they're talking about the same exercise fill it in for the users
+                    /*
+                     chatgpt couldn't find an exercise (or the user didn't specify one,
+                     ie: "5 reps at 500 pounds" ... but there was a lift with an exercise
+                     super recently (5 minutes). In this case, let's guess that they're
+                     talking about the same exercise, and fill it in for the users
+                     */
                     exercise = mostRecentExercise
                 }
             }
@@ -95,24 +102,29 @@ struct RecordLiftIntent: AppIntent {
             if error as? RecordLiftIntentError == RecordLiftIntentError.willNotCreate {
                 throw RecordLiftIntentError.willNotCreate
             }
-            // noop - continue
         }
         
-        if exercise == nil {
+        if let exercise = exercise {
+            name = exercise.name
+        } else {
             exercise = try await RecordLiftIntent.resolveExercise(name: name ?? String(message.characters), fuzzyMatchName: true, context: context, resolve: $message)
-            self.name = exercise.name!
+            if let name = exercise?.name {
+                self.name = name
+            } else {
+                throw AppIntentError.Unrecoverable.entityNotFound
+            }
         }
         
         if reps == nil {
-            self.reps = try await $reps.requestValue("How many reps?")
+            self.reps = try await $reps.requestValue(.init(stringLiteral: String(localized: "How much weight?")))
         }
 
         if sets == nil {
-            self.sets = try await $reps.requestValue("How many sets?")
+            self.sets = try await $reps.requestValue(.init(stringLiteral: String(localized: "How many sets?")))
         }
         
         if weight == nil {
-            self.weight = try await $weight.requestValue("How much weight?")
+            self.weight = try await $weight.requestValue(.init(stringLiteral: String(localized: "How much weight?")))
         }
         
         guard let sets = sets, let reps = reps, let weight = weight else {
@@ -138,8 +150,8 @@ struct RecordLiftIntent: AppIntent {
         lift.exercise = exercise
         try context.save() // Save changes on the background context
         
-        let previousDate = exercise.liftsOnPreviousDay(context: context)
-        let liftsToday = exercise.liftsToday(context: context)
+        let previousDate = exercise.liftsOnPreviousDay()
+        let liftsToday = exercise.liftsToday()
         
         if let entity = LiftEntity(
             lift: lift,

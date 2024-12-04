@@ -1,7 +1,5 @@
 from firebase_functions import https_fn
-
 from vocabulary import Vocabulary
-
 
 @https_fn.on_call()
 def exercise_add_name(req: https_fn.CallableRequest) -> https_fn.Response:

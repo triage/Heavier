@@ -25,13 +25,6 @@ struct LiftEntity {
         case exerciseNotFound
     }
     
-    static var numberFormatter: NumberFormatter {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.maximumFractionDigits = 0
-        numberFormatter.usesGroupingSeparator = true
-        return numberFormatter
-    }
-    
     static func localizedDateFormatter(for date: Date) -> String {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.month, .day], from: date)
@@ -42,16 +35,9 @@ struct LiftEntity {
         }
         
         // Get the month name
-         let monthFormatter = DateFormatter()
-         monthFormatter.dateFormat = "MMMM"
-         monthFormatter.locale = Locale.current
-         let monthName = monthFormatter.monthSymbols[month - 1] // Adjust for 0-based index
+        let monthName = DateFormatter.Heaver.monthNameFormatter.monthSymbols[month - 1] // Adjust for 0-based index
          
-         // Get the ordinal day
-         let numberFormatter = NumberFormatter()
-         numberFormatter.numberStyle = .ordinal
-         numberFormatter.locale = Locale.current
-         let ordinalDay = numberFormatter.string(from: NSNumber(value: day)) ?? "\(day)"
+        let ordinalDay = NumberFormatter.Heavier.ordinalDayFormatter.string(from: NSNumber(value: day)) ?? "\(day)"
          
          // Combine month and ordinal day
          let localizedFormat = DateFormatter.dateFormat(fromTemplate: "MMMMd", options: 0, locale: Locale.current) ?? "MMMM d"
@@ -62,13 +48,6 @@ struct LiftEntity {
          }
     }
     
-    static var dateFormatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMM dd")
-        dateFormatter.timeStyle = .none
-        return dateFormatter
-    }
-    
     static var defaultQuery = Query()
     var displayRepresentation: DisplayRepresentation {
         switch context {
@@ -77,20 +56,21 @@ struct LiftEntity {
                let sets = sets,
                let weight = weight,
                let weightLocalized = Lift.localize(weight: weight),
-               let weightFormatted = LiftEntity.numberFormatter.string(from: weightLocalized as NSNumber),
+               let weightFormatted = NumberFormatter.Heavier.weightFormatter.string(from: weightLocalized as NSNumber),
                let units = units,
                let message = message {
                 var volumeMessage: String = ""
-                if let dailyVolume = dailyVolume, let volumeFormatted = LiftEntity.numberFormatter.string(from: dailyVolume as NSNumber) {
-                    volumeMessage = ", for a total of \(volumeFormatted) \(units)"
+                if let dailyVolume = dailyVolume,
+                   let dailyVolumeFormatted = NumberFormatter.Heavier.weightFormatter.string(from: dailyVolume as NSNumber) {
+                    volumeMessage = ", for a daily total of \(dailyVolumeFormatted) \(units)"
                 }
                 
                 var message = "Recorded \(String(message.characters)) \(sets) sets of \(reps) at \(weightFormatted) \(units)\(volumeMessage)."
                 if let previousDate = previousDate,
                    let volume = Lift.localize(weight: previousDate.volume),
-                   let volumeMessage = LiftEntity.numberFormatter.string(from: volume as NSNumber) {
+                   let volumeMessage = NumberFormatter.Heavier.weightFormatter.string(from: volume as NSNumber) {
                     let dateFormatted = LiftEntity.localizedDateFormatter(for: previousDate.date)
-                    let previousMessage = "On \(dateFormatted), you did \(volumeMessage) solid ass \(units). Light weight, baby!"
+                    let previousMessage = "On \(dateFormatted), you lifted \(volumeMessage) \(units)."
                     message.append("\n\(previousMessage)")
                 }
                 return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
