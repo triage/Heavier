@@ -127,11 +127,17 @@ struct RecordLiftIntent: AppIntent {
             self.weight = try await $weight.requestValue(.init(stringLiteral: String(localized: "How much weight?")))
         }
         
-        guard let sets = sets, let reps = reps, let weight = weight else {
-            throw AppIntentError.Unrecoverable.entityNotFound
-        }
-        
-        guard let name = name, let confirmationDialog = confirmationDialog(exercise: exercise, units: units, reps: reps, sets: sets, weight: weight) else {
+        guard let sets = sets,
+              let reps = reps,
+              let weight = weight,
+              let name = name,
+              let confirmationDialog = confirmationDialog(
+                exercise: exercise,
+                units: units,
+                reps: reps,
+                sets: sets,
+                weight: weight
+              ) else {
             throw AppIntentError.Unrecoverable.entityNotFound
         }
         
