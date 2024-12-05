@@ -72,7 +72,6 @@ extension Exercise {
         }
         let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: true, date: Date())
         let lifts = try? managedObjectContext.fetch(fetchRequest)
-        print("liftsToday: \(lifts ?? [])")
         return lifts
     }
 }

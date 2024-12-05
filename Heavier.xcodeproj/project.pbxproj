@@ -47,7 +47,7 @@
 		079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */; };
 		079E7474256B363200D87F98 /* Exercise+LiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7473256B363200D87F98 /* Exercise+LiftDate.swift */; };
 		079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E747B256B600100D87F98 /* Lift+Bodyweight.swift */; };
-		07A7B53C25491EA3006468C1 /* Color+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+Heavier.swift */; };
+		07A7B53C25491EA3006468C1 /* Color+UIColor in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+UIColor */; };
 		07A7B544254A7396006468C1 /* LiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B543254A7396006468C1 /* LiftView.swift */; };
 		07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
 		07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B30650257460A8005CB631 /* List+SeparatorInset.swift */; };
@@ -129,7 +129,7 @@
 		79B6889F259A89CD00845127 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798BB51C2597E6AE00171407 /* ObservableValue.swift */; };
 		79B688A0259A89CD00845127 /* DateComponents+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070221902572BA8800456C4C /* DateComponents+Range.swift */; };
 		79B688A1259A89CD00845127 /* JSONSerialization+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */; };
-		79B688A2259A89CD00845127 /* Color+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+Heavier.swift */; };
+		79B688A2259A89CD00845127 /* Color+UIColor in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+UIColor */; };
 		79B688A3259A89CD00845127 /* List+SeparatorInset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B30650257460A8005CB631 /* List+SeparatorInset.swift */; };
 		79B688A4259A89CD00845127 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D435142547CD5900F16668 /* Fonts.swift */; };
 		79B688A6259A89CD00845127 /* UILabel+Margins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CAC6FD258F153A00B32630 /* UILabel+Margins.swift */; };
@@ -303,7 +303,7 @@
 		079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		079E7473256B363200D87F98 /* Exercise+LiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+LiftDate.swift"; sourceTree = "<group>"; };
 		079E747B256B600100D87F98 /* Lift+Bodyweight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Bodyweight.swift"; sourceTree = "<group>"; };
-		07A7B53B25491EA3006468C1 /* Color+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Heavier.swift"; sourceTree = "<group>"; };
+		07A7B53B25491EA3006468C1 /* Color+UIColor */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Color+UIColor"; sourceTree = "<group>"; };
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
 		07A7B548254BB7E3006468C1 /* TransparentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPicker.swift; sourceTree = "<group>"; };
 		07B30650257460A8005CB631 /* List+SeparatorInset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+SeparatorInset.swift"; sourceTree = "<group>"; };
@@ -615,7 +615,7 @@
 		07A7B53A25491E8F006468C1 /* Color */ = {
 			isa = PBXGroup;
 			children = (
-				07A7B53B25491EA3006468C1 /* Color+Heavier.swift */,
+				07A7B53B25491EA3006468C1 /* Color+UIColor */,
 			);
 			path = Color;
 			sourceTree = "<group>";
@@ -1216,7 +1216,7 @@
 				071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */,
 				07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */,
 				07DA92EA25850A4800FB95BB /* Constants.swift in Sources */,
-				07A7B53C25491EA3006468C1 /* Color+Heavier.swift in Sources */,
+				07A7B53C25491EA3006468C1 /* Color+UIColor in Sources */,
 				07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */,
 				07E3EA222CF9708600E02286 /* LiftEntity.swift in Sources */,
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
@@ -1357,7 +1357,7 @@
 				79DF5E6925A1792A000067E4 /* Lift+Bounds.swift in Sources */,
 				79B688A0259A89CD00845127 /* DateComponents+Range.swift in Sources */,
 				79B688A1259A89CD00845127 /* JSONSerialization+Load.swift in Sources */,
-				79B688A2259A89CD00845127 /* Color+Heavier.swift in Sources */,
+				79B688A2259A89CD00845127 /* Color+UIColor in Sources */,
 				79F72E5525AA5BC500C38F2E /* RecentLift.swift in Sources */,
 				79B688A3259A89CD00845127 /* List+SeparatorInset.swift in Sources */,
 				79B688A4259A89CD00845127 /* Fonts.swift in Sources */,

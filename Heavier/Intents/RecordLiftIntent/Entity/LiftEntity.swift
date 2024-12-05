@@ -40,7 +40,6 @@ struct LiftEntity {
                 if let dailyVolume = dailyVolume,
                    let dailyVolumeLocalized = Lift.localize(weight: dailyVolume),
                    let dailyVolumeFormatted = NumberFormatter.Heavier.weightFormatter.string(from: dailyVolumeLocalized as NSNumber) {
-                    print("dailyvolume:\(dailyVolume) normalized:\(Lift.normalize(weight: dailyVolume)) formatted: \(dailyVolumeFormatted)")
                     volumeMessage = String(localized: ", for a daily total of \(dailyVolumeFormatted) \(units)")
                 }
                 
