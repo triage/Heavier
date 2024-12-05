@@ -25,11 +25,6 @@
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
 		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
-		0748668E2CF766CC00C5ABFD /* WeightClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668D2CF766CC00C5ABFD /* WeightClassifier.mlmodel */; };
-		0748668F2CF766CC00C5ABFD /* RepsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668B2CF766CC00C5ABFD /* RepsClassifier.mlmodel */; };
-		074866902CF766CC00C5ABFD /* SetsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668C2CF766CC00C5ABFD /* SetsClassifier.mlmodel */; };
-		074866912CF766CC00C5ABFD /* NameClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668A2CF766CC00C5ABFD /* NameClassifier.mlmodel */; };
-		074866932CF7B96D00C5ABFD /* LiftWordTagger.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 074866922CF7B96D00C5ABFD /* LiftWordTagger.mlmodel */; };
 		074C52982CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C529B2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */; };
@@ -286,11 +281,6 @@
 		071E588A26955ED000542610 /* ExercisesObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesObservable.swift; sourceTree = "<group>"; };
 		071E588C2696AB8800542610 /* Overload 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 6.xcdatamodel"; sourceTree = "<group>"; };
 		073150D92CFDFD080090F729 /* Lift+MostRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+MostRecent.swift"; sourceTree = "<group>"; };
-		0748668A2CF766CC00C5ABFD /* NameClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = NameClassifier.mlmodel; sourceTree = "<group>"; };
-		0748668B2CF766CC00C5ABFD /* RepsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = RepsClassifier.mlmodel; sourceTree = "<group>"; };
-		0748668C2CF766CC00C5ABFD /* SetsClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SetsClassifier.mlmodel; sourceTree = "<group>"; };
-		0748668D2CF766CC00C5ABFD /* WeightClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = WeightClassifier.mlmodel; sourceTree = "<group>"; };
-		074866922CF7B96D00C5ABFD /* LiftWordTagger.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = LiftWordTagger.mlmodel; path = CoreML/LiftWordTagger.mlmodel; sourceTree = SOURCE_ROOT; };
 		074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		075905842CF22F8B00536BAF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -559,18 +549,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		074866892CF766BA00C5ABFD /* CoreML */ = {
-			isa = PBXGroup;
-			children = (
-				074866922CF7B96D00C5ABFD /* LiftWordTagger.mlmodel */,
-				0748668A2CF766CC00C5ABFD /* NameClassifier.mlmodel */,
-				0748668B2CF766CC00C5ABFD /* RepsClassifier.mlmodel */,
-				0748668C2CF766CC00C5ABFD /* SetsClassifier.mlmodel */,
-				0748668D2CF766CC00C5ABFD /* WeightClassifier.mlmodel */,
-			);
-			path = CoreML;
-			sourceTree = "<group>";
-		};
 		074C529D2CFF6AE70078D4FE /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,7 +642,6 @@
 		07D435192547D4C900F16668 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				074866892CF766BA00C5ABFD /* CoreML */,
 				071E3910251AF3F900A35799 /* Info.plist */,
 				079331FD26A3C95200D37202 /* Heavier.entitlements */,
 				071E3906251AF3F900A35799 /* Assets.xcassets */,
@@ -1247,7 +1224,6 @@
 				074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */,
 				0798EAF225771CB000008A28 /* SettingsView.swift in Sources */,
 				070494C42577414700AF00E6 /* Settings.swift in Sources */,
-				074866932CF7B96D00C5ABFD /* LiftWordTagger.mlmodel in Sources */,
 				79968A8825AD368900E318BE /* UIScrollViewDelegateObservable.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
 				07E822C62D01FAC5001E6953 /* Date+MonthDayRepresentation.swift in Sources */,
@@ -1301,10 +1277,6 @@
 				070494CC257747C500AF00E6 /* Lift+Weight.swift in Sources */,
 				79B6B9DB25AD43F9008EC2DC /* CalendarButton.swift in Sources */,
 				07E3EA1C2CF96F8F00E02286 /* RecordLiftIntentError.swift in Sources */,
-				0748668E2CF766CC00C5ABFD /* WeightClassifier.mlmodel in Sources */,
-				0748668F2CF766CC00C5ABFD /* RepsClassifier.mlmodel in Sources */,
-				074866902CF766CC00C5ABFD /* SetsClassifier.mlmodel in Sources */,
-				074866912CF766CC00C5ABFD /* NameClassifier.mlmodel in Sources */,
 				07D4353A2547D68B00F16668 /* ListView.swift in Sources */,
 				07BE0170254D16B7007E2BB7 /* MostRecentLift.swift in Sources */,
 				79F72E6525AB5AD800C38F2E /* ExerciseCalendar.swift in Sources */,

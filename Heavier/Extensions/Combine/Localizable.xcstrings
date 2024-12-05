@@ -148,9 +148,6 @@
     "Save" : {
       "comment" : "Save"
     },
-    "Search a lift" : {
-
-    },
     "Select Date" : {
       "comment" : "Select Date"
     },
@@ -185,9 +182,6 @@
       "comment" : "Units"
     },
     "We found a few results for %@. Which one do you want to use?" : {
-
-    },
-    "We found a few results for %@. Which one do you want?" : {
 
     },
     "We were unable to find a recent lift for %@" : {
