@@ -4,6 +4,36 @@
     "" : {
 
     },
+    ", for a daily total of %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : ", for a daily total of %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ of %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ of %2$@"
+          }
+        }
+      }
+    },
     "${message} ${sets} sets of ${reps} reps at ${weight}" : {
 
     },
@@ -50,11 +80,23 @@
     "If you cheat, you only cheat yourself" : {
 
     },
+    "Imperial (lb)" : {
+      "comment" : "Settings - Units - Imperial"
+    },
     "It doesn't get easier. You just get stronger" : {
 
     },
+    "kg" : {
+      "comment" : "Kilograms (abbreviation"
+    },
     "kilograms" : {
 
+    },
+    "lb" : {
+      "comment" : "Pounds (abbreviation"
+    },
+    "Metric (kg)" : {
+      "comment" : "Settings - Units - Metric"
     },
     "Most recent lift:" : {
       "comment" : "Most recent lift"
@@ -74,14 +116,31 @@
     "Notes" : {
       "comment" : "Notes"
     },
-    "OK! We won't create this exercise" : {
-
+    "On %@, you lifted %@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "On %1$@, you lifted %2$@ %3$@."
+          }
+        }
+      }
     },
     "pounds" : {
 
     },
     "Record a lift" : {
 
+    },
+    "Recorded %@ %d sets of %d at %@ %@%@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Recorded %1$@ %2$d sets of %3$d at %4$@ %5$@%6$@."
+          }
+        }
+      }
     },
     "Reps" : {
 
@@ -139,6 +198,16 @@
     },
     "Weight" : {
 
+    },
+    "Your most recent lift of %@ was on %@. You did %d sets of %d with %@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your most recent lift of %1$@ was on %2$@. You did %3$d sets of %4$d with %5$@ %6$@."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

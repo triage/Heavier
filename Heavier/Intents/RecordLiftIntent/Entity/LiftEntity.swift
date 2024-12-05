@@ -25,29 +25,6 @@ struct LiftEntity {
         case exerciseNotFound
     }
     
-    static func localizedDateFormatter(for date: Date) -> String {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.month, .day], from: date)
-        
-        // Extract month and day as Int
-        guard let month = components.month, let day = components.day else {
-            return ""
-        }
-        
-        // Get the month name
-        let monthName = DateFormatter.Heaver.monthNameFormatter.monthSymbols[month - 1] // Adjust for 0-based index
-         
-        let ordinalDay = NumberFormatter.Heavier.ordinalDayFormatter.string(from: NSNumber(value: day)) ?? "\(day)"
-         
-         // Combine month and ordinal day
-         let localizedFormat = DateFormatter.dateFormat(fromTemplate: "MMMMd", options: 0, locale: Locale.current) ?? "MMMM d"
-         if localizedFormat.contains("dMMMM") {
-             return "\(ordinalDay) \(monthName)" // e.g., "2nd January"
-         } else {
-             return "\(monthName) \(ordinalDay)" // e.g., "January 2nd"
-         }
-    }
-    
     static var defaultQuery = Query()
     var displayRepresentation: DisplayRepresentation {
         switch context {
@@ -61,35 +38,47 @@ struct LiftEntity {
                let message = message {
                 var volumeMessage: String = ""
                 if let dailyVolume = dailyVolume,
-                   let dailyVolumeFormatted = NumberFormatter.Heavier.weightFormatter.string(from: dailyVolume as NSNumber) {
-                    volumeMessage = ", for a daily total of \(dailyVolumeFormatted) \(units)"
+                   let dailyVolumeLocalized = Lift.localize(weight: dailyVolume),
+                   let dailyVolumeFormatted = NumberFormatter.Heavier.weightFormatter.string(from: dailyVolumeLocalized as NSNumber) {
+                    print("dailyvolume:\(dailyVolume) normalized:\(Lift.normalize(weight: dailyVolume)) formatted: \(dailyVolumeFormatted)")
+                    volumeMessage = String(localized: ", for a daily total of \(dailyVolumeFormatted) \(units)")
                 }
                 
-                var message = "Recorded \(String(message.characters)) \(sets) sets of \(reps) at \(weightFormatted) \(units)\(volumeMessage)."
+                var message = String(localized: "Recorded \(String(message.characters)) \(sets) sets of \(reps) at \(weightFormatted) \(units)\(volumeMessage).")
                 if let previousDate = previousDate,
                    let volume = Lift.localize(weight: previousDate.volume),
-                   let volumeMessage = NumberFormatter.Heavier.weightFormatter.string(from: volume as NSNumber) {
-                    let dateFormatted = LiftEntity.localizedDateFormatter(for: previousDate.date)
-                    let previousMessage = "On \(dateFormatted), you lifted \(volumeMessage) \(units)."
+                   let volumeMessage = NumberFormatter.Heavier.weightFormatter.string(from: volume as NSNumber),
+                   let dateFormatted = previousDate.date.localizedMonthDayRepresentation {
+                    let previousMessage = String(localized: "On \(dateFormatted), you lifted \(volumeMessage) \(units).")
                     message.append("\n\(previousMessage)")
                 }
                 return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
             }
         case .searchFound:
-            if let reps = reps, let sets = sets, let weight = weight, let units = units, let message = message {
-                let message = "Your most recent lift of \(String(message.characters)) was on \(entryDate!). You did \(sets) sets of \(reps) with \(String(describing: Lift.localize(weight: weight)))) \(units)."
-                return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
+            if let weight = Lift.localize(weight: weight), let weightFormatted = NumberFormatter.Heavier.weightFormatter.string(from: weight as NSNumber) {
+                if let reps = reps,
+                   let sets = sets,
+                   let units = units,
+                   let message = message,
+                   let entryDate = entryDate
+                {
+                    let dateFormatted = DateFormatter.Heaver.monthNameFormatter.string(from: entryDate)
+                    let message = String(localized: "Your most recent lift of \(String(message.characters)) was on \(dateFormatted). You did \(sets) sets of \(reps) with \(weightFormatted) \(units).")
+                    return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
+                }
+            } else {
+                
             }
         case .searchNotFound:
             if let message = message {
-                return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: String(localized: "We were unable to find a recent lift for \(message)")))
+                return DisplayRepresentation(title: LocalizedStringResource("We were unable to find a recent lift for \(message)"))
             }
         case .exerciseNotFound:
             if let query = query {
-                return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: String(localized: "We were unable to find any lift for \(query)")))
+                return DisplayRepresentation(title: LocalizedStringResource("We were unable to find any lift for \(query)"))
             }
         }
-        return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: String(localized: "Something went wrong")))
+        return DisplayRepresentation(title: LocalizedStringResource("Something went wrong"))
     }
     let id: UUID
     var title: String?

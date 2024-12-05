@@ -1,5 +1,5 @@
 from firebase_functions import https_fn
-from vocabulary import Vocabulary
+from vocabulary import vocabulary_add_exercise
 
 @https_fn.on_call()
 def exercise_add_name(req: https_fn.CallableRequest) -> https_fn.Response:
@@ -7,7 +7,7 @@ def exercise_add_name(req: https_fn.CallableRequest) -> https_fn.Response:
     if query is None:
         return https_fn.Response("No query parameter provided", status=400)
     try:
-        Vocabulary.vocabulary_add_exercise(query)
+        vocabulary_add_exercise(query)
     except Exception as e:
         return https_fn.Response(str(e), status=500)
 

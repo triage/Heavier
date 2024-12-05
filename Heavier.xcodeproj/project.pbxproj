@@ -24,7 +24,6 @@
 		071E391A251AF3F900A35799 /* OverloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3919251AF3F900A35799 /* OverloadTests.swift */; };
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
-		072809462CF548880052EDEC /* ExerciseSearchIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075905992CF3D7D500536BAF /* ExerciseSearchIntent.swift */; };
 		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
 		0748668E2CF766CC00C5ABFD /* WeightClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668D2CF766CC00C5ABFD /* WeightClassifier.mlmodel */; };
 		0748668F2CF766CC00C5ABFD /* RepsClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0748668B2CF766CC00C5ABFD /* RepsClassifier.mlmodel */; };
@@ -83,6 +82,8 @@
 		07E3EA1E2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1D2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift */; };
 		07E3EA202CF9703C00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA1F2CF9703B00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift */; };
 		07E3EA222CF9708600E02286 /* LiftEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E3EA212CF9708600E02286 /* LiftEntity.swift */; };
+		07E822C52D01FAC5001E6953 /* Date+MonthDayRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E822C42D01FAC5001E6953 /* Date+MonthDayRepresentation.swift */; };
+		07E822C62D01FAC5001E6953 /* Date+MonthDayRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E822C42D01FAC5001E6953 /* Date+MonthDayRepresentation.swift */; };
 		07F4828B26923FD500BEECAD /* Lift+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */; };
 		07F4828C269240D700BEECAD /* Lift+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */; };
 		3A217D2028B158C800E4EA29 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */; };
@@ -338,6 +339,7 @@
 		07E3EA1D2CF96FF400E02286 /* RecordLiftIntent+ResolveExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordLiftIntent+ResolveExercise.swift"; sourceTree = "<group>"; };
 		07E3EA1F2CF9703B00E02286 /* RecordLiftIntent+ResolveParamsFromInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordLiftIntent+ResolveParamsFromInput.swift"; sourceTree = "<group>"; };
 		07E3EA212CF9708600E02286 /* LiftEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftEntity.swift; sourceTree = "<group>"; };
+		07E822C42D01FAC5001E6953 /* Date+MonthDayRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+MonthDayRepresentation.swift"; sourceTree = "<group>"; };
 		07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Identifiable.swift"; sourceTree = "<group>"; };
 		3A217D1F28B158C800E4EA29 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
 		3A217D2328B1590400E4EA29 /* Binding+MapToBool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+MapToBool.swift"; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				079376232579EA3F00382DB1 /* JSONSerialization+Load.swift */,
 				074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */,
 				074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */,
+				07E822C42D01FAC5001E6953 /* Date+MonthDayRepresentation.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1234,7 +1237,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */,
-				072809462CF548880052EDEC /* ExerciseSearchIntent.swift in Sources */,
 				07DA92F425850A6F00FB95BB /* Conversion.swift in Sources */,
 				07DA92EA25850A4800FB95BB /* Constants.swift in Sources */,
 				07A7B53C25491EA3006468C1 /* Color+Heavier.swift in Sources */,
@@ -1248,6 +1250,7 @@
 				074866932CF7B96D00C5ABFD /* LiftWordTagger.mlmodel in Sources */,
 				79968A8825AD368900E318BE /* UIScrollViewDelegateObservable.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
+				07E822C62D01FAC5001E6953 /* Date+MonthDayRepresentation.swift in Sources */,
 				07F4828B26923FD500BEECAD /* Lift+Identifiable.swift in Sources */,
 				07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */,
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
@@ -1363,6 +1366,7 @@
 				79B68890259A89CD00845127 /* Exercise+FetchRequest.swift in Sources */,
 				79B68891259A89CD00845127 /* Exercise+Init.swift in Sources */,
 				79B68892259A89CD00845127 /* Exercise+LiftDate.swift in Sources */,
+				07E822C52D01FAC5001E6953 /* Date+MonthDayRepresentation.swift in Sources */,
 				79B68893259A89CD00845127 /* Exercise+PreviewContent.swift in Sources */,
 				79B6BA8B25B09B4F008EC2DC /* LiftsSection.swift in Sources */,
 				79B68894259A89CD00845127 /* Lift+Bodyweight.swift in Sources */,

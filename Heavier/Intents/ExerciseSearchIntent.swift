@@ -16,7 +16,7 @@ struct ExerciseSearchIntent: ShowInAppSearchResultsIntent {
     
     static var searchScopes: [StringSearchScope] = [.general]
 
-    @Parameter
+    @Parameter(title: "Exercise name")
     var criteria: StringSearchCriteria
     
     static func resolveExercise(name: String, context: NSManagedObjectContext, resolve: IntentParameter<StringSearchCriteria>) async throws -> Exercise? {

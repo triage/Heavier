@@ -183,11 +183,11 @@ struct LiftShortcuts: AppShortcutsProvider {
             "\(.applicationName), record",
         ], shortTitle: "Record a lift", systemImageName: "scalemass.fill")
         
-        AppShortcut(intent: ExerciseSearchIntent(), phrases: [
-            "Look up an exercise in \(.applicationName)",
-            "Find a lift in \(.applicationName)",
-            "Find an exercise in \(.applicationName)",
-            "Search in \(.applicationName)",
-        ], shortTitle: "Search a lift", systemImageName: "magnifyingglass")
+//        AppShortcut(intent: ExerciseSearchIntent(), phrases: [
+//            "Look up an exercise in \(.applicationName)",
+//            "Find a lift in \(.applicationName)",
+//            "Find an exercise in \(.applicationName)",
+//            "Search in \(.applicationName)",
+//        ], shortTitle: "Search a lift", systemImageName: "magnifyingglass")
     }
 }

@@ -2,8 +2,10 @@ from firebase_functions.params import StringParam
 from openai import OpenAI
 from firebase_functions import https_fn
 from flask import Response
-from vocabulary import Vocabulary
+
 import json
+
+from functions.vocabulary import exercise_resolve_name
 
 OPENAI_API_KEY = StringParam("OPENAI_API_KEY")
 
@@ -74,7 +76,7 @@ def lift_resolve_params(req: https_fn.CallableRequest) -> Response | dict[str, s
     # Resolve the exercise name
     exercise_name_original = exercise_name
     if exercise_name:
-        exercise_name = Vocabulary.exercise_resolve_name(exercise_name) or exercise_name
+        exercise_name = exercise_resolve_name(exercise_name) or exercise_name
 
     # return the json response of the exercise name, weight, sets, and reps
     return {

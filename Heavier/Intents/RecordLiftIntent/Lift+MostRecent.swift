@@ -70,12 +70,9 @@ extension Exercise {
         guard let managedObjectContext = managedObjectContext else {
             return nil
         }
-        let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: false)
-        return try? managedObjectContext.fetch(fetchRequest).compactMap {
-            if let timestamp = $0.timestamp, Calendar.autoupdatingCurrent.startOfDay(for: timestamp) == Calendar.autoupdatingCurrent.startOfDay(for: Date()) {
-                return $0
-            }
-            return nil
-        }
+        let fetchRequest = Lift.CoreData.fetchRequest(exercise: self, ascending: true, date: Date())
+        let lifts = try? managedObjectContext.fetch(fetchRequest)
+        print("liftsToday: \(lifts ?? [])")
+        return lifts
     }
 }

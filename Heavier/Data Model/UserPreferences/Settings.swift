@@ -32,9 +32,9 @@ final class Settings: ObservableObject {
         var description: String {
             switch self {
             case .imperial:
-                return "Imperial (lb)"
+                return String(localized: "Imperial (lb)", comment: "Settings - Units - Imperial")
             case .metric:
-                return "Metric (kg)"
+                return String(localized: "Metric (kg)", comment: "Settings - Units - Metric")
             }
         }
         
@@ -73,9 +73,9 @@ final class Settings: ObservableObject {
         var label: String {
             switch self {
             case .imperial:
-                return "lb"
+                return String(localized: "lb", comment: "Pounds (abbreviation")
             case .metric:
-                return "kg"
+                return String(localized: "kg", comment: "Kilograms (abbreviation")
             }
         }
     }
