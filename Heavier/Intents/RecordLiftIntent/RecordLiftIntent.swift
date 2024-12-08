@@ -71,7 +71,7 @@ struct RecordLiftIntent: AppIntent {
     }
     
     @MainActor
-    func perform() async throws -> some ReturnsValue<LiftEntity> & ProvidesDialog {
+    func perform() async throws -> some IntentResult & ReturnsValue<LiftEntity?> & ProvidesDialog {
         self.reps = nil
         self.sets = nil
         self.weight = nil
@@ -92,15 +92,14 @@ struct RecordLiftIntent: AppIntent {
                     /*
                      chatgpt couldn't find an exercise (or the user didn't specify one,
                      ie: "5 reps at 500 pounds" ... but there was a lift with an exercise
-                     super recently (5 minutes). In this case, let's guess that they're
-                     talking about the same exercise, and fill it in for the users
+                     super recently (5 minutes). xise, and fill it in for the users
                      */
                     exercise = mostRecentExercise
                 }
             }
         } catch (let error) {
             if error as? RecordLiftIntentError == RecordLiftIntentError.willNotCreate {
-                throw RecordLiftIntentError.willNotCreate
+                throw error
             }
         }
         
@@ -110,8 +109,6 @@ struct RecordLiftIntent: AppIntent {
             exercise = try await RecordLiftIntent.resolveExercise(name: name ?? String(message.characters), fuzzyMatchName: true, context: context, resolve: $message)
             if let name = exercise?.name {
                 self.name = name
-            } else {
-                throw AppIntentError.Unrecoverable.entityNotFound
             }
         }
         
@@ -138,7 +135,7 @@ struct RecordLiftIntent: AppIntent {
                 sets: sets,
                 weight: weight
               ) else {
-            throw AppIntentError.Unrecoverable.entityNotFound
+            throw AppIntentError.Unrecoverable.unknown
         }
         
         let confirm = try await $name.requestConfirmation(for: name, dialog: IntentDialog(stringLiteral: confirmationDialog))
@@ -182,12 +179,5 @@ struct LiftShortcuts: AppShortcutsProvider {
             "Log in \(.applicationName)",
             "\(.applicationName), record",
         ], shortTitle: "Record a lift", systemImageName: "scalemass.fill")
-        
-//        AppShortcut(intent: ExerciseSearchIntent(), phrases: [
-//            "Look up an exercise in \(.applicationName)",
-//            "Find a lift in \(.applicationName)",
-//            "Find an exercise in \(.applicationName)",
-//            "Search in \(.applicationName)",
-//        ], shortTitle: "Search a lift", systemImageName: "magnifyingglass")
     }
 }

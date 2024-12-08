@@ -51,6 +51,7 @@ struct LiftEntity {
                     let previousMessage = String(localized: "On \(dateFormatted), you lifted \(volumeMessage) \(units).")
                     message.append("\n\(previousMessage)")
                 }
+                print("message:\(message)")
                 return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
             }
         case .searchFound:

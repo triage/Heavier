@@ -116,6 +116,9 @@
     "Notes" : {
       "comment" : "Notes"
     },
+    "OK" : {
+
+    },
     "On %@, you lifted %@ %@." : {
       "localizations" : {
         "en" : {
