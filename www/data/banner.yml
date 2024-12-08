@@ -4,9 +4,9 @@ title : "Heavier"
 subtitle: |
   A no-frills progressive overload tracker <a target="_blank" href="https://apps.apple.com/us/app/heavier/id1543576981">available on the App Store</a>.
 content : |
-  This is a <strong>Banner</strong> element, and it's generally used as an introduction or opening statement. You can customize its <span class="demo-controls">appearance with a number of modifiers</span>, as well as assign it an optional <code>onload</code> or <code>onscroll</code> transition modifier (<a href="#reference-banner">details</a>).
+  Get stronger. Faster.
 button:
   label : "Download"
   link : https://apps.apple.com/us/app/heavier/id1543576981"
-image : "images/banner.jpg"
+image : "images/cover-image-cropped.png"
 
