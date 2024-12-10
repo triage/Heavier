@@ -303,6 +303,7 @@
 		079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLazyView.swift; sourceTree = "<group>"; };
 		079E7473256B363200D87F98 /* Exercise+LiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+LiftDate.swift"; sourceTree = "<group>"; };
 		079E747B256B600100D87F98 /* Lift+Bodyweight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Bodyweight.swift"; sourceTree = "<group>"; };
+		07A000F02D07EB4F00437E6A /* Overload 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 7.xcdatamodel"; sourceTree = "<group>"; };
 		07A7B53B25491EA3006468C1 /* Color+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+UIColor.swift"; sourceTree = "<group>"; };
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
 		07A7B548254BB7E3006468C1 /* TransparentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPicker.swift; sourceTree = "<group>"; };
@@ -2007,6 +2008,7 @@
 		07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				07A000F02D07EB4F00437E6A /* Overload 7.xcdatamodel */,
 				071E588C2696AB8800542610 /* Overload 6.xcdatamodel */,
 				79D77EB1259A0AF80051F03B /* Overload 5.xcdatamodel */,
 				07875CD925806CD800D1CBD8 /* Overload 2.xcdatamodel */,
@@ -2014,7 +2016,7 @@
 				798BB51A2597E62100171407 /* Overload 4.xcdatamodel */,
 				07CD00AC251C5027002FF127 /* Overload.xcdatamodel */,
 			);
-			currentVersion = 071E588C2696AB8800542610 /* Overload 6.xcdatamodel */;
+			currentVersion = 07A000F02D07EB4F00437E6A /* Overload 7.xcdatamodel */;
 			path = Overload.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

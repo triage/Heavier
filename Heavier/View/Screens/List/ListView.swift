@@ -61,6 +61,23 @@ struct ListView: View {
         }
     }
     
+    func delete(at offsets: IndexSet) {
+        guard let offset = offsets.first,
+              let exerciseToDelete = observer.rows[offset] as? Exercise else {
+            return
+        }
+        let objectId = exerciseToDelete.objectID
+        PersistenceController.shared.container.performBackgroundTask { context in
+            let exerciseToDelete = context.object(with: objectId)
+            context.delete(exerciseToDelete)
+            do {
+                try context.save()
+            } catch {
+                /* noop */
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
             List {
@@ -78,7 +95,9 @@ struct ListView: View {
                         EmptyView()
                     }
                 }
-            }.listStyle(PlainListStyle())
+                .onDelete(perform: delete)
+            }
+            .listStyle(PlainListStyle())
             .navigationDestination(for: $exerciseSelected) { exercise in
                 ExerciseView(exercise: exercise, managedObjectContext: PersistenceController.shared.container.viewContext)
             }
@@ -132,7 +151,7 @@ struct ExerciseCell: View {
         }, label: {
             HStack(alignment: .top, spacing: nil, content: {
                 VStack(alignment: .leading) {
-                    Text(exercise.name!)
+                    Text(exercise.name ?? "")
                         .sfCompactDisplay(.medium, size: Theme.Font.Size.large)
                     if let lastGroup = exercise.lastGroup(context: context) {
                         LiftShortDescription(lifts: lastGroup, settings: settings)

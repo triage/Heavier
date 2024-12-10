@@ -109,7 +109,7 @@ struct OlderLifts: View {
                 }
             }
             .padding([.top], LiftsCalendarView.frameHeight)
-            .onChange(of: dateSelected, perform: { dateSelected in
+            .onChange(of: dateSelected) { _, dateSelected in
                 guard let dateSelected = dateSelected else {
                     return
                 }
@@ -132,7 +132,7 @@ struct OlderLifts: View {
                         }
                     }
                 }
-            })
+            }
         }
     }
 }

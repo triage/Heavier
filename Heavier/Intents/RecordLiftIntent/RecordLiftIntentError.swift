@@ -13,7 +13,7 @@ enum RecordLiftIntentError: Error, CustomLocalizedStringResourceConvertible {
     }
     
     var description: String {
-        String(localized: "OK")
+        String(localized: "Enjoy your workout")
     }
     
     case willNotCreate

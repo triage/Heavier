@@ -173,7 +173,7 @@ struct ExerciseView: View {
                         .frame(
                             minWidth: 0,
                             maxWidth: .infinity,
-                            minHeight: 0/*@END_MENU_TOKEN@*/,
+                            minHeight: 0,
                             maxHeight: .infinity,
                             alignment: .topLeading
                         )
@@ -183,8 +183,12 @@ struct ExerciseView: View {
         .introspectScrollView { scrollView in
             scrollView.delegate = scrollViewDelegate
         }
-        .onChange(of: dateSelected, perform: onDateChanged)
-        .onChange(of: scrollViewDelegate.offset, perform: onScroll)
+        .onChange(of: dateSelected) { _, newDate in
+            onDateChanged(date: newDate)
+        }
+        .onChange(of: scrollViewDelegate.offset) { _, newValue in
+            onScroll(value: newValue)
+        }
         .overlay(
             CalendarButton {
                 calendarButtonIsVisible.toggle()
