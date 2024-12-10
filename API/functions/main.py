@@ -1,0 +1,6 @@
+from firebase_admin import initialize_app
+from exercise_add_name import exercise_add_name
+from exercise_resolve_name import exercise_resolve_name
+from lift_resolve_params import lift_resolve_params
+
+initialize_app()

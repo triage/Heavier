@@ -64,6 +64,30 @@ extension Lift {
         static func fetchRequest(
             exercise: Exercise?,
             ascending: Bool,
+            date: Date) -> NSFetchRequest<Lift> {
+            
+            let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()
+            var predicates = [NSPredicate]()
+
+            if let exercise = exercise {
+                predicates.append(Lift.CoreData.Predicate.exercise(exercise))
+            }
+            
+            if let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: date) {
+                let range = Calendar.current.startOfDay(for: date)...endOfDay
+                predicates.append(Lift.CoreData.Predicate.timestampRange(range))
+            }
+            
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+            fetchRequest.sortDescriptors = [
+                Lift.CoreData.SortDescriptor.timestamp(ascending: ascending)
+            ]
+            return fetchRequest
+        }
+        
+        static func fetchRequest(
+            exercise: Exercise?,
+            ascending: Bool,
             day: DateComponents? = nil) -> NSFetchRequest<Lift> {
             
             let fetchRequest: NSFetchRequest<Lift> = Lift.fetchRequest()

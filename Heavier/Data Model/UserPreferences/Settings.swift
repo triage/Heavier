@@ -20,12 +20,21 @@ final class Settings: ObservableObject {
         case imperial
         case metric
         
+        init(measurementSystem: Locale.MeasurementSystem) {
+            switch (measurementSystem) {
+            case .metric:
+                self = .metric
+            default:
+                self = .imperial
+            }
+        }
+        
         var description: String {
             switch self {
             case .imperial:
-                return "Imperial (lb)"
+                return String(localized: "Imperial (lb)", comment: "Settings - Units - Imperial")
             case .metric:
-                return "Metric (kg)"
+                return String(localized: "Metric (kg)", comment: "Settings - Units - Metric")
             }
         }
         
@@ -64,9 +73,9 @@ final class Settings: ObservableObject {
         var label: String {
             switch self {
             case .imperial:
-                return "lb"
+                return String(localized: "lb", comment: "Pounds (abbreviation")
             case .metric:
-                return "kg"
+                return String(localized: "kg", comment: "Kilograms (abbreviation")
             }
         }
     }
@@ -81,7 +90,7 @@ final class Settings: ObservableObject {
         if let number = UserDefaults.standard.object(forKey: Settings.Keys.units) as? NSNumber {
             units = Units(rawValue: number.intValue)!
         } else {
-            units = Units(rawValue: (Locale.current.usesMetricSystem as NSNumber).intValue)!
+            units = Units(measurementSystem: Locale.current.measurementSystem)
         }
     }
 }

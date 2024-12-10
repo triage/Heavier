@@ -1,0 +1,16 @@
+<!-- Banner -->
+<section class="banner {{ .style }}">
+    <div class="content" style="align-items: center;">
+        <img src="images/1024.png" width="100" />
+        <br />
+        {{ with .title }}<h1>{{ . }}</h1>{{ end }}
+        {{ with .subtitle }}<p class="major">{{ . | safeHTML }}</p>{{ end }}
+        {{ with .content }}<p>{{ . | safeHTML }}</p>{{ end }}
+        {{ with .button }}<ul class="actions stacked">
+            <li><a href="{{ .link }}" class="button primary large wide smooth-scroll-middle">{{ .label }}</a></li>
+        </ul>{{ end }}
+    </div>
+    {{ with .image }}<div class="image">
+        <img src="{{.}}" alt="Hugo Story" />
+    </div>{{end}}
+</section>

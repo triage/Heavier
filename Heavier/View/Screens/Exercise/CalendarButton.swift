@@ -15,7 +15,7 @@ struct CalendarButton: View {
             Group {
                 Image(systemName: "calendar")
             }.padding(17.0)
-            .background(Color.background.opacity(0.4))
+            .background(Color(.background).opacity(0.4))
             .overlay(
                 Circle()
                     .strokeBorder(lineWidth: 2.0)

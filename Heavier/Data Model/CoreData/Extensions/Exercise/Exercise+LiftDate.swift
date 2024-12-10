@@ -69,7 +69,10 @@ extension Exercise {
     }
     
     var lastLift: Lift? {
-        return (lifts?.array as? [Lift])?.sorted {
+        guard let lifts = lifts?.array as? [Lift] else {
+            return nil
+        }
+        return lifts.sorted {
             
             if $0.timestamp != nil && $1.timestamp == nil {
                 return true

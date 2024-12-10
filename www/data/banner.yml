@@ -1,0 +1,12 @@
+####################### Banner #########################
+style: "style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right"
+title : "Heavier"
+subtitle: |
+  A no-frills progressive overload tracker <a target="_blank" href="https://apps.apple.com/us/app/heavier/id1543576981">available on the App Store</a>.
+content : |
+  Get stronger. Faster.
+button:
+  label : "Download"
+  link : https://apps.apple.com/us/app/heavier/id1543576981"
+image : "images/cover-image-cropped.png"
+

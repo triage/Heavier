@@ -1,0 +1,13 @@
+<!-- Spotlight -->
+<section class="spotlight {{ .style }} overflow-hidden"{{ with .id }} id="{{ . }}"{{ end }} style="overflow: hidden; min-height: 600px;">
+    <div class="content">
+        {{ with .title }}<h2>{{ . }}</h2>{{ end }}
+        {{ with .content }}<p>{{ . | safeHTML }}</p>{{ end }}
+        {{ with .button }}<ul class="actions stacked">
+            <li><a href="{{ .link }}" class="button">{{ .label }}</a></li>
+        </ul>{{ end }}
+    </div>
+    {{ with .image }}<div class="image" style="background-color: transparent;">
+        <img src="{{ . }}" alt="" class="object"  style="object-fit: contain; min-height: 800px; background-color: transparent;" />
+    </div>{{ end }}
+</section>

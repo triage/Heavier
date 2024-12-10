@@ -7,11 +7,14 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFunctions
 
 @main
 struct HeavierApp: App {
     let persistenceController = PersistenceController.shared
-    
+    @Environment(\.scenePhase) var scenePhase
+
+    static let functions = Functions.functions()
     var body: some Scene {
         WindowGroup {
             RootView()
@@ -19,6 +22,6 @@ struct HeavierApp: App {
                 .onAppear {
                     FirebaseApp.configure()
                 }
+            }
         }
     }
-}

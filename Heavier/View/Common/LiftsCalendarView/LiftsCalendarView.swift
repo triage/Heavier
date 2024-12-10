@@ -157,9 +157,7 @@ struct LiftsCalendar_ContentPreviews: PreviewProvider {
         Group {
             LiftsCalendarView(
                 lifts: .constant(Exercise.Preview.preview.lifts!.array as! [Lift]),
-                onDateSelect: { day in
-                    print("day selected:\(day.description)")
-                }
+                onDateSelect: { day in }
             )
         }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

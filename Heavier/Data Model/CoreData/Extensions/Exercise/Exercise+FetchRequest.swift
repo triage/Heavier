@@ -11,6 +11,15 @@ import SwiftUI
 
 extension Exercise {
     enum CoreData {
+        
+        static func fetch(with id: UUID?, context: NSManagedObjectContext) -> Exercise? {
+            guard let id = id else { return nil }
+            let request = Exercise.fetchRequest() as NSFetchRequest<Exercise>
+            request.predicate = NSPredicate(format: "%K == %@", "id", id as CVarArg)
+            guard let items = try? context.fetch(request) else { return nil }
+            return items.first
+        }
+        
         static func predicate(query: String?) -> NSPredicate? {
             let predicate: NSPredicate?
             if let query = query, query.count > 0 {
@@ -23,6 +32,32 @@ extension Exercise {
                 predicate = nil
             }
             return predicate
+        }
+
+        static func exactMatch(_ query: String, caseSensitive: Bool) -> NSFetchRequest<Exercise>? {
+            guard query.count > 0 else {
+                return nil
+            }
+            let predicate: NSPredicate?
+            if query.count > 0 {
+                let format = caseSensitive ? "name == %@" : "name ==[c] %@"
+                predicate = NSPredicate(format: format, query as CVarArg)
+            } else {
+                predicate = nil
+            }
+            let request = NSFetchRequest<Exercise>(entityName: Exercise.entity().name!)
+            request.predicate = predicate
+            request.sortDescriptors = [
+                NSSortDescriptor(keyPath: \Exercise.relevance, ascending: false),
+                NSSortDescriptor(keyPath: \Exercise.name, ascending: true)
+            ]
+            return request
+        }
+        
+        static func matchingIdentifiers(_ ids: [UUID]) -> NSFetchRequest<Exercise> {
+            let request = NSFetchRequest<Exercise>(entityName: Exercise.entity().name!)
+            request.predicate = NSPredicate(format: "id IN %@", ids as CVarArg)
+            return request
         }
         
         static func searchFetchRequest(_ query: String?) -> NSFetchRequest<Exercise> {

@@ -1,0 +1,50 @@
+## -----------------------------------------------
+## Basic Configuration
+## -----------------------------------------------
+
+title = "Heavier - Progressive Overload App"
+copyright = "2025"
+
+## -----------------------------------------------
+## Publish
+## -----------------------------------------------
+
+relativeURLs = "true"
+#canonifyURLs = "true"
+
+# Local
+baseURL = "/"
+publishDir = "public"
+
+# Remote
+#baseURL = "https://caressofsteel.github.io/demos/hugo/hugo-story/"
+#publishDir = "//centos/sites/hugodev/hugostory/"
+
+## -----------------------------------------------
+## Hugo Built-in Features
+## -----------------------------------------------
+
+disableKinds = ["taxonomy", "section"]
+# googleAnalytics = "G-XXXXXXXXXX"
+
+## -----------------------------------------------
+## Site Parameters
+## -----------------------------------------------
+
+[Params]
+  description = "A (modular, highly tweakable) responsive one-page theme for Hugo"
+  logo = "images/banner.jpg"
+  favicon = true
+
+[Params.asset]
+  fontawesome_css = ["css/fontawesome-all.min.css"]
+  fontawesome_js = ["js/fontawesome-all.min.js"]
+
+[deployment]
+
+[[deployment.targets]]
+# An arbitrary name for this target.
+name = "production"
+
+# Google Cloud Storage -- see https://gocloud.dev/howto/blob/#gcs
+URL = "gs://heavierapp.com"

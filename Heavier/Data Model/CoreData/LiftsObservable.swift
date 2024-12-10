@@ -32,9 +32,7 @@ final class LiftsObservable: NSObject, ObservableObject {
                 }
 
             }
-        } catch {
-            print("failed to fetch items!")
-        }
+        } catch { /* noop */}
     }
     
     convenience init(

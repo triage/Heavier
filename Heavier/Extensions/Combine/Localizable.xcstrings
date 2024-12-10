@@ -1,0 +1,211 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    ", for a daily total of %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : ", for a daily total of %1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ of %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ of %2$@"
+          }
+        }
+      }
+    },
+    "${message} ${sets} sets of ${reps} reps at ${weight}" : {
+
+    },
+    "Biceps don't grow on trees" : {
+
+    },
+    "Body under construction. Mind on a mission" : {
+
+    },
+    "Confirm %@ %lld sets of %lld at %@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm %1$@ %2$lld sets of %3$lld at %4$@ %5$@."
+          }
+        }
+      }
+    },
+    "Create a new exercise for %@?" : {
+
+    },
+    "Don't be afraid to fail. Be afraid not to try" : {
+
+    },
+    "Enjoy your workout" : {
+
+    },
+    "Exercise" : {
+
+    },
+    "Exercise name" : {
+
+    },
+    "Exercise name, reps, sets and weight" : {
+
+    },
+    "How many sets?" : {
+
+    },
+    "How much weight?" : {
+
+    },
+    "If it doesn't challenge you, it doesn't change you" : {
+
+    },
+    "If you cheat, you only cheat yourself" : {
+
+    },
+    "Imperial (lb)" : {
+      "comment" : "Settings - Units - Imperial"
+    },
+    "It doesn't get easier. You just get stronger" : {
+
+    },
+    "kg" : {
+      "comment" : "Kilograms (abbreviation"
+    },
+    "kilograms" : {
+
+    },
+    "lb" : {
+      "comment" : "Pounds (abbreviation"
+    },
+    "Metric (kg)" : {
+      "comment" : "Settings - Units - Metric"
+    },
+    "Most recent lift:" : {
+      "comment" : "Most recent lift"
+    },
+    "Name" : {
+
+    },
+    "No excuses" : {
+
+    },
+    "No lifts found" : {
+
+    },
+    "No lifts recorded yet" : {
+
+    },
+    "Notes" : {
+      "comment" : "Notes"
+    },
+    "On %@, you lifted %@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "On %1$@, you lifted %2$@ %3$@."
+          }
+        }
+      }
+    },
+    "pounds" : {
+
+    },
+    "Record a lift" : {
+
+    },
+    "Recorded %@ %d sets of %d at %@ %@%@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Recorded %1$@ %2$d sets of %3$d at %4$@ %5$@%6$@."
+          }
+        }
+      }
+    },
+    "Reps" : {
+
+    },
+    "Save" : {
+      "comment" : "Save"
+    },
+    "Select Date" : {
+      "comment" : "Select Date"
+    },
+    "Sets" : {
+
+    },
+    "Settings" : {
+      "comment" : "Settings"
+    },
+    "Something went wrong" : {
+
+    },
+    "The amount of weight lifted" : {
+
+    },
+    "The number of reps" : {
+
+    },
+    "The number of sets" : {
+
+    },
+    "The pain you feel today will be the strength you feel tomorrow" : {
+
+    },
+    "Today" : {
+
+    },
+    "total volume (%@)" : {
+
+    },
+    "Units" : {
+      "comment" : "Units"
+    },
+    "We found a few results for %@. Which one do you want to use?" : {
+
+    },
+    "We were unable to find a recent lift for %@" : {
+
+    },
+    "We were unable to find any lift for %@" : {
+
+    },
+    "Weight" : {
+
+    },
+    "Your most recent lift of %@ was on %@. You did %d sets of %d with %@ %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your most recent lift of %1$@ was on %2$@. You did %3$d sets of %4$d with %5$@ %6$@."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
