@@ -27,11 +27,13 @@ struct ContentView: View {
     }
     
     var body: some View {
-        if viewType == .calendar {
-            RootCalendarView(context: context)
-        } else {
-            ListView()
-                .navigationTitle(ContentView.title)
+        VStack {
+            if viewType == .calendar {
+                RootCalendarView(context: context)
+            } else {
+                ListView()
+                    .navigationTitle(ContentView.title)
+            }
         }
     }
 }
@@ -63,8 +65,11 @@ struct RootView: View {
         }
     }
     
+    private static let siriAnnouncementKey = "didAcknowledgeSiriAnnouncement-1"
+    
     @State var viewType: ViewType = .list
     @State var settingsVisible: Bool = false
+    @State var didAcknowledgeSiriAnnouncement = UserDefaults.standard.bool(forKey: RootView.siriAnnouncementKey)
     
     var body: some View {
         NavigationView {
@@ -92,6 +97,14 @@ struct RootView: View {
         .sheet(isPresented: $settingsVisible, content: {
             SettingsView()
         })
+        .if(!didAcknowledgeSiriAnnouncement) { view in
+            view.overlay {
+                SiriGuideView(didAcknowledgeSiriAnnouncement: $didAcknowledgeSiriAnnouncement)
+            }
+        }
+        .onChange(of: didAcknowledgeSiriAnnouncement) { _, newValue in
+            UserDefaults.standard.set(newValue, forKey: RootView.siriAnnouncementKey)
+        }
     }
 }
 
@@ -99,7 +112,11 @@ struct RootView_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
         Group {
-            RootView()
+            RootView(didAcknowledgeSiriAnnouncement: true)
+                .previewDisplayName("Light")
+            RootView(didAcknowledgeSiriAnnouncement: false)
+                .colorScheme(.dark)
+                .previewDisplayName("Dark")
             RootView(viewType: .calendar)
             RootView(viewType: .calendar)
                 .environment(\.colorScheme, ColorScheme.dark)

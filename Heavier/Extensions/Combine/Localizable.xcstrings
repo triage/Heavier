@@ -14,6 +14,9 @@
         }
       }
     },
+    "\"Record a lift in Heavier\"" : {
+
+    },
     "%@ %@" : {
       "localizations" : {
         "en" : {
@@ -35,6 +38,15 @@
       }
     },
     "${message} ${sets} sets of ${reps} reps at ${weight}" : {
+
+    },
+    "6 reps of leg press at 400 pounds" : {
+
+    },
+    "Back squat, 3 sets of 6 reps, 185 pounds" : {
+
+    },
+    "Barbell deadlift, 3 sets of 10, 225 pounds" : {
 
     },
     "Biceps don't grow on trees" : {
@@ -69,6 +81,9 @@
 
     },
     "Exercise name, reps, sets and weight" : {
+
+    },
+    "Heavier now works with Siri" : {
 
     },
     "How many sets?" : {
@@ -161,6 +176,9 @@
       "comment" : "Settings"
     },
     "Something went wrong" : {
+
+    },
+    "Sounds good!" : {
 
     },
     "The amount of weight lifted" : {

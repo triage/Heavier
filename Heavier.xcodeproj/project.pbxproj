@@ -47,6 +47,8 @@
 		079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E746E256A0A8A00D87F98 /* NavigationLazyView.swift */; };
 		079E7474256B363200D87F98 /* Exercise+LiftDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E7473256B363200D87F98 /* Exercise+LiftDate.swift */; };
 		079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E747B256B600100D87F98 /* Lift+Bodyweight.swift */; };
+		07A000F22D09375900437E6A /* SiriGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A000F12D09375900437E6A /* SiriGuideView.swift */; };
+		07A000F32D09375900437E6A /* SiriGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A000F12D09375900437E6A /* SiriGuideView.swift */; };
 		07A7B53C25491EA3006468C1 /* Color+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+UIColor.swift */; };
 		07A7B544254A7396006468C1 /* LiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B543254A7396006468C1 /* LiftView.swift */; };
 		07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
@@ -302,6 +304,7 @@
 		079E7473256B363200D87F98 /* Exercise+LiftDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+LiftDate.swift"; sourceTree = "<group>"; };
 		079E747B256B600100D87F98 /* Lift+Bodyweight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Bodyweight.swift"; sourceTree = "<group>"; };
 		07A000F02D07EB4F00437E6A /* Overload 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 7.xcdatamodel"; sourceTree = "<group>"; };
+		07A000F12D09375900437E6A /* SiriGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriGuideView.swift; sourceTree = "<group>"; };
 		07A7B53B25491EA3006468C1 /* Color+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+UIColor.swift"; sourceTree = "<group>"; };
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
 		07A7B548254BB7E3006468C1 /* TransparentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPicker.swift; sourceTree = "<group>"; };
@@ -542,6 +545,7 @@
 				079E746D256A0A7B00D87F98 /* Common */,
 				076487E7257672EB00E22030 /* Screens */,
 				071E3904251AF3F800A35799 /* RootView.swift */,
+				07A000F12D09375900437E6A /* SiriGuideView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1265,6 +1269,7 @@
 				07BD42882576748100E5CA05 /* Lift+Grouping.swift in Sources */,
 				79F72E4E25AA5BC000C38F2E /* RecentLift.swift in Sources */,
 				07BE0175254D16F2007E2BB7 /* Lift+WeightsFormatter.swift in Sources */,
+				07A000F22D09375900437E6A /* SiriGuideView.swift in Sources */,
 				079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */,
 				073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */,
 				07BE017D254D170C007E2BB7 /* Lift+ShortDescription.swift in Sources */,
@@ -1307,6 +1312,7 @@
 			files = (
 				07D4A3F626B726EE00C1F243 /* RootCalendarView.swift in Sources */,
 				074C529C2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */,
+				07A000F32D09375900437E6A /* SiriGuideView.swift in Sources */,
 				79B688B7259A89FA00845127 /* DifferenceView.swift in Sources */,
 				79B688B8259A89FA00845127 /* LiftPicker.swift in Sources */,
 				79B688B9259A89FB00845127 /* LiftView.swift in Sources */,
@@ -1558,7 +1564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.9.0;
 				OPENAI_API_KEY = "$(OPENAI_API_KEY)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1585,7 +1591,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.9.0;
 				OPENAI_API_KEY = "$(OPENAI_API_KEY)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1690,7 +1696,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG APPCLIP";
@@ -1717,7 +1723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.strategicinformationservices.Overload.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPCLIP;
