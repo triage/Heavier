@@ -85,8 +85,9 @@ public struct SiriGuideView: View {
             }
             FadeInView(delay: 0.8) {
                 RoundedRectText(text: String(localized: "\"Record a lift in Heavier\""), fullWidth: true)
+                    .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .sfCompactDisplay(.bold, size: 32)
+                    .sfCompactDisplay(.black, size: 32)
                     .padding(.horizontal, Theme.Spacing.edgesDefault)
                     .padding(.bottom, 40.0)
             }
@@ -95,7 +96,7 @@ public struct SiriGuideView: View {
                 FadeInView(delay: 1.4) {
                     RoundedRectText(text: String(localized: "Just say ..."))
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .sfCompactDisplay(.medium, size: 14)
+                        .sfCompactDisplay(.medium, size: 18)
                         .padding(.horizontal, Theme.Spacing.edgesDefault)
                         .padding(.bottom, Theme.Spacing.small)
                 }
@@ -126,5 +127,20 @@ public struct SiriGuideView: View {
         }
         .frame(maxWidth: .infinity)
         .background(.ultraThinMaterial)
+    }
+}
+
+struct SiriGuideViewPreviews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            SiriGuideView { _ in
+                
+            }.previewDisplayName("Light")
+            SiriGuideView { _ in
+                
+            }
+            .colorScheme(.dark)
+            .previewDisplayName("Dark")
+        }
     }
 }

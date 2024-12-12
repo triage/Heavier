@@ -9,7 +9,8 @@ import Foundation
 import Combine
 import SwiftUI
 
-@Observable class UserFeatureMessaging: Publisher {
+@Observable
+class UserFeatureMessaging: Publisher {
     
     typealias Output = Feature
     typealias Failure = Never
