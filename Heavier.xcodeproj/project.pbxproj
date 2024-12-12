@@ -49,6 +49,8 @@
 		079E747C256B600100D87F98 /* Lift+Bodyweight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079E747B256B600100D87F98 /* Lift+Bodyweight.swift */; };
 		07A000F22D09375900437E6A /* SiriGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A000F12D09375900437E6A /* SiriGuideView.swift */; };
 		07A000F32D09375900437E6A /* SiriGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A000F12D09375900437E6A /* SiriGuideView.swift */; };
+		07A000F62D09D46200437E6A /* UserFeatureMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A000F52D09D46200437E6A /* UserFeatureMessaging.swift */; };
+		07A000F72D09D46200437E6A /* UserFeatureMessaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A000F52D09D46200437E6A /* UserFeatureMessaging.swift */; };
 		07A7B53C25491EA3006468C1 /* Color+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B53B25491EA3006468C1 /* Color+UIColor.swift */; };
 		07A7B544254A7396006468C1 /* LiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B543254A7396006468C1 /* LiftView.swift */; };
 		07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A7B548254BB7E3006468C1 /* TransparentPicker.swift */; };
@@ -305,6 +307,7 @@
 		079E747B256B600100D87F98 /* Lift+Bodyweight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+Bodyweight.swift"; sourceTree = "<group>"; };
 		07A000F02D07EB4F00437E6A /* Overload 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 7.xcdatamodel"; sourceTree = "<group>"; };
 		07A000F12D09375900437E6A /* SiriGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriGuideView.swift; sourceTree = "<group>"; };
+		07A000F52D09D46200437E6A /* UserFeatureMessaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeatureMessaging.swift; sourceTree = "<group>"; };
 		07A7B53B25491EA3006468C1 /* Color+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+UIColor.swift"; sourceTree = "<group>"; };
 		07A7B543254A7396006468C1 /* LiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftView.swift; sourceTree = "<group>"; };
 		07A7B548254BB7E3006468C1 /* TransparentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentPicker.swift; sourceTree = "<group>"; };
@@ -613,6 +616,14 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		07A000F42D09D44E00437E6A /* UserMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				07A000F52D09D46200437E6A /* UserFeatureMessaging.swift */,
+			);
+			path = UserMessaging;
+			sourceTree = "<group>";
+		};
 		07A7B53A25491E8F006468C1 /* Color */ = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +635,7 @@
 		07B3064B25745590005CB631 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				07A000F42D09D44E00437E6A /* UserMessaging */,
 				07CD00AB251C5027002FF127 /* Overload.xcdatamodeld */,
 				07DA92DB25850A0300FB95BB /* Constants */,
 				07D4352F2547D63A00F16668 /* CoreData */,
@@ -1253,6 +1265,7 @@
 				075905982CF3CF3900536BAF /* Exercise+ExactMatch.swift in Sources */,
 				79968A7925AD365400E318BE /* BlackOverlay.swift in Sources */,
 				07A7B549254BB7E3006468C1 /* TransparentPicker.swift in Sources */,
+				07A000F62D09D46200437E6A /* UserFeatureMessaging.swift in Sources */,
 				0705CFB425373AAA00756220 /* Exercise+FetchRequest.swift in Sources */,
 				3A217D2428B1590400E4EA29 /* Binding+MapToBool.swift in Sources */,
 				079E746F256A0A8A00D87F98 /* NavigationLazyView.swift in Sources */,
@@ -1345,6 +1358,7 @@
 				79B68895259A89CD00845127 /* Lift+FetchRequest.swift in Sources */,
 				79B68896259A89CD00845127 /* Lift+Grouping.swift in Sources */,
 				79B68897259A89CD00845127 /* Lift+Range.swift in Sources */,
+				07A000F72D09D46200437E6A /* UserFeatureMessaging.swift in Sources */,
 				79968A8025AD365E00E318BE /* BlackOverlay.swift in Sources */,
 				79B68898259A89CD00845127 /* Lift+ShortDescription.swift in Sources */,
 				79B68899259A89CD00845127 /* Lift+Volume.swift in Sources */,

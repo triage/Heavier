@@ -65,11 +65,15 @@ struct RootView: View {
         }
     }
     
-    private static let siriAnnouncementKey = "didAcknowledgeSiriAnnouncement-1"
-    
     @State var viewType: ViewType = .list
     @State var settingsVisible: Bool = false
-    @State var didAcknowledgeSiriAnnouncement = UserDefaults.standard.bool(forKey: RootView.siriAnnouncementKey)
+    @State var announcementsToDisplay: [UserFeatureMessaging.Feature] = []
+    
+    func didAcknowledge(feature: UserFeatureMessaging.Feature) {
+        announcementsToDisplay.removeAll { found in
+            found == feature
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -97,13 +101,16 @@ struct RootView: View {
         .sheet(isPresented: $settingsVisible, content: {
             SettingsView()
         })
-        .if(!didAcknowledgeSiriAnnouncement) { view in
+        .if(announcementsToDisplay.contains(.siri)) { view in
             view.overlay {
-                SiriGuideView(didAcknowledgeSiriAnnouncement: $didAcknowledgeSiriAnnouncement)
+                SiriGuideView(didAcknowledge: didAcknowledge)
             }
         }
-        .onChange(of: didAcknowledgeSiriAnnouncement) { _, newValue in
-            UserDefaults.standard.set(newValue, forKey: RootView.siriAnnouncementKey)
+        .onAppear {
+            let _ = UserFeatureMessaging.shared
+        }
+        .onReceive(UserFeatureMessaging.shared) { feature in
+            announcementsToDisplay.append(feature)
         }
     }
 }
@@ -112,9 +119,9 @@ struct RootView_Previews: PreviewProvider {
     @State static var text = ""
     static var previews: some View {
         Group {
-            RootView(didAcknowledgeSiriAnnouncement: true)
+            RootView()
                 .previewDisplayName("Light")
-            RootView(didAcknowledgeSiriAnnouncement: false)
+            RootView()
                 .colorScheme(.dark)
                 .previewDisplayName("Dark")
             RootView(viewType: .calendar)

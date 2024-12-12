@@ -71,7 +71,7 @@ public struct SiriGuideView: View {
         String(localized: "Back squat, 3 sets of 6 reps, 185 pounds"),
     ]
     
-    @Binding var didAcknowledgeSiriAnnouncement: Bool
+    let didAcknowledge: (UserFeatureMessaging.Feature) -> Void
     
     public var body: some View {
         VStack {
@@ -112,7 +112,7 @@ public struct SiriGuideView: View {
             }.padding(.horizontal, Theme.Spacing.edgesDefault)
             FadeInView(delay: 3.0) {
                 Button(action: {
-                    didAcknowledgeSiriAnnouncement = true
+                    didAcknowledge(.siri)
                 }, label: {
                     LiftButton(
                         text: String(localized: "Sounds good!"),

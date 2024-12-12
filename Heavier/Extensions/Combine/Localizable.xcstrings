@@ -83,7 +83,7 @@
     "Exercise name, reps, sets and weight" : {
 
     },
-    "Heavier now works with Siri" : {
+    "Heavier works hands-free with Siri" : {
 
     },
     "How many sets?" : {
@@ -102,6 +102,9 @@
       "comment" : "Settings - Units - Imperial"
     },
     "It doesn't get easier. You just get stronger" : {
+
+    },
+    "Just say ..." : {
 
     },
     "kg" : {
