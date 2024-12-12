@@ -15,13 +15,15 @@ struct LiftButton: View {
     let selected: Bool
     let imageNameTrailing: String?
     let backgroundColor: Color
+    let foregroundColor: Color
     
-    init(text: String, imageName: String, selected: Bool = false, imageNameTrailing: String? = nil, backgroundColor: Color = Color(.liftDateBackground)) {
+    init(text: String, imageName: String, selected: Bool = false, imageNameTrailing: String? = nil, backgroundColor: Color = Color(.liftDateBackground), foregroundColor: Color = Color(.liftDateForeground)) {
         self.text = text
         self.imageName = imageName
         self.selected = selected
         self.imageNameTrailing = imageNameTrailing
         self.backgroundColor = backgroundColor
+        self.foregroundColor = foregroundColor
     }
     
     var body: some View {
@@ -30,7 +32,7 @@ struct LiftButton: View {
                 Image(systemName: imageName)
                 Text(text)
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                    .foregroundColor(Color(.differenceForeground))
+                    .foregroundColor(foregroundColor)
                 if let imageNameTrailing = imageNameTrailing {
                     Image(systemName: imageNameTrailing)
                 }
@@ -47,7 +49,7 @@ struct LiftButton: View {
         .padding([.leading], Theme.Spacing.small)
         .accentColor(Color(.accent))
         .labelsHidden()
-        .foregroundColor(Color(.differenceForeground))
+        .foregroundColor(foregroundColor)
         .background(Color.clear)
     }
 }
