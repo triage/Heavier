@@ -280,6 +280,9 @@ struct LiftView_ContentPreviews: PreviewProvider {
         
         return Group {
             LiftView(exercise: exercise1, lift: lift, presented: $presented)
+                .previewDisplayName("Light")
+            LiftView(exercise: exercise1, lift: lift, presented: $presented).colorScheme(.dark)
+                .previewDisplayName("Dark")
             LiftView(exercise: exercise1, lift: lift2, presented: $presented)
             LiftView(exercise: exercise2, lift: lift2, presented: $presented, mode: .editing)
                     .environment(\.colorScheme, ColorScheme.dark)

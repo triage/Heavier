@@ -27,11 +27,13 @@ struct ContentView: View {
     }
     
     var body: some View {
-        if viewType == .calendar {
-            RootCalendarView(context: context)
-        } else {
-            ListView()
-                .navigationTitle(ContentView.title)
+        VStack {
+            if viewType == .calendar {
+                RootCalendarView(context: context)
+            } else {
+                ListView()
+                    .navigationTitle(ContentView.title)
+            }
         }
     }
 }
@@ -65,6 +67,13 @@ struct RootView: View {
     
     @State var viewType: ViewType = .list
     @State var settingsVisible: Bool = false
+    @State var announcementsToDisplay: [UserFeatureMessaging.Feature] = []
+    
+    func didAcknowledge(feature: UserFeatureMessaging.Feature) {
+        announcementsToDisplay.removeAll { found in
+            found == feature
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -92,6 +101,17 @@ struct RootView: View {
         .sheet(isPresented: $settingsVisible, content: {
             SettingsView()
         })
+        .if(announcementsToDisplay.contains(.siri)) { view in
+            view.overlay {
+                SiriGuideView(didAcknowledge: didAcknowledge)
+            }
+        }
+        .onAppear {
+            let _ = UserFeatureMessaging.shared
+        }
+        .onReceive(UserFeatureMessaging.shared) { feature in
+            announcementsToDisplay.append(feature)
+        }
     }
 }
 
@@ -100,6 +120,10 @@ struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             RootView()
+                .previewDisplayName("Light")
+            RootView()
+                .colorScheme(.dark)
+                .previewDisplayName("Dark")
             RootView(viewType: .calendar)
             RootView(viewType: .calendar)
                 .environment(\.colorScheme, ColorScheme.dark)

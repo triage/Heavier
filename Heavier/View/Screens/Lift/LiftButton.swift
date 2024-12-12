@@ -14,6 +14,17 @@ struct LiftButton: View {
     let imageName: String
     let selected: Bool
     let imageNameTrailing: String?
+    let backgroundColor: Color
+    let foregroundColor: Color
+    
+    init(text: String, imageName: String, selected: Bool = false, imageNameTrailing: String? = nil, backgroundColor: Color = Color(.liftDateBackground), foregroundColor: Color = Color(.liftDateForeground)) {
+        self.text = text
+        self.imageName = imageName
+        self.selected = selected
+        self.imageNameTrailing = imageNameTrailing
+        self.backgroundColor = backgroundColor
+        self.foregroundColor = foregroundColor
+    }
     
     var body: some View {
         HStack {
@@ -21,7 +32,7 @@ struct LiftButton: View {
                 Image(systemName: imageName)
                 Text(text)
                     .sfCompactDisplay(.medium, size: Theme.Font.Size.medium)
-                    .foregroundColor(Color(.liftDateForeground))
+                    .foregroundColor(foregroundColor)
                 if let imageNameTrailing = imageNameTrailing {
                     Image(systemName: imageNameTrailing)
                 }
@@ -32,13 +43,13 @@ struct LiftButton: View {
                     .stroke(Color(.liftButtonBorderSelected), lineWidth: selected ? 3.0 : 0.0)
             )
         }
-        .background(Color(.liftDateBackground))
+        .background(backgroundColor)
         .cornerRadius(Theme.Spacing.large)
         .padding([.bottom], Theme.Spacing.medium)
         .padding([.leading], Theme.Spacing.small)
         .accentColor(Color(.accent))
         .labelsHidden()
-        .foregroundColor(Color(.liftDateForeground))
+        .foregroundColor(foregroundColor)
         .background(Color.clear)
     }
 }
