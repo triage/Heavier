@@ -1,0 +1,13 @@
+####################### Spotlight #########################
+style: "style1 onscroll-image-fade-in"
+id: "siri"
+title : "Hands-free operation with Siri and Apple Intelligence."
+content: |
+  Leave your phone in you locker. Just say:
+  <h1 class="siri">"Hey Siri, record a lift in Heavier"</h2>
+  "3 reps of Romanian Deadlift at 225 pounds"<br />
+  "Bench press, 8 reps of 185 pounds"<br />
+  "Glute kickback, 10 reps at 40 pounds, 3 sets"<br />
+  ...and it's done.
+# image: "images/liftsOnDay.png"
+background_video: "background-video.mov"

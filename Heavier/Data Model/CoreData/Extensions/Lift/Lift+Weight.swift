@@ -24,10 +24,7 @@ extension Lift {
         return weight / Constants.Measurement.Conversion.MetricImperialConversion.factor
     }
     
-    static func localize(weight: Float?) -> Float? {
-        guard let weight = weight else {
-            return nil
-        }
+    static func localize(weight: Float) -> Float {
         if Settings.shared.units == .imperial {
             return weight * Constants.Measurement.Conversion.MetricImperialConversion.factor
         }

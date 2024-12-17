@@ -25,37 +25,57 @@ struct LiftEntity {
         case exerciseNotFound
     }
     
+    struct LiftSummaryComparision {
+        init(from: LiftEntity, previousDate: Date) {
+            
+        }
+    }
+    
+    let boosts = [
+        String(localized: "Nice job!"),
+        String(localized: "Nice work!"),
+        String(localized: "Congratulations!"),
+        String(localized: "You did it!"),
+        String(localized: "Light weight, baby!")
+    ]
+    
     static var defaultQuery = Query()
     var displayRepresentation: DisplayRepresentation {
         switch context {
         case .record:
-            if let reps = reps,
-               let sets = sets,
-               let weight = weight,
-               let weightLocalized = Lift.localize(weight: weight),
-               let weightFormatted = NumberFormatter.Heavier.weightFormatter.string(from: weightLocalized as NSNumber),
-               let units = units,
+            if let units = units,
                let message = message {
                 var volumeMessage: String = ""
                 if let dailyVolume = dailyVolume,
-                   let dailyVolumeLocalized = Lift.localize(weight: dailyVolume),
-                   let dailyVolumeFormatted = NumberFormatter.Heavier.weightFormatter.string(from: dailyVolumeLocalized as NSNumber) {
-                    volumeMessage = String(localized: ", for a daily total of \(dailyVolumeFormatted) \(units)")
+                   let dailyVolumeFormatted = NumberFormatter.Heavier.weightFormatter.string(from: Lift.localize(weight: dailyVolume) as NSNumber) {
+                    volumeMessage = String(localized: ", for a total daily volume of \(dailyVolumeFormatted) \(units)")
                 }
                 
-                var message = String(localized: "Recorded \(String(message.characters)) \(sets) sets of \(reps) at \(weightFormatted) \(units)\(volumeMessage).")
+                var message = String(localized: "Recorded \(String(message.characters))\(volumeMessage).")
                 if let previousDate = previousDate,
-                   let volume = Lift.localize(weight: previousDate.volume),
-                   let volumeMessage = NumberFormatter.Heavier.weightFormatter.string(from: volume as NSNumber),
                    let dateFormatted = previousDate.date.localizedMonthDayRepresentation {
-                    let previousMessage = String(localized: "On \(dateFormatted), you lifted \(volumeMessage) \(units).")
-                    message.append("\n\(previousMessage)")
+                    let previousDateVolume = Lift.localize(weight: previousDate.volume)
+                    if let dailyVolume = dailyVolume {
+                        let remaining = previousDate.volume - dailyVolume
+                        if remaining > 0 {
+                            if let volumeMessage = NumberFormatter.Heavier.weightFormatter.string(from: previousDateVolume as NSNumber) {
+                                let previousMessage = String(localized: "On \(dateFormatted), you lifted \(volumeMessage) \(units).")
+                                message.append("\n\(previousMessage)")
+                                if let remainingFormatted = NumberFormatter.Heavier.weightFormatter.string(from: remaining as NSNumber) {
+                                    message.append(String(localized: "\nYou have \(remainingFormatted) \(units) remaining."))
+                                }
+                            }
+                        } else if
+                            let excessFormatted = NumberFormatter.Heavier.weightFormatter.string(from: -1 * remaining as NSNumber),
+                            let boost = boosts.randomElement() {
+                            message.append(String(localized: "\n\(boost) You improved on your previous volume by \(excessFormatted) \(units)."))
+                        }
+                    }
                 }
-                print("message:\(message)")
                 return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
             }
         case .searchFound:
-            if let weight = Lift.localize(weight: weight), let weightFormatted = NumberFormatter.Heavier.weightFormatter.string(from: weight as NSNumber) {
+            if let weight = weight, let weightFormatted = NumberFormatter.Heavier.weightFormatter.string(from: Lift.localize(weight: weight) as NSNumber) {
                 if let reps = reps,
                    let sets = sets,
                    let units = units,
@@ -66,8 +86,6 @@ struct LiftEntity {
                     let message = String(localized: "Your most recent lift of \(String(message.characters)) was on \(dateFormatted). You did \(sets) sets of \(reps) with \(weightFormatted) \(units).")
                     return DisplayRepresentation(title: LocalizedStringResource(stringLiteral: message))
                 }
-            } else {
-                
             }
         case .searchNotFound:
             if let message = message {
@@ -95,7 +113,6 @@ struct LiftEntity {
     var mediaItems: [IntentFile]
     var entryDate: Date?
     var location: CLPlacemark?
-    
     
     struct Query: EntityStringQuery {
         func entities(for identifiers: [LiftEntity.ID]) async throws -> [LiftEntity] {

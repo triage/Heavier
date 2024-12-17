@@ -1,0 +1,43 @@
+<!-- Spotlight -->
+<section class="spotlight {{ .style }} overflow-hidden"{{ with .id }} id="{{ . }}"{{ end }} style="overflow: hidden; min-height: 600px;">
+    {{ with .background_video }}<video autoplay muted loop id="background_video">
+        <source src="{{.}}" type="video/mp4">
+    </video>{{end}}
+    <div id="float">
+        {{ with .title }}<h2 class="siri">{{ . }}</h2>{{ end }}
+        {{ with .content }}<p class="siri">{{ . | safeHTML }}</p>{{ end }}
+    </div>
+    <!-- {{ with .image }}<div class="image" style="background-color: transparent;">
+        <img src="{{ . }}" alt="" class="object"  style="object-fit: contain; min-height: 800px; background-color: transparent;" />
+    </div>{{ end }} -->
+    <style type="text/css">
+        .siri {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        #float {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff; /* Example content color */
+            text-align: center; /* Center-align text */
+            background-color: rgba(0, 0, 0, 0.5); /* Example background color */
+        }
+        #background_video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            object-fit: cover;
+        }
+    </style>
+</section>

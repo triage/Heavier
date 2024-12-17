@@ -140,6 +140,7 @@ struct RecordLiftIntent: AppIntent {
         
         let confirm = try await $name.requestConfirmation(for: name, dialog: IntentDialog(stringLiteral: confirmationDialog))
         
+        
         if !confirm {
             throw RecordLiftIntentError.willNotCreate
         }

@@ -29,9 +29,10 @@ struct RecentLift: View {
     let lift: Lift?
     
     var volume: String? {
-        guard let lift = lift, let localized = Lift.localize(weight: lift.volume) else {
+        guard let lift = lift else {
             return nil
         }
+        let localized = Lift.localize(weight: lift.volume)
         let number = NSNumber(value: localized)
         return Lift.weightsFormatter.string(from: number)
     }
