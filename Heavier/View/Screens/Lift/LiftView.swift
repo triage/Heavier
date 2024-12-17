@@ -145,6 +145,8 @@ struct LiftView: View {
             hapticFeedback.impactOccurred()
             
             presented.toggle()
+            
+            UserFeatureMessaging.shared.userDidInteract()
         }
     }
 

@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 import Combine
 import AppIntents
+import StoreKit
 
 struct ContentView: View {
     private static let title = "Exercises"
@@ -75,6 +76,8 @@ struct RootView: View {
         }
     }
     
+    @Environment(\.requestReview) var requestReview
+    
     var body: some View {
         NavigationView {
             ContentView(viewType: viewType)
@@ -111,6 +114,9 @@ struct RootView: View {
         }
         .onReceive(UserFeatureMessaging.shared) { feature in
             announcementsToDisplay.append(feature)
+            if feature == .appReview {
+                requestReview()
+            }
         }
     }
 }

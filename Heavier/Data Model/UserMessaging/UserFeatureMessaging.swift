@@ -28,15 +28,19 @@ class UserFeatureMessaging: Publisher {
 
     enum Trigger {
         case appDidForeground
+        case interaction
     }
     
     enum Feature: String, CaseIterable {
         case siri
+        case appReview
         
         var eventsRequired: Int {
             switch self {
             case .siri:
                 return 2
+            case .appReview:
+                return 4
             }
         }
         
@@ -44,6 +48,8 @@ class UserFeatureMessaging: Publisher {
             switch self {
             case .siri:
                 return .appDidForeground
+            case .appReview:
+                return .interaction
             }
         }
     }
@@ -59,6 +65,10 @@ class UserFeatureMessaging: Publisher {
                 self.processFeatures(trigger: .appDidForeground)
             }
         processFeatures(trigger: .appDidForeground)
+    }
+    
+    func userDidInteract() {
+        self.processFeatures(trigger: .interaction)
     }
     
     private static let userDefaultsKey = "features"
