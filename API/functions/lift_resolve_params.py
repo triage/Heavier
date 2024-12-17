@@ -5,7 +5,7 @@ from flask import Response
 
 import json
 
-from functions.vocabulary import exercise_resolve_name
+from vocabulary import exercise_resolve_name
 
 OPENAI_API_KEY = StringParam("OPENAI_API_KEY")
 

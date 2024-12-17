@@ -25,6 +25,7 @@
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
 		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
+		073662762D0FB787006FF9A7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073662752D0FB787006FF9A7 /* Analytics.swift */; };
 		074C52982CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C529B2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */; };
@@ -283,6 +284,7 @@
 		071E588A26955ED000542610 /* ExercisesObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesObservable.swift; sourceTree = "<group>"; };
 		071E588C2696AB8800542610 /* Overload 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 6.xcdatamodel"; sourceTree = "<group>"; };
 		073150D92CFDFD080090F729 /* Lift+MostRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+MostRecent.swift"; sourceTree = "<group>"; };
+		073662752D0FB787006FF9A7 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		075905842CF22F8B00536BAF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -512,6 +514,7 @@
 				071E3908251AF3F900A35799 /* Preview Content */,
 				07D435192547D4C900F16668 /* Resources */,
 				071E6B7F254E671D0078ADD3 /* View */,
+				073662752D0FB787006FF9A7 /* Analytics.swift */,
 			);
 			path = Heavier;
 			sourceTree = "<group>";
@@ -1237,6 +1240,7 @@
 				79968A8825AD368900E318BE /* UIScrollViewDelegateObservable.swift in Sources */,
 				070221892571D2DF00456C4C /* Lift+Range.swift in Sources */,
 				07E822C62D01FAC5001E6953 /* Date+MonthDayRepresentation.swift in Sources */,
+				073662762D0FB787006FF9A7 /* Analytics.swift in Sources */,
 				07F4828B26923FD500BEECAD /* Lift+Identifiable.swift in Sources */,
 				07DA92EF25850A5A00FB95BB /* Measurement.swift in Sources */,
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,

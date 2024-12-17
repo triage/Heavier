@@ -36,8 +36,8 @@ struct LiftsOnDateView: View {
             if lifts.isBodyweight {
                 return "\(lifts.reps) reps"
             }
+            let volume = Lift.localize(weight: lifts.volume)
             guard
-                let volume = Lift.localize(weight: lifts.volume),
                 let formatted = Lift.weightsFormatter.string(from: NSNumber(value: volume)) else {
                     return nil
             }
