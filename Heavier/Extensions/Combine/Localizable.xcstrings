@@ -185,6 +185,16 @@
     "Record a lift" : {
 
     },
+    "Recorded %@)%@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Recorded %1$@)%2$@."
+          }
+        }
+      }
+    },
     "Recorded %@%@." : {
       "localizations" : {
         "en" : {

@@ -154,13 +154,8 @@ struct RecordLiftIntent: AppIntent {
         lift.exercise = exercise
         try context.save() // Save changes on the background context
         
-        let previousDate = exercise.liftsOnPreviousDay()
-        let liftsToday = exercise.liftsToday()
-        
         if let entity = LiftEntity(
             lift: lift,
-            dailyVolume: liftsToday?.volume,
-            previousDate: previousDate,
             context: .record
         ) {
             return .result(value: entity, dialog: IntentDialog(entity.displayRepresentation.title))

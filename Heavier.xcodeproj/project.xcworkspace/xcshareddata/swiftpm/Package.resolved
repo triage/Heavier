@@ -1,5 +1,5 @@
 {
-  "originHash" : "36162626edf93a62504736b1d853eed9f5575874f2b2cd8890bd7e6b3a2cd3b7",
+  "originHash" : "f4af68d2ffeda56241b59042684ebb3d145e0b956515c35e23cb2589176e5f82",
   "pins" : [
     {
       "identity" : "abseil-cpp-swiftpm",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "fffc3c2729be5747390ad02d5100291a0d9ad26a",
         "version" : "0.20200225.4"
+      }
+    },
+    {
+      "identity" : "alerttoast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/elai950/AlertToast",
+      "state" : {
+        "revision" : "b39252eacd159904afd7d718bba0afabb87f2f2f",
+        "version" : "1.3.9"
       }
     },
     {

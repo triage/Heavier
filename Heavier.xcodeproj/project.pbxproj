@@ -26,6 +26,9 @@
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
 		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
 		073662762D0FB787006FF9A7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073662752D0FB787006FF9A7 /* Analytics.swift */; };
+		0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift */; };
+		0749FE7F2D13D04300BF57F2 /* LiftsOnDateSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */; };
+		0749FE802D13D04300BF57F2 /* LiftsOnDateSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */; };
 		074C52982CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C529B2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */; };
@@ -285,6 +288,8 @@
 		071E588C2696AB8800542610 /* Overload 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 6.xcdatamodel"; sourceTree = "<group>"; };
 		073150D92CFDFD080090F729 /* Lift+MostRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+MostRecent.swift"; sourceTree = "<group>"; };
 		073662752D0FB787006FF9A7 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+DisplayRepresentation.swift"; sourceTree = "<group>"; };
+		0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDateSummary.swift; sourceTree = "<group>"; };
 		074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		075905842CF22F8B00536BAF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -800,6 +805,8 @@
 				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
 				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
 				07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */,
+				0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift */,
+				0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */,
 			);
 			path = Lift;
 			sourceTree = "<group>";
@@ -1107,6 +1114,7 @@
 				799A92A325AD2F6400470D11 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				07C5F30F2CFEA70D00A51A3C /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				074E025C2D120349003DE7DE /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -1232,6 +1240,7 @@
 				07A7B53C25491EA3006468C1 /* Color+UIColor.swift in Sources */,
 				07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */,
 				07E3EA222CF9708600E02286 /* LiftEntity.swift in Sources */,
+				0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift in Sources */,
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
 				795A76B525981FA80094052B /* NotesView.swift in Sources */,
 				074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */,
@@ -1303,6 +1312,7 @@
 				077F8F4125697E060075B307 /* Lift+FetchRequest.swift in Sources */,
 				070221912572BA8800456C4C /* DateComponents+Range.swift in Sources */,
 				79B8B27125A26A410099D932 /* UIEdgeInsets+Edges.swift in Sources */,
+				0749FE802D13D04300BF57F2 /* LiftsOnDateSummary.swift in Sources */,
 				79886C2825A00D3500FC6CDC /* Exercise+Relevance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1360,6 +1370,7 @@
 				79B6BA8B25B09B4F008EC2DC /* LiftsSection.swift in Sources */,
 				79B68894259A89CD00845127 /* Lift+Bodyweight.swift in Sources */,
 				79B68895259A89CD00845127 /* Lift+FetchRequest.swift in Sources */,
+				0749FE7F2D13D04300BF57F2 /* LiftsOnDateSummary.swift in Sources */,
 				79B68896259A89CD00845127 /* Lift+Grouping.swift in Sources */,
 				79B68897259A89CD00845127 /* Lift+Range.swift in Sources */,
 				07A000F72D09D46200437E6A /* UserFeatureMessaging.swift in Sources */,
@@ -1907,6 +1918,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.8.3;
+			};
+		};
+		074E025C2D120349003DE7DE /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
 			};
 		};
 		07C5F30F2CFEA70D00A51A3C /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
