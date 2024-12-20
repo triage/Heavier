@@ -57,6 +57,16 @@
         }
       }
     },
+    "%dx%d %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$dx%2$d %3$@"
+          }
+        }
+      }
+    },
     "${message} ${sets} sets of ${reps} reps at ${weight}" : {
 
     },
@@ -185,22 +195,15 @@
     "Record a lift" : {
 
     },
+    "Recorded %@" : {
+
+    },
     "Recorded %@)%@." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Recorded %1$@)%2$@."
-          }
-        }
-      }
-    },
-    "Recorded %@%@." : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Recorded %1$@%2$@."
           }
         }
       }

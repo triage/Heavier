@@ -7,8 +7,21 @@
 
 import Foundation
 import CoreData
+import Combine
 
-final class LiftsObservable: NSObject, ObservableObject {
+final class LiftsObservable: NSObject, ObservableObject, Publisher {
+    
+    typealias Output = Lift
+    typealias Failure = Never
+    
+    // Subject to manage the sending of values
+    private let liftSubject = PassthroughSubject<Output, Never>()
+    
+    // Conformance to Publisher
+    func receive<S>(subscriber: S) where S : Subscriber, Failure == S.Failure, Output == S.Input {
+        liftSubject.receive(subscriber: subscriber)
+    }
+    
     @Published var lifts: [Lift] = []
     @Published var sections: [LiftsSection] = []
     private let fetchedResultsController: NSFetchedResultsController<Lift>
@@ -88,6 +101,23 @@ extension LiftsObservable: NSFetchedResultsControllerDelegate {
             DispatchQueue.main.async {
                 self.sections = liftsSections
             }
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let newIndexPath = newIndexPath, let inserted = controller.object(at: newIndexPath) as? Lift {
+                print("inserted:\(inserted)")
+                liftSubject.send(inserted)
+                // Handle the inserted row here
+            }
+        default:
+            break
         }
     }
 }

@@ -138,7 +138,7 @@ struct LiftEntity {
     }
     
     init?(lift: Lift, context _context: Context) {
-        guard let id = lift.id, let exercise = lift.exercise, let name = exercise.name else {
+        guard let id = lift.id, let exercise = lift.exercise else {
             return nil
         }
         self.id = id
@@ -159,7 +159,7 @@ struct LiftEntity {
         query = nil
         entryDate = lift.timestamp
         if let displayRepresentation = lift.displayRepresentation {
-            message = AttributedString(lift.displayRepresentation!)
+            message = AttributedString(displayRepresentation)
         } else {
             message = nil
         }

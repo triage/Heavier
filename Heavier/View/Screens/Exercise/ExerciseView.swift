@@ -11,6 +11,7 @@ import CoreData
 import Introspect
 import UIKit
 import Combine
+import AlertToast
 
 struct ExerciseView: View {
     let exercise: Exercise
@@ -22,6 +23,8 @@ struct ExerciseView: View {
     @State private var dateSelected: Date?
     
     @StateObject private var lifts: LiftsObservable
+    @State var toastMessage: Lift.Toast?
+    @State var showToast = false
     
     // swiftlint:disable:next weak_delegate
     @StateObject private var scrollViewDelegate = UIScrollViewDelegateObservable()
@@ -189,7 +192,25 @@ struct ExerciseView: View {
         .onChange(of: scrollViewDelegate.offset) { _, newValue in
             onScroll(value: newValue)
         }
-        .overlay(
+        .onReceive(lifts) { lift in
+            toastMessage = lift.toast
+        }.onChange(of: toastMessage) { _, newLift in
+            showToast = toastMessage != nil
+        }.toast(
+            isPresenting: $showToast,
+            duration: 10,
+            tapToDismiss: true,
+            alert: {
+                AlertToast(
+                    displayMode: .hud,
+                    type: .regular,
+                    title: toastMessage?.title ?? "",
+                    subTitle: toastMessage?.subtitle ?? ""
+                )
+            },
+            onTap: {},
+            completion: { toastMessage = nil }
+        ).overlay(
             CalendarButton {
                 calendarButtonIsVisible.toggle()
                 onTapCalendarButton()

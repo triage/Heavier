@@ -26,9 +26,14 @@
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
 		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
 		073662762D0FB787006FF9A7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073662752D0FB787006FF9A7 /* Analytics.swift */; };
-		0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift */; };
+		0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift */; };
 		0749FE7F2D13D04300BF57F2 /* LiftsOnDateSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */; };
 		0749FE802D13D04300BF57F2 /* LiftsOnDateSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */; };
+		074A50692D151B9F0094A8E8 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 074A50682D151B9F0094A8E8 /* AlertToast */; };
+		074A506B2D151BA60094A8E8 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 074A506A2D151BA60094A8E8 /* AlertToast */; };
+		074A50702D151DDB0094A8E8 /* Lift+DisplayRepresentation+AppClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A506E2D151DDB0094A8E8 /* Lift+DisplayRepresentation+AppClip.swift */; };
+		074A50722D1522E20094A8E8 /* Lift+ToastRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A50712D1522E20094A8E8 /* Lift+ToastRepresentation.swift */; };
+		074A50732D1522E20094A8E8 /* Lift+ToastRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074A50712D1522E20094A8E8 /* Lift+ToastRepresentation.swift */; };
 		074C52982CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */; };
 		074C529B2CFF41A90078D4FE /* DateFormatter+Heavier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */; };
@@ -288,8 +293,10 @@
 		071E588C2696AB8800542610 /* Overload 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Overload 6.xcdatamodel"; sourceTree = "<group>"; };
 		073150D92CFDFD080090F729 /* Lift+MostRecent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+MostRecent.swift"; sourceTree = "<group>"; };
 		073662752D0FB787006FF9A7 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
-		0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+DisplayRepresentation.swift"; sourceTree = "<group>"; };
+		0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+DisplayRepresentation+App.swift"; sourceTree = "<group>"; };
 		0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftsOnDateSummary.swift; sourceTree = "<group>"; };
+		074A506E2D151DDB0094A8E8 /* Lift+DisplayRepresentation+AppClip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+DisplayRepresentation+AppClip.swift"; sourceTree = "<group>"; };
+		074A50712D1522E20094A8E8 /* Lift+ToastRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lift+ToastRepresentation.swift"; sourceTree = "<group>"; };
 		074C52972CFF40720078D4FE /* NumberFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		074C529A2CFF41A90078D4FE /* DateFormatter+Heavier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Heavier.swift"; sourceTree = "<group>"; };
 		075905842CF22F8B00536BAF /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
@@ -393,6 +400,7 @@
 				0759BE7C2CFB3FBE002F1618 /* FirebaseFunctions in Frameworks */,
 				799A92A525AD2F6400470D11 /* Introspect in Frameworks */,
 				79B6BAB925B0A18D008EC2DC /* FirebaseCrashlytics in Frameworks */,
+				074A50692D151B9F0094A8E8 /* AlertToast in Frameworks */,
 				796A43F22586CDF20066A2F3 /* SwiftlySearch in Frameworks */,
 				79DF5E5225A16DE2000067E4 /* SwiftUIPager in Frameworks */,
 			);
@@ -419,6 +427,7 @@
 				79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */,
 				799A92AD25AD2F7100470D11 /* Introspect in Frameworks */,
 				79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */,
+				074A506B2D151BA60094A8E8 /* AlertToast in Frameworks */,
 				79DF5E5A25A16ED6000067E4 /* SwiftUIPager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -805,8 +814,10 @@
 				070494CB257747C500AF00E6 /* Lift+Weight.swift */,
 				07BE0174254D16F2007E2BB7 /* Lift+WeightsFormatter.swift */,
 				07F4828A26923FD500BEECAD /* Lift+Identifiable.swift */,
-				0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift */,
+				0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift */,
+				074A506E2D151DDB0094A8E8 /* Lift+DisplayRepresentation+AppClip.swift */,
 				0749FE7E2D13D04300BF57F2 /* LiftsOnDateSummary.swift */,
+				074A50712D1522E20094A8E8 /* Lift+ToastRepresentation.swift */,
 			);
 			path = Lift;
 			sourceTree = "<group>";
@@ -964,6 +975,7 @@
 				79B6BAB825B0A18D008EC2DC /* FirebaseCrashlytics */,
 				0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */,
 				07CC43342CFEA8A20011691F /* Algorithms */,
+				074A50682D151B9F0094A8E8 /* AlertToast */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -1023,6 +1035,7 @@
 				79B688D3259A8BB300845127 /* SwiftlySearch */,
 				79DF5E5925A16ED6000067E4 /* SwiftUIPager */,
 				799A92AC25AD2F7100470D11 /* Introspect */,
+				074A506A2D151BA60094A8E8 /* AlertToast */,
 			);
 			productName = HeavierAppClip;
 			productReference = 79B687F9259A87B500845127 /* HeavierAppClip.app */;
@@ -1240,7 +1253,7 @@
 				07A7B53C25491EA3006468C1 /* Color+UIColor.swift in Sources */,
 				07022163256DFA4600456C4C /* LiftsCalendarView.swift in Sources */,
 				07E3EA222CF9708600E02286 /* LiftEntity.swift in Sources */,
-				0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation.swift in Sources */,
+				0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift in Sources */,
 				0781F2AE254E59A500B9AE63 /* Lift+Volume.swift in Sources */,
 				795A76B525981FA80094052B /* NotesView.swift in Sources */,
 				074C52992CFF40720078D4FE /* NumberFormatter+Heavier.swift in Sources */,
@@ -1255,6 +1268,7 @@
 				0781F29D254E415000B9AE63 /* LiftPicker.swift in Sources */,
 				79F72E5D25AB5A9700C38F2E /* OlderLifts.swift in Sources */,
 				07B30651257460A8005CB631 /* List+SeparatorInset.swift in Sources */,
+				074A50732D1522E20094A8E8 /* Lift+ToastRepresentation.swift in Sources */,
 				077DE8732CED9389006C5663 /* RecordLiftIntent.swift in Sources */,
 				07D435152547CD5900F16668 /* Fonts.swift in Sources */,
 				071E390C251AF3F900A35799 /* Persistence.swift in Sources */,
@@ -1394,8 +1408,10 @@
 				79B688A7259A89CD00845127 /* LiftsCalendarView.swift in Sources */,
 				79B6B9E225AD442A008EC2DC /* CalendarButton.swift in Sources */,
 				79B688A8259A89CD00845127 /* DayLabel.swift in Sources */,
+				074A50722D1522E20094A8E8 /* Lift+ToastRepresentation.swift in Sources */,
 				79B688A9259A89CD00845127 /* MonthLabel.swift in Sources */,
 				079331FC269BD33700D37202 /* Date+Month.swift in Sources */,
+				074A50702D151DDB0094A8E8 /* Lift+DisplayRepresentation+AppClip.swift in Sources */,
 				79F72E8025AB5CAA00C38F2E /* ExerciseCalendar.swift in Sources */,
 				07B937B02691FC51007CE93C /* ExerciseOnDate.swift in Sources */,
 				79B688AA259A89CD00845127 /* GroupedLiftsOnDay.swift in Sources */,
@@ -1975,6 +1991,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
+		};
+		074A50682D151B9F0094A8E8 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 074E025C2D120349003DE7DE /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+		074A506A2D151BA60094A8E8 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 074E025C2D120349003DE7DE /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 		0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */ = {
 			isa = XCSwiftPackageProductDependency;
