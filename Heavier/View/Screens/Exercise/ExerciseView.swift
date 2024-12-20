@@ -12,10 +12,12 @@ import Introspect
 import UIKit
 import Combine
 import AlertToast
+import ConfettiSwiftUI
 
 struct ExerciseView: View {
     let exercise: Exercise
     
+    @State private var confettiCounter: Int = 10
     @State private var liftViewPresented = false
     @State private var calendarButtonIsVisible = false
     @State private var calendarIsFloating = false
@@ -127,6 +129,18 @@ struct ExerciseView: View {
     
     @Environment(\.managedObjectContext) var context
     
+    enum Confetti {
+        static let radius = 400.0
+        static let duration = 2.0
+    }
+    
+    func startConfetti() {
+        confettiCounter = 300
+        withAnimation(.easeOut(duration: Confetti.duration)) {
+            confettiCounter = 0
+        }
+    }
+    
     var body: some View {
         return ScrollView {
             ZStack(alignment: .topLeading) {
@@ -194,11 +208,21 @@ struct ExerciseView: View {
         }
         .onReceive(lifts) { lift in
             toastMessage = lift.toast
+            startConfetti()
         }.onChange(of: toastMessage) { _, newLift in
             showToast = toastMessage != nil
-        }.toast(
+        }
+        .confettiCannon(
+            counter: $confettiCounter,
+            num: 50,
+            rainHeight: 600,
+            openingAngle: .degrees(0),
+            closingAngle: .degrees(180),
+            radius: Confetti.radius
+        )
+        .toast(
             isPresenting: $showToast,
-            duration: 10,
+            duration: 4,
             tapToDismiss: true,
             alert: {
                 AlertToast(

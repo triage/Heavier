@@ -24,6 +24,8 @@
 		071E391A251AF3F900A35799 /* OverloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3919251AF3F900A35799 /* OverloadTests.swift */; };
 		071E3925251AF3F900A35799 /* OverloadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E3924251AF3F900A35799 /* OverloadUITests.swift */; };
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
+		0723C32C2D1526A2002F5E22 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0723C32B2D1526A2002F5E22 /* ConfettiSwiftUI */; };
+		0723C32E2D1526AC002F5E22 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0723C32D2D1526AC002F5E22 /* ConfettiSwiftUI */; };
 		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
 		073662762D0FB787006FF9A7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073662752D0FB787006FF9A7 /* Analytics.swift */; };
 		0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift */; };
@@ -395,6 +397,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0723C32C2D1526A2002F5E22 /* ConfettiSwiftUI in Frameworks */,
 				0702215E256DFA2C00456C4C /* HorizonCalendar in Frameworks */,
 				07CC43352CFEA8A20011691F /* Algorithms in Frameworks */,
 				0759BE7C2CFB3FBE002F1618 /* FirebaseFunctions in Frameworks */,
@@ -424,6 +427,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0723C32E2D1526AC002F5E22 /* ConfettiSwiftUI in Frameworks */,
 				79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */,
 				799A92AD25AD2F7100470D11 /* Introspect in Frameworks */,
 				79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */,
@@ -976,6 +980,7 @@
 				0759BE7B2CFB3FBE002F1618 /* FirebaseFunctions */,
 				07CC43342CFEA8A20011691F /* Algorithms */,
 				074A50682D151B9F0094A8E8 /* AlertToast */,
+				0723C32B2D1526A2002F5E22 /* ConfettiSwiftUI */,
 			);
 			productName = Overload;
 			productReference = 071E38FF251AF3F800A35799 /* Heavier.app */;
@@ -1036,6 +1041,7 @@
 				79DF5E5925A16ED6000067E4 /* SwiftUIPager */,
 				799A92AC25AD2F7100470D11 /* Introspect */,
 				074A506A2D151BA60094A8E8 /* AlertToast */,
+				0723C32D2D1526AC002F5E22 /* ConfettiSwiftUI */,
 			);
 			productName = HeavierAppClip;
 			productReference = 79B687F9259A87B500845127 /* HeavierAppClip.app */;
@@ -1128,6 +1134,7 @@
 				79B6BA0125ADEBA6008EC2DC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				07C5F30F2CFEA70D00A51A3C /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				074E025C2D120349003DE7DE /* XCRemoteSwiftPackageReference "AlertToast" */,
+				074A50742D15265D0094A8E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = 071E3900251AF3F800A35799 /* Products */;
 			projectDirPath = "";
@@ -1936,6 +1943,14 @@
 				minimumVersion = 1.8.3;
 			};
 		};
+		074A50742D15265D0094A8E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 		074E025C2D120349003DE7DE /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast";
@@ -1991,6 +2006,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0702215C256DFA2C00456C4C /* XCRemoteSwiftPackageReference "HorizonCalendar" */;
 			productName = HorizonCalendar;
+		};
+		0723C32B2D1526A2002F5E22 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 074A50742D15265D0094A8E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		0723C32D2D1526AC002F5E22 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 074A50742D15265D0094A8E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
 		};
 		074A50682D151B9F0094A8E8 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
