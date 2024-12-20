@@ -26,6 +26,8 @@
 		071E588B26955ED000542610 /* ExercisesObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E588A26955ED000542610 /* ExercisesObservable.swift */; };
 		0723C32C2D1526A2002F5E22 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0723C32B2D1526A2002F5E22 /* ConfettiSwiftUI */; };
 		0723C32E2D1526AC002F5E22 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0723C32D2D1526AC002F5E22 /* ConfettiSwiftUI */; };
+		0723C32F2D1610B7002F5E22 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
+		0723C3312D16110A002F5E22 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 0723C3302D16110A002F5E22 /* Algorithms */; };
 		073150DA2CFDFD080090F729 /* Lift+MostRecent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073150D92CFDFD080090F729 /* Lift+MostRecent.swift */; };
 		073662762D0FB787006FF9A7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073662752D0FB787006FF9A7 /* Analytics.swift */; };
 		0749FE7D2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749FE7B2D13CD1C00BF57F2 /* Lift+DisplayRepresentation+App.swift */; };
@@ -428,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0723C32E2D1526AC002F5E22 /* ConfettiSwiftUI in Frameworks */,
+				0723C3312D16110A002F5E22 /* Algorithms in Frameworks */,
 				79B688D2259A8BB300845127 /* HorizonCalendar in Frameworks */,
 				799A92AD25AD2F7100470D11 /* Introspect in Frameworks */,
 				79B688D4259A8BB300845127 /* SwiftlySearch in Frameworks */,
@@ -1042,6 +1045,7 @@
 				799A92AC25AD2F7100470D11 /* Introspect */,
 				074A506A2D151BA60094A8E8 /* AlertToast */,
 				0723C32D2D1526AC002F5E22 /* ConfettiSwiftUI */,
+				0723C3302D16110A002F5E22 /* Algorithms */,
 			);
 			productName = HeavierAppClip;
 			productReference = 79B687F9259A87B500845127 /* HeavierAppClip.app */;
@@ -1385,6 +1389,7 @@
 				79B6888F259A89CD00845127 /* Constants.swift in Sources */,
 				79B68890259A89CD00845127 /* Exercise+FetchRequest.swift in Sources */,
 				79B68891259A89CD00845127 /* Exercise+Init.swift in Sources */,
+				0723C32F2D1610B7002F5E22 /* Lift+MostRecent.swift in Sources */,
 				79B68892259A89CD00845127 /* Exercise+LiftDate.swift in Sources */,
 				07E822C52D01FAC5001E6953 /* Date+MonthDayRepresentation.swift in Sources */,
 				79B68893259A89CD00845127 /* Exercise+PreviewContent.swift in Sources */,
@@ -2016,6 +2021,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 074A50742D15265D0094A8E8 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
+		};
+		0723C3302D16110A002F5E22 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 07C5F30F2CFEA70D00A51A3C /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 		074A50682D151B9F0094A8E8 /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

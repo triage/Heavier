@@ -206,9 +206,16 @@ struct ExerciseView: View {
         .onChange(of: scrollViewDelegate.offset) { _, newValue in
             onScroll(value: newValue)
         }
-        .onReceive(lifts) { lift in
-            toastMessage = lift.toast
-            startConfetti()
+        .onReceive(lifts) { updateType in
+            switch updateType {
+            case .inserted(let lift, let didMeetGoal):
+                toastMessage = lift.toast(reason: .inserted)
+                if didMeetGoal {
+                    startConfetti()
+                }
+            case .updated(let lift):
+                toastMessage = lift.toast(reason: .updated)
+            }
         }.onChange(of: toastMessage) { _, newLift in
             showToast = toastMessage != nil
         }

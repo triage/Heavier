@@ -195,7 +195,7 @@
     "Record a lift" : {
 
     },
-    "Recorded %@" : {
+    "Recorded" : {
 
     },
     "Recorded %@)%@." : {
@@ -249,6 +249,9 @@
     },
     "Units" : {
       "comment" : "Units"
+    },
+    "Updated" : {
+
     },
     "We found a few results for %@. Which one do you want to use?" : {
 

@@ -9,9 +9,14 @@ import Foundation
 import CoreData
 import Combine
 
+enum LiftsObservableSubject {
+    case inserted(lift: Lift, didMeetVolumeGoal: Bool)
+    case updated(lift: Lift)
+}
+
 final class LiftsObservable: NSObject, ObservableObject, Publisher {
     
-    typealias Output = Lift
+    typealias Output = LiftsObservableSubject
     typealias Failure = Never
     
     // Subject to manage the sending of values
@@ -111,10 +116,19 @@ extension LiftsObservable: NSFetchedResultsControllerDelegate {
                     newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            if let newIndexPath = newIndexPath, let inserted = controller.object(at: newIndexPath) as? Lift {
-                print("inserted:\(inserted)")
-                liftSubject.send(inserted)
-                // Handle the inserted row here
+            if let inserted = anObject as? Lift {
+                guard let exercise = inserted.exercise, let liftsToday = exercise.liftsToday() else {
+                    return
+                }
+                var previousVolume = liftsToday.volume
+                if let previousDate = exercise.liftsOnPreviousDay() {
+                    previousVolume = previousDate.1.volume
+                }
+                liftSubject.send(.inserted(lift: inserted, didMeetVolumeGoal: liftsToday.volume > previousVolume))
+            }
+        case .update:
+            if let updated = anObject as? Lift {
+                liftSubject.send(.updated(lift: updated))
             }
         default:
             break
